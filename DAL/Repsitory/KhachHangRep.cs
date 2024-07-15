@@ -15,61 +15,73 @@ namespace DAL.Repsitory
         {
             _context = new DuAnNhom4Context();
         }
+
+        //lấy ra tất cả danh sách giảng viên
         public List<KhachHang> GetAll()
         {
             return _context.KhachHangs.ToList();
         }
-        public List<KhachHang> GetCH(string ten)
+
+        //lấy ra giảng viên theo tên
+        public List<KhachHang> GetKH(string ten)
         {
-            return _context.KhachHangs.Where(p => p.TenKhachHang == ten).ToList();
+            return _context.KhachHangs.Where(p => p.TenKhachHang.Contains(ten)).ToList();   //chứa tên
         }
 
-        public bool AddKH(KhachHang ch)
+        //Thêm KH
+        public bool AddKH(KhachHang kh)
         {
             try
             {
-                _context.KhachHangs.Add(ch);
-                _context.SaveChanges();
+                _context.KhachHangs.Add(kh);
+                _context.SaveChanges(); //lưu lại
                 return true;
             }
             catch (Exception)
             {
+
                 return false;
             }
         }
 
-        public bool updateKH(KhachHang kh)
+        //Sửa KH
+        public bool Update(KhachHang kh)  //Dữ liệu được truyền vào từ form
         {
             try
             {
-                var updateItem = _context.KhachHangs.Find(kh.TenKhachHang);
+                //lấy ra đối tượng để sửa
+                var updateItem = _context.KhachHangs.Find(kh.KhachHangId);
+                // sau khi đã tìm ra ta đi gán giá trị mới cho các thuộc tính
                 updateItem.TenKhachHang = kh.TenKhachHang;
                 updateItem.Email = kh.Email;
                 updateItem.SoDienThoai = kh.SoDienThoai;
                 updateItem.DiaChi = kh.DiaChi;
-
-                _context.KhachHangs.Update(kh);
-                _context.SaveChanges();
+                _context.KhachHangs.Update(updateItem);
+                _context.SaveChanges(); //lưu lại
                 return true;
             }
             catch (Exception)
             {
+
                 return false;
             }
         }
 
-        public bool DeleteKH(string maKH)
+        //Xóa
+        public bool Delete(int makh)  //Dữ liệu được truyền vào từ form
         {
             try
             {
-                var deleteItem = _context.KhachHangs.Find(maKH);
-
+                //lấy ra đối tượng để sửa
+                var deleteItem = _context.KhachHangs.Find(makh);
+                // sau khi đã tìm ra ta đi gán giá trị mới cho các thuộc tính
                 _context.KhachHangs.Remove(deleteItem);
-                _context.SaveChanges();
+                _context.SaveChanges(); //lưu lại
                 return true;
             }
             catch (Exception)
             {
+
                 return false;
             }
         }

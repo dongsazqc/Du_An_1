@@ -17,68 +17,75 @@ namespace BUS.Service
             _repo = new KhachHangRep();
         }
 
+        //các phương thức
+
         public List<KhachHang> CNShow()
         {
-            return _repo.GetAll();
+            return _repo.GetAll();  //vì phương thức GetAll cũng trả về list mình cần 
         }
 
+        //tìm
         public List<KhachHang> CNTim(string ten)
         {
-            return _repo.GetCH(ten);
+            return _repo.GetKH(ten);
         }
 
-        public string CNThem(int id, string tenkkhachhang, string email, string sodienthoai, string diachi)
+        public string CNThem(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi)
         {
             KhachHang kh = new KhachHang()
-            { 
-                KhachHangId = id,
-                TenKhachHang = tenkkhachhang,
+            {
+                KhachHangId = Khanhhangid,
+                TenKhachHang = tenkhachhang,
                 Email = email,
-                SoDienThoai = sodienthoai,
+                SoDienThoai = sdt,
                 DiaChi = diachi
             };
-
             if (_repo.AddKH(kh))
             {
-                return "Thêm thành công";
+                return "Them thanh cong";
             }
-            else return "Thêm thất bại";
-
+            else
+            {
+                return "Them that bai";
+            }
         }
 
-        public string CNSua(int id, string tenkkhachhang, string email, string sodienthoai, string diachi)
+        public string CNSua(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi)
         {
             KhachHang kh = new KhachHang()
             {
-                KhachHangId = id,
-                TenKhachHang = tenkkhachhang,
+                KhachHangId = Khanhhangid,
+                TenKhachHang = tenkhachhang,
                 Email = email,
-                SoDienThoai = sodienthoai,
+                SoDienThoai = sdt,
                 DiaChi = diachi
             };
-
-            if (_repo.updateKH(kh))
+            if (_repo.Update(kh))
             {
-                return "Sửa thành công";
+                return "Sua thanh cong";
             }
-            else return "Sửa thất bại";
-
+            else
+            {
+                return "Sua that bai";
+            }
         }
 
-        public string CNXoa(string ma)
+
+        public string CNXoa(int Khanhhangid)
         {
-
-            if (_repo.DeleteKH(ma))
+            if (_repo.Delete(Khanhhangid))
             {
-                return "Xóa thành công";
+                return "Xoa thanh cong";
             }
-            else return "Xóa thất bại";
-
+            else
+            {
+                return "Xoa that bai";
+            }
         }
 
-        public bool checkDT(string dt)
+        public bool CheckSDT(string sdt)
         {
-            if(dt.Length > 10  || dt.Trim().Length ==0) return false;
+            if (sdt.Length > 10 || sdt.Trim().Length == 0) return false;
             else return true;
         }
     }

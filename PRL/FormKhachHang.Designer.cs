@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dgv_KhachHang = new DataGridView();
+            dgv_data = new DataGridView();
             groupBox1 = new GroupBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            txtID = new TextBox();
+            txtMa = new TextBox();
             txtTenKhachHang = new TextBox();
             txtEmail = new TextBox();
             txtSDT = new TextBox();
@@ -44,26 +44,26 @@
             btnSua = new Button();
             btnXoa = new Button();
             btnTimKiem = new Button();
-            txtTimKiem = new TextBox();
+            txtSeach = new TextBox();
             btnShow = new Button();
-            ((System.ComponentModel.ISupportInitialize)dgv_KhachHang).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_data).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
-            // dgv_KhachHang
+            // dgv_data
             // 
-            dgv_KhachHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_KhachHang.Location = new Point(0, 31);
-            dgv_KhachHang.Name = "dgv_KhachHang";
-            dgv_KhachHang.RowHeadersWidth = 51;
-            dgv_KhachHang.Size = new Size(1599, 218);
-            dgv_KhachHang.TabIndex = 0;
-            dgv_KhachHang.CellClick += dgv_KhachHang_CellClick;
-            dgv_KhachHang.CellContentClick += dgv_KhachHang_CellContentClick;
+            dgv_data.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_data.Location = new Point(0, 31);
+            dgv_data.Name = "dgv_data";
+            dgv_data.RowHeadersWidth = 51;
+            dgv_data.Size = new Size(1599, 218);
+            dgv_data.TabIndex = 0;
+            dgv_data.CellClick += dgv_KhachHang_CellClick;
+            dgv_data.CellContentClick += dgv_KhachHang_CellContentClick;
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(dgv_KhachHang);
+            groupBox1.Controls.Add(dgv_data);
             groupBox1.Location = new Point(12, 488);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(1611, 255);
@@ -116,12 +116,12 @@
             label5.TabIndex = 6;
             label5.Text = "Địa chỉ";
             // 
-            // txtID
+            // txtMa
             // 
-            txtID.Location = new Point(213, 25);
-            txtID.Name = "txtID";
-            txtID.Size = new Size(224, 27);
-            txtID.TabIndex = 7;
+            txtMa.Location = new Point(213, 25);
+            txtMa.Name = "txtMa";
+            txtMa.Size = new Size(224, 27);
+            txtMa.TabIndex = 7;
             // 
             // txtTenKhachHang
             // 
@@ -190,12 +190,13 @@
             btnTimKiem.Text = "Tìm kiếm";
             btnTimKiem.UseVisualStyleBackColor = true;
             // 
-            // txtTimKiem
+            // txtSeach
             // 
-            txtTimKiem.Location = new Point(213, 341);
-            txtTimKiem.Name = "txtTimKiem";
-            txtTimKiem.Size = new Size(427, 27);
-            txtTimKiem.TabIndex = 16;
+            txtSeach.Location = new Point(213, 341);
+            txtSeach.Name = "txtSeach";
+            txtSeach.Size = new Size(427, 27);
+            txtSeach.TabIndex = 16;
+            txtSeach.TextChanged += txtSeach_TextChanged;
             // 
             // btnShow
             // 
@@ -213,7 +214,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(977, 745);
             Controls.Add(btnShow);
-            Controls.Add(txtTimKiem);
+            Controls.Add(txtSeach);
             Controls.Add(btnTimKiem);
             Controls.Add(btnXoa);
             Controls.Add(btnSua);
@@ -222,7 +223,7 @@
             Controls.Add(txtSDT);
             Controls.Add(txtEmail);
             Controls.Add(txtTenKhachHang);
-            Controls.Add(txtID);
+            Controls.Add(txtMa);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -232,7 +233,7 @@
             Name = "FormKhachHang";
             Text = "FormKhachHang";
             Load += FormKhachHang_Load;
-            ((System.ComponentModel.ISupportInitialize)dgv_KhachHang).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_data).EndInit();
             groupBox1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -240,14 +241,14 @@
 
         #endregion
 
-        private DataGridView dgv_KhachHang;
+        private DataGridView dgv_data;
         private GroupBox groupBox1;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
-        private TextBox txtID;
+        private TextBox txtMa;
         private TextBox txtTenKhachHang;
         private TextBox txtEmail;
         private TextBox txtSDT;
@@ -256,7 +257,7 @@
         private Button btnSua;
         private Button btnXoa;
         private Button btnTimKiem;
-        private TextBox txtTimKiem;
+        private TextBox txtSeach;
         private Button btnShow;
     }
 }

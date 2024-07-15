@@ -26,32 +26,31 @@ namespace PRL
         private void FormKhachHang_Load(object sender, EventArgs e)
         {
 
-
         }
-        private void LoadDuLieuFromToDataTable()
-        {
 
-        }
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string ma = txtID.Text;
-            string mota = txtTenKhachHang.Text;
+            string ma = txtMa.Text;
+            string ten = txtTenKhachHang.Text;
             string email = txtEmail.Text;
             string sdt = txtSDT.Text;
             string diachi = txtDiaChi.Text;
 
             int maInt = int.Parse(ma);
-
-            DialogResult resul = MessageBox.Show("Ban co muon them khong?", "Them moi", MessageBoxButtons.YesNo);
-            if (resul == DialogResult.Yes)
+            if (!_services.CheckSDT(sdt))
             {
-                string kq = _services.CNThem(maInt, mota, email, sdt, diachi);
-                List<KhachHang> khachhangs = _services.CNShow();
-                ShowData(khachhangs);
-                MessageBox.Show(kq);
+                MessageBox.Show("So dien thoai khong hop le"); return;
             }
-
+            DialogResult result = MessageBox.Show("Ban co muon them khong", "Them moi", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                string kq = _services.CNThem(maInt, ten, email, sdt, diachi);
+                MessageBox.Show(kq);
+                List<KhachHang> khachHangs = _services.CNShow();
+                showData(khachHangs);
+                return;
+            }
         }
 
         private void dgv_KhachHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -61,32 +60,35 @@ namespace PRL
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            List<KhachHang> cuaHangs = _services.CNShow();
-            ShowData(cuaHangs);
+            List<KhachHang> khachHangs = _services.CNShow();
+            //Muốn nhanh
+            showData(khachHangs);
         }
 
-        public void ShowData(List<KhachHang> kh)
+        public void showData(List<KhachHang> kh)
         {
-            dgv_KhachHang.Rows.Clear();
-            dgv_KhachHang.ColumnCount = 6;
+            dgv_data.Rows.Clear();  //Xo?a hê?t d?? liê?u cu? trên gridview
+            dgv_data.ColumnCount = 6;   //ga?n co? 5 cô?t
             int stt = 1;
-            dgv_KhachHang.Columns[0].HeaderText = "STT";
-            dgv_KhachHang.Columns[1].HeaderText = "ID";
-            dgv_KhachHang.Columns[2].HeaderText = "Tên Khách Hàng";
-            dgv_KhachHang.Columns[3].HeaderText = "Email";
-            dgv_KhachHang.Columns[4].HeaderText = "Số Điện Thoại";
-            dgv_KhachHang.Columns[5].HeaderText = "Địa chỉ";
+            dgv_data.Columns[0].HeaderText = "STT";
+            dgv_data.Columns[1].HeaderText = "Ma khach hang";
+            dgv_data.Columns[2].HeaderText = "Ten khach hang";
+            dgv_data.Columns[3].HeaderText = "Email";
+            dgv_data.Columns[4].HeaderText = "SDT";
+            dgv_data.Columns[5].HeaderText = "Dia chi";
             foreach (var item in kh)
             {
-                dgv_KhachHang.Rows.Add(stt++, item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi);
+                dgv_data.Rows.Add(stt++, item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi);
+
             }
         }
 
         private void dgv_KhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            //lâ?y ra t?? do?ng d???c cho?n ?ê? fill lên forn
             int row = e.RowIndex;
-            var rowData = dgv_KhachHang.Rows[row];
-            txtID.Text = rowData.Cells[1].Value.ToString();
+            var rowData = dgv_data.Rows[row]; //lâ?y data t?? row ?o? ra
+            txtMa.Text = rowData.Cells[1].Value.ToString();
             txtTenKhachHang.Text = rowData.Cells[2].Value.ToString();
             txtEmail.Text = rowData.Cells[3].Value.ToString();
             txtSDT.Text = rowData.Cells[4].Value.ToString();
@@ -95,34 +97,46 @@ namespace PRL
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            string ma = txtID.Text;
-            string tenkhachhang = txtTenKhachHang.Text;
+            string ma = txtMa.Text;
+            string ten = txtTenKhachHang.Text;
             string email = txtEmail.Text;
             string sdt = txtSDT.Text;
             string diachi = txtDiaChi.Text;
 
             int maInt = int.Parse(ma);
-
-            DialogResult resul = MessageBox.Show("Ban co muon sua khong?", "Them moi", MessageBoxButtons.YesNo);
-            if (resul == DialogResult.Yes)
+            if (!_services.CheckSDT(sdt))
             {
-                string kq = _services.CNSua(maInt, tenkhachhang, email, sdt, diachi);
-                List<KhachHang> khachhangs = _services.CNShow();
-                ShowData(khachhangs);
+                MessageBox.Show("So dien thoai khong hop le"); return;
+            }
+            DialogResult result = MessageBox.Show("Ban co muon sua khong", "Da Sua", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                string kq = _services.CNSua(maInt, ten, email, sdt, diachi);
                 MessageBox.Show(kq);
+                List<KhachHang> khachHangs = _services.CNShow();
+                showData(khachHangs);
+                return;
             }
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            DialogResult resul = MessageBox.Show("Ban co muon xoa khong", "Xoa", MessageBoxButtons.YesNo);
-            if (resul == DialogResult.Yes && txtID.Text.Trim() != "")
+            DialogResult result = MessageBox.Show("Ban co muon xoa khong", "Da xoa", MessageBoxButtons.YesNo);
+            string ma = txtMa.Text;
+            int maInt = int.Parse(ma);
+            if (result == DialogResult.Yes && ma.Trim() != "")
             {
-                MessageBox.Show(_services.CNXoa(txtID.Text));
+                MessageBox.Show(_services.CNXoa(maInt));
                 List<KhachHang> khachHangs = _services.CNShow();
-                ShowData(khachHangs);
+                showData(khachHangs);
                 return;
             }
+        }
+
+        private void txtSeach_TextChanged(object sender, EventArgs e)
+        {
+            List<KhachHang> kh = _services.CNTim(txtSeach.Text);
+            showData(kh);
         }
     }
 }
