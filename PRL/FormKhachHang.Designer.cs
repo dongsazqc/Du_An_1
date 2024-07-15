@@ -30,6 +30,7 @@
         {
             dataGridView1 = new DataGridView();
             groupBox1 = new GroupBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -53,22 +54,34 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách khách hàng";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(135, 123);
+            label1.Name = "label1";
+            label1.Size = new Size(50, 20);
+            label1.TabIndex = 2;
+            label1.Text = "label1";
+            // 
             // FormKhachHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1635, 875);
+            Controls.Add(label1);
             Controls.Add(groupBox1);
             Name = "FormKhachHang";
             Text = "FormKhachHang";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             groupBox1.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private DataGridView dataGridView1;
         private GroupBox groupBox1;
+        private Label label1;
     }
 }
