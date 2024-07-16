@@ -138,5 +138,18 @@ namespace PRL
             List<KhachHang> kh = _services.CNTim(txtSeach.Text);
             showData(kh);
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Ban co chac chan khong?", "Xac nhan", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                txtMa.Text = "";
+                txtTenKhachHang.Text = "";
+                txtEmail.Text = "";
+                txtSDT.Text = "";
+                txtDiaChi.Text = "";
+            }
+        }
     }
 }

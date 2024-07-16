@@ -46,6 +46,7 @@
             btnTimKiem = new Button();
             txtSeach = new TextBox();
             btnShow = new Button();
+            btnClear = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_data).BeginInit();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -208,11 +209,22 @@
             btnShow.UseVisualStyleBackColor = true;
             btnShow.Click += btnShow_Click;
             // 
+            // btnClear
+            // 
+            btnClear.Location = new Point(781, 327);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(94, 29);
+            btnClear.TabIndex = 18;
+            btnClear.Text = "Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
+            // 
             // FormKhachHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(977, 745);
+            Controls.Add(btnClear);
             Controls.Add(btnShow);
             Controls.Add(txtSeach);
             Controls.Add(btnTimKiem);
@@ -259,5 +271,6 @@
         private Button btnTimKiem;
         private TextBox txtSeach;
         private Button btnShow;
+        private Button btnClear;
     }
 }
