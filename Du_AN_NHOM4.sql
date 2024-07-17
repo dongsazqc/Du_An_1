@@ -89,6 +89,29 @@ CREATE TABLE PhuongThucThanhToan (
     TenPhuongThuc NVARCHAR(255) NOT NULL,
     ChiTiet NVARCHAR(MAX)
 );
+CREATE TABLE HoaDon (
+    HoaDonID INT PRIMARY KEY IDENTITY(1,1),
+    KhachHangID INT,
+    NgayLapHoaDon DATETIME NOT NULL,
+    TongTien DECIMAL(18, 2) NOT NULL,
+    TrangThai NVARCHAR(50) NOT NULL,
+    PhuongThucThanhToanID INT,
+    FOREIGN KEY (KhachHangID) REFERENCES KhachHang(KhachHangID),
+    FOREIGN KEY (PhuongThucThanhToanID) REFERENCES PhuongThucThanhToan(PhuongThucThanhToanID)
+);
+
+CREATE TABLE HoaDonChiTiet (
+    HoaDonChiTietID INT PRIMARY KEY IDENTITY(1,1),
+    HoaDonID INT,
+    SanPhamID INT,
+    MaSanPham NVARCHAR(50), -- Mã sản phẩm
+    SoLuong INT NOT NULL,
+    Gia DECIMAL(18, 2) NOT NULL,
+    GiamGia DECIMAL(18, 2) DEFAULT 0, -- Giảm giá cho sản phẩm
+    FOREIGN KEY (HoaDonID) REFERENCES HoaDon(HoaDonID),
+    FOREIGN KEY (SanPhamID) REFERENCES SanPham(SanPhamID)
+);
+
 go
 
 

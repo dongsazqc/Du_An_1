@@ -90,13 +90,47 @@ namespace PRL
 
         }
 
-        private void txt_Thue_TextChanged(object sender, EventArgs e)
+        private void FormBanHang_Load(object sender, EventArgs e)
         {
-            txt_Thue.Text = "28.000 VNĐ";
+             // Khởi tạo dtf_GioHang
+            dtf_GioHang.ColumnCount = 4;
+            dtf_GioHang.Columns[0].HeaderText = "ID sản phẩm";
+            dtf_GioHang.Columns[1].HeaderText = "Tên sản phẩm";
+            dtf_GioHang.Columns[2].HeaderText = "Giá";
+            dtf_GioHang.Columns[3].HeaderText = "Số lượng tồn kho";
+        }
+
+        private void txt_tienthua_TextChanged(object sender, EventArgs e)
+        {
 
         }
 
-        private void FormBanHang_Load(object sender, EventArgs e)
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void data_SPBH_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = data_SPBH.Rows[e.RowIndex];
+                int sanPhamId = (int)selectedRow.Cells[1].Value; // Sử dụng chỉ số cột
+                string tenSanPham = selectedRow.Cells[2].Value.ToString(); // Sử dụng chỉ số cột
+                decimal gia = (decimal)selectedRow.Cells[5].Value; // Sử dụng chỉ số cột
+                int soLuongTonKho = (int)selectedRow.Cells[6].Value; // Sử dụng chỉ số cột
+
+                dtf_GioHang.Rows.Add(sanPhamId, tenSanPham, gia, soLuongTonKho);
+            }
+        }
+
+        private void dtf_GioHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void data_SPBH_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

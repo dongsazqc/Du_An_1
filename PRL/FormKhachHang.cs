@@ -21,6 +21,10 @@ namespace PRL
         {
             _services = new KhachHangServices();
             InitializeComponent();
+            List<KhachHang> khachHangs = _services.CNShow();
+            //Muốn nhanh
+            showData(khachHangs);
+
         }
 
         private void FormKhachHang_Load(object sender, EventArgs e)
@@ -60,9 +64,6 @@ namespace PRL
 
         private void btnShow_Click(object sender, EventArgs e)
         {
-            List<KhachHang> khachHangs = _services.CNShow();
-            //Muốn nhanh
-            showData(khachHangs);
         }
 
         public void showData(List<KhachHang> kh)
