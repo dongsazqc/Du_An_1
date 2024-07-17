@@ -357,6 +357,7 @@
             Controls.Add(groupBox1);
             Name = "FormBanHang";
             Text = "FormBanHang";
+            Load += FormBanHang_Load;
             ((System.ComponentModel.ISupportInitialize)data_SPBH).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

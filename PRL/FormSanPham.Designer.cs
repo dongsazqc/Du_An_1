@@ -32,28 +32,29 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            richTextBox1 = new RichTextBox();
+            txt_IDsanpham = new TextBox();
+            txt_tensanpham = new TextBox();
+            txt_tenthuonghieu = new TextBox();
+            rtb_mota = new RichTextBox();
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
             label9 = new Label();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            textBox6 = new TextBox();
-            textBox7 = new TextBox();
-            textBox8 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            button4 = new Button();
-            textBox9 = new TextBox();
-            dataGridView1 = new DataGridView();
+            txt_soluong = new TextBox();
+            txt_kichthuoc = new TextBox();
+            txt_mausac = new TextBox();
+            txt_trangthai = new TextBox();
+            txt_gia = new TextBox();
+            btn_them = new Button();
+            btn_sua = new Button();
+            btn_xoa = new Button();
+            btn_timkiem = new Button();
+            txt_search = new TextBox();
+            dgv_sanpham = new DataGridView();
             label5 = new Label();
             grb_SanPham = new GroupBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            btn_laysanpham = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgv_sanpham).BeginInit();
             grb_SanPham.SuspendLayout();
             SuspendLayout();
             // 
@@ -93,34 +94,34 @@
             label4.TabIndex = 1;
             label4.Text = "Mô tả";
             // 
-            // textBox1
+            // txt_IDsanpham
             // 
-            textBox1.Location = new Point(186, 44);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(230, 27);
-            textBox1.TabIndex = 2;
+            txt_IDsanpham.Location = new Point(186, 44);
+            txt_IDsanpham.Name = "txt_IDsanpham";
+            txt_IDsanpham.Size = new Size(230, 27);
+            txt_IDsanpham.TabIndex = 2;
             // 
-            // textBox2
+            // txt_tensanpham
             // 
-            textBox2.Location = new Point(186, 94);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(230, 27);
-            textBox2.TabIndex = 3;
+            txt_tensanpham.Location = new Point(186, 94);
+            txt_tensanpham.Name = "txt_tensanpham";
+            txt_tensanpham.Size = new Size(230, 27);
+            txt_tensanpham.TabIndex = 3;
             // 
-            // textBox3
+            // txt_tenthuonghieu
             // 
-            textBox3.Location = new Point(738, 44);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(230, 27);
-            textBox3.TabIndex = 4;
+            txt_tenthuonghieu.Location = new Point(738, 44);
+            txt_tenthuonghieu.Name = "txt_tenthuonghieu";
+            txt_tenthuonghieu.Size = new Size(230, 27);
+            txt_tenthuonghieu.TabIndex = 4;
             // 
-            // richTextBox1
+            // rtb_mota
             // 
-            richTextBox1.Location = new Point(1154, 40);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(469, 193);
-            richTextBox1.TabIndex = 5;
-            richTextBox1.Text = "";
+            rtb_mota.Location = new Point(1154, 40);
+            rtb_mota.Name = "rtb_mota";
+            rtb_mota.Size = new Size(469, 193);
+            rtb_mota.TabIndex = 5;
+            rtb_mota.Text = "";
             // 
             // label6
             // 
@@ -158,93 +159,97 @@
             label9.TabIndex = 10;
             label9.Text = "Trạng thái";
             // 
-            // textBox4
+            // txt_soluong
             // 
-            textBox4.Location = new Point(186, 153);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(230, 27);
-            textBox4.TabIndex = 11;
+            txt_soluong.Location = new Point(186, 153);
+            txt_soluong.Name = "txt_soluong";
+            txt_soluong.Size = new Size(230, 27);
+            txt_soluong.TabIndex = 11;
             // 
-            // textBox5
+            // txt_kichthuoc
             // 
-            textBox5.Location = new Point(738, 153);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(230, 27);
-            textBox5.TabIndex = 12;
+            txt_kichthuoc.Location = new Point(738, 153);
+            txt_kichthuoc.Name = "txt_kichthuoc";
+            txt_kichthuoc.Size = new Size(230, 27);
+            txt_kichthuoc.TabIndex = 12;
             // 
-            // textBox6
+            // txt_mausac
             // 
-            textBox6.Location = new Point(186, 210);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(230, 27);
-            textBox6.TabIndex = 13;
+            txt_mausac.Location = new Point(186, 210);
+            txt_mausac.Name = "txt_mausac";
+            txt_mausac.Size = new Size(230, 27);
+            txt_mausac.TabIndex = 13;
             // 
-            // textBox7
+            // txt_trangthai
             // 
-            textBox7.Location = new Point(738, 210);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(230, 27);
-            textBox7.TabIndex = 14;
+            txt_trangthai.Location = new Point(738, 210);
+            txt_trangthai.Name = "txt_trangthai";
+            txt_trangthai.Size = new Size(230, 27);
+            txt_trangthai.TabIndex = 14;
             // 
-            // textBox8
+            // txt_gia
             // 
-            textBox8.Location = new Point(738, 98);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(230, 27);
-            textBox8.TabIndex = 15;
+            txt_gia.Location = new Point(738, 98);
+            txt_gia.Name = "txt_gia";
+            txt_gia.Size = new Size(230, 27);
+            txt_gia.TabIndex = 15;
             // 
-            // button1
+            // btn_them
             // 
-            button1.Location = new Point(12, 291);
-            button1.Name = "button1";
-            button1.Size = new Size(123, 54);
-            button1.TabIndex = 16;
-            button1.Text = "Thêm";
-            button1.UseVisualStyleBackColor = true;
+            btn_them.Location = new Point(12, 291);
+            btn_them.Name = "btn_them";
+            btn_them.Size = new Size(123, 54);
+            btn_them.TabIndex = 16;
+            btn_them.Text = "Thêm";
+            btn_them.UseVisualStyleBackColor = true;
+            btn_them.Click += btn_them_Click;
             // 
-            // button2
+            // btn_sua
             // 
-            button2.Location = new Point(247, 291);
-            button2.Name = "button2";
-            button2.Size = new Size(112, 54);
-            button2.TabIndex = 17;
-            button2.Text = "Sửa";
-            button2.UseVisualStyleBackColor = true;
+            btn_sua.Location = new Point(247, 291);
+            btn_sua.Name = "btn_sua";
+            btn_sua.Size = new Size(112, 54);
+            btn_sua.TabIndex = 17;
+            btn_sua.Text = "Sửa";
+            btn_sua.UseVisualStyleBackColor = true;
+            btn_sua.Click += btn_sua_Click;
             // 
-            // button3
+            // btn_xoa
             // 
-            button3.Location = new Point(506, 291);
-            button3.Name = "button3";
-            button3.Size = new Size(111, 54);
-            button3.TabIndex = 18;
-            button3.Text = "Xóa";
-            button3.UseVisualStyleBackColor = true;
+            btn_xoa.Location = new Point(506, 291);
+            btn_xoa.Name = "btn_xoa";
+            btn_xoa.Size = new Size(111, 54);
+            btn_xoa.TabIndex = 18;
+            btn_xoa.Text = "Xóa";
+            btn_xoa.UseVisualStyleBackColor = true;
+            btn_xoa.Click += btn_xoa_Click;
             // 
-            // button4
+            // btn_timkiem
             // 
-            button4.Location = new Point(505, 392);
-            button4.Name = "button4";
-            button4.Size = new Size(112, 26);
-            button4.TabIndex = 19;
-            button4.Text = "Tìm kiếm";
-            button4.UseVisualStyleBackColor = true;
+            btn_timkiem.Location = new Point(505, 392);
+            btn_timkiem.Name = "btn_timkiem";
+            btn_timkiem.Size = new Size(112, 26);
+            btn_timkiem.TabIndex = 19;
+            btn_timkiem.Text = "Tìm kiếm";
+            btn_timkiem.UseVisualStyleBackColor = true;
             // 
-            // textBox9
+            // txt_search
             // 
-            textBox9.Location = new Point(12, 391);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(472, 27);
-            textBox9.TabIndex = 20;
-            textBox9.TextChanged += textBox9_TextChanged;
+            txt_search.Location = new Point(12, 391);
+            txt_search.Name = "txt_search";
+            txt_search.Size = new Size(472, 27);
+            txt_search.TabIndex = 20;
+            txt_search.TextChanged += textBox9_TextChanged;
             // 
-            // dataGridView1
+            // dgv_sanpham
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(6, 26);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(1611, 384);
-            dataGridView1.TabIndex = 21;
+            dgv_sanpham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_sanpham.Location = new Point(6, 26);
+            dgv_sanpham.Name = "dgv_sanpham";
+            dgv_sanpham.RowHeadersWidth = 51;
+            dgv_sanpham.Size = new Size(1611, 384);
+            dgv_sanpham.TabIndex = 21;
+            dgv_sanpham.CellClick += dgv_sanpham_CellClick;
             // 
             // label5
             // 
@@ -257,7 +262,7 @@
             // 
             // grb_SanPham
             // 
-            grb_SanPham.Controls.Add(dataGridView1);
+            grb_SanPham.Controls.Add(dgv_sanpham);
             grb_SanPham.Location = new Point(6, 447);
             grb_SanPham.Name = "grb_SanPham";
             grb_SanPham.Size = new Size(1617, 416);
@@ -265,30 +270,41 @@
             grb_SanPham.TabStop = false;
             grb_SanPham.Text = "Danh sách sản phẩm";
             // 
+            // btn_laysanpham
+            // 
+            btn_laysanpham.Location = new Point(699, 291);
+            btn_laysanpham.Name = "btn_laysanpham";
+            btn_laysanpham.Size = new Size(111, 54);
+            btn_laysanpham.TabIndex = 24;
+            btn_laysanpham.Text = "lấy sản phẩm";
+            btn_laysanpham.UseVisualStyleBackColor = true;
+            btn_laysanpham.Click += btn_laysanpham_Click;
+            // 
             // FormSanPham
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1635, 875);
+            Controls.Add(btn_laysanpham);
             Controls.Add(label5);
-            Controls.Add(textBox9);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox8);
-            Controls.Add(textBox7);
-            Controls.Add(textBox6);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
+            Controls.Add(txt_search);
+            Controls.Add(btn_timkiem);
+            Controls.Add(btn_xoa);
+            Controls.Add(btn_sua);
+            Controls.Add(btn_them);
+            Controls.Add(txt_gia);
+            Controls.Add(txt_trangthai);
+            Controls.Add(txt_mausac);
+            Controls.Add(txt_kichthuoc);
+            Controls.Add(txt_soluong);
             Controls.Add(label9);
             Controls.Add(label8);
             Controls.Add(label7);
             Controls.Add(label6);
-            Controls.Add(richTextBox1);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(rtb_mota);
+            Controls.Add(txt_tenthuonghieu);
+            Controls.Add(txt_tensanpham);
+            Controls.Add(txt_IDsanpham);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -296,7 +312,8 @@
             Controls.Add(grb_SanPham);
             Name = "FormSanPham";
             Text = "FormSanPham";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += FormSanPham_Load;
+            ((System.ComponentModel.ISupportInitialize)dgv_sanpham).EndInit();
             grb_SanPham.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -308,26 +325,27 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private RichTextBox richTextBox1;
+        private TextBox txt_IDsanpham;
+        private TextBox txt_tensanpham;
+        private TextBox txt_tenthuonghieu;
+        private RichTextBox rtb_mota;
         private Label label6;
         private Label label7;
         private Label label8;
         private Label label9;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
-        private TextBox textBox8;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private Button button4;
-        private TextBox textBox9;
-        private DataGridView dataGridView1;
+        private TextBox txt_soluong;
+        private TextBox txt_kichthuoc;
+        private TextBox txt_mausac;
+        private TextBox txt_trangthai;
+        private TextBox txt_gia;
+        private Button btn_them;
+        private Button btn_sua;
+        private Button btn_xoa;
+        private Button btn_timkiem;
+        private TextBox txt_search;
+        private DataGridView dgv_sanpham;
         private Label label5;
         private GroupBox grb_SanPham;
+        private Button btn_laysanpham;
     }
 }

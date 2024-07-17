@@ -95,5 +95,10 @@ namespace PRL
             txt_Thue.Text = "28.000 VNĐ";
 
         }
+
+        private void FormBanHang_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
