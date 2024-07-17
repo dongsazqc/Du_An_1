@@ -22,10 +22,6 @@ namespace PRL
         {
             InitializeComponent();
             List<KhachHang> khachHangs = _services.CNShow();
-<<<<<<< HEAD
-            //Muốn nhanh
-=======
->>>>>>> 90c1821c81bd62ff2d742cf664b0bb4ae4ca1bc2
             showData(khachHangs);
 
         }
@@ -65,12 +61,9 @@ namespace PRL
 
         }
 
-<<<<<<< HEAD
         private void btnShow_Click(object sender, EventArgs e)
         {
         }
-=======
->>>>>>> 90c1821c81bd62ff2d742cf664b0bb4ae4ca1bc2
 
         public void showData(List<KhachHang> kh)
         {
