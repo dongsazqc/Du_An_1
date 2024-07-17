@@ -90,7 +90,11 @@ CREATE TABLE PhuongThucThanhToan (
     ChiTiet NVARCHAR(MAX)
 );
 CREATE TABLE HoaDon (
+<<<<<<< HEAD
     HoaDonID INT PRIMARY KEY IDENTITY(1,1),
+=======
+    HoaDonID INT PRIMARY KEY ,
+>>>>>>> 90c1821c81bd62ff2d742cf664b0bb4ae4ca1bc2
     KhachHangID INT,
     NgayLapHoaDon DATETIME NOT NULL,
     TongTien DECIMAL(18, 2) NOT NULL,
@@ -99,7 +103,10 @@ CREATE TABLE HoaDon (
     FOREIGN KEY (KhachHangID) REFERENCES KhachHang(KhachHangID),
     FOREIGN KEY (PhuongThucThanhToanID) REFERENCES PhuongThucThanhToan(PhuongThucThanhToanID)
 );
+<<<<<<< HEAD
 
+=======
+>>>>>>> 90c1821c81bd62ff2d742cf664b0bb4ae4ca1bc2
 CREATE TABLE HoaDonChiTiet (
     HoaDonChiTietID INT PRIMARY KEY IDENTITY(1,1),
     HoaDonID INT,

@@ -45,7 +45,6 @@
             btnXoa = new Button();
             btnTimKiem = new Button();
             txtSeach = new TextBox();
-            btnShow = new Button();
             btnClear = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_data).BeginInit();
             groupBox1.SuspendLayout();
@@ -199,16 +198,6 @@
             txtSeach.TabIndex = 16;
             txtSeach.TextChanged += txtSeach_TextChanged;
             // 
-            // btnShow
-            // 
-            btnShow.Location = new Point(781, 262);
-            btnShow.Name = "btnShow";
-            btnShow.Size = new Size(94, 29);
-            btnShow.TabIndex = 17;
-            btnShow.Text = "Show";
-            btnShow.UseVisualStyleBackColor = true;
-            btnShow.Click += btnShow_Click;
-            // 
             // btnClear
             // 
             btnClear.Location = new Point(781, 327);
@@ -225,7 +214,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1337, 745);
             Controls.Add(btnClear);
-            Controls.Add(btnShow);
             Controls.Add(txtSeach);
             Controls.Add(btnTimKiem);
             Controls.Add(btnXoa);
@@ -270,7 +258,6 @@
         private Button btnXoa;
         private Button btnTimKiem;
         private TextBox txtSeach;
-        private Button btnShow;
         private Button btnClear;
     }
 }
