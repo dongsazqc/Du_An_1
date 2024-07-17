@@ -23,6 +23,10 @@ namespace PRL
         {
             //comment
             InitializeComponent();
+            List<SanPham> sanPhams = _sanPhamService.CNShow();
+            //showdata
+            showdata(sanPhams);
+
 
         }
 
@@ -39,9 +43,6 @@ namespace PRL
 
         private void btn_laysanpham_Click(object sender, EventArgs e)
         {
-            List<SanPham> sanPhams = _sanPhamService.CNShow();
-            //showdata
-            showdata(sanPhams);
         }
         public void showdata(List<SanPham> sp)
         {
@@ -146,6 +147,28 @@ namespace PRL
                 showdata(sanPhams);
                 return;
             }
+        }
+
+        private void btn_Del_Click(object sender, EventArgs e)
+        {
+            txt_IDsanpham.Text = "";
+            txt_tensanpham.Text = "";
+            txt_tenthuonghieu.Text = "";
+            txt_soluong.Text = "";
+            txt_mausac.Text = "";
+            txt_gia.Text = "";
+            txt_kichthuoc.Text = "";
+            txt_trangthai.Text = "";
+            rtb_mota.Text = "";
+            
+
+
+            ;
+        }
+
+        private void txt_tensanpham_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

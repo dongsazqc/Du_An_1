@@ -53,7 +53,7 @@
             dgv_sanpham = new DataGridView();
             label5 = new Label();
             grb_SanPham = new GroupBox();
-            btn_laysanpham = new Button();
+            btn_Del = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_sanpham).BeginInit();
             grb_SanPham.SuspendLayout();
             SuspendLayout();
@@ -107,6 +107,7 @@
             txt_tensanpham.Name = "txt_tensanpham";
             txt_tensanpham.Size = new Size(230, 27);
             txt_tensanpham.TabIndex = 3;
+            txt_tensanpham.TextChanged += txt_tensanpham_TextChanged;
             // 
             // txt_tenthuonghieu
             // 
@@ -228,9 +229,9 @@
             // 
             btn_timkiem.Location = new Point(505, 392);
             btn_timkiem.Name = "btn_timkiem";
-            btn_timkiem.Size = new Size(112, 26);
+            btn_timkiem.Size = new Size(142, 26);
             btn_timkiem.TabIndex = 19;
-            btn_timkiem.Text = "Tìm kiếm";
+            btn_timkiem.Text = "Tìm kiếm theo tên";
             btn_timkiem.UseVisualStyleBackColor = true;
             // 
             // txt_search
@@ -270,22 +271,22 @@
             grb_SanPham.TabStop = false;
             grb_SanPham.Text = "Danh sách sản phẩm";
             // 
-            // btn_laysanpham
+            // btn_Del
             // 
-            btn_laysanpham.Location = new Point(699, 291);
-            btn_laysanpham.Name = "btn_laysanpham";
-            btn_laysanpham.Size = new Size(111, 54);
-            btn_laysanpham.TabIndex = 24;
-            btn_laysanpham.Text = "lấy sản phẩm";
-            btn_laysanpham.UseVisualStyleBackColor = true;
-            btn_laysanpham.Click += btn_laysanpham_Click;
+            btn_Del.Location = new Point(717, 304);
+            btn_Del.Name = "btn_Del";
+            btn_Del.Size = new Size(94, 29);
+            btn_Del.TabIndex = 24;
+            btn_Del.Text = "Del";
+            btn_Del.UseVisualStyleBackColor = true;
+            btn_Del.Click += btn_Del_Click;
             // 
             // FormSanPham
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1635, 875);
-            Controls.Add(btn_laysanpham);
+            Controls.Add(btn_Del);
             Controls.Add(label5);
             Controls.Add(txt_search);
             Controls.Add(btn_timkiem);
@@ -346,6 +347,6 @@
         private DataGridView dgv_sanpham;
         private Label label5;
         private GroupBox grb_SanPham;
-        private Button btn_laysanpham;
+        private Button btn_Del;
     }
 }
