@@ -21,6 +21,7 @@ namespace PRL
 
         public FormSanPham()
         {
+            //comment
             InitializeComponent();
 
         }
