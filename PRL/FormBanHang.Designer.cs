@@ -116,11 +116,11 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 163);
             label9.ForeColor = Color.Red;
             label9.Location = new Point(6, 789);
             label9.Name = "label9";
-            label9.Size = new Size(429, 84);
+            label9.Size = new Size(427, 84);
             label9.TabIndex = 21;
             label9.Text = "click đúp để thêm sản phẩm vào giỏ hàng !!\r\n\r\n\r\n";
             // 
@@ -217,7 +217,7 @@
             label6.BackColor = Color.White;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(43, 244);
+            label6.Location = new Point(40, 244);
             label6.Name = "label6";
             label6.Size = new Size(103, 28);
             label6.TabIndex = 28;

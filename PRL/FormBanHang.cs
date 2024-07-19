@@ -99,8 +99,8 @@ namespace PRL
             dtf_GioHang.ColumnCount = 4;
             dtf_GioHang.Columns[0].HeaderText = "Tên sản phẩm";
             dtf_GioHang.Columns[1].HeaderText = "Tên thương hiệu ";
-            dtf_GioHang.Columns[2].HeaderText = "Giá";
-            dtf_GioHang.Columns[3].HeaderText = "Số lượng";
+            dtf_GioHang.Columns[2].HeaderText = "Số lượng";
+            dtf_GioHang.Columns[3].HeaderText = "Giá";
 
         }
 
@@ -120,7 +120,14 @@ namespace PRL
                 string tenthuonghieu = selectedRow.Cells[3].Value.ToString();
                 decimal gia = (decimal)selectedRow.Cells[5].Value;
 
-                dtf_GioHang.Rows.Add(tensanpham, tenthuonghieu, gia);
+                using(FormSoLuong formSoLuong = new FormSoLuong())
+                {
+                    if(formSoLuong.ShowDialog() == DialogResult.OK)
+                    {
+                        int soluong = formSoLuong.SOLUONG;
+                        dtf_GioHang.Rows.Add(tensanpham, tenthuonghieu, soluong, gia);
+                    }
+                }
             }
         }
 

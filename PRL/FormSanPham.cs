@@ -22,17 +22,12 @@ namespace PRL
         public FormSanPham()
         {
             InitializeComponent();
-<<<<<<< HEAD
-            //chức năng show
             List<SanPham> sp = _sanPhamService.CNShow();
             showdata(sp);
-            // chúc năng tìm kiếm
           
-=======
             List<SanPham> sanPhams = _sanPhamService.CNShow();
             showdata(sanPhams);
 
->>>>>>> 3bbafc8a843365caf7c00728fe60554babbc9e99
 
         }
 
