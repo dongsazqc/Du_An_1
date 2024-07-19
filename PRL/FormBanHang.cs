@@ -90,15 +90,64 @@ namespace PRL
 
         }
 
-        private void txt_Thue_TextChanged(object sender, EventArgs e)
-        {
-            txt_Thue.Text = "28.000 VNĐ";
-
-        }
-
         private void FormBanHang_Load(object sender, EventArgs e)
         {
+            txt_tongtien.Enabled = false;
+            txt_tongtien.Text = "0.00";
+
+            // Khởi tạo dtf_GioHang
+            dtf_GioHang.ColumnCount = 4;
+            dtf_GioHang.Columns[0].HeaderText = "Tên sản phẩm";
+            dtf_GioHang.Columns[1].HeaderText = "Tên thương hiệu ";
+            dtf_GioHang.Columns[2].HeaderText = "Giá";
+            dtf_GioHang.Columns[3].HeaderText = "Số lượng";
 
         }
+
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void data_SPBH_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow selectedRow = data_SPBH.Rows[e.RowIndex];
+                string tensanpham = selectedRow.Cells[2].Value.ToString();
+                string tenthuonghieu = selectedRow.Cells[3].Value.ToString();
+                decimal gia = (decimal)selectedRow.Cells[5].Value;
+
+                dtf_GioHang.Rows.Add(tensanpham, tenthuonghieu, gia);
+            }
+        }
+
+        private void dtf_GioHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void data_SPBH_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_TongTien_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
