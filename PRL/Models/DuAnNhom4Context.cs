@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace DAL.Models;
+namespace PRL.Models;
 
 public partial class DuAnNhom4Context : DbContext
 {

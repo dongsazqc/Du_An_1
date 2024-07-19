@@ -31,17 +31,16 @@
             btn_DS_sanpham = new Button();
             data_SPBH = new DataGridView();
             groupBox1 = new GroupBox();
+            label9 = new Label();
             textBox4 = new TextBox();
             button5 = new Button();
             groupBox2 = new GroupBox();
             dtf_GioHang = new DataGridView();
             groupBox5 = new GroupBox();
-            label8 = new Label();
-            textBox5 = new TextBox();
+            txt_tongtien = new TextBox();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             label6 = new Label();
-            txt_tienthua = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label2 = new Label();
@@ -51,7 +50,7 @@
             label10 = new Label();
             label11 = new Label();
             txt_khachdua = new TextBox();
-            txt_TongTien = new TextBox();
+            txt_Tienthua = new TextBox();
             label12 = new Label();
             label3 = new Label();
             groupBox3 = new GroupBox();
@@ -63,7 +62,6 @@
             button2 = new Button();
             button3 = new Button();
             groupBox4 = new GroupBox();
-            label9 = new Label();
             ((System.ComponentModel.ISupportInitialize)data_SPBH).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -77,6 +75,7 @@
             // 
             btn_DS_sanpham.BackColor = SystemColors.ActiveBorder;
             btn_DS_sanpham.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            btn_DS_sanpham.ForeColor = Color.Blue;
             btn_DS_sanpham.Location = new Point(6, 194);
             btn_DS_sanpham.Name = "btn_DS_sanpham";
             btn_DS_sanpham.Size = new Size(437, 44);
@@ -111,7 +110,19 @@
             groupBox1.Size = new Size(452, 849);
             groupBox1.TabIndex = 17;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Danh sách đơn hàng";
+            groupBox1.Text = "Danh sách sản phẩm";
+            groupBox1.Enter += groupBox1_Enter;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            label9.ForeColor = Color.Red;
+            label9.Location = new Point(6, 789);
+            label9.Name = "label9";
+            label9.Size = new Size(429, 84);
+            label9.TabIndex = 21;
+            label9.Text = "click đúp để thêm sản phẩm vào giỏ hàng !!\r\n\r\n\r\n";
             // 
             // textBox4
             // 
@@ -122,6 +133,8 @@
             // 
             // button5
             // 
+            button5.Font = new Font("SimSun-ExtB", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button5.ForeColor = SystemColors.ActiveCaptionText;
             button5.Location = new Point(6, 159);
             button5.Name = "button5";
             button5.Size = new Size(94, 29);
@@ -132,9 +145,9 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(dtf_GioHang);
-            groupBox2.Location = new Point(493, 257);
+            groupBox2.Location = new Point(493, 13);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(407, 226);
+            groupBox2.Size = new Size(407, 470);
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
@@ -145,18 +158,16 @@
             dtf_GioHang.Location = new Point(6, 26);
             dtf_GioHang.Name = "dtf_GioHang";
             dtf_GioHang.RowHeadersWidth = 51;
-            dtf_GioHang.Size = new Size(395, 194);
+            dtf_GioHang.Size = new Size(395, 430);
             dtf_GioHang.TabIndex = 0;
             dtf_GioHang.CellContentClick += dtf_GioHang_CellContentClick;
             // 
             // groupBox5
             // 
-            groupBox5.Controls.Add(label8);
-            groupBox5.Controls.Add(textBox5);
+            groupBox5.Controls.Add(txt_tongtien);
             groupBox5.Controls.Add(textBox2);
             groupBox5.Controls.Add(textBox1);
             groupBox5.Controls.Add(label6);
-            groupBox5.Controls.Add(txt_tienthua);
             groupBox5.Controls.Add(label5);
             groupBox5.Controls.Add(label4);
             groupBox5.Controls.Add(label2);
@@ -167,35 +178,26 @@
             groupBox5.Controls.Add(label11);
             groupBox5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
             groupBox5.ForeColor = Color.Blue;
-            groupBox5.Location = new Point(487, 13);
+            groupBox5.Location = new Point(933, 13);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(846, 223);
+            groupBox5.Size = new Size(661, 285);
             groupBox5.TabIndex = 19;
             groupBox5.TabStop = false;
-            groupBox5.Text = "Thông tin hóa đơn";
+            groupBox5.Text = "Thông tin khách hàng chi tiết";
             groupBox5.Enter += groupBox5_Enter;
             // 
-            // label8
+            // txt_tongtien
             // 
-            label8.AutoSize = true;
-            label8.ForeColor = Color.Black;
-            label8.Location = new Point(491, 53);
-            label8.Name = "label8";
-            label8.Size = new Size(71, 20);
-            label8.TabIndex = 38;
-            label8.Text = "Số lượng";
-            label8.Click += label8_Click;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(592, 46);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(221, 27);
-            textBox5.TabIndex = 37;
+            txt_tongtien.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            txt_tongtien.Location = new Point(192, 233);
+            txt_tongtien.Multiline = true;
+            txt_tongtien.Name = "txt_tongtien";
+            txt_tongtien.Size = new Size(221, 46);
+            txt_tongtien.TabIndex = 37;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(592, 94);
+            textBox2.Location = new Point(192, 176);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(221, 27);
             textBox2.TabIndex = 36;
@@ -215,20 +217,11 @@
             label6.BackColor = Color.White;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(483, 172);
+            label6.Location = new Point(43, 244);
             label6.Name = "label6";
             label6.Size = new Size(103, 28);
             label6.TabIndex = 28;
             label6.Text = "Tổng tiền";
-            // 
-            // txt_tienthua
-            // 
-            txt_tienthua.Location = new Point(592, 173);
-            txt_tienthua.Multiline = true;
-            txt_tienthua.Name = "txt_tienthua";
-            txt_tienthua.Size = new Size(221, 27);
-            txt_tienthua.TabIndex = 35;
-            txt_tienthua.TextChanged += txt_tienthua_TextChanged;
             // 
             // label5
             // 
@@ -252,7 +245,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(491, 94);
+            label2.Location = new Point(43, 183);
             label2.Name = "label2";
             label2.Size = new Size(50, 20);
             label2.TabIndex = 23;
@@ -262,7 +255,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(43, 135);
+            label1.Location = new Point(43, 139);
             label1.Name = "label1";
             label1.Size = new Size(56, 20);
             label1.TabIndex = 23;
@@ -312,12 +305,13 @@
             txt_khachdua.Size = new Size(221, 27);
             txt_khachdua.TabIndex = 34;
             // 
-            // txt_TongTien
+            // txt_Tienthua
             // 
-            txt_TongTien.Location = new Point(146, 93);
-            txt_TongTien.Name = "txt_TongTien";
-            txt_TongTien.Size = new Size(221, 27);
-            txt_TongTien.TabIndex = 33;
+            txt_Tienthua.Location = new Point(146, 93);
+            txt_Tienthua.Name = "txt_Tienthua";
+            txt_Tienthua.Size = new Size(221, 27);
+            txt_Tienthua.TabIndex = 33;
+            txt_Tienthua.TextChanged += txt_TongTien_TextChanged;
             // 
             // label12
             // 
@@ -345,13 +339,13 @@
             groupBox3.Controls.Add(button4);
             groupBox3.Controls.Add(txt_khachdua);
             groupBox3.Controls.Add(textBox3);
-            groupBox3.Controls.Add(txt_TongTien);
+            groupBox3.Controls.Add(txt_Tienthua);
             groupBox3.Controls.Add(label7);
             groupBox3.Controls.Add(label12);
             groupBox3.Controls.Add(label3);
-            groupBox3.Location = new Point(933, 257);
+            groupBox3.Location = new Point(933, 304);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(661, 226);
+            groupBox3.Size = new Size(661, 179);
             groupBox3.TabIndex = 36;
             groupBox3.TabStop = false;
             groupBox3.Text = "Thông tin chung";
@@ -436,16 +430,6 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Danh sách hóa đơn chi tiết";
             // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.ForeColor = Color.Red;
-            label9.Location = new Point(8, 806);
-            label9.Name = "label9";
-            label9.Size = new Size(312, 60);
-            label9.TabIndex = 21;
-            label9.Text = "click đúp để thêm sản phẩm vào giỏ hàng !!\r\n\r\n\r\n";
-            // 
             // FormBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -486,9 +470,8 @@
         private Label label11;
         private Label label6;
         private Label label5;
-        private TextBox txt_tienthua;
         private TextBox txt_khachdua;
-        private TextBox txt_TongTien;
+        private TextBox txt_Tienthua;
         private Label label12;
         private GroupBox groupBox3;
         private Button button4;
@@ -506,8 +489,7 @@
         private DataGridView dtf_GioHang;
         private TextBox textBox4;
         private Button button5;
-        private Label label8;
-        private TextBox textBox5;
         private Label label9;
+        private TextBox txt_tongtien;
     }
 }

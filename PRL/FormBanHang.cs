@@ -92,18 +92,18 @@ namespace PRL
 
         private void FormBanHang_Load(object sender, EventArgs e)
         {
-             // Khởi tạo dtf_GioHang
+            txt_tongtien.Enabled = false;
+            txt_tongtien.Text = "0.00";
+
+            // Khởi tạo dtf_GioHang
             dtf_GioHang.ColumnCount = 4;
-            dtf_GioHang.Columns[0].HeaderText = "ID sản phẩm";
-            dtf_GioHang.Columns[1].HeaderText = "Tên sản phẩm";
+            dtf_GioHang.Columns[0].HeaderText = "Tên sản phẩm";
+            dtf_GioHang.Columns[1].HeaderText = "Tên thương hiệu ";
             dtf_GioHang.Columns[2].HeaderText = "Giá";
-            dtf_GioHang.Columns[3].HeaderText = "Số lượng tồn kho";
-        }
-
-        private void txt_tienthua_TextChanged(object sender, EventArgs e)
-        {
+            dtf_GioHang.Columns[3].HeaderText = "Số lượng";
 
         }
+
 
         private void label8_Click(object sender, EventArgs e)
         {
@@ -116,12 +116,11 @@ namespace PRL
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow selectedRow = data_SPBH.Rows[e.RowIndex];
-                int sanPhamId = (int)selectedRow.Cells[1].Value; // Sử dụng chỉ số cột
-                string tenSanPham = selectedRow.Cells[2].Value.ToString(); // Sử dụng chỉ số cột
-                decimal gia = (decimal)selectedRow.Cells[5].Value; // Sử dụng chỉ số cột
-                int soLuongTonKho = (int)selectedRow.Cells[6].Value; // Sử dụng chỉ số cột
+                string tensanpham = selectedRow.Cells[2].Value.ToString();
+                string tenthuonghieu = selectedRow.Cells[3].Value.ToString();
+                decimal gia = (decimal)selectedRow.Cells[5].Value;
 
-                dtf_GioHang.Rows.Add(sanPhamId, tenSanPham, gia, soLuongTonKho);
+                dtf_GioHang.Rows.Add(tensanpham, tenthuonghieu, gia);
             }
         }
 
@@ -134,5 +133,21 @@ namespace PRL
         {
 
         }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_TongTien_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

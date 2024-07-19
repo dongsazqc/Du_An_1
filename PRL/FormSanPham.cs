@@ -21,10 +21,8 @@ namespace PRL
 
         public FormSanPham()
         {
-            //comment
             InitializeComponent();
             List<SanPham> sanPhams = _sanPhamService.CNShow();
-            //showdata
             showdata(sanPhams);
 
 
@@ -46,8 +44,8 @@ namespace PRL
         }
         public void showdata(List<SanPham> sp)
         {
-            dgv_sanpham.Rows.Clear(); // xóa hết dữ liệu cũ
-            dgv_sanpham.ColumnCount = 10; // gán cho 10 cột
+            dgv_sanpham.Rows.Clear(); 
+            dgv_sanpham.ColumnCount = 10; 
             int stt = 1;
             dgv_sanpham.Columns[0].HeaderText = "số thứ tự";
             dgv_sanpham.Columns[1].HeaderText = "ID sản phẩm";
