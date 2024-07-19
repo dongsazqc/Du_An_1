@@ -101,8 +101,11 @@ CREATE TABLE HoaDon (
     FOREIGN KEY (KhachHangID) REFERENCES KhachHang(KhachHangID),
     FOREIGN KEY (PhuongThucThanhToanID) REFERENCES PhuongThucThanhToan(PhuongThucThanhToanID)
 );
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> e825af3d8b24be87846fc1b2fa749641aa07f562
 CREATE TABLE HoaDonChiTiet (
     HoaDonChiTietID INT PRIMARY KEY IDENTITY(1,1),
     HoaDonID INT,
