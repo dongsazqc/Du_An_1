@@ -27,5 +27,7 @@ public partial class SanPham
 
     public virtual ICollection<DanhGium> DanhGia { get; set; } = new List<DanhGium>();
 
+    public virtual ICollection<HoaDonChiTiet> HoaDonChiTiets { get; set; } = new List<HoaDonChiTiet>();
+
     public virtual ICollection<KhoHang> KhoHangs { get; set; } = new List<KhoHang>();
 }

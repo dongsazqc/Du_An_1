@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Button btn_sua;
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -46,7 +47,6 @@
             txt_trangthai = new TextBox();
             txt_gia = new TextBox();
             btn_them = new Button();
-            btn_sua = new Button();
             btn_xoa = new Button();
             btn_timkiem = new Button();
             txt_search = new TextBox();
@@ -54,43 +54,63 @@
             label5 = new Label();
             grb_SanPham = new GroupBox();
             btn_Del = new Button();
+            btn_sua = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_sanpham).BeginInit();
             grb_SanPham.SuspendLayout();
             SuspendLayout();
             // 
+            // btn_sua
+            // 
+            btn_sua.BackColor = Color.Gold;
+            btn_sua.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_sua.Image = Properties.Resources.icons8_save_30;
+            btn_sua.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_sua.Location = new Point(247, 291);
+            btn_sua.Name = "btn_sua";
+            btn_sua.RightToLeft = RightToLeft.No;
+            btn_sua.Size = new Size(112, 54);
+            btn_sua.TabIndex = 17;
+            btn_sua.Text = "Sửa";
+            btn_sua.UseVisualStyleBackColor = false;
+            btn_sua.Click += btn_sua_Click;
+            // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label1.Location = new Point(55, 51);
             label1.Name = "label1";
-            label1.Size = new Size(94, 20);
+            label1.Size = new Size(111, 22);
             label1.TabIndex = 0;
             label1.Text = "ID Sản phẩm";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label2.Location = new Point(55, 101);
             label2.Name = "label2";
-            label2.Size = new Size(100, 20);
+            label2.Size = new Size(120, 22);
             label2.TabIndex = 0;
             label2.Text = "Tên sản phẩm";
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label3.Location = new Point(572, 51);
             label3.Name = "label3";
-            label3.Size = new Size(116, 20);
+            label3.Size = new Size(138, 22);
             label3.TabIndex = 0;
             label3.Text = "Tên thương hiệu";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(1076, 128);
+            label4.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label4.Location = new Point(1000, 125);
             label4.Name = "label4";
-            label4.Size = new Size(48, 20);
+            label4.Size = new Size(56, 22);
             label4.TabIndex = 1;
             label4.Text = "Mô tả";
             // 
@@ -118,45 +138,49 @@
             // 
             // rtb_mota
             // 
-            rtb_mota.Location = new Point(1154, 40);
+            rtb_mota.Location = new Point(1062, 51);
             rtb_mota.Name = "rtb_mota";
-            rtb_mota.Size = new Size(469, 193);
+            rtb_mota.Size = new Size(354, 193);
             rtb_mota.TabIndex = 5;
             rtb_mota.Text = "";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(55, 156);
+            label6.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label6.Location = new Point(38, 158);
             label6.Name = "label6";
-            label6.Size = new Size(123, 20);
+            label6.Size = new Size(142, 22);
             label6.TabIndex = 7;
             label6.Text = "Số lượng tồn kho";
             // 
             // label7
             // 
             label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label7.Location = new Point(572, 160);
             label7.Name = "label7";
-            label7.Size = new Size(79, 20);
+            label7.Size = new Size(91, 22);
             label7.TabIndex = 8;
             label7.Text = "Kích thước";
             // 
             // label8
             // 
             label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label8.Location = new Point(55, 213);
             label8.Name = "label8";
-            label8.Size = new Size(63, 20);
+            label8.Size = new Size(74, 22);
             label8.TabIndex = 9;
             label8.Text = "Màu sắc";
             // 
             // label9
             // 
             label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label9.Location = new Point(572, 217);
             label9.Name = "label9";
-            label9.Size = new Size(75, 20);
+            label9.Size = new Size(89, 22);
             label9.TabIndex = 10;
             label9.Text = "Trạng thái";
             // 
@@ -197,46 +221,55 @@
             // 
             // btn_them
             // 
+            btn_them.AutoEllipsis = true;
+            btn_them.BackColor = Color.Blue;
+            btn_them.BackgroundImageLayout = ImageLayout.None;
+            btn_them.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_them.Image = Properties.Resources.icons8_new_page_24;
+            btn_them.ImageAlign = ContentAlignment.MiddleLeft;
             btn_them.Location = new Point(12, 291);
             btn_them.Name = "btn_them";
+            btn_them.RightToLeft = RightToLeft.No;
             btn_them.Size = new Size(123, 54);
             btn_them.TabIndex = 16;
             btn_them.Text = "Thêm";
-            btn_them.UseVisualStyleBackColor = true;
+            btn_them.UseMnemonic = false;
+            btn_them.UseVisualStyleBackColor = false;
             btn_them.Click += btn_them_Click;
-            // 
-            // btn_sua
-            // 
-            btn_sua.Location = new Point(247, 291);
-            btn_sua.Name = "btn_sua";
-            btn_sua.Size = new Size(112, 54);
-            btn_sua.TabIndex = 17;
-            btn_sua.Text = "Sửa";
-            btn_sua.UseVisualStyleBackColor = true;
-            btn_sua.Click += btn_sua_Click;
             // 
             // btn_xoa
             // 
-            btn_xoa.Location = new Point(506, 291);
+            btn_xoa.BackColor = Color.Red;
+            btn_xoa.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_xoa.Image = Properties.Resources.icons8_trash_can_50;
+            btn_xoa.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_xoa.Location = new Point(496, 291);
             btn_xoa.Name = "btn_xoa";
             btn_xoa.Size = new Size(111, 54);
             btn_xoa.TabIndex = 18;
             btn_xoa.Text = "Xóa";
-            btn_xoa.UseVisualStyleBackColor = true;
+            btn_xoa.UseVisualStyleBackColor = false;
             btn_xoa.Click += btn_xoa_Click;
             // 
             // btn_timkiem
             // 
-            btn_timkiem.Location = new Point(505, 392);
+            btn_timkiem.BackColor = Color.LightGray;
+            btn_timkiem.Enabled = false;
+            btn_timkiem.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_timkiem.ForeColor = Color.Chocolate;
+            btn_timkiem.Image = Properties.Resources.icons8_search_30;
+            btn_timkiem.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_timkiem.Location = new Point(507, 392);
             btn_timkiem.Name = "btn_timkiem";
-            btn_timkiem.Size = new Size(142, 26);
+            btn_timkiem.Size = new Size(229, 29);
             btn_timkiem.TabIndex = 19;
             btn_timkiem.Text = "Tìm kiếm theo tên";
-            btn_timkiem.UseVisualStyleBackColor = true;
+            btn_timkiem.UseVisualStyleBackColor = false;
+            btn_timkiem.Click += btn_timkiem_Click;
             // 
             // txt_search
             // 
-            txt_search.Location = new Point(12, 391);
+            txt_search.Location = new Point(12, 394);
             txt_search.Name = "txt_search";
             txt_search.Size = new Size(472, 27);
             txt_search.TabIndex = 20;
@@ -255,15 +288,17 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             label5.Location = new Point(572, 105);
             label5.Name = "label5";
-            label5.Size = new Size(31, 20);
+            label5.Size = new Size(35, 22);
             label5.TabIndex = 22;
             label5.Text = "Giá";
             // 
             // grb_SanPham
             // 
             grb_SanPham.Controls.Add(dgv_sanpham);
+            grb_SanPham.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             grb_SanPham.Location = new Point(6, 447);
             grb_SanPham.Name = "grb_SanPham";
             grb_SanPham.Size = new Size(1617, 416);
@@ -273,12 +308,16 @@
             // 
             // btn_Del
             // 
-            btn_Del.Location = new Point(717, 304);
+            btn_Del.BackColor = Color.LawnGreen;
+            btn_Del.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_Del.Image = Properties.Resources.icons8_clear_50;
+            btn_Del.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_Del.Location = new Point(716, 291);
             btn_Del.Name = "btn_Del";
-            btn_Del.Size = new Size(94, 29);
+            btn_Del.Size = new Size(121, 54);
             btn_Del.TabIndex = 24;
-            btn_Del.Text = "Del";
-            btn_Del.UseVisualStyleBackColor = true;
+            btn_Del.Text = "Clear";
+            btn_Del.UseVisualStyleBackColor = false;
             btn_Del.Click += btn_Del_Click;
             // 
             // FormSanPham
@@ -339,7 +378,6 @@
         private TextBox txt_mausac;
         private TextBox txt_trangthai;
         private TextBox txt_gia;
-        private Button btn_them;
         private Button btn_sua;
         private Button btn_xoa;
         private Button btn_timkiem;
@@ -348,5 +386,6 @@
         private Label label5;
         private GroupBox grb_SanPham;
         private Button btn_Del;
+        public Button btn_them;
     }
 }

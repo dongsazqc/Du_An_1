@@ -23,10 +23,11 @@ namespace PRL
         {
             //comment
             InitializeComponent();
-            List<SanPham> sanPhams = _sanPhamService.CNShow();
-            //showdata
-            showdata(sanPhams);
-
+            //chức năng show
+            List<SanPham> sp = _sanPhamService.CNShow();
+            showdata(sp);
+            // chúc năng tìm kiếm
+          
 
         }
 
@@ -38,7 +39,6 @@ namespace PRL
 
         private void FormSanPham_Load(object sender, EventArgs e)
         {
-
         }
 
         private void btn_laysanpham_Click(object sender, EventArgs e)
@@ -160,13 +160,18 @@ namespace PRL
             txt_kichthuoc.Text = "";
             txt_trangthai.Text = "";
             rtb_mota.Text = "";
-            
+
 
 
             ;
         }
 
         private void txt_tensanpham_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_timkiem_Click(object sender, EventArgs e)
         {
 
         }
