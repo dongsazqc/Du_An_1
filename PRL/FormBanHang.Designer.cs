@@ -154,6 +154,7 @@
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
+            groupBox2.Enter += groupBox2_Enter;
             // 
             // txt_TimKiemGioHang
             // 

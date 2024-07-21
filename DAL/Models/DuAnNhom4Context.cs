@@ -39,6 +39,8 @@ public partial class DuAnNhom4Context : DbContext
 
     public virtual DbSet<SanPham> SanPhams { get; set; }
 
+    public virtual DbSet<SanPhamGiamGium> SanPhamGiamGia { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=PHAM_VAN_DONG;Initial Catalog=Du_An_Nhom4;Integrated Security=True;Trust Server Certificate=True");
@@ -292,6 +294,24 @@ public partial class DuAnNhom4Context : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.TrangThai).HasMaxLength(30);
+        });
+
+        modelBuilder.Entity<SanPhamGiamGium>(entity =>
+        {
+            entity.HasKey(e => e.IdsanPham).HasName("PK__SanPhamG__9D45E58AF2B7AFA2");
+
+            entity.Property(e => e.IdsanPham)
+                .ValueGeneratedNever()
+                .HasColumnName("IDSanPham");
+            entity.Property(e => e.GiaBan).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.GiaGiam)
+                .HasComputedColumnSql("([GiaBan]*((1)-[PhanTramGiam]/(100)))", false)
+                .HasColumnType("decimal(21, 8)");
+            entity.Property(e => e.MoTa).HasMaxLength(1000);
+            entity.Property(e => e.NgayBatDauGiamGia).HasColumnType("datetime");
+            entity.Property(e => e.NgayKetThucGiamGia).HasColumnType("datetime");
+            entity.Property(e => e.PhanTramGiam).HasColumnType("decimal(5, 2)");
+            entity.Property(e => e.TenSanPham).HasMaxLength(255);
         });
 
         OnModelCreatingPartial(modelBuilder);

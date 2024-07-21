@@ -56,11 +56,15 @@
             btn_Del = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
+            grp_giamgia = new GroupBox();
+            dgv_giamgia = new DataGridView();
             btn_sua = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_sanpham).BeginInit();
             grb_SanPham.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            grp_giamgia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgv_giamgia).BeginInit();
             SuspendLayout();
             // 
             // btn_sua
@@ -315,7 +319,7 @@
             grb_SanPham.Font = new Font("Segoe UI Black", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             grb_SanPham.Location = new Point(6, 359);
             grb_SanPham.Name = "grb_SanPham";
-            grb_SanPham.Size = new Size(1169, 504);
+            grb_SanPham.Size = new Size(790, 504);
             grb_SanPham.TabIndex = 23;
             grb_SanPham.TabStop = false;
             grb_SanPham.Text = "Danh sách sản phẩm";
@@ -378,11 +382,34 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Chức năng";
             // 
+            // grp_giamgia
+            // 
+            grp_giamgia.Controls.Add(dgv_giamgia);
+            grp_giamgia.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grp_giamgia.Location = new Point(845, 374);
+            grp_giamgia.Name = "grp_giamgia";
+            grp_giamgia.Size = new Size(722, 489);
+            grp_giamgia.TabIndex = 27;
+            grp_giamgia.TabStop = false;
+            grp_giamgia.Text = "các sản phẩm giảm giá";
+            grp_giamgia.Enter += grp_giamgia_Enter;
+            // 
+            // dgv_giamgia
+            // 
+            dgv_giamgia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_giamgia.Location = new Point(6, 36);
+            dgv_giamgia.Name = "dgv_giamgia";
+            dgv_giamgia.RowHeadersWidth = 51;
+            dgv_giamgia.Size = new Size(699, 389);
+            dgv_giamgia.TabIndex = 0;
+            dgv_giamgia.CellContentClick += dgv_giamgia_CellContentClick;
+            // 
             // FormSanPham
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1635, 875);
+            Controls.Add(grp_giamgia);
             Controls.Add(txt_search);
             Controls.Add(btn_timkiem);
             Controls.Add(grb_SanPham);
@@ -396,6 +423,8 @@
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
+            grp_giamgia.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgv_giamgia).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -430,5 +459,7 @@
         public Button btn_them;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
+        private GroupBox grp_giamgia;
+        private DataGridView dgv_giamgia;
     }
 }

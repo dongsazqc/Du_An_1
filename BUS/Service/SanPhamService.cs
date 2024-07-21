@@ -12,10 +12,12 @@ namespace BUS.Service
     public class SanPhamService
     {
         SanPhamRep _repos = new SanPhamRep();
+        
         public SanPhamService()
         {
             
         }
+       
         public List<SanPham> CNShow()
         {
             return _repos.GetAll();
@@ -28,6 +30,7 @@ namespace BUS.Service
         public string CNthem(int id, string ten, string tenthuonghieu,string mota, decimal gia, int soluong, string kichthuoc,string mausac,string trangthai) {
               SanPham sp = new SanPham()
             {
+                
                 SanPhamId = id,
                 TenSanPham = ten,
                 TenThuongHieu = tenthuonghieu,
