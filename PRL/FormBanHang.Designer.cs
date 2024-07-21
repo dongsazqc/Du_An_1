@@ -35,6 +35,8 @@
             textBox4 = new TextBox();
             button5 = new Button();
             groupBox2 = new GroupBox();
+            txt_TimKiemGioHang = new TextBox();
+            btn_TimKiemGioHang = new Button();
             dtf_GioHang = new DataGridView();
             groupBox5 = new GroupBox();
             textBox2 = new TextBox();
@@ -59,9 +61,7 @@
             label7 = new Label();
             btn_LuuHoaDon = new FontAwesome.Sharp.IconButton();
             groupBox4 = new GroupBox();
-            btn_ThemHoaDon = new FontAwesome.Sharp.IconButton();
-            btn_TimKiemGioHang = new Button();
-            txt_TimKiemGioHang = new TextBox();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)data_SPBH).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -154,6 +154,22 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
             // 
+            // txt_TimKiemGioHang
+            // 
+            txt_TimKiemGioHang.Location = new Point(131, 56);
+            txt_TimKiemGioHang.Name = "txt_TimKiemGioHang";
+            txt_TimKiemGioHang.Size = new Size(369, 27);
+            txt_TimKiemGioHang.TabIndex = 2;
+            // 
+            // btn_TimKiemGioHang
+            // 
+            btn_TimKiemGioHang.Location = new Point(22, 57);
+            btn_TimKiemGioHang.Name = "btn_TimKiemGioHang";
+            btn_TimKiemGioHang.Size = new Size(94, 29);
+            btn_TimKiemGioHang.TabIndex = 1;
+            btn_TimKiemGioHang.Text = "Tìm kiếm";
+            btn_TimKiemGioHang.UseVisualStyleBackColor = true;
+            // 
             // dtf_GioHang
             // 
             dtf_GioHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -166,6 +182,7 @@
             // 
             // groupBox5
             // 
+            groupBox5.Controls.Add(comboBox1);
             groupBox5.Controls.Add(textBox2);
             groupBox5.Controls.Add(textBox1);
             groupBox5.Controls.Add(label5);
@@ -188,7 +205,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(192, 228);
+            textBox2.Location = new Point(192, 244);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(221, 30);
             textBox2.TabIndex = 36;
@@ -196,7 +213,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(192, 169);
+            textBox1.Location = new Point(192, 196);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(221, 30);
             textBox1.TabIndex = 36;
@@ -224,7 +241,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(43, 231);
+            label2.Location = new Point(43, 244);
             label2.Name = "label2";
             label2.Size = new Size(57, 23);
             label2.TabIndex = 23;
@@ -234,7 +251,7 @@
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(43, 176);
+            label1.Location = new Point(43, 203);
             label1.Name = "label1";
             label1.Size = new Size(65, 23);
             label1.TabIndex = 23;
@@ -242,14 +259,14 @@
             // 
             // txt_sđt
             // 
-            txt_sđt.Location = new Point(192, 113);
+            txt_sđt.Location = new Point(192, 152);
             txt_sđt.Name = "txt_sđt";
             txt_sđt.Size = new Size(221, 30);
             txt_sđt.TabIndex = 2;
             // 
             // txt_tenkhachhang
             // 
-            txt_tenkhachhang.Location = new Point(192, 54);
+            txt_tenkhachhang.Location = new Point(192, 105);
             txt_tenkhachhang.Name = "txt_tenkhachhang";
             txt_tenkhachhang.Size = new Size(221, 30);
             txt_tenkhachhang.TabIndex = 1;
@@ -259,7 +276,7 @@
             // 
             label10.AutoSize = true;
             label10.ForeColor = Color.Black;
-            label10.Location = new Point(43, 120);
+            label10.Location = new Point(43, 159);
             label10.Name = "label10";
             label10.Size = new Size(116, 23);
             label10.TabIndex = 0;
@@ -270,7 +287,7 @@
             // 
             label11.AutoSize = true;
             label11.ForeColor = Color.Black;
-            label11.Location = new Point(43, 61);
+            label11.Location = new Point(43, 112);
             label11.Name = "label11";
             label11.Size = new Size(134, 23);
             label11.TabIndex = 0;
@@ -404,13 +421,12 @@
             btn_LuuHoaDon.Name = "btn_LuuHoaDon";
             btn_LuuHoaDon.Size = new Size(170, 35);
             btn_LuuHoaDon.TabIndex = 37;
-            btn_LuuHoaDon.Text = "Lưu hóa đơn";
+            btn_LuuHoaDon.Text = "Tạo hóa đơn";
             btn_LuuHoaDon.TextImageRelation = TextImageRelation.ImageBeforeText;
             btn_LuuHoaDon.UseVisualStyleBackColor = false;
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(btn_ThemHoaDon);
             groupBox4.Controls.Add(btn_LuuHoaDon);
             groupBox4.Location = new Point(499, 651);
             groupBox4.Name = "groupBox4";
@@ -419,41 +435,13 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Chức năng";
             // 
-            // btn_ThemHoaDon
+            // comboBox1
             // 
-            btn_ThemHoaDon.BackColor = Color.Lime;
-            btn_ThemHoaDon.FlatStyle = FlatStyle.Flat;
-            btn_ThemHoaDon.Flip = FontAwesome.Sharp.FlipOrientation.Horizontal;
-            btn_ThemHoaDon.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_ThemHoaDon.ForeColor = SystemColors.ControlText;
-            btn_ThemHoaDon.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            btn_ThemHoaDon.IconColor = Color.Black;
-            btn_ThemHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btn_ThemHoaDon.IconSize = 30;
-            btn_ThemHoaDon.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_ThemHoaDon.Location = new Point(296, 69);
-            btn_ThemHoaDon.Name = "btn_ThemHoaDon";
-            btn_ThemHoaDon.Size = new Size(180, 35);
-            btn_ThemHoaDon.TabIndex = 39;
-            btn_ThemHoaDon.Text = "Thêm hóa đơn";
-            btn_ThemHoaDon.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btn_ThemHoaDon.UseVisualStyleBackColor = false;
-            // 
-            // btn_TimKiemGioHang
-            // 
-            btn_TimKiemGioHang.Location = new Point(22, 57);
-            btn_TimKiemGioHang.Name = "btn_TimKiemGioHang";
-            btn_TimKiemGioHang.Size = new Size(94, 29);
-            btn_TimKiemGioHang.TabIndex = 1;
-            btn_TimKiemGioHang.Text = "Tìm kiếm";
-            btn_TimKiemGioHang.UseVisualStyleBackColor = true;
-            // 
-            // txt_TimKiemGioHang
-            // 
-            txt_TimKiemGioHang.Location = new Point(131, 56);
-            txt_TimKiemGioHang.Name = "txt_TimKiemGioHang";
-            txt_TimKiemGioHang.Size = new Size(369, 27);
-            txt_TimKiemGioHang.TabIndex = 2;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(43, 52);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(370, 31);
+            comboBox1.TabIndex = 37;
             // 
             // FormBanHang
             // 
@@ -513,9 +501,9 @@
         private TextBox txt_tongtien;
         private FontAwesome.Sharp.IconButton btn_LuuHoaDon;
         private GroupBox groupBox4;
-        private FontAwesome.Sharp.IconButton btn_ThemHoaDon;
         private Button btn_ThanhToan;
         private TextBox txt_TimKiemGioHang;
         private Button btn_TimKiemGioHang;
+        private ComboBox comboBox1;
     }
 }
