@@ -24,6 +24,7 @@ namespace PRL
             InitializeComponent();
             List<KhachHang> khachHangs = _services.CNShow();
             showData(khachHangs);
+            tiemnangkh();
         }
 
         private void FormKhachHang_Load(object sender, EventArgs e)
@@ -64,7 +65,19 @@ namespace PRL
         private void btnShow_Click(object sender, EventArgs e)
         {
         }
-
+        private void tiemnangkh()
+        {
+            dgv_KhachHang.Rows.Clear();
+            dgv_KhachHang.ColumnCount = 8;
+            dgv_KhachHang.Columns[0].HeaderText = "STT";
+            dgv_KhachHang.Columns[1].HeaderText = "ID Khách hàng";
+            dgv_KhachHang.Columns[2].HeaderText = "Tên khách hàng";
+            dgv_KhachHang.Columns[3].HeaderText = "SDT";
+            dgv_KhachHang.Columns[4].HeaderText = "Địa chỉ";
+            dgv_KhachHang.Columns[5].HeaderText = "Gmail";
+            dgv_KhachHang.Columns[6].HeaderText = "Sản phẩm";
+            dgv_KhachHang.Columns[7].HeaderText = "Tổng tiền";
+        }
         public void showData(List<KhachHang> kh)
         {
             dgv_data.Rows.Clear();  //Xo?a hê?t d?? liê?u cu? trên gridview

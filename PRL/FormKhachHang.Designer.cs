@@ -50,7 +50,6 @@
             groupBox3 = new GroupBox();
             groupBox4 = new GroupBox();
             groupBox5 = new GroupBox();
-            btnCapNhat = new Button();
             dgv_KhachHang = new DataGridView();
             linkLabel1 = new LinkLabel();
             linkLabel2 = new LinkLabel();
@@ -289,24 +288,13 @@
             // 
             // groupBox5
             // 
-            groupBox5.Controls.Add(btnCapNhat);
             groupBox5.Controls.Add(dgv_KhachHang);
             groupBox5.Location = new Point(692, 231);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(517, 240);
+            groupBox5.Size = new Size(781, 240);
             groupBox5.TabIndex = 22;
             groupBox5.TabStop = false;
             groupBox5.Text = "Khách hàng tiềm năng";
-            // 
-            // btnCapNhat
-            // 
-            btnCapNhat.Location = new Point(410, 65);
-            btnCapNhat.Name = "btnCapNhat";
-            btnCapNhat.Size = new Size(94, 64);
-            btnCapNhat.TabIndex = 23;
-            btnCapNhat.Text = "Cập nhật";
-            btnCapNhat.UseVisualStyleBackColor = true;
-            btnCapNhat.Click += btnCapNhat_Click;
             // 
             // dgv_KhachHang
             // 
@@ -314,7 +302,7 @@
             dgv_KhachHang.Location = new Point(6, 22);
             dgv_KhachHang.Name = "dgv_KhachHang";
             dgv_KhachHang.RowHeadersWidth = 51;
-            dgv_KhachHang.Size = new Size(389, 166);
+            dgv_KhachHang.Size = new Size(769, 212);
             dgv_KhachHang.TabIndex = 0;
             // 
             // linkLabel1
@@ -391,7 +379,6 @@
         private GroupBox groupBox4;
         private GroupBox groupBox5;
         private DataGridView dgv_KhachHang;
-        private Button btnCapNhat;
         private LinkLabel linkLabel1;
         private LinkLabel linkLabel2;
     }
