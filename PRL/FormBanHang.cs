@@ -192,19 +192,25 @@ namespace PRL
         {
             string CauLenh = $"Xác nhận thanh toán {txt_tongtien.Text} cho nhân viên";
             DialogResult result = MessageBox.Show(CauLenh, "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-                if (result == DialogResult.OK)
-                {
-                   DialogResult re = MessageBox.Show("Thanh toán thành công, Bạn có muốn lưu hóa đơn lại không","Thông báo",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (re == DialogResult.Yes) 
-                { 
-                    
-                }
-
-                }
-            
-
+            if (result == DialogResult.OK)
+            {
+                DialogResult re = MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
                
-            
+            }
+
+
+
+
+        }
+
+        private void btn_TaoHoaDon_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

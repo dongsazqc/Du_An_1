@@ -39,6 +39,7 @@
             btn_TimKiemGioHang = new Button();
             dtf_GioHang = new DataGridView();
             groupBox5 = new GroupBox();
+            comboBox1 = new ComboBox();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             label5 = new Label();
@@ -59,9 +60,9 @@
             btn_ThanhToan = new Button();
             textBox3 = new TextBox();
             label7 = new Label();
-            btn_LuuHoaDon = new FontAwesome.Sharp.IconButton();
+            btn_TaoHoaDon = new FontAwesome.Sharp.IconButton();
             groupBox4 = new GroupBox();
-            comboBox1 = new ComboBox();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)data_SPBH).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -202,6 +203,15 @@
             groupBox5.TabStop = false;
             groupBox5.Text = "Thông tin khách hàng chi tiết";
             groupBox5.Enter += groupBox5_Enter;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(43, 52);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(370, 31);
+            comboBox1.TabIndex = 37;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // textBox2
             // 
@@ -405,29 +415,31 @@
             label7.TabIndex = 29;
             label7.Text = "Voucher";
             // 
-            // btn_LuuHoaDon
+            // btn_TaoHoaDon
             // 
-            btn_LuuHoaDon.BackColor = Color.Lime;
-            btn_LuuHoaDon.FlatStyle = FlatStyle.Flat;
-            btn_LuuHoaDon.Flip = FontAwesome.Sharp.FlipOrientation.Horizontal;
-            btn_LuuHoaDon.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_LuuHoaDon.ForeColor = SystemColors.ControlText;
-            btn_LuuHoaDon.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            btn_LuuHoaDon.IconColor = Color.Black;
-            btn_LuuHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btn_LuuHoaDon.IconSize = 30;
-            btn_LuuHoaDon.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_LuuHoaDon.Location = new Point(69, 69);
-            btn_LuuHoaDon.Name = "btn_LuuHoaDon";
-            btn_LuuHoaDon.Size = new Size(170, 35);
-            btn_LuuHoaDon.TabIndex = 37;
-            btn_LuuHoaDon.Text = "Tạo hóa đơn";
-            btn_LuuHoaDon.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btn_LuuHoaDon.UseVisualStyleBackColor = false;
+            btn_TaoHoaDon.BackColor = Color.Lime;
+            btn_TaoHoaDon.FlatStyle = FlatStyle.Flat;
+            btn_TaoHoaDon.Flip = FontAwesome.Sharp.FlipOrientation.Horizontal;
+            btn_TaoHoaDon.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_TaoHoaDon.ForeColor = SystemColors.ControlText;
+            btn_TaoHoaDon.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            btn_TaoHoaDon.IconColor = Color.Black;
+            btn_TaoHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btn_TaoHoaDon.IconSize = 30;
+            btn_TaoHoaDon.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_TaoHoaDon.Location = new Point(69, 69);
+            btn_TaoHoaDon.Name = "btn_TaoHoaDon";
+            btn_TaoHoaDon.Size = new Size(170, 35);
+            btn_TaoHoaDon.TabIndex = 37;
+            btn_TaoHoaDon.Text = "Tạo hóa đơn";
+            btn_TaoHoaDon.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btn_TaoHoaDon.UseVisualStyleBackColor = false;
+            btn_TaoHoaDon.Click += btn_TaoHoaDon_Click;
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(btn_LuuHoaDon);
+            groupBox4.Controls.Add(iconButton1);
+            groupBox4.Controls.Add(btn_TaoHoaDon);
             groupBox4.Location = new Point(499, 651);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(1095, 163);
@@ -435,13 +447,26 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Chức năng";
             // 
-            // comboBox1
+            // iconButton1
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(43, 52);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(370, 31);
-            comboBox1.TabIndex = 37;
+            iconButton1.BackColor = Color.FromArgb(192, 192, 0);
+            iconButton1.Cursor = Cursors.Cross;
+            iconButton1.FlatStyle = FlatStyle.Flat;
+            iconButton1.Flip = FontAwesome.Sharp.FlipOrientation.Horizontal;
+            iconButton1.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconButton1.ForeColor = SystemColors.ControlText;
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            iconButton1.IconColor = Color.Black;
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton1.IconSize = 30;
+            iconButton1.ImageAlign = ContentAlignment.MiddleLeft;
+            iconButton1.Location = new Point(311, 69);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new Size(170, 35);
+            iconButton1.TabIndex = 38;
+            iconButton1.Text = "Lưu hóa đơn";
+            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
+            iconButton1.UseVisualStyleBackColor = false;
             // 
             // FormBanHang
             // 
@@ -499,11 +524,12 @@
         private Button button5;
         private Label label9;
         private TextBox txt_tongtien;
-        private FontAwesome.Sharp.IconButton btn_LuuHoaDon;
+        private FontAwesome.Sharp.IconButton btn_TaoHoaDon;
         private GroupBox groupBox4;
         private Button btn_ThanhToan;
         private TextBox txt_TimKiemGioHang;
         private Button btn_TimKiemGioHang;
         private ComboBox comboBox1;
+        private FontAwesome.Sharp.IconButton iconButton1;
     }
 }
