@@ -25,8 +25,6 @@ namespace PRL
             List<SanPham> sp = _sanPhamService.CNShow();
             showdata(sp);
           
-            List<SanPham> sanPhams = _sanPhamService.CNShow();
-            showdata(sanPhams);
 
 
         }

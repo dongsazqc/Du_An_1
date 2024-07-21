@@ -38,7 +38,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 163);
             label1.ForeColor = Color.Red;
-            label1.Location = new Point(14, 20);
+            label1.Location = new Point(12, 27);
             label1.Name = "label1";
             label1.Size = new Size(410, 31);
             label1.TabIndex = 0;
@@ -66,7 +66,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.CadetBlue;
-            ClientSize = new Size(436, 142);
+            ClientSize = new Size(428, 129);
             Controls.Add(btn_Ok);
             Controls.Add(txt_SoLuong);
             Controls.Add(label1);

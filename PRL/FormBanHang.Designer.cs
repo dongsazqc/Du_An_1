@@ -57,18 +57,12 @@
             button4 = new Button();
             textBox3 = new TextBox();
             label7 = new Label();
-            btn_LuuHoaDon = new Button();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            groupBox4 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)data_SPBH).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtf_GioHang).BeginInit();
             groupBox5.SuspendLayout();
             groupBox3.SuspendLayout();
-            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // btn_DS_sanpham
@@ -76,7 +70,7 @@
             btn_DS_sanpham.BackColor = SystemColors.ActiveBorder;
             btn_DS_sanpham.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             btn_DS_sanpham.ForeColor = Color.Blue;
-            btn_DS_sanpham.Location = new Point(6, 194);
+            btn_DS_sanpham.Location = new Point(9, 61);
             btn_DS_sanpham.Name = "btn_DS_sanpham";
             btn_DS_sanpham.Size = new Size(437, 44);
             btn_DS_sanpham.TabIndex = 18;
@@ -87,10 +81,10 @@
             // data_SPBH
             // 
             data_SPBH.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            data_SPBH.Location = new Point(6, 244);
+            data_SPBH.Location = new Point(6, 176);
             data_SPBH.Name = "data_SPBH";
             data_SPBH.RowHeadersWidth = 51;
-            data_SPBH.Size = new Size(440, 533);
+            data_SPBH.Size = new Size(440, 601);
             data_SPBH.TabIndex = 0;
             data_SPBH.CellContentClick += data_SPBH_CellContentClick;
             data_SPBH.CellDoubleClick += data_SPBH_CellDoubleClick;
@@ -126,7 +120,7 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(117, 159);
+            textBox4.Location = new Point(109, 139);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(326, 27);
             textBox4.TabIndex = 20;
@@ -135,7 +129,7 @@
             // 
             button5.Font = new Font("SimSun-ExtB", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button5.ForeColor = SystemColors.ActiveCaptionText;
-            button5.Location = new Point(6, 159);
+            button5.Location = new Point(9, 139);
             button5.Name = "button5";
             button5.Size = new Size(94, 29);
             button5.TabIndex = 19;
@@ -147,7 +141,7 @@
             groupBox2.Controls.Add(dtf_GioHang);
             groupBox2.Location = new Point(493, 13);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(407, 470);
+            groupBox2.Size = new Size(407, 849);
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
@@ -158,7 +152,7 @@
             dtf_GioHang.Location = new Point(6, 26);
             dtf_GioHang.Name = "dtf_GioHang";
             dtf_GioHang.RowHeadersWidth = 51;
-            dtf_GioHang.Size = new Size(395, 430);
+            dtf_GioHang.Size = new Size(395, 817);
             dtf_GioHang.TabIndex = 0;
             dtf_GioHang.CellContentClick += dtf_GioHang_CellContentClick;
             // 
@@ -357,7 +351,7 @@
             button4.Name = "button4";
             button4.Size = new Size(213, 50);
             button4.TabIndex = 4;
-            button4.Text = "Thanh toán";
+            button4.Text = "Thanh toán Giỏ Hàng";
             button4.UseVisualStyleBackColor = true;
             // 
             // textBox3
@@ -377,66 +371,12 @@
             label7.TabIndex = 29;
             label7.Text = "Voucher";
             // 
-            // btn_LuuHoaDon
-            // 
-            btn_LuuHoaDon.Cursor = Cursors.Hand;
-            btn_LuuHoaDon.Location = new Point(385, 309);
-            btn_LuuHoaDon.Name = "btn_LuuHoaDon";
-            btn_LuuHoaDon.Size = new Size(127, 35);
-            btn_LuuHoaDon.TabIndex = 0;
-            btn_LuuHoaDon.Text = "Lưu hóa đơn";
-            btn_LuuHoaDon.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Cursor = Cursors.Hand;
-            button1.Location = new Point(172, 309);
-            button1.Name = "button1";
-            button1.Size = new Size(127, 35);
-            button1.TabIndex = 1;
-            button1.Text = "Thêm hóa đơn";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Cursor = Cursors.Hand;
-            button2.Location = new Point(623, 309);
-            button2.Name = "button2";
-            button2.Size = new Size(127, 35);
-            button2.TabIndex = 2;
-            button2.Text = "In hóa đơn";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            button3.Cursor = Cursors.Hand;
-            button3.Location = new Point(870, 309);
-            button3.Name = "button3";
-            button3.Size = new Size(127, 35);
-            button3.TabIndex = 3;
-            button3.Text = "Đóng";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            groupBox4.Controls.Add(button3);
-            groupBox4.Controls.Add(button2);
-            groupBox4.Controls.Add(button1);
-            groupBox4.Controls.Add(btn_LuuHoaDon);
-            groupBox4.Location = new Point(493, 489);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(1124, 374);
-            groupBox4.TabIndex = 20;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "Danh sách hóa đơn chi tiết";
-            // 
             // FormBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1635, 875);
             Controls.Add(groupBox2);
-            Controls.Add(groupBox4);
             Controls.Add(groupBox5);
             Controls.Add(groupBox1);
             Controls.Add(groupBox3);
@@ -452,7 +392,6 @@
             groupBox5.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            groupBox4.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -474,12 +413,6 @@
         private TextBox txt_Tienthua;
         private Label label12;
         private GroupBox groupBox3;
-        private Button button4;
-        private Button btn_LuuHoaDon;
-        private Button button1;
-        private Button button2;
-        private Button button3;
-        private GroupBox groupBox4;
         private Label label1;
         private TextBox textBox1;
         private Label label2;
@@ -491,5 +424,6 @@
         private Button button5;
         private Label label9;
         private TextBox txt_tongtien;
+        private Button button4;
     }
 }
