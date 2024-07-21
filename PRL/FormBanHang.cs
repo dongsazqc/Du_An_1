@@ -120,9 +120,9 @@ namespace PRL
                 string tenthuonghieu = selectedRow.Cells[3].Value.ToString();
                 decimal gia = (decimal)selectedRow.Cells[5].Value;
 
-                using(FormSoLuong formSoLuong = new FormSoLuong())
+                using (FormSoLuong formSoLuong = new FormSoLuong())
                 {
-                    if(formSoLuong.ShowDialog() == DialogResult.OK)
+                    if (formSoLuong.ShowDialog() == DialogResult.OK)
                     {
                         int soluong = formSoLuong.SOLUONG;
                         dtf_GioHang.Rows.Add(tensanpham, tenthuonghieu, soluong, gia);
@@ -156,5 +156,9 @@ namespace PRL
 
         }
 
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

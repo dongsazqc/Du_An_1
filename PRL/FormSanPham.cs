@@ -16,6 +16,7 @@ namespace PRL
 {
     public partial class FormSanPham : Form
     {
+        SPgiamgiaService _spgiamgia = new SPgiamgiaService(); 
         SanPhamService _sanPhamService = new SanPhamService();
         SanPhamRep _sanPhamRep = new SanPhamRep();
 
@@ -24,9 +25,13 @@ namespace PRL
             InitializeComponent();
             List<SanPham> sp = _sanPhamService.CNShow();
             showdata(sp);
+
+            List<SanPham> sanPhams = _sanPhamService.CNShow();
+            showdata(sanPhams);
+
+            List<SanPhamGiamGium> sanPhamGiams = _spgiamgia.CNShow();
+            showdata2(sanPhamGiams);
           
-
-
         }
 
         private void textBox9_TextChanged(object sender, EventArgs e)
@@ -44,8 +49,8 @@ namespace PRL
         }
         public void showdata(List<SanPham> sp)
         {
-            dgv_sanpham.Rows.Clear(); 
-            dgv_sanpham.ColumnCount = 10; 
+            dgv_sanpham.Rows.Clear();
+            dgv_sanpham.ColumnCount = 10;
             int stt = 1;
             dgv_sanpham.Columns[0].HeaderText = "số thứ tự";
             dgv_sanpham.Columns[1].HeaderText = "ID sản phẩm";
@@ -63,7 +68,26 @@ namespace PRL
 
             }
         }
-
+        public void showdata2 (List<SanPhamGiamGium> sanPhamGiams)
+        {
+            dgv_giamgia.Rows.Clear();
+            dgv_giamgia.ColumnCount = 9;
+            int stt = 1;
+            dgv_giamgia.Columns[0].HeaderText = "Số thứ tự";
+            dgv_giamgia.Columns[1].HeaderText = "ID Sản Phẩm";
+            dgv_giamgia.Columns[2].HeaderText = "Tên Sản Phẩm";
+            dgv_giamgia.Columns[3].HeaderText = "Giá Bán";
+            dgv_giamgia.Columns[4].HeaderText = "Phần Trăm Giảm";
+            dgv_giamgia.Columns[5].HeaderText = "Giá Giảm";
+            dgv_giamgia.Columns[6].HeaderText = "Ngày Bắt Đầu";
+            dgv_giamgia.Columns[7].HeaderText = "Ngày Kết Thúc";
+            dgv_giamgia.Columns[8].HeaderText = "Mô Tả";
+            foreach (var item in sanPhamGiams)
+            {
+                dgv_giamgia.Rows.Add(stt++, item.IdsanPham, item.TenSanPham, item.GiaBan, item.PhanTramGiam, item.GiaGiam, item.NgayBatDauGiamGia, item.NgayKetThucGiamGia, item.MoTa);
+            }    
+        }
+       
         private void btn_them_Click(object sender, EventArgs e)
         {
             string id = txt_IDsanpham.Text;
@@ -170,6 +194,16 @@ namespace PRL
         }
 
         private void btn_timkiem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grp_giamgia_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgv_giamgia_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
