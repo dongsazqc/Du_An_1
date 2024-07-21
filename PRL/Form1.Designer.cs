@@ -30,23 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
+            iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
+            btn_Voucher = new Button();
             pictureBox2 = new PictureBox();
             iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            button2 = new Button();
+            btn_TrangChu = new Button();
             btn_hoAdon = new Button();
             label1 = new Label();
             btn_BanHang = new Button();
             btn_KhachHang = new Button();
             btn_SanPham = new Button();
-            panel2 = new Panel();
-            lb_Menu = new Label();
             panel_Body = new Panel();
-            pictureBox1 = new PictureBox();
+            panel2 = new Panel();
+            TieuDe = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox4).BeginInit();
@@ -54,20 +56,20 @@
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             panel2.SuspendLayout();
-            panel_Body.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.Navy;
+            panel1.Controls.Add(iconPictureBox6);
+            panel1.Controls.Add(btn_Voucher);
             panel1.Controls.Add(pictureBox2);
             panel1.Controls.Add(iconPictureBox5);
             panel1.Controls.Add(iconPictureBox4);
             panel1.Controls.Add(iconPictureBox3);
             panel1.Controls.Add(iconPictureBox2);
             panel1.Controls.Add(iconPictureBox1);
-            panel1.Controls.Add(button2);
+            panel1.Controls.Add(btn_TrangChu);
             panel1.Controls.Add(btn_hoAdon);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btn_BanHang);
@@ -78,6 +80,34 @@
             panel1.Size = new Size(249, 1032);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // iconPictureBox6
+            // 
+            iconPictureBox6.BackColor = Color.Navy;
+            iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.PiggyBank;
+            iconPictureBox6.IconColor = Color.White;
+            iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconPictureBox6.IconSize = 40;
+            iconPictureBox6.Location = new Point(23, 830);
+            iconPictureBox6.Name = "iconPictureBox6";
+            iconPictureBox6.Size = new Size(40, 40);
+            iconPictureBox6.TabIndex = 13;
+            iconPictureBox6.TabStop = false;
+            // 
+            // btn_Voucher
+            // 
+            btn_Voucher.BackColor = Color.Navy;
+            btn_Voucher.FlatAppearance.BorderSize = 0;
+            btn_Voucher.FlatStyle = FlatStyle.Flat;
+            btn_Voucher.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
+            btn_Voucher.ForeColor = Color.White;
+            btn_Voucher.Location = new Point(0, 795);
+            btn_Voucher.Name = "btn_Voucher";
+            btn_Voucher.Size = new Size(249, 112);
+            btn_Voucher.TabIndex = 6;
+            btn_Voucher.Text = "Voucher";
+            btn_Voucher.UseVisualStyleBackColor = false;
+            btn_Voucher.Click += button1_Click_1;
             // 
             // pictureBox2
             // 
@@ -96,7 +126,7 @@
             iconPictureBox5.IconColor = Color.White;
             iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox5.IconSize = 40;
-            iconPictureBox5.Location = new Point(23, 725);
+            iconPictureBox5.Location = new Point(23, 729);
             iconPictureBox5.Name = "iconPictureBox5";
             iconPictureBox5.Size = new Size(40, 40);
             iconPictureBox5.TabIndex = 11;
@@ -154,20 +184,20 @@
             iconPictureBox1.TabIndex = 7;
             iconPictureBox1.TabStop = false;
             // 
-            // button2
+            // btn_TrangChu
             // 
-            button2.BackColor = Color.Navy;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
-            button2.ForeColor = Color.WhiteSmoke;
-            button2.Location = new Point(3, 264);
-            button2.Name = "button2";
-            button2.Size = new Size(249, 112);
-            button2.TabIndex = 6;
-            button2.Text = "Trang chủ";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
+            btn_TrangChu.BackColor = Color.Navy;
+            btn_TrangChu.FlatAppearance.BorderSize = 0;
+            btn_TrangChu.FlatStyle = FlatStyle.Flat;
+            btn_TrangChu.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
+            btn_TrangChu.ForeColor = Color.WhiteSmoke;
+            btn_TrangChu.Location = new Point(3, 264);
+            btn_TrangChu.Name = "btn_TrangChu";
+            btn_TrangChu.Size = new Size(249, 112);
+            btn_TrangChu.TabIndex = 6;
+            btn_TrangChu.Text = "Trang chủ";
+            btn_TrangChu.UseVisualStyleBackColor = false;
+            btn_TrangChu.Click += button2_Click;
             // 
             // btn_hoAdon
             // 
@@ -182,12 +212,14 @@
             btn_hoAdon.TabIndex = 5;
             btn_hoAdon.Text = "Hóa đơn";
             btn_hoAdon.UseVisualStyleBackColor = false;
+            btn_hoAdon.Click += btn_hoAdon_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            label1.Location = new Point(59, 910);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(56, 963);
             label1.Name = "label1";
             label1.Size = new Size(111, 28);
             label1.TabIndex = 6;
@@ -238,45 +270,34 @@
             btn_SanPham.UseVisualStyleBackColor = false;
             btn_SanPham.Click += btn_SanPham_Click;
             // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Yellow;
-            panel2.Controls.Add(lb_Menu);
-            panel2.Location = new Point(249, 2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1653, 111);
-            panel2.TabIndex = 1;
-            // 
-            // lb_Menu
-            // 
-            lb_Menu.AutoSize = true;
-            lb_Menu.Font = new Font("Showcard Gothic", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lb_Menu.Location = new Point(775, 33);
-            lb_Menu.Name = "lb_Menu";
-            lb_Menu.Size = new Size(168, 35);
-            lb_Menu.TabIndex = 0;
-            lb_Menu.Text = "Trang Chủ";
-            // 
             // panel_Body
             // 
             panel_Body.BackColor = Color.FromArgb(255, 224, 192);
-            panel_Body.Controls.Add(pictureBox1);
             panel_Body.Location = new Point(249, 112);
             panel_Body.Name = "panel_Body";
             panel_Body.Size = new Size(1653, 922);
             panel_Body.TabIndex = 2;
             panel_Body.Paint += panel_Body_Paint;
             // 
-            // pictureBox1
+            // panel2
             // 
-            pictureBox1.BackColor = Color.RosyBrown;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(796, 371);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(160, 135);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 4;
-            pictureBox1.TabStop = false;
+            panel2.BackColor = Color.MediumBlue;
+            panel2.Controls.Add(TieuDe);
+            panel2.Location = new Point(249, 2);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(1653, 111);
+            panel2.TabIndex = 1;
+            // 
+            // TieuDe
+            // 
+            TieuDe.AutoSize = true;
+            TieuDe.Font = new Font("Stencil", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            TieuDe.ForeColor = Color.Red;
+            TieuDe.Location = new Point(684, 33);
+            TieuDe.Name = "TieuDe";
+            TieuDe.Size = new Size(502, 40);
+            TieuDe.TabIndex = 0;
+            TieuDe.Text = "Giải Pháp Bán Hàng Tối Ưu";
             // 
             // Form1
             // 
@@ -289,8 +310,10 @@
             Name = "Form1";
             Text = "Phần mền bán quàn áo thời trang";
             WindowState = FormWindowState.Maximized;
+            Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox4).EndInit();
@@ -299,29 +322,28 @@
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
-            panel_Body.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private Panel panel2;
         private Button btn_SanPham;
         private Panel panel_Body;
         private Button btn_KhachHang;
         private Label label1;
-        private PictureBox pictureBox1;
-        private Label lb_Menu;
         private Button btn_hoAdon;
         private Button btn_BanHang;
-        private Button button2;
+        private Button btn_TrangChu;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
         private PictureBox pictureBox2;
+        private Panel panel2;
+        private Label TieuDe;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox6;
+        private Button btn_Voucher;
     }
 }

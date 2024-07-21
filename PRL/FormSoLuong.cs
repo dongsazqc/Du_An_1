@@ -16,9 +16,10 @@ namespace PRL
         public FormSoLuong()
         {
             InitializeComponent();
+            this.AcceptButton = btn_Ok;
         }
 
-        private void btn_Ok_Click(object sender, EventArgs e)
+        public void btn_Ok_Click(object sender, EventArgs e)
         {
             if (int.TryParse(txt_SoLuong.Text, out int soLuong) && soLuong > 0)
             {
@@ -30,6 +31,7 @@ namespace PRL
             {
                 MessageBox.Show("Số lượng không hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
     }
 }
