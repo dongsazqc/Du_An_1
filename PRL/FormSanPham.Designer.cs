@@ -120,28 +120,32 @@
             // 
             // txt_IDsanpham
             // 
+            txt_IDsanpham.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_IDsanpham.Location = new Point(141, 39);
             txt_IDsanpham.Name = "txt_IDsanpham";
-            txt_IDsanpham.Size = new Size(230, 32);
+            txt_IDsanpham.Size = new Size(230, 27);
             txt_IDsanpham.TabIndex = 2;
             // 
             // txt_tensanpham
             // 
+            txt_tensanpham.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_tensanpham.Location = new Point(141, 88);
             txt_tensanpham.Name = "txt_tensanpham";
-            txt_tensanpham.Size = new Size(230, 32);
+            txt_tensanpham.Size = new Size(230, 27);
             txt_tensanpham.TabIndex = 3;
             txt_tensanpham.TextChanged += txt_tensanpham_TextChanged;
             // 
             // txt_tenthuonghieu
             // 
+            txt_tenthuonghieu.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_tenthuonghieu.Location = new Point(547, 39);
             txt_tenthuonghieu.Name = "txt_tenthuonghieu";
-            txt_tenthuonghieu.Size = new Size(230, 32);
+            txt_tenthuonghieu.Size = new Size(230, 27);
             txt_tenthuonghieu.TabIndex = 4;
             // 
             // rtb_mota
             // 
+            rtb_mota.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             rtb_mota.Location = new Point(871, 15);
             rtb_mota.Name = "rtb_mota";
             rtb_mota.Size = new Size(212, 193);
@@ -190,37 +194,42 @@
             // 
             // txt_soluong
             // 
+            txt_soluong.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_soluong.Location = new Point(141, 142);
             txt_soluong.Name = "txt_soluong";
-            txt_soluong.Size = new Size(230, 32);
+            txt_soluong.Size = new Size(230, 27);
             txt_soluong.TabIndex = 11;
             // 
             // txt_kichthuoc
             // 
+            txt_kichthuoc.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_kichthuoc.Location = new Point(542, 141);
             txt_kichthuoc.Name = "txt_kichthuoc";
-            txt_kichthuoc.Size = new Size(230, 32);
+            txt_kichthuoc.Size = new Size(230, 27);
             txt_kichthuoc.TabIndex = 12;
             // 
             // txt_mausac
             // 
+            txt_mausac.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_mausac.Location = new Point(141, 181);
             txt_mausac.Name = "txt_mausac";
-            txt_mausac.Size = new Size(230, 32);
+            txt_mausac.Size = new Size(230, 27);
             txt_mausac.TabIndex = 13;
             // 
             // txt_trangthai
             // 
+            txt_trangthai.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_trangthai.Location = new Point(542, 185);
             txt_trangthai.Name = "txt_trangthai";
-            txt_trangthai.Size = new Size(230, 32);
+            txt_trangthai.Size = new Size(230, 27);
             txt_trangthai.TabIndex = 14;
             // 
             // txt_gia
             // 
+            txt_gia.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txt_gia.Location = new Point(542, 93);
             txt_gia.Name = "txt_gia";
-            txt_gia.Size = new Size(230, 32);
+            txt_gia.Size = new Size(230, 27);
             txt_gia.TabIndex = 15;
             // 
             // btn_them
@@ -263,7 +272,7 @@
             btn_timkiem.ForeColor = Color.Chocolate;
             btn_timkiem.Image = Properties.Resources.icons8_search_30;
             btn_timkiem.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_timkiem.Location = new Point(931, 303);
+            btn_timkiem.Location = new Point(931, 306);
             btn_timkiem.Name = "btn_timkiem";
             btn_timkiem.Size = new Size(229, 29);
             btn_timkiem.TabIndex = 19;
@@ -282,10 +291,10 @@
             // dgv_sanpham
             // 
             dgv_sanpham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_sanpham.Location = new Point(6, 26);
+            dgv_sanpham.Location = new Point(6, 55);
             dgv_sanpham.Name = "dgv_sanpham";
             dgv_sanpham.RowHeadersWidth = 51;
-            dgv_sanpham.Size = new Size(1611, 384);
+            dgv_sanpham.Size = new Size(1161, 389);
             dgv_sanpham.TabIndex = 21;
             dgv_sanpham.CellClick += dgv_sanpham_CellClick;
             // 
@@ -301,11 +310,12 @@
             // 
             // grb_SanPham
             // 
+            grb_SanPham.CausesValidation = false;
             grb_SanPham.Controls.Add(dgv_sanpham);
-            grb_SanPham.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            grb_SanPham.Location = new Point(6, 354);
+            grb_SanPham.Font = new Font("Segoe UI Black", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            grb_SanPham.Location = new Point(6, 359);
             grb_SanPham.Name = "grb_SanPham";
-            grb_SanPham.Size = new Size(1617, 509);
+            grb_SanPham.Size = new Size(1169, 504);
             grb_SanPham.TabIndex = 23;
             grb_SanPham.TabStop = false;
             grb_SanPham.Text = "Danh sách sản phẩm";
@@ -355,7 +365,7 @@
             // 
             // groupBox2
             // 
-            groupBox2.BackColor = Color.FromArgb(255, 192, 128);
+            groupBox2.BackColor = Color.Fuchsia;
             groupBox2.Controls.Add(btn_Del);
             groupBox2.Controls.Add(btn_them);
             groupBox2.Controls.Add(btn_sua);
