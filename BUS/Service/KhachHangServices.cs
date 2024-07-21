@@ -42,11 +42,11 @@ namespace BUS.Service
             };
             if (_repo.AddKH(kh))
             {
-                return "Them thanh cong";
+                return "Thêm thành công";
             }
             else
             {
-                return "Them that bai";
+                return "Thêm thất bại";
             }
         }
 
@@ -62,11 +62,11 @@ namespace BUS.Service
             };
             if (_repo.Update(kh))
             {
-                return "Sua thanh cong";
+                return "Sửa thành công";
             }
             else
             {
-                return "Sua that bai";
+                return "Sửa thất bại";
             }
         }
 
@@ -75,11 +75,11 @@ namespace BUS.Service
         {
             if (_repo.Delete(Khanhhangid))
             {
-                return "Xoa thanh cong";
+                return "Xóa thành công";
             }
             else
             {
-                return "Xoa that bai";
+                return "Xóa thất bại";
             }
         }
 

@@ -92,15 +92,20 @@ namespace PRL
 
         private void FormBanHang_Load(object sender, EventArgs e)
         {
+            lb_TongTien.BackColor = Color.Transparent;
+            lb_TongTien.BorderStyle = BorderStyle.None;
+
             txt_tongtien.Enabled = false;
             txt_tongtien.Text = "0.00";
 
-            // Khởi tạo dtf_GioHang
-            dtf_GioHang.ColumnCount = 4;
+
+            dtf_GioHang.ColumnCount = 5;
             dtf_GioHang.Columns[0].HeaderText = "Tên sản phẩm";
             dtf_GioHang.Columns[1].HeaderText = "Tên thương hiệu ";
             dtf_GioHang.Columns[2].HeaderText = "Số lượng";
             dtf_GioHang.Columns[3].HeaderText = "Giá";
+            dtf_GioHang.Columns[4].HeaderText = "Tổng giá";
+
 
         }
 
@@ -125,7 +130,9 @@ namespace PRL
                     if (formSoLuong.ShowDialog() == DialogResult.OK)
                     {
                         int soluong = formSoLuong.SOLUONG;
-                        dtf_GioHang.Rows.Add(tensanpham, tenthuonghieu, soluong, gia);
+                        decimal tongGia = gia * soluong;
+                        dtf_GioHang.Rows.Add(tensanpham, tenthuonghieu, soluong, gia, tongGia);
+                        TongTienGioHang();
                     }
                 }
             }
@@ -156,9 +163,55 @@ namespace PRL
 
         }
 
+<<<<<<< HEAD
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
         }
+=======
+        private void txt_tongtien_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+        }
+        private void TongTienGioHang()
+        {
+            decimal tongTien = 0;
+            foreach (DataGridViewRow row in dtf_GioHang.Rows)
+            {
+                if (row.Cells[4].Value != null)
+                {
+                    decimal tongGia;
+                    if (decimal.TryParse(row.Cells[4].Value.ToString(), out tongGia))
+                    {
+                        tongTien += tongGia;
+                    }
+                }
+            }
+            txt_tongtien.Text = tongTien.ToString("0.00");
+        }
+
+        private void btn_ThanhToan_Click(object sender, EventArgs e)
+        {
+            string CauLenh = $"Xác nhận thanh toán {txt_tongtien.Text} cho nhân viên";
+            DialogResult result = MessageBox.Show(CauLenh, "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.OK)
+                {
+                   DialogResult re = MessageBox.Show("Thanh toán thành công, Bạn có muốn lưu hóa đơn lại không","Thông báo",MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (re == DialogResult.Yes) 
+                { 
+                    
+                }
+
+                }
+            
+
+               
+            
+        }
+>>>>>>> d1e63eba9d9c47c0e4cfc5ec44bbd6c1b216ae55
     }
 }

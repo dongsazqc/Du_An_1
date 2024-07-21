@@ -1,6 +1,7 @@
 ﻿using BUS.Service;
 using DAL.Models;
 using DAL.Repsitory;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,7 @@ namespace PRL
             InitializeComponent();
             List<KhachHang> khachHangs = _services.CNShow();
             showData(khachHangs);
-
+            tiemnangkh();
         }
 
         private void FormKhachHang_Load(object sender, EventArgs e)
@@ -43,9 +44,9 @@ namespace PRL
             int maInt = int.Parse(ma);
             if (!_services.CheckSDT(sdt))
             {
-                MessageBox.Show("So dien thoai khong hop le"); return;
+                MessageBox.Show("Số điện thoại không hợp lệ"); return;
             }
-            DialogResult result = MessageBox.Show("Ban co muon them khong", "Them moi", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có muốn chắc chắn thêm không", "Thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 string kq = _services.CNThem(maInt, ten, email, sdt, diachi);
@@ -64,18 +65,30 @@ namespace PRL
         private void btnShow_Click(object sender, EventArgs e)
         {
         }
-
+        private void tiemnangkh()
+        {
+            dgv_KhachHang.Rows.Clear();
+            dgv_KhachHang.ColumnCount = 8;
+            dgv_KhachHang.Columns[0].HeaderText = "STT";
+            dgv_KhachHang.Columns[1].HeaderText = "ID Khách hàng";
+            dgv_KhachHang.Columns[2].HeaderText = "Tên khách hàng";
+            dgv_KhachHang.Columns[3].HeaderText = "SDT";
+            dgv_KhachHang.Columns[4].HeaderText = "Địa chỉ";
+            dgv_KhachHang.Columns[5].HeaderText = "Gmail";
+            dgv_KhachHang.Columns[6].HeaderText = "Sản phẩm";
+            dgv_KhachHang.Columns[7].HeaderText = "Tổng tiền";
+        }
         public void showData(List<KhachHang> kh)
         {
             dgv_data.Rows.Clear();  //Xo?a hê?t d?? liê?u cu? trên gridview
             dgv_data.ColumnCount = 6;   //ga?n co? 5 cô?t
             int stt = 1;
             dgv_data.Columns[0].HeaderText = "STT";
-            dgv_data.Columns[1].HeaderText = "Ma khach hang";
-            dgv_data.Columns[2].HeaderText = "Ten khach hang";
+            dgv_data.Columns[1].HeaderText = "Mã khách hàng";
+            dgv_data.Columns[2].HeaderText = "Tên khách hàng";
             dgv_data.Columns[3].HeaderText = "Email";
             dgv_data.Columns[4].HeaderText = "SDT";
-            dgv_data.Columns[5].HeaderText = "Dia chi";
+            dgv_data.Columns[5].HeaderText = "Địa chỉ";
             foreach (var item in kh)
             {
                 dgv_data.Rows.Add(stt++, item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi);
@@ -106,9 +119,9 @@ namespace PRL
             int maInt = int.Parse(ma);
             if (!_services.CheckSDT(sdt))
             {
-                MessageBox.Show("So dien thoai khong hop le"); return;
+                MessageBox.Show("Số điện thoại không hợp lệ"); return;
             }
-            DialogResult result = MessageBox.Show("Ban co muon sua khong", "Da Sua", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có muốn sửa không", "Đã sửa", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 string kq = _services.CNSua(maInt, ten, email, sdt, diachi);
@@ -121,7 +134,7 @@ namespace PRL
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Ban co muon xoa khong", "Da xoa", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có muốn xóa không", "Da xoa", MessageBoxButtons.YesNo);
             string ma = txtMa.Text;
             int maInt = int.Parse(ma);
             if (result == DialogResult.Yes && ma.Trim() != "")
@@ -141,7 +154,7 @@ namespace PRL
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Ban co chac chan khong?", "Xac nhan", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn không?", "Xác nhận", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 txtMa.Text = "";
@@ -150,6 +163,11 @@ namespace PRL
                 txtSDT.Text = "";
                 txtDiaChi.Text = "";
             }
+        }
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
