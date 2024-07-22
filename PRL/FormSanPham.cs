@@ -28,10 +28,29 @@ namespace PRL
 
             List<SanPham> sanPhams = _sanPhamService.CNShow();
             showdata(sanPhams);
-
-            List<SanPhamGiamGium> sanPhamGiams = _spgiamgia.CNShow();
-            showdata2(sanPhamGiams);
+            List<SanPhamGiamGium> sanPhamGiamGia = _spgiamgia.CNShow();
+            Loaddata(sanPhamGiamGia);
           
+        }
+
+        private void Loaddata(List<SanPhamGiamGium> sanPhamGiamGia)
+        {
+            dtg_SPGG.Rows.Clear();
+            dtg_SPGG.ColumnCount = 9;
+            int stt = 1;
+            dtg_SPGG.Columns[0].HeaderText = "Số thứ tự";
+            dtg_SPGG.Columns[1].HeaderText = "ID Sản Phẩm";
+            dtg_SPGG.Columns[2].HeaderText = "Tên Sản Phẩm";
+            dtg_SPGG.Columns[3].HeaderText = "Giá Bán";
+            dtg_SPGG.Columns[4].HeaderText = "Phần Trăm Giảm";
+            dtg_SPGG.Columns[5].HeaderText = "Giá Giảm";
+            dtg_SPGG.Columns[6].HeaderText = "Ngày Bắt Đầu";
+            dtg_SPGG.Columns[7].HeaderText = "Ngày Kết Thúc";
+            dtg_SPGG.Columns[8].HeaderText = "Mô Tả";
+            foreach (var item in sanPhamGiamGia)
+            {
+                dtg_SPGG.Rows.Add(stt++, item.MaSanPham, item.TenSanPham, item.GiaBan, item.PhanTramGiam, item.GiaGiam, item.NgayBatDauGiamGia, item.NgayKetThucGiamGia, item.MoTa);
+            }
         }
 
         private void textBox9_TextChanged(object sender, EventArgs e)
@@ -67,25 +86,6 @@ namespace PRL
                 dgv_sanpham.Rows.Add(stt++, item.SanPhamId, item.TenSanPham, item.TenThuongHieu, item.MoTa, item.Gia, item.SoLuongTonKho, item.KichThuoc, item.MauSac, item.TrangThai);
 
             }
-        }
-        public void showdata2 (List<SanPhamGiamGium> sanPhamGiams)
-        {
-            dgv_giamgia.Rows.Clear();
-            dgv_giamgia.ColumnCount = 9;
-            int stt = 1;
-            dgv_giamgia.Columns[0].HeaderText = "Số thứ tự";
-            dgv_giamgia.Columns[1].HeaderText = "ID Sản Phẩm";
-            dgv_giamgia.Columns[2].HeaderText = "Tên Sản Phẩm";
-            dgv_giamgia.Columns[3].HeaderText = "Giá Bán";
-            dgv_giamgia.Columns[4].HeaderText = "Phần Trăm Giảm";
-            dgv_giamgia.Columns[5].HeaderText = "Giá Giảm";
-            dgv_giamgia.Columns[6].HeaderText = "Ngày Bắt Đầu";
-            dgv_giamgia.Columns[7].HeaderText = "Ngày Kết Thúc";
-            dgv_giamgia.Columns[8].HeaderText = "Mô Tả";
-            foreach (var item in sanPhamGiams)
-            {
-                dgv_giamgia.Rows.Add(stt++, item.IdsanPham, item.TenSanPham, item.GiaBan, item.PhanTramGiam, item.GiaGiam, item.NgayBatDauGiamGia, item.NgayKetThucGiamGia, item.MoTa);
-            }    
         }
        
         private void btn_them_Click(object sender, EventArgs e)

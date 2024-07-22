@@ -43,7 +43,6 @@
             txtDiaChi = new TextBox();
             btnThem = new Button();
             btnSua = new Button();
-            btnXoa = new Button();
             txtSeach = new TextBox();
             btnClear = new Button();
             groupBox2 = new GroupBox();
@@ -200,21 +199,6 @@
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
             // 
-            // btnXoa
-            // 
-            btnXoa.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold);
-            btnXoa.ForeColor = Color.Black;
-            btnXoa.Image = (Image)resources.GetObject("btnXoa.Image");
-            btnXoa.ImageAlign = ContentAlignment.MiddleRight;
-            btnXoa.Location = new Point(410, 27);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(107, 58);
-            btnXoa.TabIndex = 14;
-            btnXoa.Text = "Delete";
-            btnXoa.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnXoa.UseVisualStyleBackColor = true;
-            btnXoa.Click += btnXoa_Click;
-            // 
             // txtSeach
             // 
             txtSeach.Location = new Point(17, 26);
@@ -229,7 +213,7 @@
             btnClear.ForeColor = Color.Black;
             btnClear.Image = (Image)resources.GetObject("btnClear.Image");
             btnClear.ImageAlign = ContentAlignment.MiddleRight;
-            btnClear.Location = new Point(595, 27);
+            btnClear.Location = new Point(399, 29);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(110, 58);
             btnClear.TabIndex = 18;
@@ -243,7 +227,6 @@
             groupBox2.Controls.Add(btnThem);
             groupBox2.Controls.Add(btnClear);
             groupBox2.Controls.Add(btnSua);
-            groupBox2.Controls.Add(btnXoa);
             groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox2.ForeColor = Color.IndianRed;
             groupBox2.Location = new Point(692, 12);
@@ -371,7 +354,6 @@
         private TextBox txtDiaChi;
         private Button btnThem;
         private Button btnSua;
-        private Button btnXoa;
         private TextBox txtSeach;
         private Button btnClear;
         private GroupBox groupBox2;

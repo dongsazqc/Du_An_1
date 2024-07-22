@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj" />
+    <Compile Remove="GiamgiaServices\**" />
+    <EmbeddedResource Remove="GiamgiaServices\**" />
+    <None Remove="GiamgiaServices\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="GiamgiaServices\" />
+    <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
 </Project>

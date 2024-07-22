@@ -163,12 +163,10 @@ namespace PRL
 
         }
 
-<<<<<<< HEAD
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
         }
-=======
         private void txt_tongtien_TextChanged_1(object sender, EventArgs e)
         {
 
@@ -218,6 +216,5 @@ namespace PRL
         {
 
         }
->>>>>>> d1e63eba9d9c47c0e4cfc5ec44bbd6c1b216ae55
     }
 }

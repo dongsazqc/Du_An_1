@@ -225,3 +225,18 @@ EXEC SP_Them_KhachHang 45001, N'Nguyễn Văn A', 'nguyenvana@example.com', '012
 
 select * from KhachHang
 
+drop table SanPhamGiamGia
+ CREATE TABLE SanPhamGiamGia (
+    MaSanPham INT PRIMARY KEY,               -- Mã sản phẩm (khóa chính)
+    TenSanPham NVARCHAR(255),                -- Tên sản phẩm
+    GiaBan DECIMAL(10, 2),                   -- Giá bán gốc của sản phẩm
+    PhanTramGiam DECIMAL(5, 2),              -- Phần trăm giảm giá
+    GiaGiam AS (GiaBan * (1 - PhanTramGiam / 100)),  -- Giá sau khi giảm, tự động tính toán
+    NgayBatDauGiamGia DATE,                  -- Ngày bắt đầu giảm giá
+    NgayKetThucGiamGia DATE,                 -- Ngày kết thúc giảm giá
+    MoTa NVARCHAR(1000)                      -- Mô tả sản phẩm
+);
+
+INSERT INTO SanPhamGiamGia (MaSanPham, TenSanPham, GiaBan, PhanTramGiam, NgayBatDauGiamGia, NgayKetThucGiamGia, MoTa)
+VALUES (1, N'Sản phẩm A', 100000, 10, '2024-07-21', '2024-08-21', N'Mô tả sản phẩm A');
+select * from SanPhamGiamGia

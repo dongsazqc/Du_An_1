@@ -47,7 +47,6 @@
             txt_trangthai = new TextBox();
             txt_gia = new TextBox();
             btn_them = new Button();
-            btn_xoa = new Button();
             btn_timkiem = new Button();
             txt_search = new TextBox();
             dgv_sanpham = new DataGridView();
@@ -57,14 +56,18 @@
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
             grp_giamgia = new GroupBox();
-            dgv_giamgia = new DataGridView();
+            dtg_SPGG = new DataGridView();
+            comboBox1 = new ComboBox();
+            comboBox2 = new ComboBox();
+            comboBox3 = new ComboBox();
+            comboBox4 = new ComboBox();
             btn_sua = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_sanpham).BeginInit();
             grb_SanPham.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             grp_giamgia.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgv_giamgia).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_SPGG).BeginInit();
             SuspendLayout();
             // 
             // btn_sua
@@ -73,10 +76,10 @@
             btn_sua.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             btn_sua.Image = Properties.Resources.icons8_save_30;
             btn_sua.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_sua.Location = new Point(30, 164);
+            btn_sua.Location = new Point(130, 93);
             btn_sua.Name = "btn_sua";
             btn_sua.RightToLeft = RightToLeft.No;
-            btn_sua.Size = new Size(112, 54);
+            btn_sua.Size = new Size(123, 54);
             btn_sua.TabIndex = 17;
             btn_sua.Text = "Sửa";
             btn_sua.UseVisualStyleBackColor = false;
@@ -244,7 +247,7 @@
             btn_them.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             btn_them.Image = Properties.Resources.icons8_new_page_24;
             btn_them.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_them.Location = new Point(19, 44);
+            btn_them.Location = new Point(130, 27);
             btn_them.Name = "btn_them";
             btn_them.RightToLeft = RightToLeft.No;
             btn_them.Size = new Size(123, 54);
@@ -253,20 +256,6 @@
             btn_them.UseMnemonic = false;
             btn_them.UseVisualStyleBackColor = false;
             btn_them.Click += btn_them_Click;
-            // 
-            // btn_xoa
-            // 
-            btn_xoa.BackColor = Color.Red;
-            btn_xoa.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_xoa.Image = Properties.Resources.icons8_trash_can_50;
-            btn_xoa.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_xoa.Location = new Point(244, 44);
-            btn_xoa.Name = "btn_xoa";
-            btn_xoa.Size = new Size(111, 54);
-            btn_xoa.TabIndex = 18;
-            btn_xoa.Text = "Xóa";
-            btn_xoa.UseVisualStyleBackColor = false;
-            btn_xoa.Click += btn_xoa_Click;
             // 
             // btn_timkiem
             // 
@@ -330,7 +319,7 @@
             btn_Del.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             btn_Del.Image = Properties.Resources.icons8_clear_50;
             btn_Del.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_Del.Location = new Point(244, 164);
+            btn_Del.Location = new Point(132, 169);
             btn_Del.Name = "btn_Del";
             btn_Del.Size = new Size(121, 54);
             btn_Del.TabIndex = 24;
@@ -373,7 +362,6 @@
             groupBox2.Controls.Add(btn_Del);
             groupBox2.Controls.Add(btn_them);
             groupBox2.Controls.Add(btn_sua);
-            groupBox2.Controls.Add(btn_xoa);
             groupBox2.Font = new Font("Snap ITC", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             groupBox2.Location = new Point(1166, 12);
             groupBox2.Name = "groupBox2";
@@ -384,31 +372,66 @@
             // 
             // grp_giamgia
             // 
-            grp_giamgia.Controls.Add(dgv_giamgia);
-            grp_giamgia.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grp_giamgia.Location = new Point(845, 374);
+            grp_giamgia.Controls.Add(dtg_SPGG);
+            grp_giamgia.Font = new Font("Segoe UI Black", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            grp_giamgia.Location = new Point(845, 359);
             grp_giamgia.Name = "grp_giamgia";
-            grp_giamgia.Size = new Size(722, 489);
+            grp_giamgia.Size = new Size(722, 504);
             grp_giamgia.TabIndex = 27;
             grp_giamgia.TabStop = false;
-            grp_giamgia.Text = "các sản phẩm giảm giá";
+            grp_giamgia.Text = "Các sản phẩm giảm giá";
             grp_giamgia.Enter += grp_giamgia_Enter;
             // 
-            // dgv_giamgia
+            // dtg_SPGG
             // 
-            dgv_giamgia.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_giamgia.Location = new Point(6, 36);
-            dgv_giamgia.Name = "dgv_giamgia";
-            dgv_giamgia.RowHeadersWidth = 51;
-            dgv_giamgia.Size = new Size(699, 389);
-            dgv_giamgia.TabIndex = 0;
-            dgv_giamgia.CellContentClick += dgv_giamgia_CellContentClick;
+            dtg_SPGG.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtg_SPGG.Location = new Point(6, 55);
+            dtg_SPGG.Name = "dtg_SPGG";
+            dtg_SPGG.RowHeadersWidth = 51;
+            dtg_SPGG.Size = new Size(710, 389);
+            dtg_SPGG.TabIndex = 0;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(502, 325);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 28;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(728, 325);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(151, 28);
+            comboBox2.TabIndex = 29;
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(291, 325);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(151, 28);
+            comboBox3.TabIndex = 30;
+            // 
+            // comboBox4
+            // 
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(53, 323);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(151, 28);
+            comboBox4.TabIndex = 31;
             // 
             // FormSanPham
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1635, 875);
+            Controls.Add(comboBox4);
+            Controls.Add(comboBox3);
+            Controls.Add(comboBox2);
+            Controls.Add(comboBox1);
             Controls.Add(grp_giamgia);
             Controls.Add(txt_search);
             Controls.Add(btn_timkiem);
@@ -424,7 +447,7 @@
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
             grp_giamgia.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgv_giamgia).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtg_SPGG).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -449,7 +472,6 @@
         private TextBox txt_trangthai;
         private TextBox txt_gia;
         private Button btn_sua;
-        private Button btn_xoa;
         private Button btn_timkiem;
         private TextBox txt_search;
         private DataGridView dgv_sanpham;
@@ -460,6 +482,10 @@
         private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox grp_giamgia;
-        private DataGridView dgv_giamgia;
+        private DataGridView dtg_SPGG;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
+        private ComboBox comboBox3;
+        private ComboBox comboBox4;
     }
 }
