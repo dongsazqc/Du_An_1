@@ -25,9 +25,9 @@ namespace BUS.Service
         }
 
         //tìm
-        public List<KhachHang> CNTim(string ten)
+        public List<KhachHang> CNTim(string id)
         {
-            return _repo.GetKH(ten);
+            return _repo.GetKH(id);
         }
 
         public string CNThem(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi)
@@ -71,17 +71,17 @@ namespace BUS.Service
         }
 
 
-        public string CNXoa(int Khanhhangid)
-        {
-            if (_repo.Delete(Khanhhangid))
-            {
-                return "Xóa thành công";
-            }
-            else
-            {
-                return "Xóa thất bại";
-            }
-        }
+        //public string CNXoa(int Khanhhangid)
+        //{
+        //    if (_repo.Delete(Khanhhangid))
+        //    {
+        //        return "Xóa thành công";
+        //    }
+        //    else
+        //    {
+        //        return "Xóa thất bại";
+        //    }
+        //}
 
         public bool CheckSDT(string sdt)
         {

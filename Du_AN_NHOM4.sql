@@ -122,6 +122,7 @@ CREATE TABLE HoaDon (
     FOREIGN KEY (KhachHangID) REFERENCES KhachHang(KhachHangID),
     FOREIGN KEY (PhuongThucThanhToanID) REFERENCES PhuongThucThanhToan(PhuongThucThanhToanID)
 );
+<<<<<<< HEAD
 go
 -- Thêm các cột TenKhachHang, Gmail, SoDienThoai và DiaChi vào bảng HoaDon
 ALTER TABLE HoaDon
@@ -135,6 +136,8 @@ GO
 
 
 -- Tạo bảng HoaDonChiTiet với HoaDonID kiểu VARCHAR
+=======
+>>>>>>> a890bca49fd4f66c1cd817d9021778ee5ecb2ff7
 CREATE TABLE HoaDonChiTiet (
     HoaDonChiTietID INT PRIMARY KEY IDENTITY(1,1),
     HoaDonID VARCHAR(50),
