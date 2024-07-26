@@ -30,7 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKhachHang));
-            dgv_data = new DataGridView();
             groupBox1 = new GroupBox();
             label1 = new Label();
             label2 = new Label();
@@ -56,25 +55,15 @@
             cbSoDienThoai = new ComboBox();
             label6 = new Label();
             label7 = new Label();
-            ((System.ComponentModel.ISupportInitialize)dgv_data).BeginInit();
+            dgv_data = new DataGridView();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_KhachHang).BeginInit();
             ((System.ComponentModel.ISupportInitialize)khachHangBindingSource).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_data).BeginInit();
             SuspendLayout();
-            // 
-            // dgv_data
-            // 
-            dgv_data.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_data.Location = new Point(6, 25);
-            dgv_data.Name = "dgv_data";
-            dgv_data.RowHeadersWidth = 51;
-            dgv_data.Size = new Size(790, 218);
-            dgv_data.TabIndex = 0;
-            dgv_data.CellClick += dgv_KhachHang_CellClick;
-            dgv_data.CellContentClick += dgv_KhachHang_CellContentClick;
             // 
             // groupBox1
             // 
@@ -333,6 +322,16 @@
             label7.TabIndex = 28;
             label7.Text = "Tìm SDT:";
             // 
+            // dgv_data
+            // 
+            dgv_data.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_data.Location = new Point(6, 29);
+            dgv_data.Name = "dgv_data";
+            dgv_data.RowHeadersWidth = 51;
+            dgv_data.Size = new Size(790, 208);
+            dgv_data.TabIndex = 0;
+            dgv_data.CellClick += dgv_data_CellClick;
+            // 
             // FormKhachHang
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
@@ -354,7 +353,6 @@
             RightToLeft = RightToLeft.No;
             Text = "FormKhachHang";
             Load += FormKhachHang_Load;
-            ((System.ComponentModel.ISupportInitialize)dgv_data).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
@@ -362,13 +360,12 @@
             groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgv_KhachHang).EndInit();
             ((System.ComponentModel.ISupportInitialize)khachHangBindingSource).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_data).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private DataGridView dgv_data;
         private GroupBox groupBox1;
         private Label label1;
         private Label label2;
@@ -394,5 +391,6 @@
         private BindingSource khachHangBindingSource;
         private Label label6;
         private Label label7;
+        private DataGridView dgv_data;
     }
 }
