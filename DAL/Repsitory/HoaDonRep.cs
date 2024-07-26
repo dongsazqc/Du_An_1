@@ -14,7 +14,27 @@ namespace DAL.Repsitory
         {
              
         }
-       
+        public List<HoaDon> GetAll()
+        {
+            return _context.HoaDons.ToList();
+        }
+
+
+        public bool AddHD(HoaDon hd)
+        {
+            try
+            {
+                _context.HoaDons.Add(hd);
+                _context.SaveChanges(); // lưu thay đổi
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+
+            }
+        }
+
 
     }
 }

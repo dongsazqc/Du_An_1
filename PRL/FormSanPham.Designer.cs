@@ -74,7 +74,6 @@
             // 
             btn_sua.BackColor = Color.Gold;
             btn_sua.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_sua.Image = Properties.Resources.icons8_save_30;
             btn_sua.ImageAlign = ContentAlignment.MiddleLeft;
             btn_sua.Location = new Point(130, 93);
             btn_sua.Name = "btn_sua";
@@ -245,7 +244,6 @@
             btn_them.BackColor = Color.Blue;
             btn_them.BackgroundImageLayout = ImageLayout.None;
             btn_them.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_them.Image = Properties.Resources.icons8_new_page_24;
             btn_them.ImageAlign = ContentAlignment.MiddleLeft;
             btn_them.Location = new Point(130, 27);
             btn_them.Name = "btn_them";
@@ -263,7 +261,6 @@
             btn_timkiem.Enabled = false;
             btn_timkiem.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             btn_timkiem.ForeColor = Color.Chocolate;
-            btn_timkiem.Image = Properties.Resources.icons8_search_30;
             btn_timkiem.ImageAlign = ContentAlignment.MiddleLeft;
             btn_timkiem.Location = new Point(931, 306);
             btn_timkiem.Name = "btn_timkiem";
@@ -317,7 +314,6 @@
             // 
             btn_Del.BackColor = Color.LawnGreen;
             btn_Del.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            btn_Del.Image = Properties.Resources.icons8_clear_50;
             btn_Del.ImageAlign = ContentAlignment.MiddleLeft;
             btn_Del.Location = new Point(132, 169);
             btn_Del.Name = "btn_Del";

@@ -40,8 +40,8 @@
             dtf_GioHang = new DataGridView();
             groupBox5 = new GroupBox();
             comboBox1 = new ComboBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            txt_Gmail = new TextBox();
+            txt_DiaChi = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label2 = new Label();
@@ -185,8 +185,8 @@
             // groupBox5
             // 
             groupBox5.Controls.Add(comboBox1);
-            groupBox5.Controls.Add(textBox2);
-            groupBox5.Controls.Add(textBox1);
+            groupBox5.Controls.Add(txt_Gmail);
+            groupBox5.Controls.Add(txt_DiaChi);
             groupBox5.Controls.Add(label5);
             groupBox5.Controls.Add(label4);
             groupBox5.Controls.Add(label2);
@@ -214,21 +214,21 @@
             comboBox1.TabIndex = 37;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
-            // textBox2
+            // txt_Gmail
             // 
-            textBox2.Location = new Point(192, 244);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(221, 30);
-            textBox2.TabIndex = 36;
-            textBox2.TextChanged += txt_GiaGoc_TextChanged;
+            txt_Gmail.Location = new Point(192, 244);
+            txt_Gmail.Name = "txt_Gmail";
+            txt_Gmail.Size = new Size(221, 30);
+            txt_Gmail.TabIndex = 36;
+            txt_Gmail.TextChanged += txt_GiaGoc_TextChanged;
             // 
-            // textBox1
+            // txt_DiaChi
             // 
-            textBox1.Location = new Point(192, 196);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(221, 30);
-            textBox1.TabIndex = 36;
-            textBox1.TextChanged += txt_GiaGoc_TextChanged;
+            txt_DiaChi.Location = new Point(192, 196);
+            txt_DiaChi.Name = "txt_DiaChi";
+            txt_DiaChi.Size = new Size(221, 30);
+            txt_DiaChi.TabIndex = 36;
+            txt_DiaChi.TextChanged += txt_GiaGoc_TextChanged;
             // 
             // label5
             // 
@@ -447,6 +447,7 @@
             groupBox4.TabIndex = 38;
             groupBox4.TabStop = false;
             groupBox4.Text = "Chức năng";
+            groupBox4.Enter += groupBox4_Enter;
             // 
             // iconButton1
             // 
@@ -515,9 +516,9 @@
         private Label label12;
         private GroupBox groupBox3;
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txt_DiaChi;
         private Label label2;
-        private TextBox textBox2;
+        private TextBox txt_Gmail;
         private TextBox textBox3;
         private Label label7;
         private DataGridView dtf_GioHang;

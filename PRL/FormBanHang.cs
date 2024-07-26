@@ -17,8 +17,10 @@ namespace PRL
 {
     public partial class FormBanHang : Form
     {
+        List<HoaDonCho> hoaDonChos= new List<HoaDonCho>();
         SanPhamRep _sanphamRep = new SanPhamRep();
         SanPhamService _SanPhamService = new SanPhamService();
+        HoaDonService _hoadonServicr = new HoaDonService();
         public FormBanHang()
         {
             InitializeComponent();
@@ -199,7 +201,7 @@ namespace PRL
             if (result == DialogResult.OK)
             {
                 DialogResult re = MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
-               
+
             }
 
 
@@ -210,11 +212,99 @@ namespace PRL
         private void btn_TaoHoaDon_Click(object sender, EventArgs e)
         {
 
+
+            
+            HoaDonCho hoaDon = new HoaDonCho
+            {
+                MaHoaDon = "HD" + (hoaDonChos.Count + 1).ToString("D3"),
+                SoDienThoai = txt_sđt.Text,
+                TenKhachHang = txt_tenkhachhang.Text,
+                DiaChi = txt_DiaChi.Text,
+                Email = txt_Gmail.Text,
+                SanPhams = new List<SanPhamMua>()
+            };
+
+            foreach (DataGridViewRow row in dtf_GioHang.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    hoaDon.SanPhams.Add(new SanPhamMua
+                    {
+                        TenSanPham = row.Cells[0].Value.ToString(),
+                        TenThuongHieu = row.Cells[1].Value.ToString(),
+                        SoLuong = int.Parse(row.Cells[2].Value.ToString()),
+                        Gia = decimal.Parse(row.Cells[3].Value.ToString()),
+                        TongGia = decimal.Parse(row.Cells[4].Value.ToString())
+                    });
+                }
+            }
+
+            hoaDonChos.Add(hoaDon);
+            LoadCombobox();
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Kiểm tra xem có lựa chọn nào không
+    if (comboBox1.SelectedItem != null)
+    {
+        // Lấy mã hóa đơn được chọn
+        string selectedMaHoaDon = comboBox1.SelectedItem.ToString();
 
+        // Tìm hóa đơn tương ứng trong danh sách hoaDonChos
+        HoaDonCho selectedHoaDon = hoaDonChos.FirstOrDefault(hd => hd.MaHoaDon == selectedMaHoaDon);
+
+        if (selectedHoaDon != null)
+        {
+            // Hiển thị thông tin hóa đơn trên giao diện
+            txt_sđt.Text = selectedHoaDon.SoDienThoai;
+            txt_tenkhachhang.Text = selectedHoaDon.TenKhachHang;
+            txt_DiaChi.Text = selectedHoaDon.DiaChi;
+            txt_Gmail.Text = selectedHoaDon.Email;
+
+            // Cập nhật bảng giỏ hàng với các sản phẩm trong hóa đơn
+            dtf_GioHang.Rows.Clear();
+            foreach (var sp in selectedHoaDon.SanPhams)
+            {
+                dtf_GioHang.Rows.Add(sp.TenSanPham, sp.TenThuongHieu, sp.SoLuong, sp.Gia, sp.TongGia);
+            }
+
+            // Cập nhật tổng tiền
+            TongTienGioHang();
+        }
+    }
+        }
+
+        public class SanPhamMua
+        {
+            public string TenSanPham { get; set; }
+            public string TenThuongHieu { get; set; }
+            public int SoLuong { get; set; }
+            public decimal Gia { get; set; }
+            public decimal TongGia { get; set; }
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+        public class HoaDonCho
+        {
+            public string MaHoaDon { get; set; }
+            public string SoDienThoai { get; set; }
+            public string TenKhachHang { get; set; }
+            public string DiaChi { get; set; }
+            public string Email { get; set; }
+            public List<SanPhamMua> SanPhams { get; set; }
+        }
+        private void LoadCombobox()
+        {
+            comboBox1.Items.Clear();
+            foreach (var hoaDon in hoaDonChos)
+            {
+                comboBox1.Items.Add(hoaDon.MaHoaDon);
+            }
         }
     }
 }

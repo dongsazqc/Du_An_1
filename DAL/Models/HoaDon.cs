@@ -5,7 +5,7 @@ namespace DAL.Models;
 
 public partial class HoaDon
 {
-    public int HoaDonId { get; set; }
+    public string HoaDonId { get; set; } = null!;
 
     public int? KhachHangId { get; set; }
 
@@ -16,6 +16,14 @@ public partial class HoaDon
     public string TrangThai { get; set; } = null!;
 
     public int? PhuongThucThanhToanId { get; set; }
+
+    public string? TenKhachHang { get; set; }
+
+    public string? Gmail { get; set; }
+
+    public string? SoDienThoai { get; set; }
+
+    public string? DiaChi { get; set; }
 
     public virtual ICollection<HoaDonChiTiet> HoaDonChiTiets { get; set; } = new List<HoaDonChiTiet>();
 
