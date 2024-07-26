@@ -1,7 +1,7 @@
 ﻿-- Tạo database và sử dụng database
-CREATE DATABASE Du_An_Nhom4
+CREATE DATABASE Du_An_Nhom4;
 GO
-USE Du_An_Nhom4
+USE Du_An_Nhom4;
 GO
 
 -- Tạo bảng SanPham
@@ -119,25 +119,16 @@ CREATE TABLE HoaDon (
     TongTien DECIMAL(18, 2) NOT NULL,
     TrangThai NVARCHAR(50) NOT NULL,
     PhuongThucThanhToanID INT,
-    FOREIGN KEY (KhachHangID) REFERENCES KhachHang(KhachHangID),
-    FOREIGN KEY (PhuongThucThanhToanID) REFERENCES PhuongThucThanhToan(PhuongThucThanhToanID)
-);
-<<<<<<< HEAD
-go
--- Thêm các cột TenKhachHang, Gmail, SoDienThoai và DiaChi vào bảng HoaDon
-ALTER TABLE HoaDon
-ADD 
     TenKhachHang NVARCHAR(255),
     Gmail NVARCHAR(255),
     SoDienThoai NVARCHAR(50),
-    DiaChi NVARCHAR(500);
+    DiaChi NVARCHAR(500),
+    FOREIGN KEY (KhachHangID) REFERENCES KhachHang(KhachHangID),
+    FOREIGN KEY (PhuongThucThanhToanID) REFERENCES PhuongThucThanhToan(PhuongThucThanhToanID)
+);
 GO
 
-
-
 -- Tạo bảng HoaDonChiTiet với HoaDonID kiểu VARCHAR
-=======
->>>>>>> a890bca49fd4f66c1cd817d9021778ee5ecb2ff7
 CREATE TABLE HoaDonChiTiet (
     HoaDonChiTietID INT PRIMARY KEY IDENTITY(1,1),
     HoaDonID VARCHAR(50),
@@ -167,7 +158,7 @@ ADD GhiChu NVARCHAR(255);
 GO
 
 -- Thủ tục thêm sản phẩm
-CREATE PROC SP_Them_SP
+CREATE PROCEDURE SP_Them_SP
     @SanPhamID INT,
     @TenSanPham NVARCHAR(255),
     @TenThuongHieu VARCHAR(50),
@@ -181,43 +172,81 @@ AS
 BEGIN
     IF (@SanPhamID IS NULL)
     BEGIN
-        PRINT 'ID sản phẩm không được null'
+        PRINT 'ID sản phẩm không được NULL';
     END
     ELSE IF (@TenSanPham IS NULL)
     BEGIN
-        PRINT 'Tên sản phẩm không được null'
+        PRINT 'Tên sản phẩm không được NULL';
     END
     ELSE IF (@TenThuongHieu IS NULL)
     BEGIN
-        PRINT 'Tên thương hiệu không được null'
+        PRINT 'Tên thương hiệu không được NULL';
     END
     ELSE IF (@Gia IS NULL)
     BEGIN
-        PRINT 'Giá không được null'
+        PRINT 'Giá không được NULL';
     END
     ELSE IF (@SoLuongTonKho IS NULL)
     BEGIN
-        PRINT 'Số lượng không được null'
+        PRINT 'Số lượng không được NULL';
     END
     ELSE IF (@KichThuoc IS NULL)
     BEGIN
-        PRINT 'Kích thước không được null'
+        PRINT 'Kích thước không được NULL';
     END
     ELSE IF (@MauSac IS NULL)
     BEGIN
-        PRINT 'Màu sắc không được null'
+        PRINT 'Màu sắc không được NULL';
     END
     ELSE IF (@TrangThai IS NULL)
     BEGIN
-        PRINT 'Trạng thái không được null'
+        PRINT 'Trạng thái không được NULL';
     END
     BEGIN TRY
-        INSERT INTO SanPham VALUES(
-            @SanPhamID,
-            @TenSanPham,
-            @TenThuongHieu,
-            @MoTa,
-            @Gia,
-            @SoLuongTonKho,
-            @KichThuoc,
-            @M
+        INSERT INTO SanPham (SanPhamID, TenSanPham, TenThuongHieu, MoTa, Gia, SoLuongTonKho, KichThuoc, MauSac, TrangThai)
+        VALUES (@SanPhamID, @TenSanPham, @TenThuongHieu, @MoTa, @Gia, @SoLuongTonKho, @KichThuoc, @MauSac, @TrangThai);
+        PRINT 'Thêm thành công';
+    END TRY
+    BEGIN CATCH
+        PRINT N'Không thêm được: ' + ERROR_MESSAGE();
+    END CATCH
+END;
+GO
+
+-- Thực thi thủ tục thêm sản phẩm
+EXEC SP_Them_SP 1, N'Quần jean', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 1000000.00, 100, N'L', N'Xanh', N'Còn Hàng';
+EXEC SP_Them_SP 2, N'Quần Straight Pants', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 2000000.00, 100, N'XL', N'Đỏ', N'Còn Hàng';
+EXEC SP_Them_SP 3, N'Quần Short', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 3000000.00, 120, N'XL', N'Vàng', N'Còn Hàng';
+GO
+
+-- Xem dữ liệu trong bảng SanPham
+SELECT * FROM SanPham;
+GO
+
+-- Thủ tục thêm khách hàng
+CREATE PROCEDURE SP_Them_KhachHang
+    @KhachHangID INT,
+    @TenKhachHang NVARCHAR(255),
+    @Email NVARCHAR(255),
+    @SoDienThoai NVARCHAR(50),
+    @DiaChi NVARCHAR(500)
+AS
+BEGIN
+    BEGIN TRY
+        INSERT INTO KhachHang (KhachHangID, TenKhachHang, Email, SoDienThoai, DiaChi)
+        VALUES (@KhachHangID, @TenKhachHang, @Email, @SoDienThoai, @DiaChi);
+        PRINT N'Thêm khách hàng thành công';
+    END TRY
+    BEGIN CATCH
+        PRINT N'Không thể thêm khách hàng: ' + ERROR_MESSAGE();
+    END CATCH
+END;
+GO
+
+-- Thực thi thủ tục thêm khách hàng
+EXEC SP_Them_KhachHang 45001, N'Nguyễn Văn A', 'nguyenvana@example.com', '0123456789', N'123 Nguyễn Trãi, Hà Nội';
+GO
+
+-- Xem dữ liệu trong bảng KhachHang
+SELECT * FROM KhachHang;
+GO

@@ -1,4 +1,6 @@
-﻿namespace PRL
+﻿
+namespace PRL
+
 {
     partial class FormKhachHang
     {
@@ -293,7 +295,6 @@
             // 
             // khachHangBindingSource
             // 
-            khachHangBindingSource.DataSource = typeof(Models.KhachHang);
             // 
             // cbSoDienThoai
             // 

@@ -24,6 +24,10 @@ namespace BUS.Service
             HoaDon hd = new HoaDon()
             {
                 HoaDonId = HoaDonID,
+                TenKhachHang = Tenkhachhang,
+                Gmail = email,
+                SoDienThoai = sdt,
+                DiaChi = diachi
                 
             };
             if (_repos.AddHD(hd))

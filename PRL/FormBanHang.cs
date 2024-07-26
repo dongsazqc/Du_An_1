@@ -211,36 +211,50 @@ namespace PRL
 
         private void btn_TaoHoaDon_Click(object sender, EventArgs e)
         {
-
-
-            
-            HoaDonCho hoaDon = new HoaDonCho
+            DialogResult Thoadon = MessageBox.Show("Bạn có chắc muốn tạo 1 hóa đơn không","Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Thoadon == DialogResult.Yes)
             {
-                MaHoaDon = "HD" + (hoaDonChos.Count + 1).ToString("D3"),
-                SoDienThoai = txt_sđt.Text,
-                TenKhachHang = txt_tenkhachhang.Text,
-                DiaChi = txt_DiaChi.Text,
-                Email = txt_Gmail.Text,
-                SanPhams = new List<SanPhamMua>()
-            };
-
-            foreach (DataGridViewRow row in dtf_GioHang.Rows)
-            {
-                if (row.Cells[0].Value != null)
+                HoaDonCho hoaDon = new HoaDonCho
                 {
-                    hoaDon.SanPhams.Add(new SanPhamMua
+                    MaHoaDon = "HD" + (hoaDonChos.Count + 1).ToString("D3"),
+                    SoDienThoai = txt_sđt.Text,
+                    TenKhachHang = txt_tenkhachhang.Text,
+                    DiaChi = txt_DiaChi.Text,
+                    Email = txt_Gmail.Text,
+                    SanPhams = new List<SanPhamMua>()
+                };
+
+                foreach (DataGridViewRow row in dtf_GioHang.Rows)
+                {
+                    if (row.Cells[0].Value != null)
                     {
-                        TenSanPham = row.Cells[0].Value.ToString(),
-                        TenThuongHieu = row.Cells[1].Value.ToString(),
-                        SoLuong = int.Parse(row.Cells[2].Value.ToString()),
-                        Gia = decimal.Parse(row.Cells[3].Value.ToString()),
-                        TongGia = decimal.Parse(row.Cells[4].Value.ToString())
-                    });
+                        hoaDon.SanPhams.Add(new SanPhamMua
+                        {
+                            TenSanPham = row.Cells[0].Value.ToString(),
+                            TenThuongHieu = row.Cells[1].Value.ToString(),
+                            SoLuong = int.Parse(row.Cells[2].Value.ToString()),
+                            Gia = decimal.Parse(row.Cells[3].Value.ToString()),
+                            TongGia = decimal.Parse(row.Cells[4].Value.ToString())
+                        });
+                    }
                 }
+                string thongBao = $"{hoaDon.MaHoaDon}";
+                string thongBao2 = txt_tenkhachhang.Text ;
+                MessageBox.Show($"Tạo thành công hóa đơn {thongBao} cho khách hàng {thongBao2} ","Thành công !!" ,MessageBoxButtons.OK);
+                hoaDonChos.Add(hoaDon);
+                LoadCombobox();
+                txt_tenkhachhang.Clear();
+                txt_sđt.Clear();
+                txt_Gmail.Clear();
+                txt_DiaChi.Clear();
+                txt_Tienthua.Clear();
+                txt_tongtien.Clear();
+                txt_TimKiemGioHang.Clear();
+                txt_khachdua.Clear();
+                dtf_GioHang.Rows.Clear();
+                
             }
 
-            hoaDonChos.Add(hoaDon);
-            LoadCombobox();
 
         }
 
