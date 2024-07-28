@@ -24,6 +24,7 @@ public partial class HoaDon
     public string? SoDienThoai { get; set; }
 
     public string? DiaChi { get; set; }
+    public string TenThuongHieu { get; set; }
 
     public virtual ICollection<HoaDonChiTiet> HoaDonChiTiets { get; set; } = new List<HoaDonChiTiet>();
 

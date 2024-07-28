@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PRL
 {
-    public partial class HoaDon : Form
+    public partial class FormHoaDon : Form
     {
-        public HoaDon()
+        public FormHoaDon()
         {
             InitializeComponent();
         }

@@ -100,7 +100,7 @@ namespace PRL
             string mausac = txt_mausac.Text;
             string trangthai = txt_trangthai.Text;
             int idInt = int.Parse(id);
-            int giaInt = int.Parse(gia);
+            decimal giaInt = decimal.Parse(gia);
             int soluongInt = int.Parse(soluongtonkho);
             DialogResult result = MessageBox.Show("bạn có muốn thêm không?", "thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)

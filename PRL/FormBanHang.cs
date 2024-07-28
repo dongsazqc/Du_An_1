@@ -21,6 +21,8 @@ namespace PRL
         SanPhamRep _sanphamRep = new SanPhamRep();
         SanPhamService _SanPhamService = new SanPhamService();
         HoaDonService _hoadonServicr = new HoaDonService();
+        HoaDonRep _HoaDonRep = new HoaDonRep();
+
         public FormBanHang()
         {
             InitializeComponent();
