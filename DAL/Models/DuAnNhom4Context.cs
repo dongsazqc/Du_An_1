@@ -127,6 +127,7 @@ public partial class DuAnNhom4Context : DbContext
             entity.Property(e => e.PhuongThucThanhToanId).HasColumnName("PhuongThucThanhToanID");
             entity.Property(e => e.SoDienThoai).HasMaxLength(50);
             entity.Property(e => e.TenKhachHang).HasMaxLength(255);
+            entity.Property(e => e.TenThuongHieu).HasMaxLength(255);
             entity.Property(e => e.TongTien).HasColumnType("decimal(18, 2)");
             entity.Property(e => e.TrangThai).HasMaxLength(50);
 

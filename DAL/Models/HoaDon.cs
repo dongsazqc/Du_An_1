@@ -24,11 +24,13 @@ public partial class HoaDon
     public string? SoDienThoai { get; set; }
 
     public string? DiaChi { get; set; }
-    public string TenThuongHieu { get; set; }
+
+    public string? TenThuongHieu { get; set; }
 
     public virtual ICollection<HoaDonChiTiet> HoaDonChiTiets { get; set; } = new List<HoaDonChiTiet>();
 
     public virtual KhachHang? KhachHang { get; set; }
 
     public virtual PhuongThucThanhToan? PhuongThucThanhToan { get; set; }
+    public List<SanPhamMua> sanPhamMuas { get; set; }
 }

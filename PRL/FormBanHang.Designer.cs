@@ -39,7 +39,7 @@
             btn_TimKiemGioHang = new Button();
             dtf_GioHang = new DataGridView();
             groupBox5 = new GroupBox();
-            comboBox1 = new ComboBox();
+            cbx_HoaDonId = new ComboBox();
             txt_Gmail = new TextBox();
             txt_DiaChi = new TextBox();
             label5 = new Label();
@@ -60,9 +60,9 @@
             btn_ThanhToan = new Button();
             textBox3 = new TextBox();
             label7 = new Label();
-            btn_TaoHoaDon = new FontAwesome.Sharp.IconButton();
+            icbtn_TaoHoaDon = new FontAwesome.Sharp.IconButton();
             groupBox4 = new GroupBox();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
+            icbtn_XoaHoaDon = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)data_SPBH).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -184,7 +184,7 @@
             // 
             // groupBox5
             // 
-            groupBox5.Controls.Add(comboBox1);
+            groupBox5.Controls.Add(cbx_HoaDonId);
             groupBox5.Controls.Add(txt_Gmail);
             groupBox5.Controls.Add(txt_DiaChi);
             groupBox5.Controls.Add(label5);
@@ -205,14 +205,14 @@
             groupBox5.Text = "Thông tin khách hàng chi tiết";
             groupBox5.Enter += groupBox5_Enter;
             // 
-            // comboBox1
+            // cbx_HoaDonId
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(43, 52);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(370, 31);
-            comboBox1.TabIndex = 37;
-            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            cbx_HoaDonId.FormattingEnabled = true;
+            cbx_HoaDonId.Location = new Point(43, 52);
+            cbx_HoaDonId.Name = "cbx_HoaDonId";
+            cbx_HoaDonId.Size = new Size(370, 31);
+            cbx_HoaDonId.TabIndex = 37;
+            cbx_HoaDonId.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // txt_Gmail
             // 
@@ -416,31 +416,31 @@
             label7.TabIndex = 29;
             label7.Text = "Voucher";
             // 
-            // btn_TaoHoaDon
+            // icbtn_TaoHoaDon
             // 
-            btn_TaoHoaDon.BackColor = Color.Lime;
-            btn_TaoHoaDon.FlatStyle = FlatStyle.Flat;
-            btn_TaoHoaDon.Flip = FontAwesome.Sharp.FlipOrientation.Horizontal;
-            btn_TaoHoaDon.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_TaoHoaDon.ForeColor = SystemColors.ControlText;
-            btn_TaoHoaDon.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            btn_TaoHoaDon.IconColor = Color.Black;
-            btn_TaoHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btn_TaoHoaDon.IconSize = 30;
-            btn_TaoHoaDon.ImageAlign = ContentAlignment.MiddleLeft;
-            btn_TaoHoaDon.Location = new Point(69, 69);
-            btn_TaoHoaDon.Name = "btn_TaoHoaDon";
-            btn_TaoHoaDon.Size = new Size(170, 35);
-            btn_TaoHoaDon.TabIndex = 37;
-            btn_TaoHoaDon.Text = "Tạo hóa đơn";
-            btn_TaoHoaDon.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btn_TaoHoaDon.UseVisualStyleBackColor = false;
-            btn_TaoHoaDon.Click += btn_TaoHoaDon_Click;
+            icbtn_TaoHoaDon.BackColor = Color.Lime;
+            icbtn_TaoHoaDon.FlatStyle = FlatStyle.Flat;
+            icbtn_TaoHoaDon.Flip = FontAwesome.Sharp.FlipOrientation.Horizontal;
+            icbtn_TaoHoaDon.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icbtn_TaoHoaDon.ForeColor = SystemColors.ControlText;
+            icbtn_TaoHoaDon.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            icbtn_TaoHoaDon.IconColor = Color.Black;
+            icbtn_TaoHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icbtn_TaoHoaDon.IconSize = 30;
+            icbtn_TaoHoaDon.ImageAlign = ContentAlignment.MiddleLeft;
+            icbtn_TaoHoaDon.Location = new Point(69, 69);
+            icbtn_TaoHoaDon.Name = "icbtn_TaoHoaDon";
+            icbtn_TaoHoaDon.Size = new Size(170, 35);
+            icbtn_TaoHoaDon.TabIndex = 37;
+            icbtn_TaoHoaDon.Text = "Tạo hóa đơn";
+            icbtn_TaoHoaDon.TextImageRelation = TextImageRelation.ImageBeforeText;
+            icbtn_TaoHoaDon.UseVisualStyleBackColor = false;
+            icbtn_TaoHoaDon.Click += btn_TaoHoaDon_Click;
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(iconButton1);
-            groupBox4.Controls.Add(btn_TaoHoaDon);
+            groupBox4.Controls.Add(icbtn_XoaHoaDon);
+            groupBox4.Controls.Add(icbtn_TaoHoaDon);
             groupBox4.Location = new Point(499, 651);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(1095, 163);
@@ -449,26 +449,26 @@
             groupBox4.Text = "Chức năng";
             groupBox4.Enter += groupBox4_Enter;
             // 
-            // iconButton1
+            // icbtn_XoaHoaDon
             // 
-            iconButton1.BackColor = Color.FromArgb(192, 192, 0);
-            iconButton1.Cursor = Cursors.Cross;
-            iconButton1.FlatStyle = FlatStyle.Flat;
-            iconButton1.Flip = FontAwesome.Sharp.FlipOrientation.Horizontal;
-            iconButton1.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton1.ForeColor = SystemColors.ControlText;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            iconButton1.IconColor = Color.Black;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 30;
-            iconButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton1.Location = new Point(311, 69);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(170, 35);
-            iconButton1.TabIndex = 38;
-            iconButton1.Text = "Lưu hóa đơn";
-            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = false;
+            icbtn_XoaHoaDon.BackColor = Color.FromArgb(192, 192, 0);
+            icbtn_XoaHoaDon.Cursor = Cursors.Cross;
+            icbtn_XoaHoaDon.FlatStyle = FlatStyle.Flat;
+            icbtn_XoaHoaDon.Flip = FontAwesome.Sharp.FlipOrientation.Horizontal;
+            icbtn_XoaHoaDon.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            icbtn_XoaHoaDon.ForeColor = SystemColors.ControlText;
+            icbtn_XoaHoaDon.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            icbtn_XoaHoaDon.IconColor = Color.Black;
+            icbtn_XoaHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icbtn_XoaHoaDon.IconSize = 30;
+            icbtn_XoaHoaDon.ImageAlign = ContentAlignment.MiddleLeft;
+            icbtn_XoaHoaDon.Location = new Point(311, 69);
+            icbtn_XoaHoaDon.Name = "icbtn_XoaHoaDon";
+            icbtn_XoaHoaDon.Size = new Size(170, 35);
+            icbtn_XoaHoaDon.TabIndex = 38;
+            icbtn_XoaHoaDon.Text = "Xóa hóa đơn";
+            icbtn_XoaHoaDon.TextImageRelation = TextImageRelation.ImageBeforeText;
+            icbtn_XoaHoaDon.UseVisualStyleBackColor = false;
             // 
             // FormBanHang
             // 
@@ -526,12 +526,12 @@
         private Button button5;
         private Label label9;
         private TextBox txt_tongtien;
-        private FontAwesome.Sharp.IconButton btn_TaoHoaDon;
+        private FontAwesome.Sharp.IconButton icbtn_TaoHoaDon;
         private GroupBox groupBox4;
         private Button btn_ThanhToan;
         private TextBox txt_TimKiemGioHang;
         private Button btn_TimKiemGioHang;
-        private ComboBox comboBox1;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private ComboBox cbx_HoaDonId;
+        private FontAwesome.Sharp.IconButton icbtn_XoaHoaDon;
     }
 }
