@@ -22,6 +22,7 @@ namespace PRL
         HoaDonService _hoadonServicr = new HoaDonService();
         HoaDonRep _HoaDonRep = new HoaDonRep();
         List<HoaDon> hoaDons = new List<HoaDon>();
+        List<SanPham> sanPhams = new List<SanPham>();
 
         public FormBanHang()
         {
@@ -204,20 +205,39 @@ namespace PRL
             DialogResult result = MessageBox.Show(CauLenh, "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK)
             {
+                // Lấy các thông tin từ form
                 string hoaDonId = cbx_HoaDonId.Text;
                 string tenKH = txt_tenkhachhang.Text;
                 string soDT = txt_sđt.Text;
                 string DiaC = txt_DiaChi.Text;
                 string Gmail = txt_Gmail.Text;
 
+                // Lấy các thương hiệu từ giỏ hàng
+                var brands = new HashSet<string>();
+                foreach (DataGridViewRow row in dtf_GioHang.Rows)
+                {
+                    if (row.Cells[1].Value != null)
+                    {
+                        brands.Add(row.Cells[1].Value.ToString());
+                    }
+                }
+                // Chuyển HashSet thành chuỗi phân cách bằng dấu phẩy nếu cần
+                string brandNames = string.Join(", ", brands);
 
-                string kqThemHoaDon = _hoadonServicr.CNThemHoaDon(hoaDonId, tenKH, soDT, DiaC, Gmail);
+                // Gọi phương thức thêm hóa đơn
+                string kqThemHoaDon = _hoadonServicr.CNThemHoaDon(hoaDonId, tenKH, brandNames, soDT, DiaC, Gmail);
 
-                DialogResult re = MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
-
+                // Thông báo kết quả
+                if (kqThemHoaDon != null)
+                {
+                    MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Có thể mở form khác hoặc cập nhật form hiện tại nếu cần
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi khi thanh toán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-
-            
 
 
         }
