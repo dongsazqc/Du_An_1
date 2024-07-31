@@ -19,12 +19,13 @@ namespace BUS.Service
         {
             return _repos.GetAll();
         }
-        public string CNThemHoaDon(string HoaDonID, string Tenkhachhang, string email, string sdt, string diachi)
+        public string CNThemHoaDon(string HoaDonID, string Tenkhachhang,string TenThuongHieu, string email, string sdt, string diachi)
         {
             HoaDon hd = new HoaDon()
             {
                 HoaDonId = HoaDonID,
                 TenKhachHang = Tenkhachhang,
+                TenThuongHieu = TenThuongHieu,
                 Gmail = email,
                 SoDienThoai = sdt,
                 DiaChi = diachi

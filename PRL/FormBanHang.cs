@@ -17,10 +17,13 @@ namespace PRL
 {
     public partial class FormBanHang : Form
     {
-        List<HoaDonCho> hoaDonChos= new List<HoaDonCho>();
         SanPhamRep _sanphamRep = new SanPhamRep();
         SanPhamService _SanPhamService = new SanPhamService();
         HoaDonService _hoadonServicr = new HoaDonService();
+        HoaDonRep _HoaDonRep = new HoaDonRep();
+        List<HoaDon> hoaDons = new List<HoaDon>();
+        List<SanPham> sanPhams = new List<SanPham>();
+
         public FormBanHang()
         {
             InitializeComponent();
@@ -96,6 +99,8 @@ namespace PRL
         {
             lb_TongTien.BackColor = Color.Transparent;
             lb_TongTien.BorderStyle = BorderStyle.None;
+            icbtn_XoaHoaDon.IconChar = FontAwesome.Sharp.IconChar.Trash;
+            
 
             txt_tongtien.Enabled = false;
             txt_tongtien.Text = "0.00";
@@ -200,11 +205,39 @@ namespace PRL
             DialogResult result = MessageBox.Show(CauLenh, "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
             if (result == DialogResult.OK)
             {
-                DialogResult re = MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                // Lấy các thông tin từ form
+                string hoaDonId = cbx_HoaDonId.Text;
+                string tenKH = txt_tenkhachhang.Text;
+                string soDT = txt_sđt.Text;
+                string DiaC = txt_DiaChi.Text;
+                string Gmail = txt_Gmail.Text;
 
+                // Lấy các thương hiệu từ giỏ hàng
+                var brands = new HashSet<string>();
+                foreach (DataGridViewRow row in dtf_GioHang.Rows)
+                {
+                    if (row.Cells[1].Value != null)
+                    {
+                        brands.Add(row.Cells[1].Value.ToString());
+                    }
+                }
+                // Chuyển HashSet thành chuỗi phân cách bằng dấu phẩy nếu cần
+                string brandNames = string.Join(", ", brands);
+
+                // Gọi phương thức thêm hóa đơn
+                string kqThemHoaDon = _hoadonServicr.CNThemHoaDon(hoaDonId, tenKH, brandNames, soDT, DiaC, Gmail);
+
+                // Thông báo kết quả
+                if (kqThemHoaDon != null)
+                {
+                    MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Có thể mở form khác hoặc cập nhật form hiện tại nếu cần
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi khi thanh toán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-
-
 
 
         }
@@ -214,21 +247,21 @@ namespace PRL
             DialogResult Thoadon = MessageBox.Show("Bạn có chắc muốn tạo 1 hóa đơn không","Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (Thoadon == DialogResult.Yes)
             {
-                HoaDonCho hoaDon = new HoaDonCho
+                HoaDon hoaDon = new HoaDon
                 {
-                    MaHoaDon = "HD" + (hoaDonChos.Count + 1).ToString("D3"),
+                    HoaDonId = "HD" + (hoaDons.Count + 1).ToString("D3"),
                     SoDienThoai = txt_sđt.Text,
                     TenKhachHang = txt_tenkhachhang.Text,
                     DiaChi = txt_DiaChi.Text,
-                    Email = txt_Gmail.Text,
-                    SanPhams = new List<SanPhamMua>()
+                    Gmail = txt_Gmail.Text,
+                    sanPhamMuas = new List<SanPhamMua>()
                 };
 
                 foreach (DataGridViewRow row in dtf_GioHang.Rows)
                 {
                     if (row.Cells[0].Value != null)
                     {
-                        hoaDon.SanPhams.Add(new SanPhamMua
+                        hoaDon.sanPhamMuas.Add(new SanPhamMua
                         {
                             TenSanPham = row.Cells[0].Value.ToString(),
                             TenThuongHieu = row.Cells[1].Value.ToString(),
@@ -238,10 +271,10 @@ namespace PRL
                         });
                     }
                 }
-                string thongBao = $"{hoaDon.MaHoaDon}";
+                string thongBao = $"{hoaDon.HoaDonId}";
                 string thongBao2 = txt_tenkhachhang.Text ;
                 MessageBox.Show($"Tạo thành công hóa đơn {thongBao} cho khách hàng {thongBao2} ","Thành công !!" ,MessageBoxButtons.OK);
-                hoaDonChos.Add(hoaDon);
+                hoaDons.Add(hoaDon);
                 LoadCombobox();
                 txt_tenkhachhang.Clear();
                 txt_sđt.Clear();
@@ -261,13 +294,13 @@ namespace PRL
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Kiểm tra xem có lựa chọn nào không
-    if (comboBox1.SelectedItem != null)
+    if (cbx_HoaDonId.SelectedItem != null)
     {
         // Lấy mã hóa đơn được chọn
-        string selectedMaHoaDon = comboBox1.SelectedItem.ToString();
+        string selectedMaHoaDon = cbx_HoaDonId.SelectedItem.ToString();
 
         // Tìm hóa đơn tương ứng trong danh sách hoaDonChos
-        HoaDonCho selectedHoaDon = hoaDonChos.FirstOrDefault(hd => hd.MaHoaDon == selectedMaHoaDon);
+        HoaDon selectedHoaDon = hoaDons.FirstOrDefault(hd => hd.HoaDonId == selectedMaHoaDon);
 
         if (selectedHoaDon != null)
         {
@@ -275,11 +308,11 @@ namespace PRL
             txt_sđt.Text = selectedHoaDon.SoDienThoai;
             txt_tenkhachhang.Text = selectedHoaDon.TenKhachHang;
             txt_DiaChi.Text = selectedHoaDon.DiaChi;
-            txt_Gmail.Text = selectedHoaDon.Email;
+            txt_Gmail.Text = selectedHoaDon.Gmail;
 
             // Cập nhật bảng giỏ hàng với các sản phẩm trong hóa đơn
             dtf_GioHang.Rows.Clear();
-            foreach (var sp in selectedHoaDon.SanPhams)
+            foreach (var sp in selectedHoaDon.sanPhamMuas)
             {
                 dtf_GioHang.Rows.Add(sp.TenSanPham, sp.TenThuongHieu, sp.SoLuong, sp.Gia, sp.TongGia);
             }
@@ -290,34 +323,17 @@ namespace PRL
     }
         }
 
-        public class SanPhamMua
-        {
-            public string TenSanPham { get; set; }
-            public string TenThuongHieu { get; set; }
-            public int SoLuong { get; set; }
-            public decimal Gia { get; set; }
-            public decimal TongGia { get; set; }
-        }
 
         private void groupBox4_Enter(object sender, EventArgs e)
         {
 
         }
-        public class HoaDonCho
-        {
-            public string MaHoaDon { get; set; }
-            public string SoDienThoai { get; set; }
-            public string TenKhachHang { get; set; }
-            public string DiaChi { get; set; }
-            public string Email { get; set; }
-            public List<SanPhamMua> SanPhams { get; set; }
-        }
         private void LoadCombobox()
         {
-            comboBox1.Items.Clear();
-            foreach (var hoaDon in hoaDonChos)
+            cbx_HoaDonId.Items.Clear();
+            foreach (var hoaDon in hoaDons)
             {
-                comboBox1.Items.Add(hoaDon.MaHoaDon);
+                cbx_HoaDonId.Items.Add(hoaDon.HoaDonId);
             }
         }
     }
