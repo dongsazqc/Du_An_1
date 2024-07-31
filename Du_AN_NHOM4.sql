@@ -250,3 +250,16 @@ GO
 -- Xem dữ liệu trong bảng KhachHang
 SELECT * FROM KhachHang;
 GO
+CREATE TABLE SanPhamGiamGia (
+    MaSanPham INT PRIMARY KEY,               -- Mã sản phẩm (khóa chính)
+    TenSanPham NVARCHAR(255),                -- Tên sản phẩm
+    GiaBan DECIMAL(10, 2),                   -- Giá bán gốc của sản phẩm
+    PhanTramGiam DECIMAL(5, 2),              -- Phần trăm giảm giá
+    GiaGiam AS (GiaBan * (1 - PhanTramGiam / 100)),  -- Giá sau khi giảm, tự động tính toán
+    NgayBatDauGiamGia DATE,                  -- Ngày bắt đầu giảm giá
+    NgayKetThucGiamGia DATE,                 -- Ngày kết thúc giảm giá
+    MoTa NVARCHAR(1000)                      -- Mô tả sản phẩm
+);
+	go
+	INSERT INTO SanPhamGiamGia (MaSanPham, TenSanPham, GiaBan, PhanTramGiam, NgayBatDauGiamGia, NgayKetThucGiamGia, MoTa)
+VALUES (1, 'Sản phẩm A', 100000, 10, '2024-07-21', '2024-08-21', 'Mô tả sản phẩm A');

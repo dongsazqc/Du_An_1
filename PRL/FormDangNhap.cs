@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BUS.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static DAL.Repsitory.DangNhapRep;
 
 namespace PRL
 {
     public partial class FormDangNhap : Form
     {
+        DangNhapServices services = new DangNhapServices();
         public FormDangNhap()
         {
             InitializeComponent();
@@ -24,9 +27,29 @@ namespace PRL
 
         private void btn_DangNhap_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Đăng nhập thành công", " Thông báo ", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Form1 form1 = new Form1();
-            form1.ShowDialog();
+            //MessageBox.Show("Đăng nhập thành công", " Thông báo ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //;Form1 form1 = new Form1();
+            //form1.ShowDialog()
+            string username = txt_taikhoan.Text;
+            string password = txt_matkhau.Text;
+
+            if (services.ValidateUser(username, password))
+            {
+                MessageBox.Show("Đăng nhập thành công");
+                string role = services.GetUserRole(username);
+                MessageBox.Show($"Welcome, {role}!");
+                Form1 form1 = new Form1();
+                form1.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Sai tên tài khoản hoặc mật khẩu!");
+            }
+        }
+
+        private void btn_Thoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
