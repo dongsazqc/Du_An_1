@@ -41,7 +41,6 @@ namespace DAL.Repsitory
             {
                 var updateitem = _context.HoaDons.Find(hd.HoaDonId);
                 updateitem.TenKhachHang = hd.TenKhachHang;
-                updateitem.TenThuongHieu = hd.TenThuongHieu;
                 updateitem.Gmail = hd.Gmail;
                 updateitem.TongTien = hd.TongTien;
                 updateitem.Gmail = hd.Gmail;

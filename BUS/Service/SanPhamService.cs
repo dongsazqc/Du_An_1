@@ -86,7 +86,11 @@ namespace BUS.Service
             }
            
         }
-       
+        public void CapNhatSoLuong(int sanPhamId, int soLuongMoi)
+        {
+            _repos.CapNhatSoLuong(sanPhamId, soLuongMoi);
+        }
+
 
     }
 }

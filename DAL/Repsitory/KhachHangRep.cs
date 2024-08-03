@@ -22,7 +22,7 @@ namespace DAL.Repsitory
             return _context.KhachHangs.ToList();
         }
 
-        //lấy ra giảng viên theo tên
+        //lấy ra giảng viên theo tên 
         public List<KhachHang> GetKH(string ten)
         {
             return _context.KhachHangs.Where(p => p.TenKhachHang.Contains(ten) || p.SoDienThoai.Contains(ten) || p.KhachHangId.ToString().Contains(ten)).ToList();   //chứa tên

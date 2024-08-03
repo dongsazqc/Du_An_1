@@ -72,6 +72,7 @@
             Controls.Add(label1);
             Name = "FormSoLuong";
             Text = "FormSoLuong";
+            Load += FormSoLuong_Load;
             ResumeLayout(false);
             PerformLayout();
         }
