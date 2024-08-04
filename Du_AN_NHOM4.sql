@@ -73,12 +73,19 @@ GO
 
 -- Tạo bảng NguoiDung
 CREATE TABLE NguoiDung (
-    NguoiDungID INT PRIMARY KEY,
-    TenDangNhap NVARCHAR(255) NOT NULL UNIQUE,
+    NguoiDungID INT PRIMARY KEY IDENTITY,
+    TenDangNhap NVARCHAR(50) NOT NULL UNIQUE,
     MatKhauMaHoa NVARCHAR(255) NOT NULL,
-    VaiTro NVARCHAR(50) NOT NULL
+    Email NVARCHAR(100) NOT NULL UNIQUE
 );
 GO
+-- Tạo bảng OTP
+CREATE TABLE OTPTable (
+    OTPID INT PRIMARY KEY IDENTITY,
+    Email NVARCHAR(100) NOT NULL,
+    OTP NVARCHAR(6) NOT NULL,
+    CreatedAt DATETIME NOT NULL
+);
 
 -- Tạo bảng DanhGia
 CREATE TABLE DanhGia (
@@ -149,7 +156,7 @@ GO
 
 -- Thêm cột GioiTinh vào bảng KhachHang
 ALTER TABLE KhachHang
-ADD GioiTinh NVARCHAR(10);
+ADD GioiTinh BIT;
 GO
 
 -- Thêm cột GhiChu vào bảng DonHang
@@ -229,12 +236,13 @@ CREATE PROCEDURE SP_Them_KhachHang
     @TenKhachHang NVARCHAR(255),
     @Email NVARCHAR(255),
     @SoDienThoai NVARCHAR(50),
-    @DiaChi NVARCHAR(500)
+    @DiaChi NVARCHAR(500),
+	@GioiTinh BIT
 AS
 BEGIN
     BEGIN TRY
-        INSERT INTO KhachHang (KhachHangID, TenKhachHang, Email, SoDienThoai, DiaChi)
-        VALUES (@KhachHangID, @TenKhachHang, @Email, @SoDienThoai, @DiaChi);
+        INSERT INTO KhachHang (KhachHangID, TenKhachHang, Email, SoDienThoai, DiaChi, GioiTinh)
+        VALUES (@KhachHangID, @TenKhachHang, @Email, @SoDienThoai, @DiaChi, @GioiTinh);
         PRINT N'Thêm khách hàng thành công';
     END TRY
     BEGIN CATCH
@@ -244,7 +252,7 @@ END;
 GO
 
 -- Thực thi thủ tục thêm khách hàng
-EXEC SP_Them_KhachHang 45001, N'Nguyễn Văn A', 'nguyenvana@example.com', '0123456789', N'123 Nguyễn Trãi, Hà Nội';
+EXEC SP_Them_KhachHang 45001, N'Nguyễn Văn A', 'nguyenvana@example.com', '0123456789', N'123 Nguyễn Trãi, Hà Nội', 0;
 GO
 
 -- Xem dữ liệu trong bảng KhachHang
@@ -263,3 +271,5 @@ CREATE TABLE SanPhamGiamGia (
 	go
 	INSERT INTO SanPhamGiamGia (MaSanPham, TenSanPham, GiaBan, PhanTramGiam, NgayBatDauGiamGia, NgayKetThucGiamGia, MoTa)
 VALUES (1, 'Sản phẩm A', 100000, 10, '2024-07-21', '2024-08-21', 'Mô tả sản phẩm A');
+
+Select * from NguoiDung;

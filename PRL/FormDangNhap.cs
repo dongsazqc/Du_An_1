@@ -36,10 +36,10 @@ namespace PRL
             if (services.ValidateUser(username, password))
             {
                 MessageBox.Show("Đăng nhập thành công");
-                string role = services.GetUserRole(username);
-                MessageBox.Show($"Welcome, {role}!");
+                this.Hide();
                 Form1 form1 = new Form1();
                 form1.ShowDialog();
+                this.Close();
             }
             else
             {
@@ -51,5 +51,17 @@ namespace PRL
         {
             this.Close();
         }
+
+        private void lnkQuenMatKhau_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FormQuenMatKhau formQuenMatKhau = new FormQuenMatKhau();
+            formQuenMatKhau.ShowDialog();
+        }
+
+        
     }
 }
