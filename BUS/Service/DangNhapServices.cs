@@ -38,7 +38,6 @@ namespace BUS.Service
                         {
                             NguoiDung nguoiDung = new NguoiDung
                             {
-                                Email = reader["Email"].ToString(),
                                 MatKhauMaHoa = reader["MatKhauMaHoa"].ToString()
                             };
                             nguoiDungs.Add(nguoiDung);

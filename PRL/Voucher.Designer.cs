@@ -267,7 +267,6 @@
             btn_qr.TabIndex = 3;
             btn_qr.Text = "Tạo Qr";
             btn_qr.UseVisualStyleBackColor = false;
-            btn_qr.Click += btn_qr_Click;
             // 
             // btn_suavoucher
             // 

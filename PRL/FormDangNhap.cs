@@ -18,6 +18,8 @@ namespace PRL
         public FormDangNhap()
         {
             InitializeComponent();
+            this.AcceptButton = btn_DangNhap;
+
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -52,12 +54,10 @@ namespace PRL
             this.Close();
         }
 
-<<<<<<< HEAD
         private void FormDangNhap_Load(object sender, EventArgs e)
         {
 
         }
-=======
         private void lnkQuenMatKhau_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
         }
@@ -69,6 +69,5 @@ namespace PRL
         }
 
         
->>>>>>> 8ef5c852a648acb2b12a9e16a9ba7e9778647207
     }
 }

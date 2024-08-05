@@ -1,8 +1,6 @@
 ﻿using BUS.Service;
 using DAL.Models;
 using DAL.Repsitory;
-using PRL.Models;
-using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,13 +23,10 @@ namespace PRL
         {
 
             InitializeComponent();
-            List<DAL.Models.Voucher> vouchers = _voucherServices.CNShow();
-            LoadVoucher(vouchers);
            
         }
         private void load()
         {
-             List<DAL.Models.Voucher> vouchers = _voucherServices.CNShow();
         }
         private void LoadVoucher(List<DAL.Models.Voucher> voucherList)
         {
@@ -137,10 +132,7 @@ namespace PRL
             if (result == DialogResult.Yes)
             {
                 string kq = _voucherServices.CNthem(idInt, ten, tenthuonghieu, giaDcm, phantramdcm,  dieukien);
-                MessageBox.Show(kq);
-                List<DAL.Models.Voucher> vouchers = _voucherServices.CNShow();
-                LoadVoucher(vouchers);
-                return;
+                MessageBox.Show(kq);            return;
                 
 
             }
@@ -153,40 +145,9 @@ namespace PRL
 
         private void btn_suavoucher_Click(object sender, EventArgs e)
         {
-            string idma = txt_mavoucher.Text;
-            string ten = txt_tenvoucher.Text;
-            string tenthuonghieu = txt_tenthuonghieuvc.Text;
-            string phantram = txt_phantramvc.Text;
-            string gia = txt_giatrivc.Text;
-            string ngaybd = dt_ngaybd.Text;
-            string ngaykt = dt_ngaykt.Text;
-            string dieukien = txt_dieukiensd.Text;
-            int idInt = int.Parse(idma);
-
-            // Chuyển đổi các giá trị khác
-            decimal giaDcm = decimal.Parse(gia);
-            decimal phantramdcm = decimal.Parse(phantram);
-            txt_phantramvc.Text = phantramdcm.ToString("F2"); // F2 để định dạng với 2 chữ số thập phân
-            txt_giatrivc.Text = giaDcm.ToString("F2");
-            DialogResult result = MessageBox.Show("Bạn có muốn sửa ?", "Thêm mới", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
-            {
-                string kq = _voucherServices.CNsua(idInt, ten, tenthuonghieu, giaDcm, phantramdcm, dieukien);
-                MessageBox.Show(kq);
-                List<DAL.Models.Voucher> vouchers = _voucherServices.CNShow();
-                LoadVoucher(vouchers);
-                return;
-            }
+          
         }
 
-        private void btn_qr_Click(object sender, EventArgs e)
-        {
-            // tạo qr code
-            QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
-            var qr1 = qr.CreateQrCode(txt_tenvoucher.Text, QRCodeGenerator.ECCLevel.H);
-            var code = new QRCode(qr1);
-            pictureBox1.Image = code.GetGraphic(6, Color.Black, Color.White, true);
-        }
 
         private void cbb_mavoucher_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -161,6 +161,7 @@ namespace PRL
                 txtEmail.Text = rowdata.Cells[3].Value.ToString();
                 txtSDT.Text = rowdata.Cells[4].Value.ToString();
                 txtDiaChi.Text = rowdata.Cells[5].Value.ToString();
+                
                 var gioitinh = (bool)rowdata.Cells[6].Value;
                 rdoNam.Checked = gioitinh;  
                 rdoNu.Checked = !gioitinh;

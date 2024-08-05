@@ -118,12 +118,13 @@ namespace PRL
 
         private void FormBanHang_Load(object sender, EventArgs e)
         {
+            UpdateTienThua();
             icbtn_LamMOI.IconChar = FontAwesome.Sharp.IconChar.Rotate - Left;
             lb_TongTien.BackColor = Color.Transparent;
             lb_TongTien.BorderStyle = BorderStyle.None;
             icbtn_XoaHoaDon.IconChar = FontAwesome.Sharp.IconChar.Trash;
 
-
+            txt_Tienthua.Enabled  = false;
             txt_tongtien.Enabled = false;
             txt_tongtien.Text = "0.00";
 
@@ -201,7 +202,7 @@ namespace PRL
 
         private void txt_TongTien_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -330,6 +331,7 @@ namespace PRL
 
 
             }
+            
 
 
         }
@@ -543,6 +545,30 @@ namespace PRL
                 Rows = rows
             };
             formhoadonchitiet.Show();
+        }
+        private void UpdateTienThua()
+        {
+            decimal khachDua;
+            decimal tongTien;
+            decimal tienThua;
+
+            // Kiểm tra và chuyển đổi giá trị từ txt_KhachDua
+            if (!decimal.TryParse(txt_khachdua.Text, out khachDua))
+            {
+                khachDua = 0;
+            }
+
+            // Kiểm tra và chuyển đổi giá trị từ txt_TongTien
+            if (!decimal.TryParse(txt_tongtien.Text, out tongTien))
+            {
+                tongTien = 0;
+            }
+
+            // Tính toán tiền thừa
+            tienThua = khachDua - tongTien;
+
+            // Cập nhật giá trị của txt_TienThua
+            txt_Tienthua.Text = tienThua.ToString("0.00");
         }
     }
 }

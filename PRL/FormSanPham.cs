@@ -2,7 +2,6 @@
 using DAL.Models;
 using DAL.Repsitory;
 using Microsoft.EntityFrameworkCore;
-using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -119,12 +118,9 @@ namespace PRL
             string mausac = txt_mausac.Text;
             string trangthai = txt_trangthai.Text;
             int idInt = int.Parse(id);
-<<<<<<< HEAD
             decimal giadecimal = decimal.Parse(gia);
             txt_gia.Text = giadecimal.ToString("F2"); // F2 để định dạng với 2 chữ số thập phân
-=======
             decimal giaInt = decimal.Parse(gia);
->>>>>>> b50953e3a273fd36b5338205ab359c70362c7ce3
             int soluongInt = int.Parse(soluongtonkho);
             DialogResult result = MessageBox.Show("bạn có muốn thêm không?", "thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -184,12 +180,9 @@ namespace PRL
             string mausac = txt_mausac.Text;
             string trangthai = txt_trangthai.Text;
             int idInt = int.Parse(id);
-<<<<<<< HEAD
             decimal giaInt = decimal.Parse(gia);
-=======
             decimal giadecimal = decimal.Parse(gia);
             txt_gia.Text = giadecimal.ToString("F2"); // F2 để định dạng với 2 chữ số thập phân
->>>>>>> 8ef5c852a648acb2b12a9e16a9ba7e9778647207
             int soluongInt = int.Parse(soluongtonkho);
             DialogResult result = MessageBox.Show("bạn có muốn sửa không?", "sửa", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
@@ -354,11 +347,6 @@ namespace PRL
 
         private void btn_taoqr_Click(object sender, EventArgs e)
         {
-            // tạo qr code
-            QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
-            var qr1 = qr.CreateQrCode(txt_tensanpham.Text, QRCodeGenerator.ECCLevel.H);
-            var code = new QRCode(qr1);
-            pictureBox1.Image = code.GetGraphic(6, Color.Black, Color.White, true);
 
         }
 

@@ -15,11 +15,6 @@ namespace BUS.Service
         {
 
         }
-        public List<Voucher> CNShow() {
-
-            return _Repos.GetAll();
-
-        }
         public string CNthem(int idvc, string tenvc, string tenthuonghieu, decimal phantram, decimal gia,  string dieukien)
         {
             Voucher vc = new Voucher()
@@ -41,29 +36,6 @@ namespace BUS.Service
             else
             {
                 return "thêm thất bại";
-            }
-        }
-        public string CNsua(int idvc, string tenvc, string tenthuonghieu, decimal phantram, decimal gia,  string dieukien)
-        {
-            Voucher vc = new Voucher()
-            {
-
-                MaVoucher = idvc,
-                TenVoucher = tenvc,
-                TenThuongHieu = tenthuonghieu,
-                PhanTramGiam = phantram,
-                GiaTri = gia,
-                
-                DieuKienSuDung = dieukien,
-
-            };
-            if (_Repos.UpdateSP(vc))
-            {
-                return "Sửa thành công";
-            }
-            else
-            {
-                return "Sửa thất bại";
             }
         }
 

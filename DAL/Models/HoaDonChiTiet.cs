@@ -19,7 +19,6 @@ public partial class HoaDonChiTiet
 
     public decimal? GiamGia { get; set; }
 
-
     public virtual HoaDon? HoaDon { get; set; }
 
     public virtual SanPham? SanPham { get; set; }

@@ -59,7 +59,6 @@ namespace PRL.Properties {
                 resourceCulture = value;
             }
         }
-<<<<<<< HEAD
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -210,7 +209,5 @@ namespace PRL.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
-=======
->>>>>>> b50953e3a273fd36b5338205ab359c70362c7ce3
     }
 }
