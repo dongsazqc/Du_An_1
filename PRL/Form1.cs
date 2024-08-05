@@ -118,7 +118,7 @@ namespace PRL
 
         private void btn_hoAdon_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new HoaDon());
+            OpenChildForm(new FormHoaDon());
             TieuDe.Text = btn_hoAdon.Text;
         }
 

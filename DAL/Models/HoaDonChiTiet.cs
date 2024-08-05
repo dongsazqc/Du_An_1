@@ -7,7 +7,7 @@ public partial class HoaDonChiTiet
 {
     public int HoaDonChiTietId { get; set; }
 
-    public int? HoaDonId { get; set; }
+    public string? HoaDonId { get; set; }
 
     public int? SanPhamId { get; set; }
 

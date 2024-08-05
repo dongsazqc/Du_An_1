@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace PRL
 {
     public partial class FormSoLuong : Form
-    { 
+    {
         public int SOLUONG { get; private set; }
         public FormSoLuong()
         {
@@ -31,6 +31,11 @@ namespace PRL
             {
                 MessageBox.Show("Số lượng không hợp lệ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+
+        private void FormSoLuong_Load(object sender, EventArgs e)
+        {
 
         }
     }

@@ -86,9 +86,14 @@
             // 
             // btn_sua
             // 
+<<<<<<< HEAD
             btn_sua.BackColor = SystemColors.ButtonHighlight;
             btn_sua.Font = new Font("Tahoma", 10.2F, FontStyle.Bold);
             btn_sua.Image = Properties.Resources.icons8_save_30;
+=======
+            btn_sua.BackColor = Color.Gold;
+            btn_sua.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+>>>>>>> b50953e3a273fd36b5338205ab359c70362c7ce3
             btn_sua.ImageAlign = ContentAlignment.MiddleLeft;
             btn_sua.Location = new Point(239, 31);
             btn_sua.Name = "btn_sua";
@@ -259,8 +264,12 @@
             btn_them.AutoEllipsis = true;
             btn_them.BackColor = Color.White;
             btn_them.BackgroundImageLayout = ImageLayout.None;
+<<<<<<< HEAD
             btn_them.Font = new Font("Tahoma", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btn_them.Image = Properties.Resources.icons8_new_page_24;
+=======
+            btn_them.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+>>>>>>> b50953e3a273fd36b5338205ab359c70362c7ce3
             btn_them.ImageAlign = ContentAlignment.MiddleLeft;
             btn_them.Location = new Point(54, 29);
             btn_them.Name = "btn_them";
@@ -272,6 +281,32 @@
             btn_them.UseVisualStyleBackColor = false;
             btn_them.Click += btn_them_Click;
             // 
+<<<<<<< HEAD
+=======
+            // btn_timkiem
+            // 
+            btn_timkiem.BackColor = Color.LightGray;
+            btn_timkiem.Enabled = false;
+            btn_timkiem.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_timkiem.ForeColor = Color.Chocolate;
+            btn_timkiem.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_timkiem.Location = new Point(931, 306);
+            btn_timkiem.Name = "btn_timkiem";
+            btn_timkiem.Size = new Size(229, 29);
+            btn_timkiem.TabIndex = 19;
+            btn_timkiem.Text = "Tìm kiếm theo tên";
+            btn_timkiem.UseVisualStyleBackColor = false;
+            btn_timkiem.Click += btn_timkiem_Click;
+            // 
+            // txt_search
+            // 
+            txt_search.Location = new Point(1166, 306);
+            txt_search.Name = "txt_search";
+            txt_search.Size = new Size(401, 27);
+            txt_search.TabIndex = 20;
+            txt_search.TextChanged += textBox9_TextChanged;
+            // 
+>>>>>>> b50953e3a273fd36b5338205ab359c70362c7ce3
             // dgv_sanpham
             // 
             dgv_sanpham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -309,9 +344,14 @@
             // 
             // btn_Del
             // 
+<<<<<<< HEAD
             btn_Del.BackColor = Color.White;
             btn_Del.Font = new Font("Tahoma", 10.2F, FontStyle.Bold);
             btn_Del.Image = Properties.Resources.icons8_clear_50;
+=======
+            btn_Del.BackColor = Color.LawnGreen;
+            btn_Del.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+>>>>>>> b50953e3a273fd36b5338205ab359c70362c7ce3
             btn_Del.ImageAlign = ContentAlignment.MiddleLeft;
             btn_Del.Location = new Point(420, 32);
             btn_Del.Name = "btn_Del";

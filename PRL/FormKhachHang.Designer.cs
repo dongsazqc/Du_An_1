@@ -1,4 +1,6 @@
-﻿namespace PRL
+﻿
+namespace PRL
+
 {
     partial class FormKhachHang
     {
@@ -28,9 +30,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKhachHang));
-            dgv_data = new DataGridView();
             groupBox1 = new GroupBox();
+            dgv_data = new DataGridView();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -43,46 +46,49 @@
             txtDiaChi = new TextBox();
             btnThem = new Button();
             btnSua = new Button();
-            txtSeach = new TextBox();
             btnClear = new Button();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
-            groupBox4 = new GroupBox();
+            rdoNu = new RadioButton();
+            rdoNam = new RadioButton();
+            label7 = new Label();
             groupBox5 = new GroupBox();
             dgv_KhachHang = new DataGridView();
             linkLabel1 = new LinkLabel();
             linkLabel2 = new LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)dgv_data).BeginInit();
+            khachHangBindingSource = new BindingSource(components);
+            label6 = new Label();
+            txtTimKiem = new TextBox();
             groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgv_data).BeginInit();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
-            groupBox4.SuspendLayout();
             groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_KhachHang).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)khachHangBindingSource).BeginInit();
             SuspendLayout();
-            // 
-            // dgv_data
-            // 
-            dgv_data.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_data.Location = new Point(6, 25);
-            dgv_data.Name = "dgv_data";
-            dgv_data.RowHeadersWidth = 51;
-            dgv_data.Size = new Size(813, 218);
-            dgv_data.TabIndex = 0;
-            dgv_data.CellClick += dgv_KhachHang_CellClick;
-            dgv_data.CellContentClick += dgv_KhachHang_CellContentClick;
             // 
             // groupBox1
             // 
             groupBox1.Controls.Add(dgv_data);
             groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox1.ForeColor = Color.Black;
-            groupBox1.Location = new Point(48, 490);
+            groupBox1.Location = new Point(692, 212);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(821, 243);
+            groupBox1.Size = new Size(803, 243);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách khách hàng";
+            // 
+            // dgv_data
+            // 
+            dgv_data.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_data.Location = new Point(6, 29);
+            dgv_data.Name = "dgv_data";
+            dgv_data.RowHeadersWidth = 51;
+            dgv_data.Size = new Size(790, 208);
+            dgv_data.TabIndex = 0;
+            dgv_data.CellClick += dgv_data_CellClick;
             // 
             // label1
             // 
@@ -194,18 +200,10 @@
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(100, 58);
             btnSua.TabIndex = 13;
-            btnSua.Text = "Save";
+            btnSua.Text = "Edit";
             btnSua.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSua.UseVisualStyleBackColor = true;
             btnSua.Click += btnSua_Click;
-            // 
-            // txtSeach
-            // 
-            txtSeach.Location = new Point(17, 26);
-            txtSeach.Name = "txtSeach";
-            txtSeach.Size = new Size(480, 30);
-            txtSeach.TabIndex = 16;
-            txtSeach.TextChanged += txtSeach_TextChanged;
             // 
             // btnClear
             // 
@@ -231,13 +229,16 @@
             groupBox2.ForeColor = Color.IndianRed;
             groupBox2.Location = new Point(692, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(781, 101);
+            groupBox2.Size = new Size(530, 101);
             groupBox2.TabIndex = 19;
             groupBox2.TabStop = false;
             groupBox2.Text = "Chức năng";
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(rdoNu);
+            groupBox3.Controls.Add(rdoNam);
+            groupBox3.Controls.Add(label7);
             groupBox3.Controls.Add(txtMa);
             groupBox3.Controls.Add(txtTenKhachHang);
             groupBox3.Controls.Add(txtEmail);
@@ -252,32 +253,54 @@
             groupBox3.ForeColor = Color.IndianRed;
             groupBox3.Location = new Point(48, 12);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(604, 331);
+            groupBox3.Size = new Size(604, 366);
             groupBox3.TabIndex = 20;
             groupBox3.TabStop = false;
             groupBox3.Text = "Thông tin khách hàng";
             // 
-            // groupBox4
+            // rdoNu
             // 
-            groupBox4.Controls.Add(txtSeach);
-            groupBox4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            groupBox4.ForeColor = Color.IndianRed;
-            groupBox4.Location = new Point(48, 385);
-            groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(516, 70);
-            groupBox4.TabIndex = 21;
-            groupBox4.TabStop = false;
-            groupBox4.Text = "Tìm kiếm tên khách hàng";
+            rdoNu.AutoSize = true;
+            rdoNu.ForeColor = Color.Black;
+            rdoNu.Location = new Point(377, 300);
+            rdoNu.Name = "rdoNu";
+            rdoNu.Size = new Size(55, 27);
+            rdoNu.TabIndex = 14;
+            rdoNu.TabStop = true;
+            rdoNu.Text = "Nữ";
+            rdoNu.UseVisualStyleBackColor = true;
+            // 
+            // rdoNam
+            // 
+            rdoNam.AutoSize = true;
+            rdoNam.ForeColor = Color.Black;
+            rdoNam.Location = new Point(254, 298);
+            rdoNam.Name = "rdoNam";
+            rdoNam.Size = new Size(69, 27);
+            rdoNam.TabIndex = 13;
+            rdoNam.TabStop = true;
+            rdoNam.Text = "Nam";
+            rdoNam.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Black;
+            label7.Location = new Point(52, 302);
+            label7.Name = "label7";
+            label7.Size = new Size(80, 23);
+            label7.TabIndex = 12;
+            label7.Text = "Giới tính";
             // 
             // groupBox5
             // 
             groupBox5.Controls.Add(dgv_KhachHang);
-            groupBox5.Location = new Point(692, 231);
+            groupBox5.Location = new Point(48, 493);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(781, 240);
+            groupBox5.Size = new Size(1060, 240);
             groupBox5.TabIndex = 22;
             groupBox5.TabStop = false;
-            groupBox5.Text = "Khách hàng tiềm năng";
+            groupBox5.Text = "Khách hàng mua nhiều nhất";
             // 
             // dgv_KhachHang
             // 
@@ -285,7 +308,7 @@
             dgv_KhachHang.Location = new Point(6, 22);
             dgv_KhachHang.Name = "dgv_KhachHang";
             dgv_KhachHang.RowHeadersWidth = 51;
-            dgv_KhachHang.Size = new Size(769, 212);
+            dgv_KhachHang.Size = new Size(1047, 212);
             dgv_KhachHang.TabIndex = 0;
             // 
             // linkLabel1
@@ -308,16 +331,35 @@
             linkLabel2.TabStop = true;
             linkLabel2.Text = "Hỗ trợ khách hàng";
             // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(698, 156);
+            label6.Name = "label6";
+            label6.Size = new Size(91, 23);
+            label6.TabIndex = 27;
+            label6.Text = "Tìm kiếm:";
+            // 
+            // txtTimKiem
+            // 
+            txtTimKiem.Location = new Point(795, 155);
+            txtTimKiem.Name = "txtTimKiem";
+            txtTimKiem.Size = new Size(427, 27);
+            txtTimKiem.TabIndex = 28;
+            txtTimKiem.TextChanged += txtTimKiem_TextChanged;
+            // 
             // FormKhachHang
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(192, 255, 255);
             ClientSize = new Size(1500, 745);
+            Controls.Add(txtTimKiem);
+            Controls.Add(label6);
             Controls.Add(linkLabel2);
             Controls.Add(linkLabel1);
             Controls.Add(groupBox5);
-            Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -326,21 +368,19 @@
             RightToLeft = RightToLeft.No;
             Text = "FormKhachHang";
             Load += FormKhachHang_Load;
-            ((System.ComponentModel.ISupportInitialize)dgv_data).EndInit();
             groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dgv_data).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            groupBox4.ResumeLayout(false);
-            groupBox4.PerformLayout();
             groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgv_KhachHang).EndInit();
+            ((System.ComponentModel.ISupportInitialize)khachHangBindingSource).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private DataGridView dgv_data;
         private GroupBox groupBox1;
         private Label label1;
         private Label label2;
@@ -354,14 +394,19 @@
         private TextBox txtDiaChi;
         private Button btnThem;
         private Button btnSua;
-        private TextBox txtSeach;
         private Button btnClear;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
-        private GroupBox groupBox4;
         private GroupBox groupBox5;
         private DataGridView dgv_KhachHang;
         private LinkLabel linkLabel1;
         private LinkLabel linkLabel2;
+        private BindingSource khachHangBindingSource;
+        private DataGridView dgv_data;
+        private Label label6;
+        private TextBox txtTimKiem;
+        private RadioButton rdoNu;
+        private RadioButton rdoNam;
+        private Label label7;
     }
 }

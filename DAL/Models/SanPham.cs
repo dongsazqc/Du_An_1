@@ -23,6 +23,8 @@ public partial class SanPham
 
     public string? TrangThai { get; set; }
 
+    public DateOnly? NgaySanXuat { get; set; }
+
     public virtual ICollection<ChiTietDonHang> ChiTietDonHangs { get; set; } = new List<ChiTietDonHang>();
 
     public virtual ICollection<DanhGium> DanhGia { get; set; } = new List<DanhGium>();

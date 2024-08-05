@@ -119,8 +119,12 @@ namespace PRL
             string mausac = txt_mausac.Text;
             string trangthai = txt_trangthai.Text;
             int idInt = int.Parse(id);
+<<<<<<< HEAD
             decimal giadecimal = decimal.Parse(gia);
             txt_gia.Text = giadecimal.ToString("F2"); // F2 để định dạng với 2 chữ số thập phân
+=======
+            decimal giaInt = decimal.Parse(gia);
+>>>>>>> b50953e3a273fd36b5338205ab359c70362c7ce3
             int soluongInt = int.Parse(soluongtonkho);
             DialogResult result = MessageBox.Show("bạn có muốn thêm không?", "thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)

@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,6 +83,17 @@ namespace DAL.Repsitory
 
             }
 
+        }
+        public void CapNhatSoLuong(int sanPhamId, int soLuongMoi)
+        {
+            // Lấy sản phẩm theo ID
+            var sanPham = _context.SanPhams.FirstOrDefault(sp => sp.SanPhamId == sanPhamId);
+            if (sanPham != null)
+            {
+                // Cập nhật số lượng tồn kho
+                sanPham.SoLuongTonKho = soLuongMoi;
+                _context.SaveChanges();
+            }
         }
     }
 }
