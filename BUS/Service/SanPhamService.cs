@@ -25,7 +25,7 @@ namespace BUS.Service
         //tìm
         public List<SanPham> CNtim(string ten)
         {
-            return _repos.GetSP(ten);
+            return _repos.GetSP(ten); 
         }
         public List<SanPham> CNTimTenandThuongHIeu(string tensp, string tenTH)
         {

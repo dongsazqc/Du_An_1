@@ -9,8 +9,7 @@ namespace DAL.Repsitory
 {
     public class DangNhapRep
     {
-        
-            private string ketnoi = "Data Source=PHAM_VAN_DONG;Initial Catalog=Du_An_Nhom4;Integrated Security=True;Trust Server Certificate=True";
+            private string ketnoi = "Data Source=DUONG;Initial Catalog=Du_An_Nhom4;User ID=sa;Password=123456;TrustServerCertificate=True";
 
             public bool ValidateUser(string username, string password)
             {
@@ -27,18 +26,6 @@ namespace DAL.Repsitory
                 }
             }
 
-            public string GetUserRole(string username)
-            {
-                using (SqlConnection conn = new SqlConnection(ketnoi))
-                {
-                    string query = "SELECT VaiTro FROM NguoiDung WHERE TenDangNhap = @Username";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@Username", username);
-
-                    conn.Open();
-                    return cmd.ExecuteScalar()?.ToString();
-                }
-            }
         
     }
 }
