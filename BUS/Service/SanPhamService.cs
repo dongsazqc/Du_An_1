@@ -27,6 +27,10 @@ namespace BUS.Service
         {
             return _repos.GetSP(ten);
         }
+        public List<SanPham> CNTimTenandThuongHIeu(string tensp, string tenTH)
+        {
+            return _repos.GetSPandTH(tensp, tenTH);
+        }
         public string CNthem(int id, string ten, string tenthuonghieu,string mota, decimal gia, int soluong, string kichthuoc,string mausac,string trangthai) {
               SanPham sp = new SanPham()
             {
@@ -91,6 +95,10 @@ namespace BUS.Service
             _repos.CapNhatSoLuong(sanPhamId, soLuongMoi);
         }
 
+        public SanPham GetById(int spid)
+        {
+            return _repos.GetById(spid);
+        }
 
     }
 }

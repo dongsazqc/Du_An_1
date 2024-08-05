@@ -6,14 +6,8 @@ namespace DAL.Models;
 
 public partial class DuAnNhom4Context : DbContext
 {
-    public DuAnNhom4Context()
-    {
-    }
+    public DbSet<SanPhamMua> SanPhamMuas { get; set; } 
 
-    public DuAnNhom4Context(DbContextOptions<DuAnNhom4Context> options)
-        : base(options)
-    {
-    }
 
     public virtual DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
 

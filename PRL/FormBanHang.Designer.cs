@@ -34,6 +34,8 @@
             textBox4 = new TextBox();
             button5 = new Button();
             groupBox2 = new GroupBox();
+            btn_XoaSp = new Button();
+            btn_xoaALLL = new Button();
             txt_TimKiemGioHang = new TextBox();
             btn_TimKiemGioHang = new Button();
             dtf_GioHang = new DataGridView();
@@ -57,7 +59,7 @@
             label12 = new Label();
             label3 = new Label();
             groupBox3 = new GroupBox();
-            textBox3 = new TextBox();
+            txt_voucher = new TextBox();
             label7 = new Label();
             icbtn_TaoHoaDon = new FontAwesome.Sharp.IconButton();
             groupBox4 = new GroupBox();
@@ -65,8 +67,7 @@
             icbtn_XoaHoaDon = new FontAwesome.Sharp.IconButton();
             dtg_HoaDon = new DataGridView();
             groupBox6 = new GroupBox();
-            button1 = new Button();
-            button2 = new Button();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)data_SPBH).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -110,7 +111,7 @@
             // 
             label6.AutoSize = true;
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(6, 551);
+            label6.Location = new Point(6, 538);
             label6.Name = "label6";
             label6.Size = new Size(353, 20);
             label6.TabIndex = 21;
@@ -136,8 +137,8 @@
             // 
             // groupBox2
             // 
-            groupBox2.Controls.Add(button2);
-            groupBox2.Controls.Add(button1);
+            groupBox2.Controls.Add(btn_XoaSp);
+            groupBox2.Controls.Add(btn_xoaALLL);
             groupBox2.Controls.Add(txt_TimKiemGioHang);
             groupBox2.Controls.Add(btn_TimKiemGioHang);
             groupBox2.Controls.Add(dtf_GioHang);
@@ -148,6 +149,26 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
             groupBox2.Enter += groupBox2_Enter;
+            // 
+            // btn_XoaSp
+            // 
+            btn_XoaSp.Location = new Point(86, 541);
+            btn_XoaSp.Name = "btn_XoaSp";
+            btn_XoaSp.Size = new Size(124, 41);
+            btn_XoaSp.TabIndex = 5;
+            btn_XoaSp.Text = "Xóa Sản phẩm";
+            btn_XoaSp.UseVisualStyleBackColor = true;
+            btn_XoaSp.Click += btn_XoaSp_Click;
+            // 
+            // btn_xoaALLL
+            // 
+            btn_xoaALLL.Location = new Point(349, 541);
+            btn_xoaALLL.Name = "btn_xoaALLL";
+            btn_xoaALLL.Size = new Size(94, 41);
+            btn_xoaALLL.TabIndex = 3;
+            btn_xoaALLL.Text = "Xóa ALL";
+            btn_xoaALLL.UseVisualStyleBackColor = true;
+            btn_xoaALLL.Click += btn_xoaALLL_Click;
             // 
             // txt_TimKiemGioHang
             // 
@@ -168,7 +189,7 @@
             // dtf_GioHang
             // 
             dtf_GioHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtf_GioHang.Location = new Point(6, 94);
+            dtf_GioHang.Location = new Point(12, 90);
             dtf_GioHang.Name = "dtf_GioHang";
             dtf_GioHang.RowHeadersWidth = 51;
             dtf_GioHang.Size = new Size(524, 441);
@@ -377,7 +398,7 @@
             // 
             groupBox3.Controls.Add(txt_tongtien);
             groupBox3.Controls.Add(txt_khachdua);
-            groupBox3.Controls.Add(textBox3);
+            groupBox3.Controls.Add(txt_voucher);
             groupBox3.Controls.Add(lb_TongTien);
             groupBox3.Controls.Add(txt_Tienthua);
             groupBox3.Controls.Add(label7);
@@ -387,17 +408,17 @@
             groupBox3.ForeColor = Color.Blue;
             groupBox3.Location = new Point(1112, 304);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(482, 324);
+            groupBox3.Size = new Size(482, 307);
             groupBox3.TabIndex = 36;
             groupBox3.TabStop = false;
             groupBox3.Text = "Thông tin thanh toán";
             // 
-            // textBox3
+            // txt_voucher
             // 
-            textBox3.Location = new Point(192, 127);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(221, 30);
-            textBox3.TabIndex = 33;
+            txt_voucher.Location = new Point(192, 127);
+            txt_voucher.Name = "txt_voucher";
+            txt_voucher.Size = new Size(221, 30);
+            txt_voucher.TabIndex = 33;
             // 
             // label7
             // 
@@ -491,36 +512,32 @@
             dtg_HoaDon.Location = new Point(6, 33);
             dtg_HoaDon.Name = "dtg_HoaDon";
             dtg_HoaDon.RowHeadersWidth = 51;
-            dtg_HoaDon.Size = new Size(440, 206);
+            dtg_HoaDon.Size = new Size(1004, 175);
             dtg_HoaDon.TabIndex = 39;
+            dtg_HoaDon.CellContentDoubleClick += dtg_HoaDon_CellContentDoubleClick;
             // 
             // groupBox6
             // 
+            groupBox6.Controls.Add(label8);
             groupBox6.Controls.Add(dtg_HoaDon);
             groupBox6.Location = new Point(13, 618);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(452, 245);
+            groupBox6.Size = new Size(1016, 245);
             groupBox6.TabIndex = 40;
             groupBox6.TabStop = false;
             groupBox6.Text = "DS hóa đơn đã thanh toán";
             // 
-            // button1
+            // label8
             // 
-            button1.Location = new Point(356, 551);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 3;
-            button1.Text = "Xóa ALL";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(97, 551);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 4;
-            button2.Text = "Xóa Sản phẩm";
-            button2.UseVisualStyleBackColor = true;
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            label8.ForeColor = Color.Red;
+            label8.Location = new Point(6, 211);
+            label8.Name = "label8";
+            label8.RightToLeft = RightToLeft.Yes;
+            label8.Size = new Size(276, 20);
+            label8.TabIndex = 40;
+            label8.Text = "CICK ĐÚP ĐỂ XEM CHI TIẾT HÓA ĐƠN";
             // 
             // FormBanHang
             // 
@@ -549,6 +566,7 @@
             groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dtg_HoaDon).EndInit();
             groupBox6.ResumeLayout(false);
+            groupBox6.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -573,7 +591,7 @@
         private TextBox txt_DiaChi;
         private Label label2;
         private TextBox txt_Gmail;
-        private TextBox textBox3;
+        private TextBox txt_voucher;
         private Label label7;
         private DataGridView dtf_GioHang;
         private TextBox textBox4;
@@ -590,7 +608,8 @@
         private FontAwesome.Sharp.IconButton icbtn_LamMOI;
         private GroupBox groupBox6;
         private Label label6;
-        private Button button2;
-        private Button button1;
+        private Button btn_xoaALLL;
+        private Button btn_XoaSp;
+        private Label label8;
     }
 }

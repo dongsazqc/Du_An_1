@@ -51,5 +51,10 @@ namespace PRL
         {
             this.Close();
         }
+
+        private void FormDangNhap_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

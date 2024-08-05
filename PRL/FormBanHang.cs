@@ -458,9 +458,91 @@ namespace PRL
             Loadata(sanPhams);
 
             // Reset các thuộc tính khác nếu cần
-            icbtn_LamMOI.IconChar = FontAwesome.Sharp.IconChar.Rotate-Left;
+            icbtn_LamMOI.IconChar = FontAwesome.Sharp.IconChar.Rotate - Left;
             lb_TongTien.BackColor = Color.Transparent;
             lb_TongTien.BorderStyle = BorderStyle.None;
+        }
+
+        private void btn_XoaSp_Click(object sender, EventArgs e)
+        {
+
+            if (dtf_GioHang.SelectedRows.Count > 0)
+            {
+                // Lấy hàng đã chọn
+                DataGridViewRow selectedRow = dtf_GioHang.SelectedRows[0];
+                string tenSanPham = selectedRow.Cells[0].Value.ToString();
+                string tenThuongHieu = selectedRow.Cells[1].Value.ToString();
+                int soLuong = int.Parse(selectedRow.Cells[2].Value.ToString());
+                decimal gia = decimal.Parse(selectedRow.Cells[3].Value.ToString());
+
+                // Xóa hàng khỏi giỏ hàng
+                dtf_GioHang.Rows.Remove(selectedRow);
+
+                // Cập nhật lại số lượng sản phẩm
+                List<SanPham> sanPhams = _SanPhamService.CNTimTenandThuongHIeu(tenSanPham, tenThuongHieu);
+                if (sanPhams != null && sanPhams.Count > 0)
+                {
+                    foreach (var sanPham in sanPhams)
+                    {
+                        int soLuongMoi = sanPham.SoLuongTonKho + soLuong;
+                        _SanPhamService.CapNhatSoLuong(sanPham.SanPhamId, soLuongMoi);
+                    }
+                    Loadata(_SanPhamService.CNShow()); // Cập nhật danh sách sản phẩm
+                }
+
+                // Cập nhật tổng tiền
+                TongTienGioHang();
+            }
+        }
+
+
+
+
+
+        private void btn_xoaALLL_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dtf_GioHang.Rows)
+            {
+                if (row.Cells[0].Value != null && row.Cells[1].Value != null && row.Cells[2].Value != null)
+                {
+                    string tenSanPham = row.Cells[0].Value.ToString();
+                    string tenThuongHieu = row.Cells[1].Value.ToString();
+                    int soLuong = int.Parse(row.Cells[2].Value.ToString());
+
+                    // Cập nhật lại số lượng sản phẩm
+                    List<SanPham> sanPhams = _SanPhamService.CNTimTenandThuongHIeu(tenSanPham, tenThuongHieu);
+                    if (sanPhams != null && sanPhams.Count > 0)
+                    {
+                        foreach (var sanPham in sanPhams)
+                        {
+                            int soLuongMoi = sanPham.SoLuongTonKho + soLuong;
+                            _SanPhamService.CapNhatSoLuong(sanPham.SanPhamId, soLuongMoi);
+                        }
+                        Loadata(_SanPhamService.CNShow()); // Cập nhật danh sách sản phẩm
+                    }
+                }
+            }
+
+            // Xóa tất cả hàng trong giỏ hàng
+            dtf_GioHang.Rows.Clear();
+            TongTienGioHang();
+        }
+
+        private void dtg_HoaDon_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Lấy danh sách các hàng từ DataGridView
+            var rows = new List<DataGridViewRow>();
+            foreach (DataGridViewRow row in dtg_HoaDon.SelectedRows)
+            {
+                rows.Add(row);
+            }
+
+            // Tạo và mở FormHoaDonChiTiet, truyền dữ liệu vào
+            FormHoaDonChiTiet formhoadonchitiet = new FormHoaDonChiTiet()
+            {
+                Rows = rows
+            };
+            formhoadonchitiet.Show();
         }
     }
 }
