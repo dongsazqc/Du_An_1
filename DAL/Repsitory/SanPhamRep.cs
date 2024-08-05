@@ -14,7 +14,7 @@ namespace DAL.Repsitory
         
         public SanPhamRep()
         {
-           
+           _context = new DuAnNhom4Context();
         }
         
 

@@ -236,6 +236,24 @@ drop table SanPhamGiamGia
     NgayKetThucGiamGia DATE,                 -- Ngày kết thúc giảm giá
     MoTa NVARCHAR(1000)                      -- Mô tả sản phẩm
 );
+Drop table Voucher;
+CREATE TABLE Voucher (
+    MaVoucher INT PRIMARY KEY,
+    TenVoucher VARCHAR(255) NOT NULL,
+    TenThuongHieu VARCHAR(255) NOT NULL,
+    PhanTramGiam DECIMAL(5, 2) NOT NULL,
+    GiaTri DECIMAL(18, 2) NOT NULL,
+    NgayBatDau DATE NOT NULL,
+    NgayKetThuc DATE NOT NULL,
+    DieuKienSuDung TEXT
+);
+INSERT INTO Voucher (MaVoucher, TenVoucher, TenThuongHieu, PhanTramGiam, GiaTri, NgayBatDau, NgayKetThuc, DieuKienSuDung)
+VALUES (40200, N'Giảm giá 10%', 'JoDan', 10.00, 100000.00, '2024-07-01', '2024-12-22', N'Áp dụng cho đơn hàng từ 500,000')
+
+INSERT INTO Voucher (MaVoucher, TenVoucher, TenThuongHieu, PhanTramGiam, GiaTri, NgayBatDau, NgayKetThuc, DieuKienSuDung)
+VALUES(40201, N'Giảm giá 20%', 'Nike', 20.00, 200000.00, '2024-08-01', '2024-11-20', N'Áp dụng cho đơn hàng từ 1,000,000')
+
+
 
 INSERT INTO SanPhamGiamGia (MaSanPham, TenSanPham, GiaBan, PhanTramGiam, NgayBatDauGiamGia, NgayKetThucGiamGia, MoTa)
 VALUES (1, N'Sản phẩm A', 100000, 10, '2024-07-21', '2024-08-21', N'Mô tả sản phẩm A');

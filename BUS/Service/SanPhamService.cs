@@ -25,7 +25,7 @@ namespace BUS.Service
         //tìm
         public List<SanPham> CNtim(string ten)
         {
-            return _repos.GetSP(ten);
+            return _repos.GetSP(ten); 
         }
         public string CNthem(int id, string ten, string tenthuonghieu,string mota, decimal gia, int soluong, string kichthuoc,string mausac,string trangthai) {
               SanPham sp = new SanPham()

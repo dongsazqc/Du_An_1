@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DAL.Models;
+namespace PRL.Models;
 
 public partial class SanPhamGiamGium
 {

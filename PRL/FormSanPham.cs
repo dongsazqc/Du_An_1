@@ -1,6 +1,8 @@
 ﻿using BUS.Service;
 using DAL.Models;
 using DAL.Repsitory;
+using Microsoft.EntityFrameworkCore;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,23 +18,37 @@ namespace PRL
 {
     public partial class FormSanPham : Form
     {
-        SPgiamgiaService _spgiamgia = new SPgiamgiaService(); 
+        SPgiamgiaService _spgiamgia = new SPgiamgiaService();
         SanPhamService _sanPhamService = new SanPhamService();
         SanPhamRep _sanPhamRep = new SanPhamRep();
 
         public FormSanPham()
         {
             InitializeComponent();
-            List<SanPham> sp = _sanPhamService.CNShow();
-            showdata(sp);
 
-            List<SanPham> sanPhams = _sanPhamService.CNShow();
-            showdata(sanPhams);
+            loadsanpham();
             List<SanPhamGiamGium> sanPhamGiamGia = _spgiamgia.CNShow();
             Loaddata(sanPhamGiamGia);
-          
-        }
+            loadsanpham();
+            ConfigureDataGridView();
 
+        }
+        private void ConfigureDataGridView()
+        {
+            // Xóa các cột không mong muốn khi cấu hình DataGridView
+            RemoveUnwantedColumns();
+        } private void loadsanpham()
+        {
+            List<SanPham> sp = _sanPhamService.CNShow();
+            showdata(sp);
+            LoadComboBox(sp);
+            dgv_sanpham.DataSource = sp;
+            List<SanPham> sanPhams = _sanPhamService.CNShow();
+            showdata(sanPhams);
+            RemoveUnwantedColumns();
+
+        }
+       
         private void Loaddata(List<SanPhamGiamGium> sanPhamGiamGia)
         {
             dtg_SPGG.Rows.Clear();
@@ -55,39 +71,42 @@ namespace PRL
 
         private void textBox9_TextChanged(object sender, EventArgs e)
         {
-            List<SanPham> sp = _sanPhamService.CNtim(txt_search.Text);
-            showdata(sp);
         }
 
         private void FormSanPham_Load(object sender, EventArgs e)
         {
+
+            RemoveUnwantedColumns();
+
         }
+
+
 
         private void btn_laysanpham_Click(object sender, EventArgs e)
         {
         }
         public void showdata(List<SanPham> sp)
         {
-            dgv_sanpham.Rows.Clear();
-            dgv_sanpham.ColumnCount = 10;
-            int stt = 1;
-            dgv_sanpham.Columns[0].HeaderText = "số thứ tự";
-            dgv_sanpham.Columns[1].HeaderText = "ID sản phẩm";
-            dgv_sanpham.Columns[2].HeaderText = "Tên sản phẩm";
-            dgv_sanpham.Columns[3].HeaderText = "Tên thương hiệu";
-            dgv_sanpham.Columns[4].HeaderText = "mô tả";
-            dgv_sanpham.Columns[5].HeaderText = "giá";
-            dgv_sanpham.Columns[6].HeaderText = "số lượng tồn kho";
-            dgv_sanpham.Columns[7].HeaderText = "kích thước";
-            dgv_sanpham.Columns[8].HeaderText = "màu sắc";
-            dgv_sanpham.Columns[9].HeaderText = "trạng thái";
-            foreach (var item in sp)
-            {
-                dgv_sanpham.Rows.Add(stt++, item.SanPhamId, item.TenSanPham, item.TenThuongHieu, item.MoTa, item.Gia, item.SoLuongTonKho, item.KichThuoc, item.MauSac, item.TrangThai);
+            // dgv_sanpham.rows.clear();
+            // dgv_sanpham.columncount = 10;
+            //int stt = 1;
+            //// dgv_sanpham.columns[0].headertext = "số thứ tự";
+            // dgv_sanpham.columns[1].headertext = "id sản phẩm";
+            // dgv_sanpham.columns[2].headertext = "tên sản phẩm";
+            // dgv_sanpham.columns[3].headertext = "tên thương hiệu";
+            //dgv_sanpham.columns[4].headertext = "mô tả";
+            //  dgv_sanpham.columns[5].headertext = "giá";
+            //  dgv_sanpham.columns[6].headertext = "số lượng tồn kho";
+            // dgv_sanpham.columns[7].headertext = "kích thước";
+            // dgv_sanpham.columns[8].headertext = "màu sắc";
+            /// dgv_sanpham.columns[9].headertext = "trạng thái";
+            //// foreach (var item in sp)
+            // {
+            //    dgv_sanpham.rows.add(stt++, item.sanphamid, item.tensanpham, item.tenthuonghieu, item.mota, item.gia, item.soluongtonkho, item.kichthuoc, item.mausac, item.trangthai);
 
-            }
+            //}
         }
-       
+
         private void btn_them_Click(object sender, EventArgs e)
         {
             string id = txt_IDsanpham.Text;
@@ -100,49 +119,53 @@ namespace PRL
             string mausac = txt_mausac.Text;
             string trangthai = txt_trangthai.Text;
             int idInt = int.Parse(id);
-            int giaInt = int.Parse(gia);
+            decimal giadecimal = decimal.Parse(gia);
+            txt_gia.Text = giadecimal.ToString("F2"); // F2 để định dạng với 2 chữ số thập phân
             int soluongInt = int.Parse(soluongtonkho);
             DialogResult result = MessageBox.Show("bạn có muốn thêm không?", "thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string kq = _sanPhamService.CNthem(idInt, ten, tenthuonghieu, mota, giaInt, soluongInt, kichthuoc, mausac, trangthai);
+                string kq = _sanPhamService.CNthem(idInt, ten, tenthuonghieu, mota, giadecimal, soluongInt, kichthuoc, mausac, trangthai);
                 MessageBox.Show(kq);
-                List<SanPham> sanPhams = _sanPhamService.CNShow();
-                //showdata
-                showdata(sanPhams);
+                loadsanpham();
+
                 return;
             }
+
+
+
         }
 
-        private void btn_xoa_Click(object sender, EventArgs e)
-        {
-            string id = txt_IDsanpham.Text;
-            int idInt = int.Parse(id);
-            DialogResult result = MessageBox.Show("bạn có muốn xóa không?", "xóa", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes && txt_IDsanpham.Text.Trim() != "")
-            {
-                List<SanPham> sanPhams = _sanPhamService.CNShow();
-                MessageBox.Show(_sanPhamService.CNxoa(idInt));
-                //showdata
-                showdata(sanPhams);
-                return;
-            }
-        }
+        //private void btn_xoa_Click(object sender, EventArgs e)
+        //{
+        //    string id = txt_IDsanpham.Text;
+        //    int idInt = int.Parse(id);
+        //    DialogResult result = MessageBox.Show("bạn có muốn xóa không?", "xóa", MessageBoxButtons.YesNo);
+        //    if (result == DialogResult.Yes && txt_IDsanpham.Text.Trim() != "")
+        //    {
+        //        List<SanPham> sanPhams = _sanPhamService.CNShow();
+        //        MessageBox.Show(_sanPhamService.CNxoa(idInt));
+        //        dgv_sanpham.DataSource = sanPhams;
+        //        showdata
+        //        showdata(sanPhams);
+        //        return;
+        //    }
+        //}
 
         private void dgv_sanpham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // lấy dữ liệu ra từ dòng được chọn để fill lên form
             int row = e.RowIndex;
             var rowdata = dgv_sanpham.Rows[row];
-            txt_IDsanpham.Text = rowdata.Cells[1].Value.ToString();
-            txt_tensanpham.Text = rowdata.Cells[2].Value.ToString();
-            txt_tenthuonghieu.Text = rowdata.Cells[3].Value.ToString();
-            rtb_mota.Text = rowdata.Cells[4].Value.ToString();
-            txt_gia.Text = rowdata.Cells[5].Value.ToString();
-            txt_soluong.Text = rowdata.Cells[6].Value.ToString();
-            txt_kichthuoc.Text = rowdata.Cells[7].Value.ToString();
-            txt_mausac.Text = rowdata.Cells[8].Value.ToString();
-            txt_trangthai.Text = rowdata.Cells[9].Value.ToString();
+            txt_IDsanpham.Text = rowdata.Cells["SanPhamId"].Value.ToString();
+            txt_tensanpham.Text = rowdata.Cells["TenSanPham"].Value.ToString();
+            txt_tenthuonghieu.Text = rowdata.Cells["TenThuongHieu"].Value.ToString();
+            rtb_mota.Text = rowdata.Cells["MoTa"].Value.ToString();
+            txt_gia.Text = rowdata.Cells["Gia"].Value.ToString();
+            txt_soluong.Text = rowdata.Cells["SoLuongTonKho"].Value.ToString();
+            txt_kichthuoc.Text = rowdata.Cells["KichThuoc"].Value.ToString();
+            txt_mausac.Text = rowdata.Cells["MauSac"].Value.ToString();
+            txt_trangthai.Text = rowdata.Cells["TrangThai"].Value.ToString();
         }
 
         private void btn_sua_Click(object sender, EventArgs e)
@@ -157,16 +180,16 @@ namespace PRL
             string mausac = txt_mausac.Text;
             string trangthai = txt_trangthai.Text;
             int idInt = int.Parse(id);
-            int giaInt = int.Parse(gia);
+            decimal giadecimal = decimal.Parse(gia);
+            txt_gia.Text = giadecimal.ToString("F2"); // F2 để định dạng với 2 chữ số thập phân
             int soluongInt = int.Parse(soluongtonkho);
             DialogResult result = MessageBox.Show("bạn có muốn sửa không?", "sửa", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string kq = _sanPhamService.CNSua(idInt, ten, tenthuonghieu, mota, giaInt, soluongInt, kichthuoc, mausac, trangthai);
+                string kq = _sanPhamService.CNSua(idInt, ten, tenthuonghieu, mota, giadecimal, soluongInt, kichthuoc, mausac, trangthai);
                 MessageBox.Show(kq);
-                List<SanPham> sanPhams = _sanPhamService.CNShow();
-                //showdata
-                showdata(sanPhams);
+                loadsanpham();
+
                 return;
             }
         }
@@ -183,9 +206,13 @@ namespace PRL
             txt_trangthai.Text = "";
             rtb_mota.Text = "";
 
+            txt_phantramgiam.Text = "";
+            txt_giagiam.Text = "";
+            dt_ngaybd.Text = "";
+            dt_ngaykt.Text = "";
 
 
-            ;
+
         }
 
         private void txt_tensanpham_TextChanged(object sender, EventArgs e)
@@ -207,5 +234,189 @@ namespace PRL
         {
 
         }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDataGridView();
+        }
+
+
+
+        private void grb_SanPham_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void cbb_TenSP_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgv_sanpham_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+        private void LoadDataGridView()
+        {
+            if (cbb_IDsp.SelectedValue != null && int.TryParse(cbb_IDsp.SelectedValue.ToString(), out int sanphamID))
+            {
+                // Kiểm tra giá trị SelectedValue
+
+
+                var sanphams = _sanPhamRep.GetAll();
+
+                // Kiểm tra danh sách sản phẩm trả về từ repository
+                if (sanphams == null || !sanphams.Any())
+                {
+                    dgv_sanpham.DataSource = null;
+                    return;
+                }
+
+                var sanpham = sanphams.FirstOrDefault(k => k.SanPhamId == sanphamID);
+
+                if (sanpham != null)
+                {
+                    dgv_sanpham.DataSource = new List<SanPham> { sanpham };
+
+                    dgv_sanpham.Refresh();
+                }
+                else
+                {
+
+                    dgv_sanpham.DataSource = null;
+                }
+                RemoveUnwantedColumns();
+            }
+            else
+            {
+
+                dgv_sanpham.DataSource = null;
+            }
+        }
+        private void RemoveUnwantedColumns()
+        {
+            if (dgv_sanpham.Columns["DanhGia"] != null) dgv_sanpham.Columns.Remove("DanhGia");
+            if (dgv_sanpham.Columns["ChiTietDonHangs"] != null) dgv_sanpham.Columns.Remove("ChiTietDonHangs");
+            if (dgv_sanpham.Columns["HoaDonChiTiets"] != null) dgv_sanpham.Columns.Remove("HoaDonChiTiets");
+            if (dgv_sanpham.Columns["KhoHangs"] != null) dgv_sanpham.Columns.Remove("KhoHangs");
+        }
+
+        private void LoadComboBox(List<SanPham> sanPhams)
+        {
+
+
+            cbb_IDsp.DataSource = sanPhams;
+            cbb_IDsp.DisplayMember = "SanPhamId"; // Tên cột hiển thị
+            cbb_IDsp.ValueMember = "SanPhamId"; // Tên cột giá trị
+
+            cbb_TenSP.DataSource = sanPhams;
+            cbb_TenSP.DisplayMember = "TenSanPham"; // Tên cột hiển thị
+            cbb_TenSP.ValueMember = "SanPhamId"; // Tên cột giá trị
+
+            cbb_Tenthuonghieu.DataSource = sanPhams;
+            cbb_Tenthuonghieu.DisplayMember = "TenThuongHieu"; // Tên cột hiển thị
+            cbb_Tenthuonghieu.ValueMember = "SanPhamId"; // Tên cột giá trị
+        }
+
+        private void cbb_Tenthuonghieu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtg_SPGG_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int row = e.RowIndex;
+            var rowdata = dtg_SPGG.Rows[row];
+            txt_IDsanpham.Text = rowdata.Cells[1].Value.ToString();
+            txt_tensanpham.Text = rowdata.Cells[2].Value.ToString();
+            txt_gia.Text = rowdata.Cells[3].Value.ToString();
+            txt_giagiam.Text = rowdata.Cells[5].Value.ToString();
+            rtb_mota.Text = rowdata.Cells[8].Value.ToString();
+
+            txt_phantramgiam.Text = rowdata.Cells[4].Value.ToString();
+            dt_ngaybd.Text = rowdata.Cells[6].Value.ToString();
+            dt_ngaykt.Text = rowdata.Cells[7].Value.ToString();
+            string today = DateTime.Now.ToString();
+
+            // Gán giá trị ngày vào TextBox
+            dt_ngaybd.Text = today;
+            dt_ngaykt.Text = today;
+        }
+
+        private void btn_taoqr_Click(object sender, EventArgs e)
+        {
+            // tạo qr code
+            QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
+            var qr1 = qr.CreateQrCode(txt_tensanpham.Text, QRCodeGenerator.ECCLevel.H);
+            var code = new QRCode(qr1);
+            pictureBox1.Image = code.GetGraphic(6, Color.Black, Color.White, true);
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string maspgg = txt_IDsanpham.Text;
+            string tenspgg = txt_tensanpham.Text;
+            string phantramgiam = txt_phantramgiam.Text;
+            string gia = txt_gia.Text;
+            string giagiam = txt_giagiam.Text;
+            string motaspgg = rtb_mota.Text;
+
+            int maInt = int.Parse(maspgg);
+            decimal giadecimal = decimal.Parse(gia);
+            decimal phantramgiamdcl = decimal.Parse(phantramgiam);
+            decimal giagiamdcl = decimal.Parse(giagiam);
+            txt_gia.Text = giadecimal.ToString("F2"); // F2 để định dạng với 2 chữ số thập phân
+            txt_phantramgiam.Text = phantramgiamdcl.ToString("F2");
+            txt_giagiam.Text = giagiamdcl.ToString("F2");
+            DialogResult result = MessageBox.Show("bạn có muốn thêm không?", "thêm mới", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                string kq = _spgiamgia.CNthem(maInt, tenspgg, giadecimal, phantramgiamdcl, giagiamdcl, motaspgg);
+                MessageBox.Show(kq);
+                List<SanPhamGiamGium> sanPhamGiamGia = _spgiamgia.CNShow();
+                Loaddata(sanPhamGiamGia);
+                ; return;
+            }
+        }
+
+        private void btn_suaspgg_Click(object sender, EventArgs e)
+        {
+            string maspgg = txt_IDsanpham.Text;
+            string tenspgg = txt_tensanpham.Text;
+            string phantramgiam = txt_phantramgiam.Text;
+            string gia = txt_gia.Text;
+            string giagiam = txt_giagiam.Text;
+            string motaspgg = rtb_mota.Text;
+
+            int maInt = int.Parse(maspgg);
+            decimal giadecimal = decimal.Parse(gia);
+            decimal phantramgiamdcl = decimal.Parse(phantramgiam);
+            decimal giagiamdcl = decimal.Parse(giagiam);
+            txt_gia.Text = giadecimal.ToString("F2"); // F2 để định dạng với 2 chữ số thập phân
+            txt_phantramgiam.Text = phantramgiamdcl.ToString("F2");
+            txt_giagiam.Text = giagiamdcl.ToString("F2");
+            DialogResult result = MessageBox.Show("bạn có muốn Sửa không?", "thêm mới", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                string kq = _spgiamgia.CNSua(maInt, tenspgg, giadecimal, phantramgiamdcl, giagiamdcl, motaspgg);
+                MessageBox.Show(kq);
+                List<SanPhamGiamGium> sanPhamGiamGia = _spgiamgia.CNShow();
+                Loaddata(sanPhamGiamGia);
+                ; return;
+            }
+        }
+
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+

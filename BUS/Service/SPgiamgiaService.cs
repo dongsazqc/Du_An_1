@@ -19,5 +19,54 @@ namespace BUS.Service
         {
             return _Repo.GetAll();
         }
+        public string CNthem(int masanpham, string tensanpham, decimal giaban, decimal phantramgiam, decimal giagiam,  string mota)
+        {
+            SanPhamGiamGium spgg = new SanPhamGiamGium()
+            {
+
+                MaSanPham = masanpham,
+                TenSanPham = tensanpham,
+                GiaBan = giaban,
+                MoTa = mota,
+                GiaGiam = giagiam,
+                PhanTramGiam  = phantramgiam,
+                
+                 
+            };
+            if (_Repo.AddSP(spgg))
+            {
+                return "thêm thành công";
+            }
+            else
+            {
+                return "thêm thất bại";
+            }
+        }
+        public string CNSua(int masanpham, string tensanpham, decimal giaban, decimal phantramgiam, decimal giagiam,  string mota)
+        {
+            SanPhamGiamGium spgg = new SanPhamGiamGium()
+            {
+
+                MaSanPham = masanpham,
+                TenSanPham = tensanpham,
+                GiaBan = giaban,
+                MoTa = mota,
+                GiaGiam = giagiam,
+                PhanTramGiam = phantramgiam,
+
+
+            };
+            if (_Repo.UpdateSP(spgg))
+            {
+                return "Sửa thành công";
+            }
+            else
+            {
+                return "Sửa thất bại";
+            }
+        }
+
+
+
     }
 }

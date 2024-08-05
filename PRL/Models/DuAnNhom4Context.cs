@@ -39,6 +39,10 @@ public partial class DuAnNhom4Context : DbContext
 
     public virtual DbSet<SanPham> SanPhams { get; set; }
 
+    public virtual DbSet<SanPhamGiamGium> SanPhamGiamGia { get; set; }
+
+    public virtual DbSet<Voucher> Vouchers { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Data Source=LAPTOP-289J5PP0\\THUAN;Initial Catalog=Du_An_Nhom4;Integrated Security=True;Trust Server Certificate=True");
@@ -260,6 +264,38 @@ public partial class DuAnNhom4Context : DbContext
                 .HasMaxLength(50)
                 .IsUnicode(false);
             entity.Property(e => e.TrangThai).HasMaxLength(30);
+        });
+
+        modelBuilder.Entity<SanPhamGiamGium>(entity =>
+        {
+            entity.HasKey(e => e.MaSanPham).HasName("PK__SanPhamG__FAC7442D56D9F76F");
+
+            entity.Property(e => e.MaSanPham).ValueGeneratedNever();
+            entity.Property(e => e.GiaBan).HasColumnType("decimal(10, 2)");
+            entity.Property(e => e.GiaGiam)
+                .HasComputedColumnSql("([GiaBan]*((1)-[PhanTramGiam]/(100)))", false)
+                .HasColumnType("decimal(21, 8)");
+            entity.Property(e => e.MoTa).HasMaxLength(1000);
+            entity.Property(e => e.PhanTramGiam).HasColumnType("decimal(5, 2)");
+            entity.Property(e => e.TenSanPham).HasMaxLength(255);
+        });
+
+        modelBuilder.Entity<Voucher>(entity =>
+        {
+            entity.HasKey(e => e.MaVoucher).HasName("PK__Voucher__0AAC5B11EEAFE295");
+
+            entity.ToTable("Voucher");
+
+            entity.Property(e => e.MaVoucher).ValueGeneratedNever();
+            entity.Property(e => e.DieuKienSuDung).HasColumnType("text");
+            entity.Property(e => e.GiaTri).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.PhanTramGiam).HasColumnType("decimal(5, 2)");
+            entity.Property(e => e.TenThuongHieu)
+                .HasMaxLength(255)
+                .IsUnicode(false);
+            entity.Property(e => e.TenVoucher)
+                .HasMaxLength(255)
+                .IsUnicode(false);
         });
 
         OnModelCreatingPartial(modelBuilder);
