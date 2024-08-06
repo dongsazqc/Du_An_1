@@ -85,7 +85,7 @@
             data_SPBH.Location = new Point(6, 90);
             data_SPBH.Name = "data_SPBH";
             data_SPBH.RowHeadersWidth = 51;
-            data_SPBH.Size = new Size(440, 445);
+            data_SPBH.Size = new Size(514, 445);
             data_SPBH.TabIndex = 0;
             data_SPBH.CellContentClick += data_SPBH_CellContentClick;
             data_SPBH.CellDoubleClick += data_SPBH_CellDoubleClick;
@@ -101,7 +101,7 @@
             groupBox1.Location = new Point(13, 13);
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(452, 598);
+            groupBox1.Size = new Size(526, 598);
             groupBox1.TabIndex = 17;
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách sản phẩm";
@@ -142,9 +142,9 @@
             groupBox2.Controls.Add(txt_TimKiemGioHang);
             groupBox2.Controls.Add(btn_TimKiemGioHang);
             groupBox2.Controls.Add(dtf_GioHang);
-            groupBox2.Location = new Point(493, 13);
+            groupBox2.Location = new Point(546, 13);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(536, 598);
+            groupBox2.Size = new Size(560, 598);
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
@@ -172,14 +172,14 @@
             // 
             // txt_TimKiemGioHang
             // 
-            txt_TimKiemGioHang.Location = new Point(119, 50);
+            txt_TimKiemGioHang.Location = new Point(120, 48);
             txt_TimKiemGioHang.Name = "txt_TimKiemGioHang";
-            txt_TimKiemGioHang.Size = new Size(369, 27);
+            txt_TimKiemGioHang.Size = new Size(421, 27);
             txt_TimKiemGioHang.TabIndex = 2;
             // 
             // btn_TimKiemGioHang
             // 
-            btn_TimKiemGioHang.Location = new Point(19, 49);
+            btn_TimKiemGioHang.Location = new Point(17, 47);
             btn_TimKiemGioHang.Name = "btn_TimKiemGioHang";
             btn_TimKiemGioHang.Size = new Size(94, 29);
             btn_TimKiemGioHang.TabIndex = 1;
@@ -189,7 +189,7 @@
             // dtf_GioHang
             // 
             dtf_GioHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtf_GioHang.Location = new Point(12, 90);
+            dtf_GioHang.Location = new Point(17, 82);
             dtf_GioHang.Name = "dtf_GioHang";
             dtf_GioHang.RowHeadersWidth = 51;
             dtf_GioHang.Size = new Size(524, 441);
@@ -512,7 +512,7 @@
             dtg_HoaDon.Location = new Point(6, 33);
             dtg_HoaDon.Name = "dtg_HoaDon";
             dtg_HoaDon.RowHeadersWidth = 51;
-            dtg_HoaDon.Size = new Size(1004, 175);
+            dtg_HoaDon.Size = new Size(825, 175);
             dtg_HoaDon.TabIndex = 39;
             dtg_HoaDon.CellContentClick += dtg_HoaDon_CellContentClick;
             dtg_HoaDon.CellContentDoubleClick += dtg_HoaDon_CellContentDoubleClick;
@@ -523,7 +523,7 @@
             groupBox6.Controls.Add(dtg_HoaDon);
             groupBox6.Location = new Point(13, 618);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(1016, 245);
+            groupBox6.Size = new Size(838, 245);
             groupBox6.TabIndex = 40;
             groupBox6.TabStop = false;
             groupBox6.Text = "DS hóa đơn đã thanh toán";

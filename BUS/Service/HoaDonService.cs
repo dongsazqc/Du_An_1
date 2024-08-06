@@ -19,7 +19,7 @@ namespace BUS.Service
         {
             return _repos.GetAll();
         }
-        public List<HoaDon> CNShowHDTT()
+        public List<HoaDon> CNShowHDThanhToan()
         {
            return _repos.GetALLHDTT();
         }
@@ -43,6 +43,25 @@ namespace BUS.Service
                 return "Thêm thất bại";
             }
         }
+        public bool ThanhToanHoaDon(string hoaDonId)
+        {
+            // Lấy hóa đơn theo ID
+            var hoaDon = _repos.GetHoaDonById(hoaDonId);
 
+            if (hoaDon != null)
+            {
+                // Cập nhật trạng thái thanh toán của hóa đơn
+                return _repos.ThanhToanHoaDon(hoaDonId);
+            }
+            return false;
+        }
+        public List<HoaDon> CNShowHDTT()
+        {
+            using (var context = new DuAnNhom4Context())
+            {
+                // Trả về danh sách hóa đơn đã thanh toán
+                return context.HoaDons.Where(hd => hd.TrangThai == "Đã thanh toán").ToList();
+            }
+        }
     }
 }

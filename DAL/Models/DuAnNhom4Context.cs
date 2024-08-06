@@ -6,6 +6,7 @@ namespace DAL.Models;
 
 public partial class DuAnNhom4Context : DbContext
 {
+
     public DuAnNhom4Context()
     {
     }
@@ -14,6 +15,8 @@ public partial class DuAnNhom4Context : DbContext
         : base(options)
     {
     }
+    public virtual DbSet<SanPhamMua> SanPhamMuas { get; set; }
+    
 
     public virtual DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
 
@@ -289,6 +292,7 @@ public partial class DuAnNhom4Context : DbContext
 
         OnModelCreatingPartial(modelBuilder);
     }
+
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
