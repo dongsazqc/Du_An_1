@@ -514,6 +514,7 @@
             dtg_HoaDon.RowHeadersWidth = 51;
             dtg_HoaDon.Size = new Size(1004, 175);
             dtg_HoaDon.TabIndex = 39;
+            dtg_HoaDon.CellContentClick += dtg_HoaDon_CellContentClick;
             dtg_HoaDon.CellContentDoubleClick += dtg_HoaDon_CellContentDoubleClick;
             // 
             // groupBox6

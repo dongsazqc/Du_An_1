@@ -19,6 +19,10 @@ namespace BUS.Service
         {
             return _repos.GetAll();
         }
+        public List<HoaDon> CNShowHDTT()
+        {
+           return _repos.GetALLHDTT();
+        }
         public string CNThemHoaDon(string HoaDonID, string Tenkhachhang, string email, string sdt, string diachi)
         {
             HoaDon hd = new HoaDon()

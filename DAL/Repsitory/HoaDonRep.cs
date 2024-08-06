@@ -19,6 +19,10 @@ namespace DAL.Repsitory
         {
             return _context.HoaDons.ToList();
         }
+        public List<HoaDon> GetALLHDTT()
+        {
+            return _context.HoaDons.ToList();
+        }
 
 
         public bool AddHD(HoaDon hd)

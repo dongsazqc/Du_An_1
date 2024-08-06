@@ -72,15 +72,6 @@ namespace PRL
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void btn_DS_sanpham_Click(object sender, EventArgs e)
         {
@@ -89,42 +80,14 @@ namespace PRL
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox5_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-
-
-        private void txt_GiaGoc_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void FormBanHang_Load(object sender, EventArgs e)
         {
-            UpdateTienThua();
             icbtn_LamMOI.IconChar = FontAwesome.Sharp.IconChar.Rotate - Left;
             lb_TongTien.BackColor = Color.Transparent;
             lb_TongTien.BorderStyle = BorderStyle.None;
             icbtn_XoaHoaDon.IconChar = FontAwesome.Sharp.IconChar.Trash;
 
-            txt_Tienthua.Enabled  = false;
+            txt_Tienthua.Enabled = false;
             txt_tongtien.Enabled = false;
             txt_tongtien.Text = "0.00";
 
@@ -148,8 +111,10 @@ namespace PRL
 
         private void data_SPBH_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Kiểm tra xem RowIndex có hợp lệ không (không phải -1)
             if (e.RowIndex >= 0)
             {
+                // Lấy thông tin từ hàng được double-click
                 DataGridViewRow selectedRow = data_SPBH.Rows[e.RowIndex];
                 int sanPhamId = (int)selectedRow.Cells[1].Value; // Giả sử ID sản phẩm nằm ở cột 1
                 string tensanpham = selectedRow.Cells[2].Value.ToString();
@@ -157,71 +122,62 @@ namespace PRL
                 decimal gia = (decimal)selectedRow.Cells[5].Value;
                 int soLuongTonKho = (int)selectedRow.Cells[6].Value;  // Giả sử số lượng tồn kho nằm ở cột 6
 
+                // Mở hộp thoại nhập số lượng
                 using (FormSoLuong formSoLuong = new FormSoLuong())
                 {
                     if (formSoLuong.ShowDialog() == DialogResult.OK)
                     {
                         int soluong = formSoLuong.SOLUONG;
 
+                        // Kiểm tra số lượng nhập vào có vượt quá số lượng tồn kho không
                         if (soluong > soLuongTonKho)
                         {
                             MessageBox.Show("Số lượng yêu cầu vượt quá số lượng tồn kho.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else
                         {
-                            decimal tongGia = gia * soluong;
-                            dtf_GioHang.Rows.Add(tensanpham, tenthuonghieu, soluong, gia, tongGia);
+                            // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng chưa
+                            bool productExists = false;
+                            foreach (DataGridViewRow row in dtf_GioHang.Rows)
+                            {
+                                if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == tensanpham &&
+                                    row.Cells[1].Value != null && row.Cells[1].Value.ToString() == tenthuonghieu)
+                                {
+                                    // Cập nhật số lượng và tổng giá nếu sản phẩm đã tồn tại
+                                    int existingQuantity = int.Parse(row.Cells[2].Value.ToString());
+                                    decimal existingTotalPrice = decimal.Parse(row.Cells[4].Value.ToString());
+
+                                    row.Cells[2].Value = existingQuantity + soluong;
+                                    row.Cells[4].Value = (existingQuantity + soluong) * gia;
+
+                                    productExists = true;
+                                    break;
+                                }
+                            }
+
+                            if (!productExists)
+                            {
+                                // Thêm sản phẩm mới vào giỏ hàng
+                                decimal tongGia = gia * soluong;
+                                dtf_GioHang.Rows.Add(tensanpham, tenthuonghieu, soluong, gia, tongGia);
+                            }
+
+                            // Cập nhật tổng tiền giỏ hàng
                             TongTienGioHang();
 
+                            // Cập nhật số lượng tồn kho của sản phẩm
                             int soLuongMoi = soLuongTonKho - soluong;
                             _SanPhamService.CapNhatSoLuong(sanPhamId, soLuongMoi);
 
+                            // Tải lại dữ liệu sản phẩm
                             List<SanPham> sanPhams1 = _SanPhamService.CNShow();
                             Loadata(sanPhams1);
                         }
                     }
                 }
             }
-
         }
 
-        private void dtf_GioHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void data_SPBH_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_TongTien_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-        private void txt_tongtien_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-        }
         private void TongTienGioHang()
         {
             decimal tongTien = 0;
@@ -264,8 +220,9 @@ namespace PRL
                     // Cập nhật danh sách hóa đơn
                     List<HoaDon> hoaDons = _hoadonServicr.CNShowHoaDon();
                     Loadata(hoaDons);
-
+                    cbx_HoaDonId.Items.Remove(hoaDonId);
                     // Reset form
+                    cbx_HoaDonId.Text.Clone();
                     txt_tenkhachhang.Clear();
                     txt_sđt.Clear();
                     txt_Gmail.Clear();
@@ -286,53 +243,84 @@ namespace PRL
 
         private void btn_TaoHoaDon_Click(object sender, EventArgs e)
         {
-            DialogResult Thoadon = MessageBox.Show("Bạn có chắc muốn tạo 1 hóa đơn không", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (Thoadon == DialogResult.Yes)
+            // Kiểm tra thông tin đầu vào từ các TextBox
+            if (string.IsNullOrEmpty(txt_sđt.Text))
             {
-                HoaDon hoaDon = new HoaDon
-                {
-                    HoaDonId = "HD" + (hoaDons.Count + 1).ToString("D3"),
-                    SoDienThoai = txt_sđt.Text,
-                    TenKhachHang = txt_tenkhachhang.Text,
-                    DiaChi = txt_DiaChi.Text,
-                    Gmail = txt_Gmail.Text,
-                    sanPhamMuas = new List<SanPhamMua>()
-                };
-
-                foreach (DataGridViewRow row in dtf_GioHang.Rows)
-                {
-                    if (row.Cells[0].Value != null)
-                    {
-                        hoaDon.sanPhamMuas.Add(new SanPhamMua
-                        {
-                            TenSanPham = row.Cells[0].Value.ToString(),
-                            TenThuongHieu = row.Cells[1].Value.ToString(),
-                            SoLuong = int.Parse(row.Cells[2].Value.ToString()),
-                            Gia = decimal.Parse(row.Cells[3].Value.ToString()),
-                            TongGia = decimal.Parse(row.Cells[4].Value.ToString())
-                        });
-                    }
-                }
-
-                string thongBao = $"{hoaDon.HoaDonId}";
-                string thongBao2 = txt_tenkhachhang.Text;
-                MessageBox.Show($"Tạo thành công hóa đơn {thongBao} cho khách hàng {thongBao2} ", "Thành công !!", MessageBoxButtons.OK);
-                hoaDons.Add(hoaDon);
-                LoadCombobox();
-                txt_tenkhachhang.Clear();
-                txt_sđt.Clear();
-                txt_Gmail.Clear();
-                txt_DiaChi.Clear();
-                txt_Tienthua.Clear();
-                txt_tongtien.Clear();
-                txt_TimKiemGioHang.Clear();
-                txt_khachdua.Clear();
-                dtf_GioHang.Rows.Clear();
-
-
+                MessageBox.Show("Số điện thoại không được để trống!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            
 
+            // Kiểm tra các điều kiện khác
+            if (txt_sđt.Text != "0")
+            {
+                if (string.IsNullOrEmpty(txt_tenkhachhang.Text) ||
+                    string.IsNullOrEmpty(txt_Gmail.Text) ||
+                    string.IsNullOrEmpty(txt_DiaChi.Text))
+                {
+                    MessageBox.Show("Vui lòng điền đầy đủ thông tin vào các trường bắt buộc!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            else
+            {
+                // Xác nhận tạo hóa đơn vãng lai
+                DialogResult result = MessageBox.Show("Bạn có xác định tạo 1 hóa đơn cho khách vãng lai không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
+                txt_DiaChi.Text = "Không có";
+                txt_Gmail.Text = "Không có";
+                txt_tenkhachhang.Text = "Không có";
+            }
+
+            // Tạo mã hóa đơn
+            string hoaDonId = txt_sđt.Text == "0" ? "VL" + (hoaDons.Count + 1).ToString("D3") : "HD" + (hoaDons.Count + 1).ToString("D3");
+
+            // Tạo đối tượng HoaDon
+            HoaDon hoaDon = new HoaDon
+            {
+                HoaDonId = hoaDonId,
+                SoDienThoai = txt_sđt.Text,
+                TenKhachHang = txt_sđt.Text == "0" ? string.Empty : txt_tenkhachhang.Text,
+                DiaChi = txt_sđt.Text == "0" ? string.Empty : txt_DiaChi.Text,
+                Gmail = txt_sđt.Text == "0" ? string.Empty : txt_Gmail.Text,
+                sanPhamMuas = new List<SanPhamMua>()
+            };
+
+            // Thêm sản phẩm vào hóa đơn
+            foreach (DataGridViewRow row in dtf_GioHang.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    hoaDon.sanPhamMuas.Add(new SanPhamMua
+                    {
+                        TenSanPham = row.Cells[0].Value.ToString(),
+                        TenThuongHieu = row.Cells[1].Value.ToString(),
+                        SoLuong = int.Parse(row.Cells[2].Value.ToString()),
+                        Gia = decimal.Parse(row.Cells[3].Value.ToString()),
+                        TongGia = decimal.Parse(row.Cells[4].Value.ToString())
+                    });
+                }
+            }
+
+            // Hiển thị thông báo thành công
+            string thongBao = $"{hoaDon.HoaDonId}";
+            string thongBao2 = txt_sđt.Text == "0" ? "Vãng Lai" : txt_tenkhachhang.Text;
+            MessageBox.Show($"Tạo thành công hóa đơn {thongBao} cho khách hàng {thongBao2}", "Thành công !!", MessageBoxButtons.OK);
+
+            // Thêm hóa đơn vào danh sách và làm sạch các trường
+            hoaDons.Add(hoaDon);
+            LoadCombobox();
+            txt_tenkhachhang.Clear();
+            txt_sđt.Clear();
+            txt_Gmail.Clear();
+            txt_DiaChi.Clear();
+            txt_Tienthua.Clear();
+            txt_tongtien.Clear();
+            txt_TimKiemGioHang.Clear();
+            txt_khachdua.Clear();
+            dtf_GioHang.Rows.Clear();
 
         }
 
@@ -369,10 +357,6 @@ namespace PRL
         }
 
 
-        private void groupBox4_Enter(object sender, EventArgs e)
-        {
-
-        }
         private void LoadCombobox()
         {
             cbx_HoaDonId.Items.Clear();
@@ -382,57 +366,6 @@ namespace PRL
             }
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-            //// Hiển thị hộp thoại xác nhận
-            //DialogResult result = MessageBox.Show("Bạn có chắc muốn tạo hóa đơn cho khách vãng lai không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            //if (result == DialogResult.Yes)
-            //{
-            //    // Tạo hóa đơn cho khách vãng lai
-            //    HoaDon hoaDon = new HoaDon
-            //    {
-            //        HoaDonId = "VL_HD" + (hoaDons.Count + 1).ToString("D3"), // Thêm tiền tố VL
-            //        SoDienThoai = "Khách vãng lai",
-            //        TenKhachHang = "Khách vãng lai",
-            //        DiaChi = "Không có",
-            //        Gmail = "Không có",
-            //        sanPhamMuas = new List<SanPhamMua>()
-            //    };
-
-            //    foreach (DataGridViewRow row in dtf_GioHang.Rows)
-            //    {
-            //        if (row.Cells[0].Value != null)
-            //        {
-            //            hoaDon.sanPhamMuas.Add(new SanPhamMua
-            //            {
-            //                TenSanPham = row.Cells[0].Value.ToString(),
-            //                TenThuongHieu = row.Cells[1].Value.ToString(),
-            //                SoLuong = int.Parse(row.Cells[2].Value.ToString()),
-            //                Gia = decimal.Parse(row.Cells[3].Value.ToString()),
-            //                TongGia = decimal.Parse(row.Cells[4].Value.ToString())
-            //            });
-            //        }
-            //    }
-
-            //    // Thông báo thành công
-            //    string thongBao = $"{hoaDon.HoaDonId}";
-            //    MessageBox.Show($"Tạo thành công hóa đơn {thongBao} cho khách vãng lai", "Thành công !!", MessageBoxButtons.OK);
-
-            //    hoaDons.Add(hoaDon);
-            //    LoadCombobox();
-
-            //    // Xóa thông tin trên form
-            //    txt_tenkhachhang.Clear();
-            //    txt_sđt.Clear();
-            //    txt_Gmail.Clear();
-            //    txt_DiaChi.Clear();
-            //    txt_Tienthua.Clear();
-            //    txt_tongtien.Clear();
-            //    txt_TimKiemGioHang.Clear();
-            //    txt_khachdua.Clear();
-            //    dtf_GioHang.Rows.Clear();
-            //}
-        }
 
         private void icbtn_LamMOI_Click(object sender, EventArgs e)
         {
@@ -453,8 +386,6 @@ namespace PRL
             cbx_HoaDonId.Items.Clear();
 
             // Nạp lại dữ liệu từ dịch vụ nếu cần
-            List<HoaDon> hoaDons = _hoadonServicr.CNShowHoaDon();
-            Loadata(hoaDons);
 
             List<SanPham> sanPhams = _SanPhamService.CNShow();
             Loadata(sanPhams);
@@ -546,29 +477,95 @@ namespace PRL
             };
             formhoadonchitiet.Show();
         }
-        private void UpdateTienThua()
+
+
+
+
+
+
+
+
+
+        private void dtf_GioHang_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            decimal khachDua;
-            decimal tongTien;
-            decimal tienThua;
 
-            // Kiểm tra và chuyển đổi giá trị từ txt_KhachDua
-            if (!decimal.TryParse(txt_khachdua.Text, out khachDua))
-            {
-                khachDua = 0;
-            }
+        }
 
-            // Kiểm tra và chuyển đổi giá trị từ txt_TongTien
-            if (!decimal.TryParse(txt_tongtien.Text, out tongTien))
-            {
-                tongTien = 0;
-            }
+        private void data_SPBH_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
-            // Tính toán tiền thừa
-            tienThua = khachDua - tongTien;
+        }
 
-            // Cập nhật giá trị của txt_TienThua
-            txt_Tienthua.Text = tienThua.ToString("0.00");
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_TongTien_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+        private void txt_tongtien_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+        }
+        private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox5_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+        private void txt_GiaGoc_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtg_HoaDon_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
