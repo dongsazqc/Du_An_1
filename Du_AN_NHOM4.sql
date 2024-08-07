@@ -131,7 +131,6 @@ CREATE TABLE HoaDon (
     SoDienThoai NVARCHAR(50),
     DiaChi NVARCHAR(500),
     FOREIGN KEY (KhachHangID) REFERENCES KhachHang(KhachHangID),
-    FOREIGN KEY (PhuongThucThanhToanID) REFERENCES PhuongThucThanhToan(PhuongThucThanhToanID)
 );
 GO
 
@@ -294,3 +293,48 @@ VALUES (1, 'Sản phẩm A', 100000, 10, '2024-07-21', '2024-08-21', 'Mô tả s
 >>>>>>> b50953e3a273fd36b5338205ab359c70362c7ce3
 
 Select * from NguoiDung;
+go
+CREATE TABLE SanPhamMua (
+    SanPhamMuaId INT PRIMARY KEY IDENTITY,
+    TenSanPham NVARCHAR(255) NOT NULL,
+    TenThuongHieu NVARCHAR(255) NOT NULL,
+    SoLuong INT NOT NULL,
+    Gia DECIMAL(18, 2) NOT NULL,
+    TongGia DECIMAL(18, 2),
+    HoaDonID VARCHAR(50),
+    FOREIGN KEY (HoaDonID) REFERENCES HoaDon(HoaDonID)
+);
+
+CREATE TABLE HoaDonDaThanhToan (
+    HoaDonID VARCHAR(50) PRIMARY KEY,
+    KhachHangID INT,
+    TongTien DECIMAL(18, 2) NOT NULL,
+    TenKhachHang NVARCHAR(255),
+    Gmail NVARCHAR(255),
+    SoDienThoai NVARCHAR(50),
+    DiaChi NVARCHAR(500),
+    FOREIGN KEY (KhachHangID) REFERENCES KhachHang(KhachHangID),
+);
+go
+select* from SanPhamMua
+go
+IF EXISTS (SELECT * FROM sys.foreign_keys WHERE name = 'FK_SanPhamMua_HoaDonDaThanhToan')
+BEGIN
+    ALTER TABLE SanPhamMua
+    DROP CONSTRAINT FK_SanPhamMua_HoaDonDaThanhToan;
+END
+go
+-- Thêm khóa ngoại mới
+ALTER TABLE SanPhamMua
+ADD CONSTRAINT FK_SanPhamMua_HoaDonDaThanhToan
+FOREIGN KEY (HoaDonID) REFERENCES HoaDonDaThanhToan(HoaDonID);
+
+
+ALTER TABLE SanPhamMua
+DROP CONSTRAINT FK__SanPhamMu__HoaDo__7C4F7684;
+
+
+
+
+
+

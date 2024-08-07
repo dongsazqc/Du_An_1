@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DAL.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using Microsoft.Data.SqlClient;
 
 
 namespace PRL
@@ -22,16 +23,38 @@ namespace PRL
         HoaDonService _hoadonService = new HoaDonService(); // Đổi tên biến cho nhất quán
         HoaDonRep _HoaDonRep = new HoaDonRep();
         List<HoaDon> hoaDons = new List<HoaDon>();
+        List<HoaDonDaThanhToan> hoaDonDaThanhs = new List<HoaDonDaThanhToan>(); 
         List<SanPham> sanPhams = new List<SanPham>();
         SanPhamMuaSer _SpMuaSer = new SanPhamMuaSer();
         SanPhamMuaRep _spMuaRep = new SanPhamMuaRep();
+        HDTTService _hdttService = new HDTTService();
+        private readonly string connectionString = "Data Source=PHAM_VAN_DONG;Initial Catalog=Du_An_Nhom4;Integrated Security=True;Trust Server Certificate=True";
 
 
         public FormBanHang()
         {
             InitializeComponent();
-            LoadHoaDons(); // Load hoaDons ngay khi form khởi tạo
-            LoadSanPhams(); // Load sanPhams ngay khi form khởi tạo
+            LoadHoaDons(); 
+            LoadSanPhams();
+            List<HoaDonDaThanhToan> hoaDonDaThanhToans = _hdttService.CNShowHoaDonThanhToan();
+            showdata(hoaDonDaThanhToans);
+        }
+
+        private void showdata(List<HoaDonDaThanhToan> hoaDonDaThanhToans)
+        {
+            dtg_HoaDon.Rows.Clear();
+            dtg_HoaDon.ColumnCount = 6;
+            int stt = 1;
+            dtg_HoaDon.Columns[0].HeaderText = "Số thứ tự";
+            dtg_HoaDon.Columns[1].HeaderText = "Mã hóa đơn";
+            dtg_HoaDon.Columns[2].HeaderText = "Tên khách hàng";
+            dtg_HoaDon.Columns[3].HeaderText = "Địa chỉ";
+            dtg_HoaDon.Columns[4].HeaderText = "Gmail";
+            dtg_HoaDon.Columns[5].HeaderText = "Số điện thoại";
+            foreach (var i in hoaDonDaThanhToans)
+            {
+                dtg_HoaDon.Rows.Add(stt++, i.HoaDonId, i.TenKhachHang, i.DiaChi, i.Gmail, i.SoDienThoai);
+            }
         }
 
         private void LoadataHDCC(List<HoaDon> hddtt)
@@ -45,7 +68,7 @@ namespace PRL
             dtg_HoaDon.Columns[3].HeaderText = "Địa chỉ";
             dtg_HoaDon.Columns[4].HeaderText = "Gmail";
             dtg_HoaDon.Columns[5].HeaderText = "Số điện thoại";
-            foreach (var i in hoaDons)
+            foreach (var i in hoaDonDaThanhs)
             {
                 dtg_HoaDon.Rows.Add(stt++, i.HoaDonId, i.TenKhachHang, i.DiaChi, i.Gmail, i.SoDienThoai);
             }
@@ -62,7 +85,7 @@ namespace PRL
             sanPhams = _SanPhamService.CNShow(); // Cập nhật danh sách sanPhams
             Loadata(sanPhams);
         }
-        private void Loadata(List<HoaDon> hoaDon1s)
+        private void Loadata(List<HoaDon> hoaDons)
         {
             dtg_HoaDon.Rows.Clear();
             dtg_HoaDon.ColumnCount = 6;
@@ -73,11 +96,11 @@ namespace PRL
             dtg_HoaDon.Columns[3].HeaderText = "Địa chỉ";
             dtg_HoaDon.Columns[4].HeaderText = "Gmail";
             dtg_HoaDon.Columns[5].HeaderText = "Số điện thoại";
-            foreach(var i in hoaDons)
+            foreach (var i in hoaDons)
             {
-                dtg_HoaDon.Rows.Add(stt++,i.HoaDonId,i.TenKhachHang,i.DiaChi,i.Gmail,i.SoDienThoai);
+                dtg_HoaDon.Rows.Add(stt++, i.HoaDonId, i.TenKhachHang, i.DiaChi, i.Gmail, i.SoDienThoai);
             }
-            
+
         }
 
         private void Loadata(List<SanPham> sanphams)
@@ -218,54 +241,79 @@ namespace PRL
             {
                 string selectedHoaDonId = cbx_HoaDonId.SelectedItem.ToString();
 
-                // Xác nhận thanh toán
-                string CauLenh = $"Xác nhận thanh toán {txt_tongtien.Text} cho hóa đơn {selectedHoaDonId}";
-                DialogResult result = MessageBox.Show(CauLenh, "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                // Kiểm tra xem mã hóa đơn đã tồn tại chưa
+                bool hoaDonDaTonTai = _hdttService.KiemTraHoaDonTonTai(selectedHoaDonId);
 
-                if (result == DialogResult.OK)
+                if (hoaDonDaTonTai)
                 {
-                    // Lấy thông tin từ form
-                    string hoaDonId = selectedHoaDonId;
-                    string tenKH = txt_tenkhachhang.Text;
-                    string soDT = txt_sđt.Text;
-                    string DiaC = txt_DiaChi.Text;
-                    string Gmail = txt_Gmail.Text;
+                    // Xác nhận thanh toán
+                    string CauLenh = $"Xác nhận thanh toán {txt_tongtien.Text} cho hóa đơn {selectedHoaDonId}";
+                    DialogResult result = MessageBox.Show(CauLenh, "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                    // Gọi phương thức thêm hóa đơn
-                    string kqThemHoaDon = _hoadonService.CNThemHoaDon(hoaDonId, tenKH, soDT, DiaC, Gmail);
-
-                    // Thông báo kết quả
-                    if (kqThemHoaDon != null)
+                    if (result == DialogResult.OK)
                     {
-                        MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Lấy thông tin từ form
+                        string hoaDonId = selectedHoaDonId;
+                        string tenKH = txt_tenkhachhang.Text;
+                        string soDT = txt_sđt.Text;
+                        string DiaC = txt_DiaChi.Text;
+                        string Gmail = txt_Gmail.Text;
 
-                        // Cập nhật danh sách hóa đơn
-                        List<HoaDon> hddtt = _hoadonService.CNShowHDTT();
-                        LoadataHDCC(hddtt);
+                        // Gọi phương thức thêm hóa đơn
+                        string kqThemHoaDon = _hdttService.CNThemHoaDonThanhToan(hoaDonId, tenKH, soDT, DiaC, Gmail);
 
-                        // Reset form
-                        cbx_HoaDonId.Text = "";
-                        txt_tenkhachhang.Clear();
-                        txt_sđt.Clear();
-                        txt_Gmail.Clear();
-                        txt_DiaChi.Clear();
-                        txt_Tienthua.Clear();
-                        txt_tongtien.Clear();
-                        txt_TimKiemGioHang.Clear();
-                        txt_khachdua.Clear();
-                        dtf_GioHang.Rows.Clear();
+                        if (kqThemHoaDon != null)
+                        {
+                            // Xóa hóa đơn khỏi cơ sở dữ liệu
+                            bool xoaThanhCong = _hdttService.CNXoaHoaDon(hoaDonId);
+
+                            if (xoaThanhCong)
+                            {
+                                MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                // Cập nhật danh sách hóa đơn
+                                List<HoaDonDaThanhToan> hoaDonDaThanhToans = _hdttService.CNShowHoaDonThanhToan();
+                                showdata(hoaDonDaThanhToans);
+
+                                // Cập nhật lại ComboBox
+                                cbx_HoaDonId.Items.Clear();
+                                foreach (var item in hoaDonDaThanhToans)
+                                {
+                                    cbx_HoaDonId.Items.Add(item.HoaDonId);
+                                }
+
+                                // Reset form
+                                cbx_HoaDonId.SelectedIndex = -1;
+                                txt_tenkhachhang.Clear();
+                                txt_sđt.Clear();
+                                txt_Gmail.Clear();
+                                txt_DiaChi.Clear();
+                                txt_Tienthua.Clear();
+                                txt_tongtien.Clear();
+                                txt_TimKiemGioHang.Clear();
+                                txt_khachdua.Clear();
+                                dtf_GioHang.Rows.Clear();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Lỗi khi xóa hóa đơn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Lỗi khi thanh toán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Lỗi khi thanh toán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("Mã hóa đơn không tồn tại trong danh sách hóa đơn đã thanh toán.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn hóa đơn cần thanh toán!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
         }
 
 
@@ -302,11 +350,21 @@ namespace PRL
                 txt_tenkhachhang.Text = "Không có";
             }
 
-            // Tạo mã hóa đơn
-            string hoaDonId = txt_sđt.Text == "0" ? "VL" + (hoaDons.Count + 1).ToString("D3") : "HD" + (hoaDons.Count + 1).ToString("D3");
+            // Tạo mã hóa đơn mới
+            string hoaDonId;
+            if (txt_sđt.Text == "0")
+            {
+                // Mã hóa đơn cho khách vãng lai
+                hoaDonId = "VL" + (GetMaxHoaDonId() + 1).ToString("D3");
+            }
+            else
+            {
+                // Mã hóa đơn cho khách hàng thông thường
+                hoaDonId = "HD" + (GetMaxHoaDonId() + 1).ToString("D3");
+            }
 
             // Tạo đối tượng HoaDon
-            HoaDon hoaDon = new HoaDon
+            HoaDonDaThanhToan hoaDon = new HoaDonDaThanhToan
             {
                 HoaDonId = hoaDonId,
                 SoDienThoai = txt_sđt.Text,
@@ -338,7 +396,7 @@ namespace PRL
             MessageBox.Show($"Tạo thành công hóa đơn {thongBao} cho khách hàng {thongBao2}", "Thành công !!", MessageBoxButtons.OK);
 
             // Thêm hóa đơn vào danh sách và làm sạch các trường
-            hoaDons.Add(hoaDon);
+            hoaDonDaThanhs.Add(hoaDon);
             LoadCombobox();
             txt_tenkhachhang.Clear();
             txt_sđt.Clear();
@@ -349,7 +407,6 @@ namespace PRL
             txt_TimKiemGioHang.Clear();
             txt_khachdua.Clear();
             dtf_GioHang.Rows.Clear();
-
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -361,7 +418,7 @@ namespace PRL
                 string selectedMaHoaDon = cbx_HoaDonId.SelectedItem.ToString();
 
                 // Tìm hóa đơn tương ứng trong danh sách hoaDonChos
-                HoaDon selectedHoaDon = hoaDons.FirstOrDefault(hd => hd.HoaDonId == selectedMaHoaDon);
+                HoaDonDaThanhToan selectedHoaDon = hoaDonDaThanhs.FirstOrDefault(hd => hd.HoaDonId == selectedMaHoaDon);
 
                 if (selectedHoaDon != null)
                 {
@@ -383,12 +440,23 @@ namespace PRL
                 }
             }
         }
-
+        private int GetMaxHoaDonId()
+        {
+            // Truy vấn cơ sở dữ liệu để lấy mã hóa đơn lớn nhất hiện tại
+            string query = "SELECT MAX(CAST(SUBSTRING(HoaDonID, 3, LEN(HoaDonID)) AS INT)) FROM HoaDonDaThanhToan";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                return result != DBNull.Value ? Convert.ToInt32(result) : 0;
+            }
+        }
 
         private void LoadCombobox()
         {
             cbx_HoaDonId.Items.Clear();
-            foreach (var hoaDon in hoaDons)
+            foreach (var hoaDon in hoaDonDaThanhs)
             {
                 cbx_HoaDonId.Items.Add(hoaDon.HoaDonId);
             }
@@ -417,6 +485,9 @@ namespace PRL
 
             List<SanPham> sanPhams = _SanPhamService.CNShow();
             Loadata(sanPhams);
+            List<HoaDonDaThanhToan> hoaDonDaThanhToans = _hdttService.CNShowHoaDonThanhToan();
+            showdata(hoaDonDaThanhToans);
+
 
             // Reset các thuộc tính khác nếu cần
             icbtn_LamMOI.IconChar = FontAwesome.Sharp.IconChar.Rotate - Left;
@@ -491,26 +562,23 @@ namespace PRL
 
         private void dtg_HoaDon_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Lấy danh sách các hàng từ DataGridView
-            var rows = new List<DataGridViewRow>();
-            foreach (DataGridViewRow row in dtg_HoaDon.SelectedRows)
+            // Kiểm tra nếu double-click vào hàng hợp lệ (không phải header)
+            if (e.RowIndex >= 0)
             {
-                rows.Add(row);
-            }
+                // Lấy mã hóa đơn từ ô tương ứng (giả sử mã hóa đơn nằm ở cột đầu tiên)
+                string hoaDonId = dtg_HoaDon.Rows[e.RowIndex].Cells[1].Value.ToString();
 
-            // Tạo và mở FormHoaDonChiTiet, truyền dữ liệu vào
-            FormHoaDonChiTiet formhoadonchitiet = new FormHoaDonChiTiet()
-            {
-                Rows = rows
-            };
-            formhoadonchitiet.Show();
+                // Mở FormHoaDonChiTiet và truyền mã hóa đơn
+                FormHoaDonChiTiet formChiTiet = new FormHoaDonChiTiet(hoaDonId);
+                formChiTiet.Show();
+            }
         }
 
 
 
 
 
-            
+
 
 
 
@@ -595,5 +663,7 @@ namespace PRL
         {
 
         }
+
+        
     }
 }

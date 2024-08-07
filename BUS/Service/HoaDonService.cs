@@ -19,10 +19,6 @@ namespace BUS.Service
         {
             return _repos.GetAll();
         }
-        public List<HoaDon> CNShowHDThanhToan()
-        {
-           return _repos.GetALLHDTT();
-        }
         public string CNThemHoaDon(string HoaDonID, string Tenkhachhang, string email, string sdt, string diachi)
         {
             HoaDon hd = new HoaDon()
@@ -43,25 +39,26 @@ namespace BUS.Service
                 return "Thêm thất bại";
             }
         }
-        public bool ThanhToanHoaDon(string hoaDonId)
-        {
-            // Lấy hóa đơn theo ID
-            var hoaDon = _repos.GetHoaDonById(hoaDonId);
+        public bool CNThemHDTT(string hoaDonId ,string tenKH, string DiaC,string Gmail,string soDT)
+        {// Kiểm tra hóa đơn có tồn tại không
+            HoaDon hoaDon = _repos.GetHoaDonById(hoaDonId);
+            if (hoaDon == null)
+            {
+                return false; // Hóa đơn không tồn tại
+            }
 
-            if (hoaDon != null)
-            {
-                // Cập nhật trạng thái thanh toán của hóa đơn
-                return _repos.ThanhToanHoaDon(hoaDonId);
-            }
-            return false;
+            // Cập nhật thông tin hóa đơn
+            hoaDon.TenKhachHang = tenKH;
+            hoaDon.DiaChi = DiaC;
+            hoaDon.Gmail = Gmail;
+            hoaDon.SoDienThoai = soDT;
+
+            // Lưu hóa đơn đã cập nhật
+            return _repos.UpdateHoaDon(hoaDon);
         }
-        public List<HoaDon> CNShowHDTT()
+        public HoaDon GetHoaDonById(string hoaDonId)
         {
-            using (var context = new DuAnNhom4Context())
-            {
-                // Trả về danh sách hóa đơn đã thanh toán
-                return context.HoaDons.Where(hd => hd.TrangThai == "Đã thanh toán").ToList();
-            }
+                return _repos.GetHoaDonById(hoaDonId);
         }
     }
 }

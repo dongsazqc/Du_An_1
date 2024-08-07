@@ -15,23 +15,25 @@ namespace DAL.Repsitory
         {
             
         }
-        public void ThemChiTietSP(string tenSanPham, string tenThuongHieu, decimal gia, decimal tongGia,int soluong)
+        public List<SanPhamMua> GetAll()
         {
-            using (var context = new  DuAnNhom4Context())
+            return _context.SanPhamMuas.ToList();
+        }
+        public bool AddSPM(SanPhamMua spm)
+        {
+            try
             {
-                // Tạo đối tượng ChiTietSanPham
-                var chiTietSanPham = new SanPhamMua
-                {
-                    TenSanPham = tenSanPham,
-                    TenThuongHieu = tenThuongHieu,
-                    Gia = gia,
-                    TongGia = tongGia,
-                    SoLuong = soluong, // Giả sử mỗi sản phẩm thêm vào có số lượng 1, bạn có thể thay đổi theo yêu cầu
-                };
+                _context.SanPhamMuas.Add(spm);
+                _context.SaveChanges(); // lưu thay đổi
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
 
-                // Thêm đối tượng vào cơ sở dữ liệu
-                context.SanPhamMuas.Add(chiTietSanPham);
             }
         }
+
+
     }
 }

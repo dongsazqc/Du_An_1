@@ -6,7 +6,6 @@ namespace DAL.Models;
 
 public partial class DuAnNhom4Context : DbContext
 {
-
     public DuAnNhom4Context()
     {
     }
@@ -15,8 +14,6 @@ public partial class DuAnNhom4Context : DbContext
         : base(options)
     {
     }
-    public virtual DbSet<SanPhamMua> SanPhamMuas { get; set; }
-    
 
     public virtual DbSet<ChiTietDonHang> ChiTietDonHangs { get; set; }
 
@@ -27,6 +24,8 @@ public partial class DuAnNhom4Context : DbContext
     public virtual DbSet<HoaDon> HoaDons { get; set; }
 
     public virtual DbSet<HoaDonChiTiet> HoaDonChiTiets { get; set; }
+
+    public virtual DbSet<HoaDonDaThanhToan> HoaDonDaThanhToans { get; set; }
 
     public virtual DbSet<KhachHang> KhachHangs { get; set; }
 
@@ -43,6 +42,8 @@ public partial class DuAnNhom4Context : DbContext
     public virtual DbSet<SanPham> SanPhams { get; set; }
 
     public virtual DbSet<SanPhamGiamGium> SanPhamGiamGia { get; set; }
+
+    public virtual DbSet<SanPhamMua> SanPhamMuas { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
@@ -134,10 +135,6 @@ public partial class DuAnNhom4Context : DbContext
             entity.HasOne(d => d.KhachHang).WithMany(p => p.HoaDons)
                 .HasForeignKey(d => d.KhachHangId)
                 .HasConstraintName("FK__HoaDon__KhachHan__52593CB8");
-
-            entity.HasOne(d => d.PhuongThucThanhToan).WithMany(p => p.HoaDons)
-                .HasForeignKey(d => d.PhuongThucThanhToanId)
-                .HasConstraintName("FK__HoaDon__PhuongTh__534D60F1");
         });
 
         modelBuilder.Entity<HoaDonChiTiet>(entity =>
@@ -148,6 +145,7 @@ public partial class DuAnNhom4Context : DbContext
 
             entity.Property(e => e.HoaDonChiTietId).HasColumnName("HoaDonChiTietID");
             entity.Property(e => e.Gia).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.GiaBan).HasColumnType("decimal(18, 0)");
             entity.Property(e => e.GiamGia)
                 .HasDefaultValue(0m)
                 .HasColumnType("decimal(18, 2)");
@@ -158,13 +156,31 @@ public partial class DuAnNhom4Context : DbContext
             entity.Property(e => e.MaSanPham).HasMaxLength(50);
             entity.Property(e => e.SanPhamId).HasColumnName("SanPhamID");
 
-            entity.HasOne(d => d.HoaDon).WithMany(p => p.HoaDonChiTiets)
-                .HasForeignKey(d => d.HoaDonId)
-                .HasConstraintName("FK__HoaDonChi__HoaDo__571DF1D5");
-
             entity.HasOne(d => d.SanPham).WithMany(p => p.HoaDonChiTiets)
                 .HasForeignKey(d => d.SanPhamId)
                 .HasConstraintName("FK__HoaDonChi__SanPh__5812160E");
+        });
+
+        modelBuilder.Entity<HoaDonDaThanhToan>(entity =>
+        {
+            entity.HasKey(e => e.HoaDonId).HasName("PK__HoaDonDa__6956CE692FE77081");
+
+            entity.ToTable("HoaDonDaThanhToan");
+
+            entity.Property(e => e.HoaDonId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("HoaDonID");
+            entity.Property(e => e.DiaChi).HasMaxLength(500);
+            entity.Property(e => e.Gmail).HasMaxLength(255);
+            entity.Property(e => e.KhachHangId).HasColumnName("KhachHangID");
+            entity.Property(e => e.SoDienThoai).HasMaxLength(50);
+            entity.Property(e => e.TenKhachHang).HasMaxLength(255);
+            entity.Property(e => e.TongTien).HasColumnType("decimal(18, 2)");
+
+            entity.HasOne(d => d.KhachHang).WithMany(p => p.HoaDonDaThanhToans)
+                .HasForeignKey(d => d.KhachHangId)
+                .HasConstraintName("FK__HoaDonDaT__Khach__7F2BE32F");
         });
 
         modelBuilder.Entity<KhachHang>(entity =>
@@ -290,9 +306,28 @@ public partial class DuAnNhom4Context : DbContext
             entity.Property(e => e.TenSanPham).HasMaxLength(255);
         });
 
+        modelBuilder.Entity<SanPhamMua>(entity =>
+        {
+            entity.HasKey(e => e.SanPhamMuaId).HasName("PK__SanPhamM__AB1887E0B38C7E60");
+
+            entity.ToTable("SanPhamMua");
+
+            entity.Property(e => e.Gia).HasColumnType("decimal(18, 2)");
+            entity.Property(e => e.HoaDonId)
+                .HasMaxLength(50)
+                .IsUnicode(false)
+                .HasColumnName("HoaDonID");
+            entity.Property(e => e.TenSanPham).HasMaxLength(255);
+            entity.Property(e => e.TenThuongHieu).HasMaxLength(255);
+            entity.Property(e => e.TongGia).HasColumnType("decimal(18, 2)");
+
+            entity.HasOne(d => d.HoaDon).WithMany(p => p.SanPhamMuas)
+                .HasForeignKey(d => d.HoaDonId)
+                .HasConstraintName("FK__SanPhamMu__HoaDo__7C4F7684");
+        });
+
         OnModelCreatingPartial(modelBuilder);
     }
-
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

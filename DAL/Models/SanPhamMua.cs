@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DAL.Models;
 
-public class SanPhamMua
+public partial class SanPhamMua
 {
     public int SanPhamMuaId { get; set; }
 
@@ -16,4 +16,8 @@ public class SanPhamMua
     public decimal Gia { get; set; }
 
     public decimal? TongGia { get; set; }
+
+    public string? HoaDonId { get; set; }
+
+    public virtual HoaDon? HoaDon { get; set; }
 }
