@@ -1,5 +1,6 @@
 ﻿using DAL.Models;
 using DAL.Repsitory;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace BUS.Service
 
     public class SanPhamMuaSer
     {
+        
         SanPhamMuaRep _repos = new SanPhamMuaRep();
         public SanPhamMuaSer()
         {
@@ -43,12 +45,8 @@ namespace BUS.Service
         }
         public List<SanPhamMua> GetSanPhamByHoaDonId(string hoaDonId)
         {
-            using (var context = new DuAnNhom4Context())
-            {
-                return context.SanPhamMuas
-                              .Where(sp => sp.HoaDonId == hoaDonId)
-                              .ToList();
-            }
+            // Gọi phương thức GetSanPhamByHoaDonId từ lớp repository
+            return _repos.GetSanPhamByHoaDonId(hoaDonId);
         }
     }
 }

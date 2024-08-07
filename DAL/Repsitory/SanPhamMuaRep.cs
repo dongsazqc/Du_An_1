@@ -33,7 +33,12 @@ namespace DAL.Repsitory
 
             }
         }
-
+        public List<SanPhamMua> GetSanPhamByHoaDonId(string hoaDonId)
+        {
+            return _context.SanPhamMuas
+                            .Where(sp => sp.HoaDonId == hoaDonId) // Giả sử có thuộc tính HoaDonId trong SanPhamMua
+                            .ToList();
+        }
 
     }
 }

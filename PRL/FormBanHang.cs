@@ -257,13 +257,27 @@ namespace PRL
 
                         // Gọi phương thức thêm hóa đơn
                         string kqThemHoaDon = _hdttService.CNThemHoaDonThanhToan(hoaDonId, tenKH, soDT, DiaC, Gmail);
+                        foreach (DataGridViewRow row in dtf_GioHang.Rows)
+                        {
+                            if (row.Cells[0].Value != null)
+                            {
+                                // Gọi phương thức thêm sản phẩm mua vào cơ sở dữ liệu
+                                string tenSP = row.Cells[0].Value.ToString();
+                                string tenThuongHieu = row.Cells[1].Value.ToString();
+                                int soLuong = int.Parse(row.Cells[2].Value.ToString());
+                                decimal gia = decimal.Parse(row.Cells[3].Value.ToString());
+                                decimal tongGia = decimal.Parse(row.Cells[4].Value.ToString());
 
-                        
-                        
-                            // Xóa hóa đơn khỏi cơ sở dữ liệu
+                                // Gọi phương thức thêm sản phẩm mua
+                                _SpMuaSer.CNThemSPM(tenSP, tenThuongHieu, soLuong, gia, tongGia);
+                            }
+                        }
 
-                            
-                                MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Xóa hóa đơn khỏi cơ sở dữ liệu
+
+
+                        MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 // Cập nhật danh sách hóa đơn
                                 List<HoaDonDaThanhToan> hoaDonDaThanhToans = _hdttService.CNShowHoaDonThanhToan();
@@ -466,6 +480,7 @@ namespace PRL
         private void icbtn_LamMOI_Click(object sender, EventArgs e)
         {
             // Xóa dữ liệu hiện tại trên DataGridView
+
             dtg_HoaDon.Rows.Clear();
             data_SPBH.Rows.Clear();
             dtf_GioHang.Rows.Clear();
@@ -562,14 +577,11 @@ namespace PRL
 
         private void dtg_HoaDon_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kiểm tra nếu double-click vào hàng hợp lệ (không phải header)
             if (e.RowIndex >= 0)
             {
-                // Lấy mã hóa đơn từ ô tương ứng (giả sử mã hóa đơn nằm ở cột đầu tiên)
                 string hoaDonId = dtg_HoaDon.Rows[e.RowIndex].Cells[1].Value.ToString();
-
-                // Mở FormHoaDonChiTiet và truyền mã hóa đơn
                 FormHoaDonChiTiet formChiTiet = new FormHoaDonChiTiet(hoaDonId);
+                formChiTiet.LoadSanPham(hoaDonId);
                 formChiTiet.Show();
             }
         }
