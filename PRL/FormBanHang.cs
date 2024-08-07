@@ -236,16 +236,12 @@ namespace PRL
 
         private void btn_ThanhToan_Click(object sender, EventArgs e)
         {
-            // Kiểm tra xem có chọn hóa đơn nào không
-            if (cbx_HoaDonId.SelectedItem != null)
             {
-                string selectedHoaDonId = cbx_HoaDonId.SelectedItem.ToString();
-
-                // Kiểm tra xem mã hóa đơn đã tồn tại chưa
-                bool hoaDonDaTonTai = _hdttService.KiemTraHoaDonTonTai(selectedHoaDonId);
-
-                if (hoaDonDaTonTai)
+                // Kiểm tra xem có chọn hóa đơn nào không
+                if (cbx_HoaDonId.SelectedItem != null)
                 {
+                    string selectedHoaDonId = cbx_HoaDonId.SelectedItem.ToString();
+
                     // Xác nhận thanh toán
                     string CauLenh = $"Xác nhận thanh toán {txt_tongtien.Text} cho hóa đơn {selectedHoaDonId}";
                     DialogResult result = MessageBox.Show(CauLenh, "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
@@ -262,29 +258,23 @@ namespace PRL
                         // Gọi phương thức thêm hóa đơn
                         string kqThemHoaDon = _hdttService.CNThemHoaDonThanhToan(hoaDonId, tenKH, soDT, DiaC, Gmail);
 
-                        if (kqThemHoaDon != null)
-                        {
+                        
+                        
                             // Xóa hóa đơn khỏi cơ sở dữ liệu
-                            bool xoaThanhCong = _hdttService.CNXoaHoaDon(hoaDonId);
 
-                            if (xoaThanhCong)
-                            {
+                            
                                 MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                 // Cập nhật danh sách hóa đơn
                                 List<HoaDonDaThanhToan> hoaDonDaThanhToans = _hdttService.CNShowHoaDonThanhToan();
                                 showdata(hoaDonDaThanhToans);
 
-                                // Cập nhật lại ComboBox
-                                cbx_HoaDonId.Items.Clear();
-                                foreach (var item in hoaDonDaThanhToans)
-                                {
-                                    cbx_HoaDonId.Items.Add(item.HoaDonId);
-                                }
+                        // Cập nhật lại ComboBox
+                        cbx_HoaDonId.Items.Remove(selectedHoaDonId);
 
-                                // Reset form
-                                cbx_HoaDonId.SelectedIndex = -1;
-                                txt_tenkhachhang.Clear();
+
+                        // Reset form
+                        txt_tenkhachhang.Clear();
                                 txt_sđt.Clear();
                                 txt_Gmail.Clear();
                                 txt_DiaChi.Clear();
@@ -293,32 +283,21 @@ namespace PRL
                                 txt_TimKiemGioHang.Clear();
                                 txt_khachdua.Clear();
                                 dtf_GioHang.Rows.Clear();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Lỗi khi xóa hóa đơn", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Lỗi khi thanh toán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                          
+                        
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Mã hóa đơn không tồn tại trong danh sách hóa đơn đã thanh toán.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vui lòng chọn hóa đơn cần thanh toán!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn hóa đơn cần thanh toán!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
 
         private void btn_TaoHoaDon_Click(object sender, EventArgs e)
         {
+
             // Kiểm tra thông tin đầu vào từ các TextBox
             if (string.IsNullOrEmpty(txt_sđt.Text))
             {
@@ -350,17 +329,34 @@ namespace PRL
                 txt_tenkhachhang.Text = "Không có";
             }
 
-            // Tạo mã hóa đơn mới
+            // Lấy danh sách mã hóa đơn hiện có từ ComboBox
+            List<string> existingIds = cbx_HoaDonId.Items.Cast<string>().ToList();
             string hoaDonId;
+            int maxId;
+
             if (txt_sđt.Text == "0")
             {
                 // Mã hóa đơn cho khách vãng lai
-                hoaDonId = "VL" + (GetMaxHoaDonId() + 1).ToString("D3");
+                maxId = GetMaxHoaDonId("VL");
+                hoaDonId = "VL" + (maxId + 1).ToString("D3");
+                // Kiểm tra trùng lặp và sinh mã mới nếu cần
+                while (existingIds.Contains(hoaDonId))
+                {
+                    maxId++;
+                    hoaDonId = "VL" + (maxId + 1).ToString("D3");
+                }
             }
             else
             {
                 // Mã hóa đơn cho khách hàng thông thường
-                hoaDonId = "HD" + (GetMaxHoaDonId() + 1).ToString("D3");
+                maxId = GetMaxHoaDonId("HD");
+                hoaDonId = "HD" + (maxId + 1).ToString("D3");
+                // Kiểm tra trùng lặp và sinh mã mới nếu cần
+                while (existingIds.Contains(hoaDonId))
+                {
+                    maxId++;
+                    hoaDonId = "HD" + (maxId + 1).ToString("D3");
+                }
             }
 
             // Tạo đối tượng HoaDon
@@ -440,17 +436,21 @@ namespace PRL
                 }
             }
         }
-        private int GetMaxHoaDonId()
+        private int GetMaxHoaDonId(string prefix)
         {
-            // Truy vấn cơ sở dữ liệu để lấy mã hóa đơn lớn nhất hiện tại
-            string query = "SELECT MAX(CAST(SUBSTRING(HoaDonID, 3, LEN(HoaDonID)) AS INT)) FROM HoaDonDaThanhToan";
+            int maxId = 0;
+            string query = $"SELECT MAX(CAST(SUBSTRING(HoaDonID, LEN('{prefix}') + 1, LEN(HoaDonID) - LEN('{prefix}')) AS INT)) FROM HoaDonDaThanhToan WHERE HoaDonID LIKE '{prefix}%'";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 connection.Open();
                 object result = command.ExecuteScalar();
-                return result != DBNull.Value ? Convert.ToInt32(result) : 0;
+                if (result != DBNull.Value && result != null)
+                {
+                    maxId = Convert.ToInt32(result);
+                }
             }
+            return maxId;
         }
 
         private void LoadCombobox()
