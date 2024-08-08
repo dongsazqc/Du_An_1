@@ -95,9 +95,15 @@ namespace BUS.Service
             _repos.CapNhatSoLuong(sanPhamId, soLuongMoi);
         }
 
-        public SanPham GetById(int spid)
+        public SanPham CNtIMspTheoID(int spid)
         {
-            return _repos.GetById(spid);
+            List<SanPham> spList = _repos.Getsp(spid);
+
+            return spList.FirstOrDefault();
+        }
+        public List<SanPham> CntimSPTheoTen(string ten)
+        {
+            return _repos.GetSPtheoTEN(ten);
         }
 
     }

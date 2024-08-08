@@ -123,11 +123,15 @@ namespace DAL.Repsitory
                 _context.SaveChanges();
             }
         }
-        public SanPham GetById(int sanPhamId)
+        public List<SanPham> Getsp(int idsp)
         {
-            {
-                return _context.SanPhams.FirstOrDefault(sp => sp.SanPhamId == sanPhamId);
-            }
+            // Tìm sản phẩm có SanPhamId bằng idsp
+            return _context.SanPhams.Where(p => p.SanPhamId == idsp).ToList();
         }
+        public List<SanPham> GetSPtheoTEN(string ten)
+        {
+            return _context.SanPhams.Where(p => p.TenSanPham.Contains(ten)).ToList(); 
+        }
+
     }
 }

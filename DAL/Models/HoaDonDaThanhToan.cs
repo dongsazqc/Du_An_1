@@ -20,5 +20,6 @@ public partial class HoaDonDaThanhToan
     public string? DiaChi { get; set; }
 
     public virtual KhachHang? KhachHang { get; set; }
-    public List<SanPhamMua>? sanPhamMuas { get; set; } = new List<SanPhamMua>();
+    public List<SanPhamMua> sanPhamMuas { get; set; }
+
 }

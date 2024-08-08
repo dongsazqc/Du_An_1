@@ -28,4 +28,5 @@ public partial class HoaDon
     public virtual KhachHang? KhachHang { get; set; }
 
     public virtual ICollection<SanPhamMua> SanPhamMuas { get; set; } = new List<SanPhamMua>();
+    public List<SanPhamMua> sanPhamMuas { get; set; }
 }
