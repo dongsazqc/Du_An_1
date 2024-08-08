@@ -143,12 +143,13 @@ namespace PRL
             txt_tongtien.Enabled = false;
             txt_tongtien.Text = "0.00";
 
-            dtf_GioHang.ColumnCount = 5;
+            dtf_GioHang.ColumnCount = 6;
             dtf_GioHang.Columns[0].HeaderText = "Tên sản phẩm";
             dtf_GioHang.Columns[1].HeaderText = "Tên thương hiệu ";
             dtf_GioHang.Columns[2].HeaderText = "Số lượng";
             dtf_GioHang.Columns[3].HeaderText = "Giá";
             dtf_GioHang.Columns[4].HeaderText = "Tổng giá";
+            dtf_GioHang.Columns[5].HeaderText = "Hóa đơn ID";
 
         }
 
@@ -267,9 +268,10 @@ namespace PRL
                                 int soLuong = int.Parse(row.Cells[2].Value.ToString());
                                 decimal gia = decimal.Parse(row.Cells[3].Value.ToString());
                                 decimal tongGia = decimal.Parse(row.Cells[4].Value.ToString());
+                                string HoadonIdSPM = cbx_HoaDonId.Text;
 
                                 // Gọi phương thức thêm sản phẩm mua
-                                _SpMuaSer.CNThemSPM(tenSP, tenThuongHieu, soLuong, gia, tongGia);
+                                _SpMuaSer.CNThemSPM(tenSP, tenThuongHieu, soLuong, gia, tongGia,HoadonIdSPM);
                             }
                         }
 
@@ -396,6 +398,7 @@ namespace PRL
                         SoLuong = int.Parse(row.Cells[2].Value.ToString()),
                         Gia = decimal.Parse(row.Cells[3].Value.ToString()),
                         TongGia = decimal.Parse(row.Cells[4].Value.ToString())
+
                     });
                 }
             }
@@ -577,12 +580,29 @@ namespace PRL
 
         private void dtg_HoaDon_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            // Kiểm tra nếu double-click vào hàng hợp lệ (không phải header)
             if (e.RowIndex >= 0)
             {
-                string hoaDonId = dtg_HoaDon.Rows[e.RowIndex].Cells[1].Value.ToString();
-                FormHoaDonChiTiet formChiTiet = new FormHoaDonChiTiet(hoaDonId);
-                formChiTiet.LoadSanPham(hoaDonId);
-                formChiTiet.Show();
+                try
+                {
+                    // Lấy mã hóa đơn từ ô tương ứng (giả sử mã hóa đơn nằm ở cột thứ hai)
+                    string hoaDonId = dtg_HoaDon.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+                    if (string.IsNullOrEmpty(hoaDonId))
+                    {
+                        MessageBox.Show("Mã hóa đơn không hợp lệ.", "Thông Báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // Mở FormHoaDonChiTiet và truyền mã hóa đơn
+                    FormHoaDonChiTiet formChiTiet = new FormHoaDonChiTiet(hoaDonId);
+                    formChiTiet.Show();
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi nếu có
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
