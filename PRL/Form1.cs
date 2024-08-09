@@ -123,8 +123,8 @@ namespace PRL
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-OpenChildForm(new Voucher());
-            TieuDe.Text= btn_Voucher.Text;
+OpenChildForm(new FormKhuyenMai());
+            TieuDe.Text= btn_KM.Text;
         }
     }
 }
