@@ -49,9 +49,6 @@ namespace PRL
             btnClear = new Button();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
-            rdoNu = new RadioButton();
-            rdoNam = new RadioButton();
-            label7 = new Label();
             groupBox5 = new GroupBox();
             dgv_KhachHang = new DataGridView();
             linkLabel1 = new LinkLabel();
@@ -144,6 +141,7 @@ namespace PRL
             // 
             txtMa.Location = new Point(254, 31);
             txtMa.Name = "txtMa";
+            txtMa.ReadOnly = true;
             txtMa.Size = new Size(311, 30);
             txtMa.TabIndex = 7;
             // 
@@ -236,9 +234,6 @@ namespace PRL
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(rdoNu);
-            groupBox3.Controls.Add(rdoNam);
-            groupBox3.Controls.Add(label7);
             groupBox3.Controls.Add(txtMa);
             groupBox3.Controls.Add(txtTenKhachHang);
             groupBox3.Controls.Add(txtEmail);
@@ -253,44 +248,10 @@ namespace PRL
             groupBox3.ForeColor = Color.IndianRed;
             groupBox3.Location = new Point(48, 12);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(604, 366);
+            groupBox3.Size = new Size(604, 312);
             groupBox3.TabIndex = 20;
             groupBox3.TabStop = false;
             groupBox3.Text = "Thông tin khách hàng";
-            // 
-            // rdoNu
-            // 
-            rdoNu.AutoSize = true;
-            rdoNu.ForeColor = Color.Black;
-            rdoNu.Location = new Point(377, 300);
-            rdoNu.Name = "rdoNu";
-            rdoNu.Size = new Size(55, 27);
-            rdoNu.TabIndex = 14;
-            rdoNu.TabStop = true;
-            rdoNu.Text = "Nữ";
-            rdoNu.UseVisualStyleBackColor = true;
-            // 
-            // rdoNam
-            // 
-            rdoNam.AutoSize = true;
-            rdoNam.ForeColor = Color.Black;
-            rdoNam.Location = new Point(254, 298);
-            rdoNam.Name = "rdoNam";
-            rdoNam.Size = new Size(69, 27);
-            rdoNam.TabIndex = 13;
-            rdoNam.TabStop = true;
-            rdoNam.Text = "Nam";
-            rdoNam.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.ForeColor = Color.Black;
-            label7.Location = new Point(52, 302);
-            label7.Name = "label7";
-            label7.Size = new Size(80, 23);
-            label7.TabIndex = 12;
-            label7.Text = "Giới tính";
             // 
             // groupBox5
             // 
@@ -405,8 +366,5 @@ namespace PRL
         private DataGridView dgv_data;
         private Label label6;
         private TextBox txtTimKiem;
-        private RadioButton rdoNu;
-        private RadioButton rdoNam;
-        private Label label7;
     }
 }

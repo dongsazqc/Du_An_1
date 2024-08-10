@@ -30,28 +30,51 @@ namespace BUS.Service
             return _repo.GetKH(id);
         }
 
-        public string CNThem(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi, bool gioitinh)
+        public string CNThemOrUpdateKhachHang(string tenKH, string email, string sdt, string diaChi, int diemTichLuy, string capDoThanhVien)
         {
-            KhachHang kh = new KhachHang()
+            // Tìm khách hàng dựa trên số điện thoại
+            var existingCustomer = _repo.GetKhachHangBySoDienThoai(sdt);
+
+            if (existingCustomer != null)
             {
-                KhachHangId = Khanhhangid,
-                TenKhachHang = tenkhachhang,
-                Email = email,
-                SoDienThoai = sdt,
-                DiaChi = diachi,
-                GioiTinh = gioitinh
-            };
-            if (_repo.AddKH(kh))
-            {
-                return "Thêm thành công";
+                // Khách hàng đã tồn tại, cập nhật điểm tích lũy và cấp độ thành viên
+                existingCustomer.DiemTichLuy += diemTichLuy; // Cộng dồn điểm tích lũy
+                existingCustomer.CapDoThanhVien = capDoThanhVien; // Cập nhật cấp độ thành viên
+
+                if (_repo.Update(existingCustomer))
+                {
+                    return "Cập nhật điểm thành công";
+                }
+                else
+                {
+                    return "Cập nhật điểm thất bại";
+                }
             }
             else
             {
-                return "Thêm thất bại";
+                // Khách hàng mới, tạo mới
+                KhachHang kh = new KhachHang
+                {
+                    TenKhachHang = tenKH,
+                    Email = email,
+                    SoDienThoai = sdt,
+                    DiaChi = diaChi,
+                    DiemTichLuy = diemTichLuy,
+                    CapDoThanhVien = capDoThanhVien
+                };
+
+                if (_repo.AddKH(kh))
+                {
+                    return "Thêm khách hàng thành công";
+                }
+                else
+                {
+                    return "Thêm khách hàng thất bại";
+                }
             }
         }
 
-        public string CNSua(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi, bool gioitinh)
+        public string CNSua(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi)
         {
             KhachHang kh = new KhachHang()
             {
@@ -59,16 +82,15 @@ namespace BUS.Service
                 TenKhachHang = tenkhachhang,
                 Email = email,
                 SoDienThoai = sdt,
-                DiaChi = diachi,
-                GioiTinh = gioitinh
+                DiaChi = diachi
             };
             if (_repo.Update(kh))
             {
-                return "Sửa thành công";
+                return "Sửa khách hàng thành công";
             }
             else
             {
-                return "Sửa thất bại";
+                return "Sửa khách hàng thất bại";
             }
         }
 

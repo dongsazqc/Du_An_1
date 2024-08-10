@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using DAL.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.Data.SqlClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 namespace PRL
@@ -28,9 +29,9 @@ namespace PRL
         SanPhamMuaSer _SpMuaSer = new SanPhamMuaSer();
         SanPhamMuaRep _spMuaRep = new SanPhamMuaRep();
         HDTTService _hdttService = new HDTTService();
-        private readonly string connectionString = "Data Source=PHAM_VAN_DONG;Initial Catalog=Du_An_Nhom4;Integrated Security=True;Trust Server Certificate=True";
-
-
+        private readonly string connectionString = "Data Source=DUONG;Initial Catalog=Du_An_Nhom4;User ID=sa;Password=123456;TrustServerCertificate=True";
+        KhachHangServices _KhachHangServices = new KhachHangServices();
+        KhachHangRep _KhachHangRep = new KhachHangRep();
         public FormBanHang()
         {
             InitializeComponent();
@@ -264,8 +265,20 @@ namespace PRL
                     string DiaC = txt_DiaChi.Text;
                     string Gmail = txt_Gmail.Text;
 
+                    // Giả sử bạn có tổng số tiền mua hàng trong một biến có tên `tongTien`
+                    decimal tongTien = decimal.Parse(txt_tongtien.Text);  // Nhận tổng số tiền từ biểu mẫu của bạn
+
+                    // Tính điểm trung thành dựa trên tổng số tiền
+                    int diemTichLuy = CalculateLoyaltyPoints(tongTien);
+
+                    // Tính capDoThanhVien dựa trên diemTichLuy
+                    string capDoThanhVien = DetermineMembershipLevel(diemTichLuy);
+
                     // Gọi phương thức thêm hóa đơn
                     string kqThemHoaDon = _hdttService.CNThemHoaDonThanhToan(hoaDonId, tenKH, soDT, DiaC, Gmail);
+
+                    string kqThemKhachHang = _KhachHangServices.CNThemOrUpdateKhachHang(tenKH, soDT, Gmail, DiaC, diemTichLuy, capDoThanhVien);
+                    MessageBox.Show(kqThemKhachHang, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Cập nhật danh sách hóa đơn từ cơ sở dữ liệu
                     List<HoaDonDaThanhToan> hoaDonDaThanhToan1s = _hdttService.CNShowHoaDonThanhToan();
@@ -317,6 +330,27 @@ namespace PRL
             }
         }
 
+        private int CalculateLoyaltyPoints(decimal totalAmount)
+        {
+            // Ví dụ: 1 điểm cho mỗi 100.000 đơn vị tiền tệ chi tiêu
+            return (int)(totalAmount / 100000);
+        }
+
+        private string DetermineMembershipLevel(int points)
+        {
+            if (points >= 1000)
+            {
+                return "Vàng";
+            }
+            else if (points >= 500)
+            {
+                return "Bạc";
+            }
+            else
+            {
+                return "Đồng";
+            }
+        }
 
         private void btn_TaoHoaDon_Click(object sender, EventArgs e)
         {

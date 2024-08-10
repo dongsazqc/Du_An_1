@@ -20,6 +20,6 @@ public partial class SanPhamMua
     public string? HoaDonId { get; set; }
 
     public virtual HoaDon? HoaDon { get; set; }
-    public List<SanPhamMua>? sanPhamMuaChiTiets { get; set; } = new List<SanPhamMua>();
 
+    public virtual HoaDonDaThanhToan? HoaDonNavigation { get; set; }
 }
