@@ -50,9 +50,9 @@ namespace PRL
             dtg_HoaDon.Columns[0].HeaderText = "Số thứ tự";
             dtg_HoaDon.Columns[1].HeaderText = "Mã hóa đơn";
             dtg_HoaDon.Columns[2].HeaderText = "Tên khách hàng";
-            dtg_HoaDon.Columns[3].HeaderText = "Địa chỉ";
-            dtg_HoaDon.Columns[4].HeaderText = "Gmail";
-            dtg_HoaDon.Columns[5].HeaderText = "Số điện thoại";
+            dtg_HoaDon.Columns[3].HeaderText = "Gmail";
+            dtg_HoaDon.Columns[4].HeaderText = "SDT";
+            dtg_HoaDon.Columns[5].HeaderText = "Địa chỉi";
             foreach (var i in hoaDonDaThanhToans)
             {
                 dtg_HoaDon.Rows.Add(stt++, i.HoaDonId, i.TenKhachHang, i.DiaChi, i.Gmail, i.SoDienThoai);

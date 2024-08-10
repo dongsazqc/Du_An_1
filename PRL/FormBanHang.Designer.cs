@@ -245,7 +245,7 @@
             lb_TongTien.BackColor = Color.FromArgb(0, 0, 192);
             lb_TongTien.FlatStyle = FlatStyle.Flat;
             lb_TongTien.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            lb_TongTien.ForeColor = Color.Red;
+            lb_TongTien.ForeColor = Color.FromArgb(255, 128, 0);
             lb_TongTien.Location = new Point(6, 191);
             lb_TongTien.Name = "lb_TongTien";
             lb_TongTien.Size = new Size(215, 41);
@@ -434,9 +434,9 @@
             pn_ChiTiet.Controls.Add(label9);
             pn_ChiTiet.Controls.Add(btn_Close);
             pn_ChiTiet.Controls.Add(dtg_ChiTiet);
-            pn_ChiTiet.Location = new Point(612, 438);
+            pn_ChiTiet.Location = new Point(612, 419);
             pn_ChiTiet.Name = "pn_ChiTiet";
-            pn_ChiTiet.Size = new Size(701, 325);
+            pn_ChiTiet.Size = new Size(701, 344);
             pn_ChiTiet.TabIndex = 41;
             // 
             // label9
@@ -554,7 +554,7 @@
             // 
             btn_XoaSp.Location = new Point(86, 541);
             btn_XoaSp.Name = "btn_XoaSp";
-            btn_XoaSp.Size = new Size(124, 41);
+            btn_XoaSp.Size = new Size(139, 41);
             btn_XoaSp.TabIndex = 5;
             btn_XoaSp.Text = "Xóa Sản phẩm";
             btn_XoaSp.UseVisualStyleBackColor = true;
