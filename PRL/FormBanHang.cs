@@ -288,26 +288,7 @@ namespace PRL
                     cbx_HoaDonId.Items.Remove(selectedHoaDonId);
 
                     // Lưu lại các sản phẩm trong hóa đơn đã thanh toán
-                    var selectedHoaDon = hoaDonDaThanhs.FirstOrDefault(hd => hd.HoaDonId == selectedHoaDonId);
-                    if (selectedHoaDon != null)
-                    {
-                        // Lưu các sản phẩm từ dtf_GioHang vào hóa đơn
-                        selectedHoaDon.sanPhamMuas.Clear();
-                        foreach (DataGridViewRow row in dtf_GioHang.Rows)
-                        {
-                            if (row.Cells[0].Value != null)
-                            {
-                                selectedHoaDon.sanPhamMuas.Add(new SanPhamMua
-                                {
-                                    TenSanPham = row.Cells[0].Value.ToString(),
-                                    TenThuongHieu = row.Cells[1].Value.ToString(),
-                                    SoLuong = int.Parse(row.Cells[2].Value.ToString()),
-                                    Gia = decimal.Parse(row.Cells[3].Value.ToString()),
-                                    TongGia = decimal.Parse(row.Cells[4].Value.ToString())
-                                });
-                            }
-                        }
-                    }
+                    
 
                     // Hiển thị thông báo thành công
                     MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
