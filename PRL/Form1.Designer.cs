@@ -92,7 +92,6 @@
             // 
             // btn_KM
             // 
-<<<<<<< HEAD
             btn_Voucher.BackColor = Color.FromArgb(0, 0, 192);
             btn_Voucher.FlatAppearance.BorderSize = 0;
             btn_Voucher.FlatStyle = FlatStyle.Flat;
