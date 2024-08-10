@@ -31,15 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
             iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
-            btn_Voucher = new Button();
+            btn_KM = new Button();
             pictureBox2 = new PictureBox();
-            iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             btn_TrangChu = new Button();
-            btn_hoAdon = new Button();
             label1 = new Label();
             btn_BanHang = new Button();
             btn_KhachHang = new Button();
@@ -51,7 +49,6 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
@@ -63,15 +60,13 @@
             // 
             panel1.BackColor = Color.FromArgb(0, 0, 192);
             panel1.Controls.Add(iconPictureBox6);
-            panel1.Controls.Add(btn_Voucher);
+            panel1.Controls.Add(btn_KM);
             panel1.Controls.Add(pictureBox2);
-            panel1.Controls.Add(iconPictureBox5);
             panel1.Controls.Add(iconPictureBox4);
             panel1.Controls.Add(iconPictureBox3);
             panel1.Controls.Add(iconPictureBox2);
             panel1.Controls.Add(iconPictureBox1);
             panel1.Controls.Add(btn_TrangChu);
-            panel1.Controls.Add(btn_hoAdon);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btn_BanHang);
             panel1.Controls.Add(btn_KhachHang);
@@ -89,14 +84,15 @@
             iconPictureBox6.IconColor = Color.White;
             iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox6.IconSize = 40;
-            iconPictureBox6.Location = new Point(23, 830);
+            iconPictureBox6.Location = new Point(23, 827);
             iconPictureBox6.Name = "iconPictureBox6";
             iconPictureBox6.Size = new Size(40, 40);
             iconPictureBox6.TabIndex = 13;
             iconPictureBox6.TabStop = false;
             // 
-            // btn_Voucher
+            // btn_KM
             // 
+<<<<<<< HEAD
             btn_Voucher.BackColor = Color.FromArgb(0, 0, 192);
             btn_Voucher.FlatAppearance.BorderSize = 0;
             btn_Voucher.FlatStyle = FlatStyle.Flat;
@@ -109,6 +105,20 @@
             btn_Voucher.Text = "Voucher";
             btn_Voucher.UseVisualStyleBackColor = false;
             btn_Voucher.Click += button1_Click_1;
+=======
+            btn_KM.BackColor = Color.Navy;
+            btn_KM.FlatAppearance.BorderSize = 0;
+            btn_KM.FlatStyle = FlatStyle.Flat;
+            btn_KM.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
+            btn_KM.ForeColor = Color.White;
+            btn_KM.Location = new Point(3, 798);
+            btn_KM.Name = "btn_KM";
+            btn_KM.Size = new Size(249, 112);
+            btn_KM.TabIndex = 6;
+            btn_KM.Text = "Khuyễn mãi";
+            btn_KM.UseVisualStyleBackColor = false;
+            btn_KM.Click += button1_Click_1;
+>>>>>>> cd7d31c564ac1e1293cceb29852fc34f165fa793
             // 
             // pictureBox2
             // 
@@ -120,6 +130,7 @@
             pictureBox2.TabIndex = 12;
             pictureBox2.TabStop = false;
             // 
+<<<<<<< HEAD
             // iconPictureBox5
             // 
             iconPictureBox5.BackColor = Color.FromArgb(0, 0, 192);
@@ -133,6 +144,8 @@
             iconPictureBox5.TabIndex = 11;
             iconPictureBox5.TabStop = false;
             // 
+=======
+>>>>>>> cd7d31c564ac1e1293cceb29852fc34f165fa793
             // iconPictureBox4
             // 
             iconPictureBox4.BackColor = Color.FromArgb(0, 0, 192);
@@ -140,7 +153,7 @@
             iconPictureBox4.IconColor = Color.White;
             iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox4.IconSize = 40;
-            iconPictureBox4.Location = new Point(23, 618);
+            iconPictureBox4.Location = new Point(23, 686);
             iconPictureBox4.Name = "iconPictureBox4";
             iconPictureBox4.Size = new Size(40, 40);
             iconPictureBox4.TabIndex = 10;
@@ -153,7 +166,7 @@
             iconPictureBox3.IconColor = Color.White;
             iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox3.IconSize = 40;
-            iconPictureBox3.Location = new Point(23, 512);
+            iconPictureBox3.Location = new Point(23, 575);
             iconPictureBox3.Name = "iconPictureBox3";
             iconPictureBox3.Size = new Size(40, 40);
             iconPictureBox3.TabIndex = 9;
@@ -166,7 +179,7 @@
             iconPictureBox2.IconColor = Color.White;
             iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox2.IconSize = 40;
-            iconPictureBox2.Location = new Point(23, 406);
+            iconPictureBox2.Location = new Point(23, 450);
             iconPictureBox2.Name = "iconPictureBox2";
             iconPictureBox2.Size = new Size(40, 40);
             iconPictureBox2.TabIndex = 8;
@@ -179,7 +192,7 @@
             iconPictureBox1.IconColor = Color.White;
             iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox1.IconSize = 40;
-            iconPictureBox1.Location = new Point(23, 298);
+            iconPictureBox1.Location = new Point(23, 321);
             iconPictureBox1.Name = "iconPictureBox1";
             iconPictureBox1.Size = new Size(40, 40);
             iconPictureBox1.TabIndex = 7;
@@ -192,7 +205,7 @@
             btn_TrangChu.FlatStyle = FlatStyle.Flat;
             btn_TrangChu.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
             btn_TrangChu.ForeColor = Color.WhiteSmoke;
-            btn_TrangChu.Location = new Point(3, 264);
+            btn_TrangChu.Location = new Point(3, 290);
             btn_TrangChu.Name = "btn_TrangChu";
             btn_TrangChu.Size = new Size(249, 112);
             btn_TrangChu.TabIndex = 6;
@@ -200,6 +213,7 @@
             btn_TrangChu.UseVisualStyleBackColor = false;
             btn_TrangChu.Click += button2_Click;
             // 
+<<<<<<< HEAD
             // btn_hoAdon
             // 
             btn_hoAdon.BackColor = Color.FromArgb(0, 0, 192);
@@ -215,6 +229,8 @@
             btn_hoAdon.UseVisualStyleBackColor = false;
             btn_hoAdon.Click += btn_hoAdon_Click;
             // 
+=======
+>>>>>>> cd7d31c564ac1e1293cceb29852fc34f165fa793
             // label1
             // 
             label1.AutoSize = true;
@@ -234,7 +250,7 @@
             btn_BanHang.FlatStyle = FlatStyle.Flat;
             btn_BanHang.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
             btn_BanHang.ForeColor = Color.WhiteSmoke;
-            btn_BanHang.Location = new Point(0, 586);
+            btn_BanHang.Location = new Point(-3, 654);
             btn_BanHang.Name = "btn_BanHang";
             btn_BanHang.Size = new Size(249, 112);
             btn_BanHang.TabIndex = 5;
@@ -249,7 +265,7 @@
             btn_KhachHang.FlatStyle = FlatStyle.Flat;
             btn_KhachHang.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
             btn_KhachHang.ForeColor = Color.White;
-            btn_KhachHang.Location = new Point(3, 481);
+            btn_KhachHang.Location = new Point(3, 536);
             btn_KhachHang.Name = "btn_KhachHang";
             btn_KhachHang.Size = new Size(249, 112);
             btn_KhachHang.TabIndex = 4;
@@ -264,7 +280,7 @@
             btn_SanPham.FlatStyle = FlatStyle.Flat;
             btn_SanPham.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
             btn_SanPham.ForeColor = Color.White;
-            btn_SanPham.Location = new Point(3, 372);
+            btn_SanPham.Location = new Point(3, 418);
             btn_SanPham.Name = "btn_SanPham";
             btn_SanPham.Size = new Size(249, 112);
             btn_SanPham.TabIndex = 0;
@@ -331,7 +347,6 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).EndInit();
@@ -348,19 +363,21 @@
         private Panel panel_Body;
         private Button btn_KhachHang;
         private Label label1;
-        private Button btn_hoAdon;
         private Button btn_BanHang;
         private Button btn_TrangChu;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
         private PictureBox pictureBox2;
         private Panel panel2;
         private Label TieuDe;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox6;
+<<<<<<< HEAD
         private Button btn_Voucher;
         private FontAwesome.Sharp.IconButton icbtn_HienAn;
+=======
+        private Button btn_KM;
+>>>>>>> cd7d31c564ac1e1293cceb29852fc34f165fa793
     }
 }

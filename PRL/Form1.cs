@@ -123,8 +123,13 @@ namespace PRL
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             OpenChildForm(new Voucher());
             TieuDe.Text = btn_Voucher.Text;
+=======
+OpenChildForm(new FormKhuyenMai());
+            TieuDe.Text= btn_KM.Text;
+>>>>>>> cd7d31c564ac1e1293cceb29852fc34f165fa793
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
