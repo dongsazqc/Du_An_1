@@ -46,6 +46,7 @@
             btn_SanPham = new Button();
             panel_Body = new Panel();
             panel2 = new Panel();
+            icbtn_HienAn = new FontAwesome.Sharp.IconButton();
             TieuDe = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox6).BeginInit();
@@ -60,7 +61,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Navy;
+            panel1.BackColor = Color.FromArgb(0, 0, 192);
             panel1.Controls.Add(iconPictureBox6);
             panel1.Controls.Add(btn_Voucher);
             panel1.Controls.Add(pictureBox2);
@@ -83,7 +84,7 @@
             // 
             // iconPictureBox6
             // 
-            iconPictureBox6.BackColor = Color.Navy;
+            iconPictureBox6.BackColor = Color.FromArgb(0, 0, 192);
             iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.PiggyBank;
             iconPictureBox6.IconColor = Color.White;
             iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -96,7 +97,7 @@
             // 
             // btn_Voucher
             // 
-            btn_Voucher.BackColor = Color.Navy;
+            btn_Voucher.BackColor = Color.FromArgb(0, 0, 192);
             btn_Voucher.FlatAppearance.BorderSize = 0;
             btn_Voucher.FlatStyle = FlatStyle.Flat;
             btn_Voucher.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
@@ -121,7 +122,7 @@
             // 
             // iconPictureBox5
             // 
-            iconPictureBox5.BackColor = Color.Navy;
+            iconPictureBox5.BackColor = Color.FromArgb(0, 0, 192);
             iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.B;
             iconPictureBox5.IconColor = Color.White;
             iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -134,7 +135,7 @@
             // 
             // iconPictureBox4
             // 
-            iconPictureBox4.BackColor = Color.Navy;
+            iconPictureBox4.BackColor = Color.FromArgb(0, 0, 192);
             iconPictureBox4.IconChar = FontAwesome.Sharp.IconChar.CartArrowDown;
             iconPictureBox4.IconColor = Color.White;
             iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -147,7 +148,7 @@
             // 
             // iconPictureBox3
             // 
-            iconPictureBox3.BackColor = Color.Navy;
+            iconPictureBox3.BackColor = Color.FromArgb(0, 0, 192);
             iconPictureBox3.IconChar = FontAwesome.Sharp.IconChar.PersonPregnant;
             iconPictureBox3.IconColor = Color.White;
             iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -160,7 +161,7 @@
             // 
             // iconPictureBox2
             // 
-            iconPictureBox2.BackColor = Color.Navy;
+            iconPictureBox2.BackColor = Color.FromArgb(0, 0, 192);
             iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Shopify;
             iconPictureBox2.IconColor = Color.White;
             iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -173,7 +174,7 @@
             // 
             // iconPictureBox1
             // 
-            iconPictureBox1.BackColor = Color.Navy;
+            iconPictureBox1.BackColor = Color.FromArgb(0, 0, 192);
             iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.HouseFlag;
             iconPictureBox1.IconColor = Color.White;
             iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
@@ -186,7 +187,7 @@
             // 
             // btn_TrangChu
             // 
-            btn_TrangChu.BackColor = Color.Navy;
+            btn_TrangChu.BackColor = Color.FromArgb(0, 0, 192);
             btn_TrangChu.FlatAppearance.BorderSize = 0;
             btn_TrangChu.FlatStyle = FlatStyle.Flat;
             btn_TrangChu.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
@@ -201,7 +202,7 @@
             // 
             // btn_hoAdon
             // 
-            btn_hoAdon.BackColor = Color.Navy;
+            btn_hoAdon.BackColor = Color.FromArgb(0, 0, 192);
             btn_hoAdon.FlatAppearance.BorderSize = 0;
             btn_hoAdon.FlatStyle = FlatStyle.Flat;
             btn_hoAdon.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
@@ -217,6 +218,7 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.FromArgb(0, 0, 192);
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 163);
             label1.ForeColor = Color.White;
             label1.Location = new Point(56, 963);
@@ -227,7 +229,7 @@
             // 
             // btn_BanHang
             // 
-            btn_BanHang.BackColor = Color.Navy;
+            btn_BanHang.BackColor = Color.FromArgb(0, 0, 192);
             btn_BanHang.FlatAppearance.BorderSize = 0;
             btn_BanHang.FlatStyle = FlatStyle.Flat;
             btn_BanHang.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
@@ -242,7 +244,7 @@
             // 
             // btn_KhachHang
             // 
-            btn_KhachHang.BackColor = Color.Navy;
+            btn_KhachHang.BackColor = Color.FromArgb(0, 0, 192);
             btn_KhachHang.FlatAppearance.BorderSize = 0;
             btn_KhachHang.FlatStyle = FlatStyle.Flat;
             btn_KhachHang.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
@@ -257,7 +259,7 @@
             // 
             // btn_SanPham
             // 
-            btn_SanPham.BackColor = Color.Navy;
+            btn_SanPham.BackColor = Color.FromArgb(0, 0, 192);
             btn_SanPham.FlatAppearance.BorderSize = 0;
             btn_SanPham.FlatStyle = FlatStyle.Flat;
             btn_SanPham.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
@@ -273,20 +275,34 @@
             // panel_Body
             // 
             panel_Body.BackColor = Color.FromArgb(255, 224, 192);
-            panel_Body.Location = new Point(249, 112);
+            panel_Body.Location = new Point(-1, 112);
             panel_Body.Name = "panel_Body";
-            panel_Body.Size = new Size(1653, 922);
+            panel_Body.Size = new Size(1903, 922);
             panel_Body.TabIndex = 2;
             panel_Body.Paint += panel_Body_Paint;
             // 
             // panel2
             // 
             panel2.BackColor = Color.MediumBlue;
+            panel2.Controls.Add(icbtn_HienAn);
             panel2.Controls.Add(TieuDe);
-            panel2.Location = new Point(249, 2);
+            panel2.Location = new Point(-1, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1653, 111);
+            panel2.Size = new Size(1903, 111);
             panel2.TabIndex = 1;
+            // 
+            // icbtn_HienAn
+            // 
+            icbtn_HienAn.BackColor = Color.Silver;
+            icbtn_HienAn.IconChar = FontAwesome.Sharp.IconChar.None;
+            icbtn_HienAn.IconColor = Color.Black;
+            icbtn_HienAn.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            icbtn_HienAn.Location = new Point(255, 48);
+            icbtn_HienAn.Name = "icbtn_HienAn";
+            icbtn_HienAn.Size = new Size(65, 63);
+            icbtn_HienAn.TabIndex = 1;
+            icbtn_HienAn.UseVisualStyleBackColor = false;
+            icbtn_HienAn.Click += iconButton1_Click;
             // 
             // TieuDe
             // 
@@ -304,9 +320,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1902, 1033);
+            Controls.Add(panel1);
             Controls.Add(panel_Body);
             Controls.Add(panel2);
-            Controls.Add(panel1);
             Name = "Form1";
             Text = "Phần mền bán quàn áo thời trang";
             WindowState = FormWindowState.Maximized;
@@ -345,5 +361,6 @@
         private Label TieuDe;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox6;
         private Button btn_Voucher;
+        private FontAwesome.Sharp.IconButton icbtn_HienAn;
     }
 }

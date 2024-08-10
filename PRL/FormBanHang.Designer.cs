@@ -53,8 +53,8 @@
             icbtn_TaoHoaDon = new FontAwesome.Sharp.IconButton();
             groupBox4 = new GroupBox();
             icbtn_LamMOI = new FontAwesome.Sharp.IconButton();
-            icbtn_XoaHoaDon = new FontAwesome.Sharp.IconButton();
             groupBox6 = new GroupBox();
+            textBox1 = new TextBox();
             label8 = new Label();
             dtg_HoaDon = new DataGridView();
             pn_ChiTiet = new Panel();
@@ -67,10 +67,11 @@
             groupBox1 = new GroupBox();
             label13 = new Label();
             dtf_GioHang = new DataGridView();
-            txt_TimKiemGioHang = new TextBox();
             btn_xoaALLL = new Button();
             btn_XoaSp = new Button();
             groupBox2 = new GroupBox();
+            label14 = new Label();
+            txt_TimKiemGioHang = new TextBox();
             groupBox5.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -100,9 +101,9 @@
             groupBox5.Controls.Add(label11);
             groupBox5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             groupBox5.ForeColor = Color.Red;
-            groupBox5.Location = new Point(1196, 13);
+            groupBox5.Location = new Point(1452, 13);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(436, 285);
+            groupBox5.Size = new Size(443, 285);
             groupBox5.TabIndex = 19;
             groupBox5.TabStop = false;
             groupBox5.Text = "Thông tin khách hàng chi tiết";
@@ -110,7 +111,7 @@
             // 
             // cbx_HoaDonId
             // 
-            cbx_HoaDonId.ForeColor = Color.White;
+            cbx_HoaDonId.ForeColor = Color.Black;
             cbx_HoaDonId.FormattingEnabled = true;
             cbx_HoaDonId.Location = new Point(43, 52);
             cbx_HoaDonId.Name = "cbx_HoaDonId";
@@ -133,7 +134,7 @@
             // 
             // txt_Gmail
             // 
-            txt_Gmail.ForeColor = Color.White;
+            txt_Gmail.ForeColor = Color.Black;
             txt_Gmail.Location = new Point(192, 244);
             txt_Gmail.Name = "txt_Gmail";
             txt_Gmail.Size = new Size(221, 30);
@@ -142,7 +143,7 @@
             // 
             // txt_DiaChi
             // 
-            txt_DiaChi.ForeColor = Color.White;
+            txt_DiaChi.ForeColor = Color.Black;
             txt_DiaChi.Location = new Point(192, 196);
             txt_DiaChi.Name = "txt_DiaChi";
             txt_DiaChi.Size = new Size(221, 30);
@@ -189,7 +190,7 @@
             // 
             // txt_sđt
             // 
-            txt_sđt.ForeColor = Color.White;
+            txt_sđt.ForeColor = Color.Black;
             txt_sđt.Location = new Point(192, 152);
             txt_sđt.Name = "txt_sđt";
             txt_sđt.Size = new Size(221, 30);
@@ -197,7 +198,7 @@
             // 
             // txt_tenkhachhang
             // 
-            txt_tenkhachhang.ForeColor = Color.White;
+            txt_tenkhachhang.ForeColor = Color.Black;
             txt_tenkhachhang.Location = new Point(192, 105);
             txt_tenkhachhang.Name = "txt_tenkhachhang";
             txt_tenkhachhang.Size = new Size(221, 30);
@@ -230,7 +231,7 @@
             // 
             txt_tongtien.BorderStyle = BorderStyle.None;
             txt_tongtien.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            txt_tongtien.ForeColor = Color.White;
+            txt_tongtien.ForeColor = Color.Black;
             txt_tongtien.Location = new Point(215, 186);
             txt_tongtien.Multiline = true;
             txt_tongtien.Name = "txt_tongtien";
@@ -241,10 +242,10 @@
             // lb_TongTien
             // 
             lb_TongTien.AutoSize = true;
-            lb_TongTien.BackColor = SystemColors.InactiveBorder;
+            lb_TongTien.BackColor = Color.FromArgb(0, 0, 192);
             lb_TongTien.FlatStyle = FlatStyle.Flat;
             lb_TongTien.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            lb_TongTien.ForeColor = Color.White;
+            lb_TongTien.ForeColor = Color.Red;
             lb_TongTien.Location = new Point(6, 191);
             lb_TongTien.Name = "lb_TongTien";
             lb_TongTien.Size = new Size(215, 41);
@@ -254,7 +255,7 @@
             // 
             // txt_khachdua
             // 
-            txt_khachdua.ForeColor = Color.White;
+            txt_khachdua.ForeColor = Color.Black;
             txt_khachdua.Location = new Point(192, 26);
             txt_khachdua.Name = "txt_khachdua";
             txt_khachdua.Size = new Size(221, 30);
@@ -262,7 +263,7 @@
             // 
             // txt_Tienthua
             // 
-            txt_Tienthua.ForeColor = Color.White;
+            txt_Tienthua.ForeColor = Color.Black;
             txt_Tienthua.Location = new Point(192, 78);
             txt_Tienthua.Name = "txt_Tienthua";
             txt_Tienthua.Size = new Size(221, 30);
@@ -302,16 +303,16 @@
             groupBox3.Controls.Add(label3);
             groupBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             groupBox3.ForeColor = Color.Red;
-            groupBox3.Location = new Point(1196, 304);
+            groupBox3.Location = new Point(1452, 304);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(436, 307);
+            groupBox3.Size = new Size(443, 307);
             groupBox3.TabIndex = 36;
             groupBox3.TabStop = false;
             groupBox3.Text = "Thông tin thanh toán";
             // 
             // txt_voucher
             // 
-            txt_voucher.ForeColor = Color.White;
+            txt_voucher.ForeColor = Color.Black;
             txt_voucher.Location = new Point(192, 127);
             txt_voucher.Name = "txt_voucher";
             txt_voucher.Size = new Size(221, 30);
@@ -339,9 +340,9 @@
             icbtn_TaoHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbtn_TaoHoaDon.IconSize = 30;
             icbtn_TaoHoaDon.ImageAlign = ContentAlignment.MiddleLeft;
-            icbtn_TaoHoaDon.Location = new Point(64, 49);
+            icbtn_TaoHoaDon.Location = new Point(35, 93);
             icbtn_TaoHoaDon.Name = "icbtn_TaoHoaDon";
-            icbtn_TaoHoaDon.Size = new Size(170, 35);
+            icbtn_TaoHoaDon.Size = new Size(170, 56);
             icbtn_TaoHoaDon.TabIndex = 37;
             icbtn_TaoHoaDon.Text = "Tạo hóa đơn";
             icbtn_TaoHoaDon.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -351,12 +352,12 @@
             // groupBox4
             // 
             groupBox4.Controls.Add(icbtn_LamMOI);
-            groupBox4.Controls.Add(icbtn_XoaHoaDon);
             groupBox4.Controls.Add(icbtn_TaoHoaDon);
+            groupBox4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
             groupBox4.ForeColor = Color.Red;
-            groupBox4.Location = new Point(1196, 651);
+            groupBox4.Location = new Point(1452, 651);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(440, 163);
+            groupBox4.Size = new Size(443, 212);
             groupBox4.TabIndex = 38;
             groupBox4.TabStop = false;
             groupBox4.Text = "Chức năg";
@@ -374,54 +375,42 @@
             icbtn_LamMOI.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbtn_LamMOI.IconSize = 30;
             icbtn_LamMOI.ImageAlign = ContentAlignment.MiddleLeft;
-            icbtn_LamMOI.Location = new Point(167, 90);
+            icbtn_LamMOI.Location = new Point(261, 93);
             icbtn_LamMOI.Name = "icbtn_LamMOI";
-            icbtn_LamMOI.Size = new Size(170, 35);
+            icbtn_LamMOI.Size = new Size(170, 56);
             icbtn_LamMOI.TabIndex = 39;
             icbtn_LamMOI.Text = "Làm mới";
             icbtn_LamMOI.TextImageRelation = TextImageRelation.ImageBeforeText;
             icbtn_LamMOI.UseVisualStyleBackColor = false;
             icbtn_LamMOI.Click += icbtn_LamMOI_Click;
             // 
-            // icbtn_XoaHoaDon
-            // 
-            icbtn_XoaHoaDon.BackColor = Color.FromArgb(192, 192, 0);
-            icbtn_XoaHoaDon.Cursor = Cursors.Cross;
-            icbtn_XoaHoaDon.FlatStyle = FlatStyle.Flat;
-            icbtn_XoaHoaDon.Flip = FontAwesome.Sharp.FlipOrientation.Horizontal;
-            icbtn_XoaHoaDon.Font = new Font("Bookman Old Style", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            icbtn_XoaHoaDon.ForeColor = SystemColors.ControlText;
-            icbtn_XoaHoaDon.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            icbtn_XoaHoaDon.IconColor = Color.Black;
-            icbtn_XoaHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            icbtn_XoaHoaDon.IconSize = 30;
-            icbtn_XoaHoaDon.ImageAlign = ContentAlignment.MiddleLeft;
-            icbtn_XoaHoaDon.Location = new Point(272, 49);
-            icbtn_XoaHoaDon.Name = "icbtn_XoaHoaDon";
-            icbtn_XoaHoaDon.Size = new Size(170, 35);
-            icbtn_XoaHoaDon.TabIndex = 38;
-            icbtn_XoaHoaDon.Text = "Xóa hóa đơn";
-            icbtn_XoaHoaDon.TextImageRelation = TextImageRelation.ImageBeforeText;
-            icbtn_XoaHoaDon.UseVisualStyleBackColor = false;
-            // 
             // groupBox6
             // 
+            groupBox6.Controls.Add(textBox1);
             groupBox6.Controls.Add(label8);
             groupBox6.Controls.Add(dtg_HoaDon);
+            groupBox6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
             groupBox6.ForeColor = Color.Red;
-            groupBox6.Location = new Point(13, 617);
+            groupBox6.Location = new Point(29, 617);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(787, 246);
+            groupBox6.Size = new Size(1266, 246);
             groupBox6.TabIndex = 40;
             groupBox6.TabStop = false;
             groupBox6.Text = "DS hóa đơn đã thanh toán";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(169, 26);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(424, 27);
+            textBox1.TabIndex = 41;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
-            label8.ForeColor = Color.Red;
-            label8.Location = new Point(6, 212);
+            label8.ForeColor = Color.FromArgb(255, 128, 0);
+            label8.Location = new Point(77, 212);
             label8.Name = "label8";
             label8.RightToLeft = RightToLeft.Yes;
             label8.Size = new Size(276, 20);
@@ -431,10 +420,10 @@
             // dtg_HoaDon
             // 
             dtg_HoaDon.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_HoaDon.Location = new Point(6, 34);
+            dtg_HoaDon.Location = new Point(77, 67);
             dtg_HoaDon.Name = "dtg_HoaDon";
             dtg_HoaDon.RowHeadersWidth = 51;
-            dtg_HoaDon.Size = new Size(743, 175);
+            dtg_HoaDon.Size = new Size(1145, 142);
             dtg_HoaDon.TabIndex = 39;
             dtg_HoaDon.CellContentClick += dtg_HoaDon_CellContentClick;
             dtg_HoaDon.CellContentDoubleClick += dtg_HoaDon_CellContentDoubleClick;
@@ -445,9 +434,9 @@
             pn_ChiTiet.Controls.Add(label9);
             pn_ChiTiet.Controls.Add(btn_Close);
             pn_ChiTiet.Controls.Add(dtg_ChiTiet);
-            pn_ChiTiet.Location = new Point(612, 447);
+            pn_ChiTiet.Location = new Point(612, 438);
             pn_ChiTiet.Name = "pn_ChiTiet";
-            pn_ChiTiet.Size = new Size(701, 316);
+            pn_ChiTiet.Size = new Size(701, 325);
             pn_ChiTiet.TabIndex = 41;
             // 
             // label9
@@ -487,27 +476,27 @@
             data_SPBH.BackgroundColor = Color.FromArgb(255, 224, 192);
             data_SPBH.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             data_SPBH.GridColor = Color.FromArgb(192, 192, 0);
-            data_SPBH.Location = new Point(6, 94);
+            data_SPBH.Location = new Point(6, 81);
             data_SPBH.Name = "data_SPBH";
             data_SPBH.RightToLeft = RightToLeft.No;
             data_SPBH.RowHeadersWidth = 51;
-            data_SPBH.Size = new Size(599, 445);
+            data_SPBH.Size = new Size(840, 454);
             data_SPBH.TabIndex = 0;
             data_SPBH.CellContentClick += data_SPBH_CellContentClick;
             data_SPBH.CellDoubleClick += data_SPBH_CellDoubleClick;
             // 
             // txt_timkiemsanpham
             // 
-            txt_timkiemsanpham.Location = new Point(185, 50);
+            txt_timkiemsanpham.Location = new Point(169, 52);
             txt_timkiemsanpham.Name = "txt_timkiemsanpham";
-            txt_timkiemsanpham.Size = new Size(353, 27);
+            txt_timkiemsanpham.Size = new Size(433, 27);
             txt_timkiemsanpham.TabIndex = 20;
             txt_timkiemsanpham.TextChanged += txt_timkiemsanpham_TextChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.ForeColor = Color.Red;
+            label6.ForeColor = Color.FromArgb(255, 128, 0);
             label6.Location = new Point(6, 538);
             label6.Name = "label6";
             label6.Size = new Size(353, 20);
@@ -522,10 +511,10 @@
             groupBox1.Controls.Add(data_SPBH);
             groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
             groupBox1.ForeColor = Color.Red;
-            groupBox1.Location = new Point(13, 13);
+            groupBox1.Location = new Point(29, 13);
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(611, 598);
+            groupBox1.Size = new Size(852, 598);
             groupBox1.TabIndex = 17;
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách sản phẩm";
@@ -534,29 +523,22 @@
             // label13
             // 
             label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             label13.ForeColor = Color.White;
-            label13.Location = new Point(25, 53);
+            label13.Location = new Point(64, 55);
             label13.Name = "label13";
-            label13.Size = new Size(137, 20);
+            label13.Size = new Size(0, 23);
             label13.TabIndex = 22;
-            label13.Text = "Tìm kiếm theo tên";
             // 
             // dtf_GioHang
             // 
             dtf_GioHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtf_GioHang.Location = new Point(17, 82);
+            dtf_GioHang.Location = new Point(17, 94);
             dtf_GioHang.Name = "dtf_GioHang";
             dtf_GioHang.RowHeadersWidth = 51;
-            dtf_GioHang.Size = new Size(524, 441);
+            dtf_GioHang.Size = new Size(524, 429);
             dtf_GioHang.TabIndex = 0;
             dtf_GioHang.CellContentClick += dtf_GioHang_CellContentClick;
-            // 
-            // txt_TimKiemGioHang
-            // 
-            txt_TimKiemGioHang.Location = new Point(120, 48);
-            txt_TimKiemGioHang.Name = "txt_TimKiemGioHang";
-            txt_TimKiemGioHang.Size = new Size(421, 27);
-            txt_TimKiemGioHang.TabIndex = 2;
             // 
             // btn_xoaALLL
             // 
@@ -580,25 +562,44 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(label14);
             groupBox2.Controls.Add(btn_XoaSp);
             groupBox2.Controls.Add(btn_xoaALLL);
             groupBox2.Controls.Add(txt_TimKiemGioHang);
             groupBox2.Controls.Add(dtf_GioHang);
-            groupBox2.ForeColor = Color.Black;
-            groupBox2.Location = new Point(631, 13);
+            groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            groupBox2.ForeColor = Color.Red;
+            groupBox2.Location = new Point(888, 13);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(559, 598);
+            groupBox2.Size = new Size(558, 598);
             groupBox2.TabIndex = 21;
             groupBox2.TabStop = false;
             groupBox2.Text = "Giỏ hàng";
             groupBox2.Enter += groupBox2_Enter;
             // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.ForeColor = Color.White;
+            label14.Location = new Point(86, 50);
+            label14.Name = "label14";
+            label14.Size = new Size(0, 23);
+            label14.TabIndex = 23;
+            // 
+            // txt_TimKiemGioHang
+            // 
+            txt_TimKiemGioHang.Location = new Point(157, 61);
+            txt_TimKiemGioHang.Name = "txt_TimKiemGioHang";
+            txt_TimKiemGioHang.Size = new Size(384, 30);
+            txt_TimKiemGioHang.TabIndex = 2;
+            txt_TimKiemGioHang.TextChanged += txt_TimKiemGioHang_TextChanged;
+            // 
             // FormBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(0, 0, 192);
-            ClientSize = new Size(1675, 875);
+            BackColor = Color.Navy;
+            ClientSize = new Size(1907, 875);
             Controls.Add(pn_ChiTiet);
             Controls.Add(groupBox2);
             Controls.Add(groupBox5);
@@ -655,7 +656,6 @@
         private GroupBox groupBox4;
         private Button btn_ThanhToan;
         private ComboBox cbx_HoaDonId;
-        private FontAwesome.Sharp.IconButton icbtn_XoaHoaDon;
         private FontAwesome.Sharp.IconButton icbtn_LamMOI;
         private GroupBox groupBox6;
         private Label label8;
@@ -670,9 +670,11 @@
         private GroupBox groupBox1;
         private Label label13;
         private DataGridView dtf_GioHang;
-        private TextBox txt_TimKiemGioHang;
         private Button btn_xoaALLL;
         private Button btn_XoaSp;
         private GroupBox groupBox2;
+        private Label label14;
+        private TextBox txt_TimKiemGioHang;
+        private TextBox textBox1;
     }
 }
