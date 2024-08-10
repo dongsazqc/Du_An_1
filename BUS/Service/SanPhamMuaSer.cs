@@ -26,23 +26,26 @@ namespace BUS.Service
         }
         public string CNThemSPM(string tenSP ,string TenThuongH, int soluong, decimal gia, decimal TongGIa,string HoadonIdSPM )
         {
-            SanPhamMua SPM = new SanPhamMua()
+            try
             {
-                HoaDonId = HoadonIdSPM,
-                TenSanPham = tenSP,
-                TenThuongHieu = TenThuongH,
-                SoLuong = soluong,
-                Gia = gia,
-                TongGia = TongGIa,
+                SanPhamMua spm = new SanPhamMua()
+                {
+                    HoaDonId = HoadonIdSPM,
+                    TenSanPham = tenSP,
+                    TenThuongHieu = TenThuongH,
+                    SoLuong = soluong,
+                    Gia = gia,
+                    TongGia = gia * soluong,
+                };
 
-            };
-            if (_repos.AddSPM(SPM))
-            {
-                return "Thêm thành công";
+                bool result = _repos.AddSPM(spm);
+                return result ? "Thêm thành công" : "Thêm thất bại";
             }
-            else
+            catch (Exception ex)
             {
-                return "Thêm thất bại";
+                // Ghi lại lỗi vào log nếu có
+                // Log.Error("Lỗi khi thêm sản phẩm mua: " + ex.Message);
+                return "Thêm thất bại: " + ex.Message;
             }
         }
         public List<SanPhamMua> GetSanPhamByHoaDonId(string hoaDonId)

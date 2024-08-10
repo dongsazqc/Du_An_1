@@ -21,7 +21,7 @@ namespace PRL
     {
         SanPhamRep _sanphamRep = new SanPhamRep();
         SanPhamService _SanPhamService = new SanPhamService();
-        HoaDonService _hoadonService = new HoaDonService(); // Đổi tên biến cho nhất quán
+        HoaDonService _hoadonService = new HoaDonService();
         HoaDonRep _HoaDonRep = new HoaDonRep();
         List<HoaDon> hoaDons = new List<HoaDon>();
         List<HoaDonDaThanhToan> hoaDonDaThanhs = new List<HoaDonDaThanhToan>();
@@ -51,9 +51,9 @@ namespace PRL
             dtg_HoaDon.Columns[0].HeaderText = "Số thứ tự";
             dtg_HoaDon.Columns[1].HeaderText = "Mã hóa đơn";
             dtg_HoaDon.Columns[2].HeaderText = "Tên khách hàng";
-            dtg_HoaDon.Columns[3].HeaderText = "Địa chỉ";
-            dtg_HoaDon.Columns[4].HeaderText = "Gmail";
-            dtg_HoaDon.Columns[5].HeaderText = "Số điện thoại";
+            dtg_HoaDon.Columns[3].HeaderText = "Gmail";
+            dtg_HoaDon.Columns[4].HeaderText = "SDT";
+            dtg_HoaDon.Columns[5].HeaderText = "Địa chỉi";
             foreach (var i in hoaDonDaThanhToans)
             {
                 dtg_HoaDon.Rows.Add(stt++, i.HoaDonId, i.TenKhachHang, i.DiaChi, i.Gmail, i.SoDienThoai);
@@ -140,20 +140,18 @@ namespace PRL
             icbtn_LamMOI.IconChar = FontAwesome.Sharp.IconChar.Rotate - Left;
             lb_TongTien.BackColor = Color.Transparent;
             lb_TongTien.BorderStyle = BorderStyle.None;
-            icbtn_XoaHoaDon.IconChar = FontAwesome.Sharp.IconChar.Trash;
-
+            txt_timkiemsanpham.ForeColor = Color.Gray;
             txt_Tienthua.Enabled = false;
             txt_tongtien.Enabled = false;
             txt_tongtien.Text = "0";
 
 
-            dtf_GioHang.ColumnCount = 6;
+            dtf_GioHang.ColumnCount = 5;
             dtf_GioHang.Columns[0].HeaderText = "Tên sản phẩm";
             dtf_GioHang.Columns[1].HeaderText = "Tên thương hiệu ";
             dtf_GioHang.Columns[2].HeaderText = "Số lượng";
             dtf_GioHang.Columns[3].HeaderText = "Giá";
             dtf_GioHang.Columns[4].HeaderText = "Tổng giá";
-            dtf_GioHang.Columns[5].HeaderText = "Hóa đơn ID";
 
             dtg_ChiTiet.ColumnCount = 6;
             dtg_ChiTiet.Columns[0].HeaderText = "Mã hóa đơn";
@@ -165,6 +163,7 @@ namespace PRL
 
 
         }
+
 
 
         private void label8_Click(object sender, EventArgs e)
@@ -250,6 +249,7 @@ namespace PRL
 
         private void btn_ThanhToan_Click(object sender, EventArgs e)
         {
+
             if (cbx_HoaDonId.SelectedItem != null)
             {
                 string selectedHoaDonId = cbx_HoaDonId.SelectedItem.ToString();
@@ -258,7 +258,8 @@ namespace PRL
 
                 if (result == DialogResult.OK)
                 {
-                    // Lấy thông tin từ form
+
+                    // Đặt điểm dừng tại đây
                     string hoaDonId = selectedHoaDonId;
                     string tenKH = txt_tenkhachhang.Text;
                     string soDT = txt_sđt.Text;
@@ -276,6 +277,7 @@ namespace PRL
 
                     // Gọi phương thức thêm hóa đơn
                     string kqThemHoaDon = _hdttService.CNThemHoaDonThanhToan(hoaDonId, tenKH, soDT, DiaC, Gmail);
+                    MessageBox.Show(kqThemHoaDon); // Hiển thị kết quả thêm
 
                     string kqThemKhachHang = _KhachHangServices.CNThemOrUpdateKhachHang(tenKH, soDT, Gmail, DiaC, diemTichLuy, capDoThanhVien);
                     MessageBox.Show(kqThemKhachHang, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -288,11 +290,30 @@ namespace PRL
                     cbx_HoaDonId.Items.Remove(selectedHoaDonId);
 
                     // Lưu lại các sản phẩm trong hóa đơn đã thanh toán
-                    
+                    var selectedHoaDon = hoaDonDaThanhs.FirstOrDefault(hd => hd.HoaDonId == selectedHoaDonId);
+                    if (selectedHoaDon != null)
+                    {
+                        // Lưu các sản phẩm từ dtf_GioHang vào hóa đơn
+                        selectedHoaDon.sanPhamMuas.Clear();
+                        foreach (DataGridViewRow row in dtf_GioHang.Rows)
+                        {
+                            if (row.Cells[0].Value != null)
+                            {
+                                selectedHoaDon.sanPhamMuas.Add(new SanPhamMua
+                                {
+                                    TenSanPham = row.Cells[0].Value.ToString(),
+                                    TenThuongHieu = row.Cells[1].Value.ToString(),
+                                    SoLuong = int.Parse(row.Cells[2].Value.ToString()),
+                                    Gia = decimal.Parse(row.Cells[3].Value.ToString()),
+                                    TongGia = decimal.Parse(row.Cells[4].Value.ToString())
+                                });
+                            }
+                        }
+                    }
 
                     // Hiển thị thông báo thành công
                     MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    cbx_HoaDonId.Text = "";
                     // Reset form
                     txt_tenkhachhang.Clear();
                     txt_sđt.Clear();
@@ -332,6 +353,8 @@ namespace PRL
                 return "Đồng";
             }
         }
+
+
 
         private void btn_TaoHoaDon_Click(object sender, EventArgs e)
         {
@@ -621,7 +644,6 @@ namespace PRL
                 }
                 else
                 {
-                    MessageBox.Show("Không có sản phẩm nào trong mã: " + selectedMaHoaDon);
                     pn_ChiTiet.Visible = true;
                 }
             }
@@ -730,6 +752,18 @@ namespace PRL
         }
 
         private void txt_timkiemsanpham_TextChanged(object sender, EventArgs e)
+        {
+            List<SanPham> sp = _SanPhamService.CntimSPTheoTen(txt_timkiemsanpham.Text);
+            Loadata(sp);
+        }
+
+        private void txt_TimKiemGioHang_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
         {
             List<SanPham> sp = _SanPhamService.CntimSPTheoTen(txt_timkiemsanpham.Text);
             Loadata(sp);
