@@ -28,7 +28,10 @@ namespace DAL.Repsitory
         {
             return _context.SanPhams.Where(p=>p.TenSanPham.Contains(ten)).ToList();
         }
-
+        public List<SanPham> GetSP2(string tenth)
+        {
+            return _context.SanPhams.Where(p => p.TenThuongHieu.Contains(tenth)).ToList();
+        }
 
 
         public List<SanPham>GetSPandTH(string tensp , string tenth)
@@ -112,6 +115,7 @@ namespace DAL.Repsitory
             }
 
         }
+
         public void CapNhatSoLuong(int sanPhamId, int soLuongMoi)
         {
             // Lấy sản phẩm theo ID

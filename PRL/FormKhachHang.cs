@@ -40,10 +40,20 @@ namespace PRL
             dgv_data.Columns[0].HeaderText = "STT";
             dgv_data.Columns[1].HeaderText = "ID khách hàng";
             dgv_data.Columns[2].HeaderText = "Tên khách hàng";
+<<<<<<< HEAD
             dgv_data.Columns[3].HeaderText = "SDT";
             dgv_data.Columns[4].HeaderText = "Email";
+=======
+            dgv_data.Columns[3].HeaderText = "Email";
+            dgv_data.Columns[4].HeaderText = "SDT";
+>>>>>>> 0d9e37deb638c4f8394010932271075c14b18377
             dgv_data.Columns[5].HeaderText = "Địa chỉ";
 
+<<<<<<< HEAD
+            // Thêm cột giới tính
+          
+=======
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
         }
         private void LoadData()
         {
@@ -66,6 +76,8 @@ namespace PRL
             foreach (var item in kh)
             {
                 dgv_data.Rows.Add(stt++, item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi);
+<<<<<<< HEAD
+=======
 
             }
         }
@@ -76,6 +88,7 @@ namespace PRL
             foreach (var item in kh)
             {
                 dgv_KhachHang.Rows.Add(stt++, item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi, item.DiemTichLuy, item.CapDoThanhVien);
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
 
             }
         }
@@ -94,9 +107,17 @@ namespace PRL
             DialogResult result = MessageBox.Show("Bạn có muốn chắc chắn thêm không", "Thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+<<<<<<< HEAD
+                string kq = _services.CNThem(maInt, ten, email, sdt, diachi);
+=======
                 int diemTichLuy = 0;
                 string capDoThanhVien = "Đồng";
+<<<<<<< HEAD
                 string kq = _services.CNThemOrUpdateKhachHang( ten, sdt, email, diachi, diemTichLuy, capDoThanhVien);
+=======
+                string kq = _services.CNThemOrUpdateKhachHang( ten, email, sdt, diachi, diemTichLuy, capDoThanhVien);
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
+>>>>>>> 0d9e37deb638c4f8394010932271075c14b18377
                 MessageBox.Show(kq);
                 List<KhachHang> khachhangs = _services.CNShow();
                 showdata(khachhangs);
@@ -129,6 +150,10 @@ namespace PRL
             string sdt = txtSDT.Text;
             string email = txtEmail.Text;
             string diachi = txtDiaChi.Text;
+<<<<<<< HEAD
+          
+=======
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
 
             int maInt = int.Parse(ma);
             if (!_services.CheckSDT(sdt))
@@ -156,6 +181,10 @@ namespace PRL
                 txtSDT.Text = "";
                 txtEmail.Text = "";
                 txtDiaChi.Text = "";
+<<<<<<< HEAD
+               
+=======
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
             }
         }
         private void dgv_data_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -169,6 +198,10 @@ namespace PRL
                 txtEmail.Text = rowdata.Cells[4].Value.ToString();
                 txtDiaChi.Text = rowdata.Cells[5].Value.ToString();
                 
+<<<<<<< HEAD
+               
+=======
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
             }
 
         }
