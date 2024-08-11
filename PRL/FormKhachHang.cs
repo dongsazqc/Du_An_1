@@ -25,7 +25,9 @@ namespace PRL
         {
             InitializeComponent();
             SetupDataGridView();
+            CapBacKhachHang();
             LoadData();
+            LoadCapBac();
         }
 
         private void FormKhachHang_Load(object sender, EventArgs e)
@@ -38,20 +40,30 @@ namespace PRL
             dgv_data.Columns[0].HeaderText = "STT";
             dgv_data.Columns[1].HeaderText = "ID khách hàng";
             dgv_data.Columns[2].HeaderText = "Tên khách hàng";
-            dgv_data.Columns[3].HeaderText = "Email";
+            dgv_data.Columns[3].HeaderText = "Gmail";
             dgv_data.Columns[4].HeaderText = "SDT";
             dgv_data.Columns[5].HeaderText = "Địa chỉ";
 
+<<<<<<< HEAD
             // Thêm cột giới tính
           
+=======
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
         }
         private void LoadData()
         {
             dgv_data.Rows.Clear(); // Xóa dữ liệu cũ
             List<KhachHang> khachhangs = _services.CNShow();
             showdata(khachhangs);
-            KhachHangMuaNhieuNhat();
         }
+
+        private void LoadCapBac()
+        {
+            dgv_KhachHang.Rows.Clear(); // Xóa dữ liệu cũ
+            List<KhachHang> khachhangs = _services.CNShow();
+            showCapBac(khachhangs);
+        }
+
         private void showdata(List<KhachHang> kh)
         {
             dgv_data.Rows.Clear();
@@ -59,21 +71,30 @@ namespace PRL
             foreach (var item in kh)
             {
                 dgv_data.Rows.Add(stt++, item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi);
+<<<<<<< HEAD
+=======
+
+            }
+        }
+        private void showCapBac(List<KhachHang> kh)
+        {
+            dgv_KhachHang.Rows.Clear();
+            int stt = 1;
+            foreach (var item in kh)
+            {
+                dgv_KhachHang.Rows.Add(stt++, item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi, item.DiemTichLuy, item.CapDoThanhVien);
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
 
             }
         }
 
-
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string ma = txtMa.Text;
             string ten = txtTenKhachHang.Text;
             string email = txtEmail.Text;
             string sdt = txtSDT.Text;
             string diachi = txtDiaChi.Text;
-            bool gioitinh = rdoNam.Checked; 
 
-            int maInt = int.Parse(ma);
             if (!_services.CheckSDT(sdt))
             {
                 MessageBox.Show("Số điện thoại không hợp lệ"); return;
@@ -81,7 +102,13 @@ namespace PRL
             DialogResult result = MessageBox.Show("Bạn có muốn chắc chắn thêm không", "Thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
+<<<<<<< HEAD
                 string kq = _services.CNThem(maInt, ten, email, sdt, diachi);
+=======
+                int diemTichLuy = 0;
+                string capDoThanhVien = "Đồng";
+                string kq = _services.CNThemOrUpdateKhachHang( ten, email, sdt, diachi, diemTichLuy, capDoThanhVien);
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
                 MessageBox.Show(kq);
                 List<KhachHang> khachhangs = _services.CNShow();
                 showdata(khachhangs);
@@ -93,7 +120,7 @@ namespace PRL
 
         }
 
-        private void KhachHangMuaNhieuNhat()
+        private void CapBacKhachHang()
         {
             dgv_KhachHang.Rows.Clear();
             dgv_KhachHang.ColumnCount = 8;
@@ -103,8 +130,8 @@ namespace PRL
             dgv_KhachHang.Columns[3].HeaderText = "SDT";
             dgv_KhachHang.Columns[4].HeaderText = "Địa chỉ";
             dgv_KhachHang.Columns[5].HeaderText = "Gmail";
-            dgv_KhachHang.Columns[6].HeaderText = "Sản phẩm";
-            dgv_KhachHang.Columns[7].HeaderText = "Tổng tiền";
+            dgv_KhachHang.Columns[6].HeaderText = "Điểm tích lũy";
+            dgv_KhachHang.Columns[7].HeaderText = "Cấp bậc";
         }
 
         private void btnSua_Click(object sender, EventArgs e)
@@ -114,7 +141,10 @@ namespace PRL
             string email = txtEmail.Text;
             string sdt = txtSDT.Text;
             string diachi = txtDiaChi.Text;
+<<<<<<< HEAD
           
+=======
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
 
             int maInt = int.Parse(ma);
             if (!_services.CheckSDT(sdt))
@@ -142,7 +172,10 @@ namespace PRL
                 txtEmail.Text = "";
                 txtSDT.Text = "";
                 txtDiaChi.Text = "";
+<<<<<<< HEAD
                
+=======
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
             }
         }
         private void dgv_data_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -156,7 +189,10 @@ namespace PRL
                 txtSDT.Text = rowdata.Cells[4].Value.ToString();
                 txtDiaChi.Text = rowdata.Cells[5].Value.ToString();
                 
+<<<<<<< HEAD
                
+=======
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
             }
 
         }

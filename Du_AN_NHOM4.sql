@@ -20,11 +20,13 @@ GO
 
 -- Tạo bảng KhachHang
 CREATE TABLE KhachHang (
-    KhachHangID INT PRIMARY KEY,
+    KhachHangID INT IDENTITY(1,1) PRIMARY KEY,
     TenKhachHang NVARCHAR(255) NOT NULL,
     Email NVARCHAR(255) NOT NULL,
     SoDienThoai NVARCHAR(50),
-    DiaChi NVARCHAR(500)
+    DiaChi NVARCHAR(500),
+	DiemTichLuy INT,
+	CapDoThanhVien NVARCHAR(20)
 );
 GO
 
@@ -157,11 +159,6 @@ ALTER TABLE SanPham
 ADD NgaySanXuat DATE;
 GO
 
--- Thêm cột GioiTinh vào bảng KhachHang
-ALTER TABLE KhachHang
-ADD GioiTinh BIT;
-GO
-
 -- Thêm cột GhiChu vào bảng DonHang
 ALTER TABLE DonHang
 ADD GhiChu NVARCHAR(255);
@@ -235,17 +232,17 @@ GO
 
 -- Thủ tục thêm khách hàng
 CREATE PROCEDURE SP_Them_KhachHang
-    @KhachHangID INT,
     @TenKhachHang NVARCHAR(255),
     @Email NVARCHAR(255),
     @SoDienThoai NVARCHAR(50),
     @DiaChi NVARCHAR(500),
-	@GioiTinh BIT
+	@DiemTichLuy INT,
+	@CapDoThanhVien NVARCHAR(20)
 AS
 BEGIN
     BEGIN TRY
-        INSERT INTO KhachHang (KhachHangID, TenKhachHang, Email, SoDienThoai, DiaChi, GioiTinh)
-        VALUES (@KhachHangID, @TenKhachHang, @Email, @SoDienThoai, @DiaChi, @GioiTinh);
+        INSERT INTO KhachHang (TenKhachHang, Email, SoDienThoai, DiaChi, DiemTichLuy, CapDoThanhVien)
+        VALUES (@TenKhachHang, @Email, @SoDienThoai, @DiaChi, @DiemTichLuy, @CapDoThanhVien);
         PRINT N'Thêm khách hàng thành công';
     END TRY
     BEGIN CATCH
@@ -255,7 +252,7 @@ END;
 GO
 
 -- Thực thi thủ tục thêm khách hàng
-EXEC SP_Them_KhachHang 45001, N'Nguyễn Văn A', 'nguyenvana@example.com', '0123456789', N'123 Nguyễn Trãi, Hà Nội', 0;
+EXEC SP_Them_KhachHang  N'Nguyễn Văn A', 'nguyenvana@example.com', '0123456789', N'123 Nguyễn Trãi, Hà Nội', 0, N'Đồng';
 GO
 
 -- Xem dữ liệu trong bảng KhachHang
@@ -271,7 +268,7 @@ CREATE TABLE SanPhamGiamGia (
     NgayKetThucGiamGia DATE,                 -- Ngày kết thúc giảm giá
     MoTa NVARCHAR(1000)                      -- Mô tả sản phẩm
 );
-<<<<<<< HEAD
+
 Drop table Voucher;
 CREATE TABLE Voucher (
     MaVoucher INT PRIMARY KEY,
@@ -290,11 +287,9 @@ INSERT INTO Voucher (MaVoucher, TenVoucher, TenThuongHieu, PhanTramGiam, GiaTri,
 VALUES(40201, N'Giảm giá 20%', 'Nike', 20.00, 200000.00, '2024-08-01', '2024-11-20', N'Áp dụng cho đơn hàng từ 1,000,000')
 
 
-=======
 	go
 	INSERT INTO SanPhamGiamGia (MaSanPham, TenSanPham, GiaBan, PhanTramGiam, NgayBatDauGiamGia, NgayKetThucGiamGia, MoTa)
 VALUES (1, 'Sản phẩm A', 100000, 10, '2024-07-21', '2024-08-21', 'Mô tả sản phẩm A');
->>>>>>> b50953e3a273fd36b5338205ab359c70362c7ce3
 
 Select * from NguoiDung;
 go

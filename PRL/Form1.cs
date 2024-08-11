@@ -113,12 +113,12 @@ namespace PRL
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+            icbtn_HienAn.IconChar = FontAwesome.Sharp.IconChar.List;
         }
 
         private void btn_hoAdon_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -126,5 +126,21 @@ namespace PRL
 OpenChildForm(new FormKhuyenMai());
             TieuDe.Text= btn_KM.Text;
         }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            if (panel1.Visible)
+            {
+                // Nếu panel đang hiển thị, ẩn nó
+                panel1.Visible = false;
+               icbtn_HienAn.Text = "Hiện Panel";
+            }
+            else
+            {
+                panel1.Visible = true;
+                icbtn_HienAn.Text = "Ẩn Panel"; 
+            }
+        }
+
     }
 }
