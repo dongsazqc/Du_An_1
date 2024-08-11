@@ -1,4 +1,5 @@
 ﻿using DAL.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,8 @@ namespace DAL.Repsitory
 {
     public class KhachHangRep
     {
+        private readonly string connectionString = "Data Source=PHAM_VAN_DONG;Initial Catalog=Du_An_Nhom4;Integrated Security=True;Trust Server Certificate=True";
+
         DuAnNhom4Context _context = new DuAnNhom4Context();
         public KhachHangRep()
         {
@@ -91,5 +94,17 @@ namespace DAL.Repsitory
             }
         }
 
+        public int GetMaxKhachHangId()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT ISNULL(MAX(KhachHangId), 0) FROM KhachHang";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    return (int)cmd.ExecuteScalar();
+                }
+            }
+        }
     }
 }

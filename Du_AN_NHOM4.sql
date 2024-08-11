@@ -29,6 +29,9 @@ CREATE TABLE KhachHang (
 	CapDoThanhVien NVARCHAR(20)
 );
 GO
+ALTER TABLE KhachHang
+ADD KhachHangID INT IDENTITY(1,1);
+go
 
 -- Tạo bảng DonHang
 CREATE TABLE DonHang (

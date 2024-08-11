@@ -264,7 +264,7 @@ namespace PRL
             // dgv_KhachHang
             // 
             dgv_KhachHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_KhachHang.Location = new Point(6, 22);
+            dgv_KhachHang.Location = new Point(0, 28);
             dgv_KhachHang.Name = "dgv_KhachHang";
             dgv_KhachHang.RowHeadersWidth = 51;
             dgv_KhachHang.Size = new Size(1047, 212);

@@ -92,24 +92,7 @@
             // 
             // btn_KM
             // 
-<<<<<<< HEAD
             btn_KM.BackColor = Color.FromArgb(0, 0, 192);
-=======
-            //btn_KM.BackColor = Color.FromArgb(0, 0, 192);
-            //btn_Voucher.BackColor = Color.FromArgb(0, 0, 192);
-            //btn_Voucher.FlatAppearance.BorderSize = 0;
-            //btn_Voucher.FlatStyle = FlatStyle.Flat;
-            //btn_Voucher.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
-            //btn_Voucher.ForeColor = Color.White;
-            //btn_Voucher.Location = new Point(0, 795);
-            //btn_Voucher.Name = "btn_Voucher";
-            //btn_Voucher.Size = new Size(249, 112);
-            //btn_Voucher.TabIndex = 6;
-            //btn_Voucher.Text = "Voucher";
-            //btn_Voucher.UseVisualStyleBackColor = false;
-            //btn_Voucher.Click += button1_Click_1;
-            btn_KM.BackColor = Color.Navy;
->>>>>>> 0d9e37deb638c4f8394010932271075c14b18377
             btn_KM.FlatAppearance.BorderSize = 0;
             btn_KM.FlatStyle = FlatStyle.Flat;
             btn_KM.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
@@ -139,7 +122,7 @@
             iconPictureBox4.IconColor = Color.White;
             iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconPictureBox4.IconSize = 40;
-            iconPictureBox4.Location = new Point(23, 686);
+            iconPictureBox4.Location = new Point(23, 705);
             iconPictureBox4.Name = "iconPictureBox4";
             iconPictureBox4.Size = new Size(40, 40);
             iconPictureBox4.TabIndex = 10;
