@@ -30,13 +30,29 @@ namespace BUS.Service
             return _repo.GetKH(id);
         }
 
+<<<<<<< HEAD
+        public string CNThem(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi)
+=======
         public string CNThemOrUpdateKhachHang(string tenKH, string email, string sdt, string diaChi, int diemTichLuy, string capDoThanhVien)
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
         {
             // Tìm khách hàng dựa trên số điện thoại
             var existingCustomer = _repo.GetKhachHangBySoDienThoai(sdt);
 
             if (existingCustomer != null)
             {
+<<<<<<< HEAD
+                KhachHangId = Khanhhangid,
+                TenKhachHang = tenkhachhang,
+                Email = email,
+                SoDienThoai = sdt,
+                DiaChi = diachi,
+          
+            };
+            if (_repo.AddKH(kh))
+            {
+                return "Thêm thành công";
+=======
                 // Khách hàng đã tồn tại, cập nhật điểm tích lũy
                 int diemTichLuyHienTai = existingCustomer.DiemTichLuy ?? 0; // Chuyển đổi từ int? sang int
                 diemTichLuyHienTai += diemTichLuy; // Cộng dồn điểm tích lũy
@@ -53,6 +69,7 @@ namespace BUS.Service
                 {
                     return "Cập nhật điểm thất bại";
                 }
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
             }
             else
             {
@@ -78,6 +95,8 @@ namespace BUS.Service
             }
         }
 
+<<<<<<< HEAD
+=======
         private string DetermineMembershipLevel(int points)
         {
             if (points >= 50) return "Vàng";
@@ -88,6 +107,7 @@ namespace BUS.Service
 
         }
 
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
         public string CNSua(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi)
         {
             KhachHang kh = new KhachHang()
@@ -97,6 +117,10 @@ namespace BUS.Service
                 Email = email,
                 SoDienThoai = sdt,
                 DiaChi = diachi
+<<<<<<< HEAD
+                
+=======
+>>>>>>> 7eda9507ab6e95a34a1c1146c905750afc9a7e4b
             };
             if (_repo.Update(kh))
             {

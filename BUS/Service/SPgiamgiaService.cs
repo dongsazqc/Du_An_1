@@ -19,7 +19,7 @@ namespace BUS.Service
         {
             return _Repo.GetAll();
         }
-        public string CNthem(int masanpham, string tensanpham, decimal giaban, decimal phantramgiam, decimal giagiam,  string mota)
+        public string CNthem(int masanpham, string tensanpham, decimal giaban, decimal phantramgiam, decimal giagiam, DateOnly ngaybd,DateOnly ngaykt, string mota)
         {
             SanPhamGiamGium spgg = new SanPhamGiamGium()
             {
@@ -30,7 +30,8 @@ namespace BUS.Service
                 MoTa = mota,
                 GiaGiam = giagiam,
                 PhanTramGiam  = phantramgiam,
-                
+                NgayBatDauGiamGia=ngaybd,
+                NgayKetThucGiamGia = ngaykt,
                  
             };
             if (_Repo.AddSP(spgg))
@@ -42,7 +43,7 @@ namespace BUS.Service
                 return "thêm thất bại";
             }
         }
-        public string CNSua(int masanpham, string tensanpham, decimal giaban, decimal phantramgiam, decimal giagiam,  string mota)
+        public string CNSua(int masanpham, string tensanpham, decimal giaban, decimal phantramgiam, decimal giagiam, DateOnly ngaybd, DateOnly ngaykt,  string mota)
         {
             SanPhamGiamGium spgg = new SanPhamGiamGium()
             {
@@ -53,7 +54,8 @@ namespace BUS.Service
                 MoTa = mota,
                 GiaGiam = giagiam,
                 PhanTramGiam = phantramgiam,
-
+                NgayBatDauGiamGia = ngaybd,
+                NgayKetThucGiamGia = ngaykt
 
             };
             if (_Repo.UpdateSP(spgg))

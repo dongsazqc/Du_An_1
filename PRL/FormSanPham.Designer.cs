@@ -44,7 +44,6 @@
             txt_soluong = new TextBox();
             txt_kichthuoc = new TextBox();
             txt_mausac = new TextBox();
-            txt_trangthai = new TextBox();
             txt_gia = new TextBox();
             btn_them = new Button();
             dgv_sanpham = new DataGridView();
@@ -52,6 +51,10 @@
             grb_SanPham = new GroupBox();
             btn_Del = new Button();
             groupBox1 = new GroupBox();
+            dt_ngaysx = new DateTimePicker();
+            label14 = new Label();
+            rdo_hethang = new RadioButton();
+            rdo_conhang = new RadioButton();
             pictureBox1 = new PictureBox();
             dt_ngaykt = new DateTimePicker();
             dt_ngaybd = new DateTimePicker();
@@ -70,8 +73,11 @@
             groupBox3 = new GroupBox();
             groupBox2 = new GroupBox();
             groupBox4 = new GroupBox();
+            btn_xoasp = new Button();
             btn_suaspgg = new Button();
             button1 = new Button();
+            label15 = new Label();
+            txt_timkiem = new TextBox();
             btn_sua = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_sanpham).BeginInit();
             grb_SanPham.SuspendLayout();
@@ -86,11 +92,9 @@
             // 
             // btn_sua
             // 
-            btn_sua.BackColor = SystemColors.ButtonHighlight;
-            btn_sua.Font = new Font("Tahoma", 10.2F, FontStyle.Bold);
-            btn_sua.Image = Properties.Resources.icons8_save_30;
             btn_sua.BackColor = Color.Gold;
             btn_sua.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_sua.Image = Properties.Resources.icons8_save_30;
             btn_sua.ImageAlign = ContentAlignment.MiddleLeft;
             btn_sua.Location = new Point(239, 31);
             btn_sua.Name = "btn_sua";
@@ -240,14 +244,6 @@
             txt_mausac.Size = new Size(230, 27);
             txt_mausac.TabIndex = 13;
             // 
-            // txt_trangthai
-            // 
-            txt_trangthai.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            txt_trangthai.Location = new Point(562, 272);
-            txt_trangthai.Name = "txt_trangthai";
-            txt_trangthai.Size = new Size(247, 27);
-            txt_trangthai.TabIndex = 14;
-            // 
             // txt_gia
             // 
             txt_gia.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -261,9 +257,8 @@
             btn_them.AutoEllipsis = true;
             btn_them.BackColor = Color.White;
             btn_them.BackgroundImageLayout = ImageLayout.None;
-            btn_them.Font = new Font("Tahoma", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btn_them.Image = Properties.Resources.icons8_new_page_24;
             btn_them.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_them.Image = Properties.Resources.icons8_new_page_24;
             btn_them.ImageAlign = ContentAlignment.MiddleLeft;
             btn_them.Location = new Point(54, 29);
             btn_them.Name = "btn_them";
@@ -275,7 +270,6 @@
             btn_them.UseVisualStyleBackColor = false;
             btn_them.Click += btn_them_Click;
             // 
-            // btn_timkiem
             // dgv_sanpham
             // 
             dgv_sanpham.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -313,11 +307,9 @@
             // 
             // btn_Del
             // 
-            btn_Del.BackColor = Color.White;
-            btn_Del.Font = new Font("Tahoma", 10.2F, FontStyle.Bold);
-            btn_Del.Image = Properties.Resources.icons8_clear_50;
             btn_Del.BackColor = Color.LawnGreen;
             btn_Del.Font = new Font("Showcard Gothic", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            btn_Del.Image = Properties.Resources.icons8_clear_50;
             btn_Del.ImageAlign = ContentAlignment.MiddleLeft;
             btn_Del.Location = new Point(420, 32);
             btn_Del.Name = "btn_Del";
@@ -330,6 +322,10 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.FromArgb(224, 224, 224);
+            groupBox1.Controls.Add(dt_ngaysx);
+            groupBox1.Controls.Add(label14);
+            groupBox1.Controls.Add(rdo_hethang);
+            groupBox1.Controls.Add(rdo_conhang);
             groupBox1.Controls.Add(pictureBox1);
             groupBox1.Controls.Add(dt_ngaykt);
             groupBox1.Controls.Add(dt_ngaybd);
@@ -351,7 +347,6 @@
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(txt_trangthai);
             groupBox1.Controls.Add(rtb_mota);
             groupBox1.Controls.Add(label9);
             groupBox1.Controls.Add(label7);
@@ -365,10 +360,56 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Thông tin sản phẩm";
             // 
+            // dt_ngaysx
+            // 
+            dt_ngaysx.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dt_ngaysx.Format = DateTimePickerFormat.Short;
+            dt_ngaysx.Location = new Point(307, 461);
+            dt_ngaysx.Name = "dt_ngaysx";
+            dt_ngaysx.Size = new Size(249, 26);
+            dt_ngaysx.TabIndex = 37;
+            dt_ngaysx.ValueChanged += dateTimePicker1_ValueChanged;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label14.Location = new Point(153, 464);
+            label14.Name = "label14";
+            label14.Size = new Size(125, 22);
+            label14.TabIndex = 36;
+            label14.Text = "Ngày Sản Xuất";
+            // 
+            // rdo_hethang
+            // 
+            rdo_hethang.AutoSize = true;
+            rdo_hethang.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            rdo_hethang.Location = new Point(562, 275);
+            rdo_hethang.Name = "rdo_hethang";
+            rdo_hethang.Size = new Size(105, 26);
+            rdo_hethang.TabIndex = 35;
+            rdo_hethang.TabStop = true;
+            rdo_hethang.Text = "Hết Hàng";
+            rdo_hethang.UseVisualStyleBackColor = true;
+            rdo_hethang.CheckedChanged += rdo_hethang_CheckedChanged;
+            // 
+            // rdo_conhang
+            // 
+            rdo_conhang.AutoSize = true;
+            rdo_conhang.Font = new Font("Tahoma", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 163);
+            rdo_conhang.Location = new Point(702, 277);
+            rdo_conhang.Name = "rdo_conhang";
+            rdo_conhang.Size = new Size(109, 26);
+            rdo_conhang.TabIndex = 34;
+            rdo_conhang.TabStop = true;
+            rdo_conhang.Text = "Còn Hàng";
+            rdo_conhang.UseVisualStyleBackColor = true;
+            rdo_conhang.CheckedChanged += rdo_conhang_CheckedChanged;
+            // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Transparent;
-            pictureBox1.Location = new Point(880, 252);
+            pictureBox1.Location = new Point(865, 252);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(233, 217);
             pictureBox1.TabIndex = 28;
@@ -377,6 +418,7 @@
             // dt_ngaykt
             // 
             dt_ngaykt.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dt_ngaykt.Format = DateTimePickerFormat.Short;
             dt_ngaykt.Location = new Point(562, 403);
             dt_ngaykt.Name = "dt_ngaykt";
             dt_ngaykt.Size = new Size(247, 26);
@@ -385,6 +427,7 @@
             // dt_ngaybd
             // 
             dt_ngaybd.Font = new Font("Tahoma", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dt_ngaybd.Format = DateTimePickerFormat.Short;
             dt_ngaybd.Location = new Point(153, 407);
             dt_ngaybd.Name = "dt_ngaybd";
             dt_ngaybd.Size = new Size(249, 26);
@@ -461,7 +504,7 @@
             // dtg_SPGG
             // 
             dtg_SPGG.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_SPGG.Location = new Point(13, 28);
+            dtg_SPGG.Location = new Point(20, 31);
             dtg_SPGG.Name = "dtg_SPGG";
             dtg_SPGG.RowHeadersWidth = 51;
             dtg_SPGG.Size = new Size(547, 251);
@@ -554,6 +597,7 @@
             // groupBox4
             // 
             groupBox4.BackColor = SystemColors.ActiveCaption;
+            groupBox4.Controls.Add(btn_xoasp);
             groupBox4.Controls.Add(btn_suaspgg);
             groupBox4.Controls.Add(button1);
             groupBox4.Font = new Font("Segoe UI Black", 10.8F, FontStyle.Bold);
@@ -564,6 +608,23 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Thêm Sản Phẩm Giảm giá";
             groupBox4.Enter += groupBox4_Enter;
+            // 
+            // btn_xoasp
+            // 
+            btn_xoasp.AutoEllipsis = true;
+            btn_xoasp.BackColor = Color.White;
+            btn_xoasp.BackgroundImageLayout = ImageLayout.None;
+            btn_xoasp.Font = new Font("Tahoma", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btn_xoasp.ImageAlign = ContentAlignment.MiddleLeft;
+            btn_xoasp.Location = new Point(408, 50);
+            btn_xoasp.Name = "btn_xoasp";
+            btn_xoasp.RightToLeft = RightToLeft.No;
+            btn_xoasp.Size = new Size(110, 65);
+            btn_xoasp.TabIndex = 28;
+            btn_xoasp.Text = "Xóa";
+            btn_xoasp.UseMnemonic = false;
+            btn_xoasp.UseVisualStyleBackColor = false;
+            btn_xoasp.Click += btn_xoasp_Click;
             // 
             // btn_suaspgg
             // 
@@ -599,11 +660,32 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            label15.Location = new Point(1304, 648);
+            label15.Name = "label15";
+            label15.Size = new Size(115, 22);
+            label15.TabIndex = 38;
+            label15.Text = "Tìm Kiếm Tên";
+            // 
+            // txt_timkiem
+            // 
+            txt_timkiem.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txt_timkiem.Location = new Point(1425, 647);
+            txt_timkiem.Name = "txt_timkiem";
+            txt_timkiem.Size = new Size(230, 27);
+            txt_timkiem.TabIndex = 38;
+            txt_timkiem.TextChanged += txt_timkiem_TextChanged;
+            // 
             // FormSanPham
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1709, 895);
+            Controls.Add(txt_timkiem);
+            Controls.Add(label15);
             Controls.Add(groupBox4);
             Controls.Add(groupBox2);
             Controls.Add(groupBox3);
@@ -624,6 +706,7 @@
             groupBox2.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -643,7 +726,6 @@
         private TextBox txt_soluong;
         private TextBox txt_kichthuoc;
         private TextBox txt_mausac;
-        private TextBox txt_trangthai;
         private TextBox txt_gia;
         private Button btn_sua;
         private DataGridView dgv_sanpham;
@@ -672,5 +754,12 @@
         private GroupBox groupBox4;
         public Button btn_suaspgg;
         public Button button1;
+        private RadioButton rdo_hethang;
+        private RadioButton rdo_conhang;
+        private DateTimePicker dt_ngaysx;
+        private Label label14;
+        public Button btn_xoasp;
+        private Label label15;
+        private TextBox txt_timkiem;
     }
 }

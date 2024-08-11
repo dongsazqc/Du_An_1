@@ -35,6 +35,20 @@ namespace DAL.Repsitory
 
             }
         }
+        public void RemoveExpiredProducts()
+        {
+            // Chuyển đổi DateOnly thành DateTime để so sánh
+            var today = DateOnly.FromDateTime(DateTime.Now);
+            var expiredProducts = _context.SanPhamGiamGia
+                .Where(p => p.NgayKetThucGiamGia > today)
+                .ToList();
+
+            if (expiredProducts.Any())
+            {
+                _context.SanPhamGiamGia.RemoveRange(expiredProducts);
+                _context.SaveChanges();
+            }
+        }
         public bool UpdateSP(SanPhamGiamGium spgg) //dữ liệu được truyền vào lấy từ form
         {
             try
