@@ -83,7 +83,7 @@ namespace PRL
             dgv_KhachHang.Columns[0].HeaderText = "STT";
             dgv_KhachHang.Columns[1].HeaderText = "ID Khách hàng";
             dgv_KhachHang.Columns[2].HeaderText = "Tên khách hàng";
-            dgv_KhachHang.Columns[3].HeaderText = "";
+            dgv_KhachHang.Columns[3].HeaderText = "Email";
             dgv_KhachHang.Columns[4].HeaderText = "SDT";
             dgv_KhachHang.Columns[5].HeaderText = "Địa chỉ";
             dgv_KhachHang.Columns[6].HeaderText = "Điểm tích lũy";

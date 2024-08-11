@@ -19,5 +19,7 @@ public partial class SanPhamMua
 
     public string? HoaDonId { get; set; }
 
-    public virtual HoaDonDaThanhToan? HoaDon { get; set; }
+    public virtual HoaDon? HoaDon { get; set; }
+
+    public virtual HoaDonDaThanhToan? HoaDonNavigation { get; set; }
 }

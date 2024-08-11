@@ -201,6 +201,7 @@
             txt_sđt.Name = "txt_sđt";
             txt_sđt.Size = new Size(221, 30);
             txt_sđt.TabIndex = 2;
+            txt_sđt.TextChanged += txt_sđt_TextChanged;
             // 
             // txt_tenkhachhang
             // 
