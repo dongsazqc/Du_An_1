@@ -15,7 +15,9 @@ public partial class KhachHang
 
     public string? DiaChi { get; set; }
 
-    public bool? GioiTinh { get; set; }
+    public int? DiemTichLuy { get; set; }
+
+    public string? CapDoThanhVien { get; set; }
 
     public virtual ICollection<DanhGium> DanhGia { get; set; } = new List<DanhGium>();
 

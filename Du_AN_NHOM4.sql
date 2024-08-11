@@ -20,11 +20,13 @@ GO
 
 -- Tạo bảng KhachHang
 CREATE TABLE KhachHang (
-    KhachHangID INT PRIMARY KEY,
+    KhachHangID INT IDENTITY(1,1) PRIMARY KEY,
     TenKhachHang NVARCHAR(255) NOT NULL,
     Email NVARCHAR(255) NOT NULL,
     SoDienThoai NVARCHAR(50),
-    DiaChi NVARCHAR(500)
+    DiaChi NVARCHAR(500),
+	DiemTichLuy INT,
+	CapDoThanhVien NVARCHAR(20)
 );
 GO
 
@@ -109,7 +111,11 @@ CREATE TABLE KhuyenMai (
     NgayKetThuc DATETIME NOT NULL
 );
 GO
-
+INSERT INTO KhuyenMai (TenKhuyenMai, MoTa, GiamGia, NgayBatDau, NgayKetThuc)
+VALUES 
+    (N'Khuyến Mãi Mùa Hè 2024', N'Khuyến mãi đặc biệt cho mùa hè 2024 với nhiều ưu đãi hấp dẫn.', 25.00, '2024-06-01', '2024-08-31')
+	INSERT INTO KhuyenMai (TenKhuyenMai, MoTa, GiamGia, NgayBatDau, NgayKetThuc)
+VALUES (N'Khuyến Mãi Tết Nguyên Đán 2025', N'Khuyến mãi chào mừng Tết Nguyên Đán 2025 với nhiều phần quà giá trị.', 20.00, '2025-01-10', '2025-02-10')
 -- Tạo bảng PhuongThucThanhToan
 CREATE TABLE PhuongThucThanhToan (
     PhuongThucThanhToanID INT PRIMARY KEY,
@@ -151,11 +157,6 @@ GO
 -- Thêm cột NgaySanXuat vào bảng SanPham
 ALTER TABLE SanPham
 ADD NgaySanXuat DATE;
-GO
-
--- Thêm cột GioiTinh vào bảng KhachHang
-ALTER TABLE KhachHang
-ADD GioiTinh BIT;
 GO
 
 -- Thêm cột GhiChu vào bảng DonHang
@@ -223,6 +224,8 @@ GO
 EXEC SP_Them_SP 1, N'Quần jean', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 1000000.00, 100, N'L', N'Xanh', N'Còn Hàng';
 EXEC SP_Them_SP 2, N'Quần Straight Pants', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 2000000.00, 100, N'XL', N'Đỏ', N'Còn Hàng';
 EXEC SP_Them_SP 3, N'Quần Short', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 3000000.00, 120, N'XL', N'Vàng', N'Còn Hàng';
+EXEC SP_Them_SP 4, N'Quần Short', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 300, 1000, N'XL', N'Vàng', N'Còn Hàng';
+GO
 GO
 
 -- Xem dữ liệu trong bảng SanPham
@@ -231,17 +234,17 @@ GO
 
 -- Thủ tục thêm khách hàng
 CREATE PROCEDURE SP_Them_KhachHang
-    @KhachHangID INT,
     @TenKhachHang NVARCHAR(255),
     @Email NVARCHAR(255),
     @SoDienThoai NVARCHAR(50),
     @DiaChi NVARCHAR(500),
-	@GioiTinh BIT
+	@DiemTichLuy INT,
+	@CapDoThanhVien NVARCHAR(20)
 AS
 BEGIN
     BEGIN TRY
-        INSERT INTO KhachHang (KhachHangID, TenKhachHang, Email, SoDienThoai, DiaChi, GioiTinh)
-        VALUES (@KhachHangID, @TenKhachHang, @Email, @SoDienThoai, @DiaChi, @GioiTinh);
+        INSERT INTO KhachHang (TenKhachHang, Email, SoDienThoai, DiaChi, DiemTichLuy, CapDoThanhVien)
+        VALUES (@TenKhachHang, @Email, @SoDienThoai, @DiaChi, @DiemTichLuy, @CapDoThanhVien);
         PRINT N'Thêm khách hàng thành công';
     END TRY
     BEGIN CATCH
@@ -251,7 +254,7 @@ END;
 GO
 
 -- Thực thi thủ tục thêm khách hàng
-EXEC SP_Them_KhachHang 45001, N'Nguyễn Văn A', 'nguyenvana@example.com', '0123456789', N'123 Nguyễn Trãi, Hà Nội', 0;
+EXEC SP_Them_KhachHang  N'Nguyễn Văn A', 'nguyenvana@example.com', '0123456789', N'123 Nguyễn Trãi, Hà Nội', 0, N'Đồng';
 GO
 
 -- Xem dữ liệu trong bảng KhachHang
@@ -267,7 +270,7 @@ CREATE TABLE SanPhamGiamGia (
     NgayKetThucGiamGia DATE,                 -- Ngày kết thúc giảm giá
     MoTa NVARCHAR(1000)                      -- Mô tả sản phẩm
 );
-<<<<<<< HEAD
+
 Drop table Voucher;
 CREATE TABLE Voucher (
     MaVoucher INT PRIMARY KEY,
@@ -286,11 +289,9 @@ INSERT INTO Voucher (MaVoucher, TenVoucher, TenThuongHieu, PhanTramGiam, GiaTri,
 VALUES(40201, N'Giảm giá 20%', 'Nike', 20.00, 200000.00, '2024-08-01', '2024-11-20', N'Áp dụng cho đơn hàng từ 1,000,000')
 
 
-=======
 	go
 	INSERT INTO SanPhamGiamGia (MaSanPham, TenSanPham, GiaBan, PhanTramGiam, NgayBatDauGiamGia, NgayKetThucGiamGia, MoTa)
 VALUES (1, 'Sản phẩm A', 100000, 10, '2024-07-21', '2024-08-21', 'Mô tả sản phẩm A');
->>>>>>> b50953e3a273fd36b5338205ab359c70362c7ce3
 
 Select * from NguoiDung;
 go

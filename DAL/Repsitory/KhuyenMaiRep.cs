@@ -7,17 +7,27 @@ using System.Threading.Tasks;
 
 namespace DAL.Repsitory
 {
-    public class VoucherRep
+    public class KhuyenMaiRep
     {
         DuAnNhom4Context _context = new DuAnNhom4Context();
-        public VoucherRep()
+        public KhuyenMaiRep()
         {
            
         }
-        public bool AddSP(Voucher vc)
+        public List<KhuyenMai> GetAll()
+        {
+            return _context.KhuyenMais.ToList();
+        }
+        // lấy sản phẩm theo tên
+        public List<KhuyenMai> GetKM(string ten)
+        {
+            return _context.KhuyenMais.Where(p => p.TenKhuyenMai.Contains(ten)).ToList();
+        }
+        public bool AddSP(KhuyenMai km)
         {
             try
             {
+                _context.KhuyenMais.Add(km);
                 _context.SaveChanges(); // lưu thay đổi
                 return true;
             }
@@ -27,5 +37,8 @@ namespace DAL.Repsitory
 
             }
         }
+        // sửa sản phẩm
+
+
     }
 }

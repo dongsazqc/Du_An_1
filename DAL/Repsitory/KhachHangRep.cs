@@ -22,24 +22,27 @@ namespace DAL.Repsitory
             return _context.KhachHangs.ToList();
         }
 
-        //lấy ra giảng viên theo tên 
+        //lấy ra khách hàng theo tên 
         public List<KhachHang> GetKH(string ten)
         {
-            return _context.KhachHangs.Where(p => p.TenKhachHang.Contains(ten) || p.SoDienThoai.Contains(ten) || p.KhachHangId.ToString().Contains(ten)).ToList();   //chứa tên
+            return _context.KhachHangs.Where(p => p.TenKhachHang.Contains(ten) || p.SoDienThoai.Contains(ten)).ToList();   //chứa tên
         }
 
+        public KhachHang GetKhachHangBySoDienThoai(string soDienThoai)
+        {
+            return _context.KhachHangs.FirstOrDefault(kh => kh.SoDienThoai == soDienThoai);
+        }
         //Thêm KH
         public bool AddKH(KhachHang kh)
         {
             try
             {
                 _context.KhachHangs.Add(kh);
-                _context.SaveChanges(); //lưu lại
+                _context.SaveChanges(); // Lưu lại
                 return true;
             }
             catch (Exception)
             {
-
                 return false;
             }
         }
@@ -56,6 +59,8 @@ namespace DAL.Repsitory
                 updateItem.Email = kh.Email;
                 updateItem.SoDienThoai = kh.SoDienThoai;
                 updateItem.DiaChi = kh.DiaChi;
+                updateItem.DiemTichLuy = kh.DiemTichLuy;
+                updateItem.CapDoThanhVien = kh.CapDoThanhVien;
                 _context.KhachHangs.Update(updateItem);
                 _context.SaveChanges(); //lưu lại
                 return true;
