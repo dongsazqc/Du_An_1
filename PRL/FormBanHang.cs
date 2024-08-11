@@ -12,7 +12,15 @@ using System.Windows.Forms;
 using DAL.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.Data.SqlClient;
+<<<<<<< HEAD
+using AForge.Video;
+using AForge.Video.DirectShow;
+
+
+
+=======
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+>>>>>>> 0d9e37deb638c4f8394010932271075c14b18377
 
 
 namespace PRL
@@ -29,9 +37,18 @@ namespace PRL
         SanPhamMuaSer _SpMuaSer = new SanPhamMuaSer();
         SanPhamMuaRep _spMuaRep = new SanPhamMuaRep();
         HDTTService _hdttService = new HDTTService();
+<<<<<<< HEAD
+        private FilterInfoCollection cameras;
+        private VideoCaptureDevice cam;
+
+        private readonly string connectionString = "Data Source=PHAM_VAN_DONG;Initial Catalog=Du_An_Nhom4;Integrated Security=True;Trust Server Certificate=True";
+
+
+=======
         private readonly string connectionString = "Data Source=DUONG;Initial Catalog=Du_An_Nhom4;User ID=sa;Password=123456;TrustServerCertificate=True";
         KhachHangServices _KhachHangServices = new KhachHangServices();
         KhachHangRep _KhachHangRep = new KhachHangRep();
+>>>>>>> 0d9e37deb638c4f8394010932271075c14b18377
         public FormBanHang()
         {
             InitializeComponent();
@@ -41,7 +58,13 @@ namespace PRL
             showdata(hoaDonDaThanhToans);
             pn_ChiTiet.Visible = false;
 
+
+
+
         }
+
+
+
 
         private void showdata(List<HoaDonDaThanhToan> hoaDonDaThanhToans)
         {
@@ -290,6 +313,9 @@ namespace PRL
                     cbx_HoaDonId.Items.Remove(selectedHoaDonId);
 
                     // Lưu lại các sản phẩm trong hóa đơn đã thanh toán
+<<<<<<< HEAD
+
+=======
                     var selectedHoaDon = hoaDonDaThanhs.FirstOrDefault(hd => hd.HoaDonId == selectedHoaDonId);
                     if (selectedHoaDon != null)
                     {
@@ -310,6 +336,7 @@ namespace PRL
                             }
                         }
                     }
+>>>>>>> 0d9e37deb638c4f8394010932271075c14b18377
 
                     // Hiển thị thông báo thành công
                     MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -761,6 +788,28 @@ namespace PRL
         {
             List<SanPham> sp = _SanPhamService.CntimSPTheoTen(txt_timkiemsanpham.Text);
             Loadata(sp);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (cam != null && cam.IsRunning)
+            {
+                cam.Stop();
+            }
+            cam = new VideoCaptureDevice(cameras[comboBox1.SelectedIndex].MonikerString);
+            cam.NewFrame += Cam_NewFrame;
+            cam.Start();
+        }
+
+        private void Cam_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+            pictureBox1.Image = bitmap;
         }
     }
 }

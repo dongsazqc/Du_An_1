@@ -48,6 +48,7 @@
             label12 = new Label();
             label3 = new Label();
             groupBox3 = new GroupBox();
+            iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             txt_voucher = new TextBox();
             label7 = new Label();
             icbtn_TaoHoaDon = new FontAwesome.Sharp.IconButton();
@@ -72,8 +73,12 @@
             groupBox2 = new GroupBox();
             label14 = new Label();
             txt_TimKiemGioHang = new TextBox();
+            pictureBox1 = new PictureBox();
+            comboBox1 = new ComboBox();
+            button1 = new Button();
             groupBox5.SuspendLayout();
             groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             groupBox4.SuspendLayout();
             groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtg_HoaDon).BeginInit();
@@ -83,6 +88,7 @@
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dtf_GioHang).BeginInit();
             groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // groupBox5
@@ -293,6 +299,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(iconPictureBox1);
             groupBox3.Controls.Add(txt_tongtien);
             groupBox3.Controls.Add(txt_khachdua);
             groupBox3.Controls.Add(txt_voucher);
@@ -309,6 +316,20 @@
             groupBox3.TabIndex = 36;
             groupBox3.TabStop = false;
             groupBox3.Text = "Thông tin thanh toán";
+            // 
+            // iconPictureBox1
+            // 
+            iconPictureBox1.BackColor = Color.Navy;
+            iconPictureBox1.ForeColor = Color.Red;
+            iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconPictureBox1.IconColor = Color.Red;
+            iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconPictureBox1.IconSize = 40;
+            iconPictureBox1.Location = new Point(124, 289);
+            iconPictureBox1.Name = "iconPictureBox1";
+            iconPictureBox1.Size = new Size(40, 40);
+            iconPictureBox1.TabIndex = 38;
+            iconPictureBox1.TabStop = false;
             // 
             // txt_voucher
             // 
@@ -340,7 +361,7 @@
             icbtn_TaoHoaDon.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbtn_TaoHoaDon.IconSize = 30;
             icbtn_TaoHoaDon.ImageAlign = ContentAlignment.MiddleLeft;
-            icbtn_TaoHoaDon.Location = new Point(35, 93);
+            icbtn_TaoHoaDon.Location = new Point(39, 50);
             icbtn_TaoHoaDon.Name = "icbtn_TaoHoaDon";
             icbtn_TaoHoaDon.Size = new Size(170, 56);
             icbtn_TaoHoaDon.TabIndex = 37;
@@ -355,9 +376,9 @@
             groupBox4.Controls.Add(icbtn_TaoHoaDon);
             groupBox4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
             groupBox4.ForeColor = Color.Red;
-            groupBox4.Location = new Point(1452, 651);
+            groupBox4.Location = new Point(1644, 617);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(443, 212);
+            groupBox4.Size = new Size(251, 232);
             groupBox4.TabIndex = 38;
             groupBox4.TabStop = false;
             groupBox4.Text = "Chức năg";
@@ -375,7 +396,7 @@
             icbtn_LamMOI.IconFont = FontAwesome.Sharp.IconFont.Auto;
             icbtn_LamMOI.IconSize = 30;
             icbtn_LamMOI.ImageAlign = ContentAlignment.MiddleLeft;
-            icbtn_LamMOI.Location = new Point(261, 93);
+            icbtn_LamMOI.Location = new Point(43, 142);
             icbtn_LamMOI.Name = "icbtn_LamMOI";
             icbtn_LamMOI.Size = new Size(170, 56);
             icbtn_LamMOI.TabIndex = 39;
@@ -393,7 +414,7 @@
             groupBox6.ForeColor = Color.Red;
             groupBox6.Location = new Point(29, 617);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(1266, 246);
+            groupBox6.Size = new Size(1173, 246);
             groupBox6.TabIndex = 40;
             groupBox6.TabStop = false;
             groupBox6.Text = "DS hóa đơn đã thanh toán";
@@ -420,7 +441,7 @@
             // dtg_HoaDon
             // 
             dtg_HoaDon.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_HoaDon.Location = new Point(77, 67);
+            dtg_HoaDon.Location = new Point(6, 67);
             dtg_HoaDon.Name = "dtg_HoaDon";
             dtg_HoaDon.RowHeadersWidth = 51;
             dtg_HoaDon.Size = new Size(1145, 142);
@@ -436,7 +457,7 @@
             pn_ChiTiet.Controls.Add(dtg_ChiTiet);
             pn_ChiTiet.Location = new Point(612, 419);
             pn_ChiTiet.Name = "pn_ChiTiet";
-            pn_ChiTiet.Size = new Size(701, 344);
+            pn_ChiTiet.Size = new Size(794, 345);
             pn_ChiTiet.TabIndex = 41;
             // 
             // label9
@@ -594,12 +615,42 @@
             txt_TimKiemGioHang.TabIndex = 2;
             txt_TimKiemGioHang.TextChanged += txt_TimKiemGioHang_TextChanged;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Location = new Point(1226, 629);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(390, 186);
+            pictureBox1.TabIndex = 42;
+            pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(1226, 821);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 43;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(1438, 835);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 44;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_1;
+            // 
             // FormBanHang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Navy;
             ClientSize = new Size(1907, 875);
+            Controls.Add(button1);
+            Controls.Add(comboBox1);
+            Controls.Add(pictureBox1);
             Controls.Add(pn_ChiTiet);
             Controls.Add(groupBox2);
             Controls.Add(groupBox5);
@@ -615,6 +666,7 @@
             groupBox5.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             groupBox4.ResumeLayout(false);
             groupBox6.ResumeLayout(false);
             groupBox6.PerformLayout();
@@ -628,6 +680,7 @@
             ((System.ComponentModel.ISupportInitialize)dtf_GioHang).EndInit();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -676,5 +729,9 @@
         private Label label14;
         private TextBox txt_TimKiemGioHang;
         private TextBox textBox1;
+        private PictureBox pictureBox1;
+        private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private ComboBox comboBox1;
+        private Button button1;
     }
 }

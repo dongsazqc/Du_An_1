@@ -92,6 +92,9 @@
             // 
             // btn_KM
             // 
+<<<<<<< HEAD
+            btn_KM.BackColor = Color.FromArgb(0, 0, 192);
+=======
             //btn_KM.BackColor = Color.FromArgb(0, 0, 192);
             //btn_Voucher.BackColor = Color.FromArgb(0, 0, 192);
             //btn_Voucher.FlatAppearance.BorderSize = 0;
@@ -106,6 +109,7 @@
             //btn_Voucher.UseVisualStyleBackColor = false;
             //btn_Voucher.Click += button1_Click_1;
             btn_KM.BackColor = Color.Navy;
+>>>>>>> 0d9e37deb638c4f8394010932271075c14b18377
             btn_KM.FlatAppearance.BorderSize = 0;
             btn_KM.FlatStyle = FlatStyle.Flat;
             btn_KM.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
