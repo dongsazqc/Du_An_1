@@ -40,7 +40,7 @@ namespace PRL
             dgv_data.Columns[0].HeaderText = "STT";
             dgv_data.Columns[1].HeaderText = "ID khách hàng";
             dgv_data.Columns[2].HeaderText = "Tên khách hàng";
-            dgv_data.Columns[3].HeaderText = "Gmail";
+            dgv_data.Columns[3].HeaderText = "Email";
             dgv_data.Columns[4].HeaderText = "SDT";
             dgv_data.Columns[5].HeaderText = "Địa chỉ";
 
@@ -116,8 +116,8 @@ namespace PRL
             dgv_KhachHang.Columns[1].HeaderText = "ID Khách hàng";
             dgv_KhachHang.Columns[2].HeaderText = "Tên khách hàng";
             dgv_KhachHang.Columns[3].HeaderText = "SDT";
-            dgv_KhachHang.Columns[4].HeaderText = "Địa chỉ";
-            dgv_KhachHang.Columns[5].HeaderText = "Gmail";
+            dgv_KhachHang.Columns[4].HeaderText = "Gmail";
+            dgv_KhachHang.Columns[5].HeaderText = "Địa chỉ";
             dgv_KhachHang.Columns[6].HeaderText = "Điểm tích lũy";
             dgv_KhachHang.Columns[7].HeaderText = "Cấp bậc";
         }

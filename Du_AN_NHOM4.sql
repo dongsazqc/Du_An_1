@@ -220,6 +220,8 @@ GO
 EXEC SP_Them_SP 1, N'Quần jean', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 1000000.00, 100, N'L', N'Xanh', N'Còn Hàng';
 EXEC SP_Them_SP 2, N'Quần Straight Pants', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 2000000.00, 100, N'XL', N'Đỏ', N'Còn Hàng';
 EXEC SP_Them_SP 3, N'Quần Short', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 3000000.00, 120, N'XL', N'Vàng', N'Còn Hàng';
+EXEC SP_Them_SP 4, N'Quần Short', 'Nike', N'Đem lại cảm giác thoải mái nhất cho người mặc', 300, 1000, N'XL', N'Vàng', N'Còn Hàng';
+GO
 GO
 
 -- Xem dữ liệu trong bảng SanPham
