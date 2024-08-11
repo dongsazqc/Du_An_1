@@ -335,14 +335,14 @@ namespace PRL
         private int CalculateLoyaltyPoints(decimal totalAmount)
         {
             // Ví dụ: 1 điểm cho mỗi 100.000 đơn vị tiền tệ chi tiêu
-            return (int)(totalAmount / 100000);
+            return (int)(totalAmount / 100);
         }
 
         private string DetermineMembershipLevel(int points)
         {
-            if (points >= 1000) return "Vàng";
+            if (points >= 50) return "Vàng";
             
-            if (points >= 250) return "Bạc";
+            if (points >= 20) return "Bạc";
 
             return "Đồng";
 

@@ -80,9 +80,9 @@ namespace BUS.Service
 
         private string DetermineMembershipLevel(int points)
         {
-            if (points >= 1000) return "Vàng";
+            if (points >= 50) return "Vàng";
 
-            if (points >= 500) return "Bạc";
+            if (points >= 20) return "Bạc";
 
             return "Đồng";
 

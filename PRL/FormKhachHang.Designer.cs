@@ -51,8 +51,6 @@ namespace PRL
             groupBox3 = new GroupBox();
             groupBox5 = new GroupBox();
             dgv_KhachHang = new DataGridView();
-            linkLabel1 = new LinkLabel();
-            linkLabel2 = new LinkLabel();
             khachHangBindingSource = new BindingSource(components);
             label6 = new Label();
             txtTimKiem = new TextBox();
@@ -261,7 +259,7 @@ namespace PRL
             groupBox5.Size = new Size(1060, 240);
             groupBox5.TabIndex = 22;
             groupBox5.TabStop = false;
-            groupBox5.Text = "Khách hàng mua nhiều nhất";
+            groupBox5.Text = "Cấp độ khách hàng";
             // 
             // dgv_KhachHang
             // 
@@ -271,26 +269,6 @@ namespace PRL
             dgv_KhachHang.RowHeadersWidth = 51;
             dgv_KhachHang.Size = new Size(1047, 212);
             dgv_KhachHang.TabIndex = 0;
-            // 
-            // linkLabel1
-            // 
-            linkLabel1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            linkLabel1.Location = new Point(1314, 655);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(95, 38);
-            linkLabel1.TabIndex = 23;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Góp ý";
-            // 
-            // linkLabel2
-            // 
-            linkLabel2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            linkLabel2.Location = new Point(1314, 704);
-            linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(174, 29);
-            linkLabel2.TabIndex = 24;
-            linkLabel2.TabStop = true;
-            linkLabel2.Text = "Hỗ trợ khách hàng";
             // 
             // label6
             // 
@@ -318,8 +296,6 @@ namespace PRL
             ClientSize = new Size(1500, 745);
             Controls.Add(txtTimKiem);
             Controls.Add(label6);
-            Controls.Add(linkLabel2);
-            Controls.Add(linkLabel1);
             Controls.Add(groupBox5);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -360,8 +336,6 @@ namespace PRL
         private GroupBox groupBox3;
         private GroupBox groupBox5;
         private DataGridView dgv_KhachHang;
-        private LinkLabel linkLabel1;
-        private LinkLabel linkLabel2;
         private BindingSource khachHangBindingSource;
         private DataGridView dgv_data;
         private Label label6;
