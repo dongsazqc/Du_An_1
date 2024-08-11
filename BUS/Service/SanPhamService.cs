@@ -1,5 +1,6 @@
 ﻿    using DAL.Models;
 using DAL.Repsitory;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,27 @@ namespace BUS.Service
     public class SanPhamService
     {
         SanPhamRep _repos = new SanPhamRep();
+        DuAnNhom4Context _context = new DuAnNhom4Context();
         
         public SanPhamService()
         {
             
         }
-       
+        public bool ThemSanPham(SanPham sanPham)
+        {
+            // Kiểm tra sản phẩm đã tồn tại dựa trên tên sản phẩm và thương hiệu
+            var existingProduct = _repos.GetSPandTH(sanPham.TenSanPham, sanPham.TenThuongHieu);
+
+            if (existingProduct != null && existingProduct.Any())
+            {
+                // Sản phẩm đã tồn tại, không thêm được
+                return false;
+            }
+
+            // Nếu sản phẩm chưa tồn tại, thêm sản phẩm mới vào cơ sở dữ liệu
+
+            return true;
+        }
         public List<SanPham> CNShow()
         {
             return _repos.GetAll();
@@ -27,11 +43,16 @@ namespace BUS.Service
         {
             return _repos.GetSP(ten); 
         }
+        public List<SanPham> CNtim2(string tenth)
+        {
+            return _repos.GetSP(tenth);
+        }
+
         public List<SanPham> CNTimTenandThuongHIeu(string tensp, string tenTH)
         {
             return _repos.GetSPandTH(tensp, tenTH);
         }
-        public string CNthem(int id, string ten, string tenthuonghieu,string mota, decimal gia, int soluong, string kichthuoc,string mausac,string trangthai) {
+        public string CNthem(int id, string ten, string tenthuonghieu,string mota, decimal gia, int soluong, string kichthuoc,string mausac,bool trangthai, DateOnly ngaysx) {
               SanPham sp = new SanPham()
             {
                 
@@ -43,8 +64,9 @@ namespace BUS.Service
                 SoLuongTonKho = soluong,
                 KichThuoc = kichthuoc,
                 MauSac = mausac,
-                TrangThai = trangthai
-            };
+                  TrangThai = trangthai.ToString(),
+                  NgaySanXuat = ngaysx,
+              };
             if (_repos.AddSP(sp))
             {
                 return "thêm thành công";
@@ -54,7 +76,7 @@ namespace BUS.Service
                    }
         }
         // chức năng sửa
-        public string CNSua(int id, string ten, string tenthuonghieu, string mota, decimal gia, int soluong, string kichthuoc, string mausac, string trangthai)
+        public string CNSua(int id, string ten, string tenthuonghieu, string mota, decimal gia, int soluong, string kichthuoc, string mausac, bool trangthai, DateOnly ngaysx)
         {
             SanPham sp = new SanPham()
             {
@@ -66,7 +88,8 @@ namespace BUS.Service
                 SoLuongTonKho = soluong,
                 KichThuoc = kichthuoc,
                 MauSac = mausac,
-                TrangThai = trangthai
+                TrangThai = trangthai.ToString(),
+                NgaySanXuat = ngaysx
             };
             if (_repos.UpdateSP(sp))
             {

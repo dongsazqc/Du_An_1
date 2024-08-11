@@ -43,13 +43,7 @@ namespace PRL
             dgv_data.Columns[5].HeaderText = "Địa chỉ";
 
             // Thêm cột giới tính
-            DataGridViewCheckBoxColumn gioitinhcolumns = new DataGridViewCheckBoxColumn
-            {
-                HeaderText = "Giới tính",
-                Name = "Giới tính",
-                DataPropertyName = "GioiTinh" // Tên thuộc tính trong DataSource
-            };
-            dgv_data.Columns.Add(gioitinhcolumns);
+          
         }
         private void LoadData()
         {
@@ -64,7 +58,7 @@ namespace PRL
             int stt = 1;
             foreach (var item in kh)
             {
-                dgv_data.Rows.Add(stt++, item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi, item.GioiTinh);
+                dgv_data.Rows.Add(stt++, item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi);
 
             }
         }
@@ -87,7 +81,7 @@ namespace PRL
             DialogResult result = MessageBox.Show("Bạn có muốn chắc chắn thêm không", "Thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string kq = _services.CNThem(maInt, ten, email, sdt, diachi, gioitinh);
+                string kq = _services.CNThem(maInt, ten, email, sdt, diachi);
                 MessageBox.Show(kq);
                 List<KhachHang> khachhangs = _services.CNShow();
                 showdata(khachhangs);
@@ -120,7 +114,7 @@ namespace PRL
             string email = txtEmail.Text;
             string sdt = txtSDT.Text;
             string diachi = txtDiaChi.Text;
-            bool gioitinh = rdoNam.Checked;
+          
 
             int maInt = int.Parse(ma);
             if (!_services.CheckSDT(sdt))
@@ -130,7 +124,7 @@ namespace PRL
             DialogResult result = MessageBox.Show("Bạn có muốn sửa không", "Đã sửa", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string kq = _services.CNSua(maInt, ten, email, sdt, diachi, gioitinh);
+                string kq = _services.CNSua(maInt, ten, email, sdt, diachi);
                 MessageBox.Show(kq);
                 List<KhachHang> khachhangs = _services.CNShow();
                 showdata(khachhangs);
@@ -148,7 +142,7 @@ namespace PRL
                 txtEmail.Text = "";
                 txtSDT.Text = "";
                 txtDiaChi.Text = "";
-                rdoNam.Checked = true;
+               
             }
         }
         private void dgv_data_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -162,9 +156,7 @@ namespace PRL
                 txtSDT.Text = rowdata.Cells[4].Value.ToString();
                 txtDiaChi.Text = rowdata.Cells[5].Value.ToString();
                 
-                var gioitinh = (bool)rowdata.Cells[6].Value;
-                rdoNam.Checked = gioitinh;  
-                rdoNu.Checked = !gioitinh;
+               
             }
 
         }

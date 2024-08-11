@@ -30,7 +30,7 @@ namespace BUS.Service
             return _repo.GetKH(id);
         }
 
-        public string CNThem(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi, bool gioitinh)
+        public string CNThem(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi)
         {
             KhachHang kh = new KhachHang()
             {
@@ -39,7 +39,7 @@ namespace BUS.Service
                 Email = email,
                 SoDienThoai = sdt,
                 DiaChi = diachi,
-                GioiTinh = gioitinh
+          
             };
             if (_repo.AddKH(kh))
             {
@@ -51,7 +51,7 @@ namespace BUS.Service
             }
         }
 
-        public string CNSua(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi, bool gioitinh)
+        public string CNSua(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi)
         {
             KhachHang kh = new KhachHang()
             {
@@ -59,8 +59,8 @@ namespace BUS.Service
                 TenKhachHang = tenkhachhang,
                 Email = email,
                 SoDienThoai = sdt,
-                DiaChi = diachi,
-                GioiTinh = gioitinh
+                DiaChi = diachi
+                
             };
             if (_repo.Update(kh))
             {

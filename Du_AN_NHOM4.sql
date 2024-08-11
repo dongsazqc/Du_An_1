@@ -109,7 +109,11 @@ CREATE TABLE KhuyenMai (
     NgayKetThuc DATETIME NOT NULL
 );
 GO
-
+INSERT INTO KhuyenMai (TenKhuyenMai, MoTa, GiamGia, NgayBatDau, NgayKetThuc)
+VALUES 
+    (N'Khuyến Mãi Mùa Hè 2024', N'Khuyến mãi đặc biệt cho mùa hè 2024 với nhiều ưu đãi hấp dẫn.', 25.00, '2024-06-01', '2024-08-31')
+	INSERT INTO KhuyenMai (TenKhuyenMai, MoTa, GiamGia, NgayBatDau, NgayKetThuc)
+VALUES (N'Khuyến Mãi Tết Nguyên Đán 2025', N'Khuyến mãi chào mừng Tết Nguyên Đán 2025 với nhiều phần quà giá trị.', 20.00, '2025-01-10', '2025-02-10')
 -- Tạo bảng PhuongThucThanhToan
 CREATE TABLE PhuongThucThanhToan (
     PhuongThucThanhToanID INT PRIMARY KEY,

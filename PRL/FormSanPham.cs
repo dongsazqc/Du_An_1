@@ -2,6 +2,7 @@
 using DAL.Models;
 using DAL.Repsitory;
 using Microsoft.EntityFrameworkCore;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +21,7 @@ namespace PRL
         SPgiamgiaService _spgiamgia = new SPgiamgiaService();
         SanPhamService _sanPhamService = new SanPhamService();
         SanPhamRep _sanPhamRep = new SanPhamRep();
-
+        SPgiamgiaRep _spggrep = new SPgiamgiaRep();
         public FormSanPham()
         {
             InitializeComponent();
@@ -30,13 +31,16 @@ namespace PRL
             Loaddata(sanPhamGiamGia);
             loadsanpham();
             ConfigureDataGridView();
+            loadsanphamgiamgia();
+
 
         }
         private void ConfigureDataGridView()
         {
             // Xóa các cột không mong muốn khi cấu hình DataGridView
             RemoveUnwantedColumns();
-        } private void loadsanpham()
+        }
+        private void loadsanpham()
         {
             List<SanPham> sp = _sanPhamService.CNShow();
             showdata(sp);
@@ -47,25 +51,31 @@ namespace PRL
             RemoveUnwantedColumns();
 
         }
-       
+        private void loadgg()
+        {
+            List<SanPhamGiamGium> sanPhamGiamGia = _spgiamgia.CNShow();
+            dtg_SPGG.DataSource = sanPhamGiamGia;
+            Loaddata(sanPhamGiamGia);
+        }
+
         private void Loaddata(List<SanPhamGiamGium> sanPhamGiamGia)
         {
-            dtg_SPGG.Rows.Clear();
-            dtg_SPGG.ColumnCount = 9;
-            int stt = 1;
-            dtg_SPGG.Columns[0].HeaderText = "Số thứ tự";
-            dtg_SPGG.Columns[1].HeaderText = "ID Sản Phẩm";
-            dtg_SPGG.Columns[2].HeaderText = "Tên Sản Phẩm";
-            dtg_SPGG.Columns[3].HeaderText = "Giá Bán";
-            dtg_SPGG.Columns[4].HeaderText = "Phần Trăm Giảm";
-            dtg_SPGG.Columns[5].HeaderText = "Giá Giảm";
-            dtg_SPGG.Columns[6].HeaderText = "Ngày Bắt Đầu";
-            dtg_SPGG.Columns[7].HeaderText = "Ngày Kết Thúc";
-            dtg_SPGG.Columns[8].HeaderText = "Mô Tả";
-            foreach (var item in sanPhamGiamGia)
-            {
-                dtg_SPGG.Rows.Add(stt++, item.MaSanPham, item.TenSanPham, item.GiaBan, item.PhanTramGiam, item.GiaGiam, item.NgayBatDauGiamGia, item.NgayKetThucGiamGia, item.MoTa);
-            }
+            //dtg_SPGG.Rows.Clear();
+            //dtg_SPGG.ColumnCount = 9;
+            //int stt = 1;
+            //dtg_SPGG.Columns[0].HeaderText = "Số thứ tự";
+            //dtg_SPGG.Columns[1].HeaderText = "ID Sản Phẩm";
+            //dtg_SPGG.Columns[2].HeaderText = "Tên Sản Phẩm";
+            //dtg_SPGG.Columns[3].HeaderText = "Giá Bán";
+            //dtg_SPGG.Columns[4].HeaderText = "Phần Trăm Giảm";
+            //dtg_SPGG.Columns[5].HeaderText = "Giá Giảm";
+            //dtg_SPGG.Columns[6].HeaderText = "Ngày Bắt Đầu";
+            //dtg_SPGG.Columns[7].HeaderText = "Ngày Kết Thúc";
+            //dtg_SPGG.Columns[8].HeaderText = "Mô Tả";
+            //foreach (var item in sanPhamGiamGia)
+            //{
+            //    dtg_SPGG.Rows.Add(stt++, item.MaSanPham, item.TenSanPham, item.GiaBan, item.PhanTramGiam, item.GiaGiam, item.NgayBatDauGiamGia, item.NgayKetThucGiamGia, item.MoTa);
+            //}
         }
 
         private void textBox9_TextChanged(object sender, EventArgs e)
@@ -108,29 +118,52 @@ namespace PRL
 
         private void btn_them_Click(object sender, EventArgs e)
         {
-            string id = txt_IDsanpham.Text;
-            string ten = txt_tensanpham.Text;
-            string tenthuonghieu = txt_tenthuonghieu.Text;
-            string mota = rtb_mota.Text;
-            string gia = txt_gia.Text;
-            string soluongtonkho = txt_soluong.Text;
-            string kichthuoc = txt_kichthuoc.Text;
-            string mausac = txt_mausac.Text;
-            string trangthai = txt_trangthai.Text;
-            int idInt = int.Parse(id);
-            decimal giadecimal = decimal.Parse(gia);
-            txt_gia.Text = giadecimal.ToString("F2"); // F2 để định dạng với 2 chữ số thập phân
-            decimal giaInt = decimal.Parse(gia);
-            int soluongInt = int.Parse(soluongtonkho);
-            DialogResult result = MessageBox.Show("bạn có muốn thêm không?", "thêm mới", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+
+
+            SanPham sanPhamMoi = new SanPham
             {
-                string kq = _sanPhamService.CNthem(idInt, ten, tenthuonghieu, mota, giadecimal, soluongInt, kichthuoc, mausac, trangthai);
+                TenSanPham = txt_tensanpham.Text,          // Lấy tên sản phẩm từ TextBox
+                TenThuongHieu = txt_tenthuonghieu.Text,  // Lấy tên thương hiệu từ TextBox
+
+                // Thiết lập các thuộc tính khác nếu cần
+            };
+
+            // Gọi phương thức ThemSanPham để thêm sản phẩm
+            var isAdded = _sanPhamService.ThemSanPham(sanPhamMoi);
+
+            // Kiểm tra kết quả và hiển thị thông báo
+            if (isAdded)
+            {
+                string id = txt_IDsanpham.Text;
+                string ten = txt_tensanpham.Text;
+                string tenthuonghieu = txt_tenthuonghieu.Text;
+                string mota = rtb_mota.Text;
+                string gia = txt_gia.Text;
+                string soluongtonkho = txt_soluong.Text;
+                string kichthuoc = txt_kichthuoc.Text;
+                string mausac = txt_mausac.Text;
+                bool trangthai = rdo_conhang.Checked;
+
+
+
+                DateOnly ngaysx = DateOnly.FromDateTime(dt_ngaysx.Value);
+                int idInt = int.Parse(id);
+                decimal giadecimal = decimal.Parse(gia);
+                txt_gia.Text = giadecimal.ToString("F2"); // F2 để định dạng với 2 chữ số thập phân
+                decimal giaInt = decimal.Parse(gia);
+                int soluongInt = int.Parse(soluongtonkho);
+                string kq = _sanPhamService.CNthem(idInt, ten, tenthuonghieu, mota, giadecimal, soluongInt, kichthuoc, mausac, trangthai, ngaysx);
                 MessageBox.Show(kq);
                 loadsanpham();
 
                 return;
             }
+            else if(!isAdded)
+            {
+                MessageBox.Show("Sản phẩm đã tồn tại, không thể thêm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+
 
 
 
@@ -154,18 +187,75 @@ namespace PRL
 
         private void dgv_sanpham_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // lấy dữ liệu ra từ dòng được chọn để fill lên form
-            int row = e.RowIndex;
-            var rowdata = dgv_sanpham.Rows[row];
-            txt_IDsanpham.Text = rowdata.Cells["SanPhamId"].Value.ToString();
-            txt_tensanpham.Text = rowdata.Cells["TenSanPham"].Value.ToString();
-            txt_tenthuonghieu.Text = rowdata.Cells["TenThuongHieu"].Value.ToString();
-            rtb_mota.Text = rowdata.Cells["MoTa"].Value.ToString();
-            txt_gia.Text = rowdata.Cells["Gia"].Value.ToString();
-            txt_soluong.Text = rowdata.Cells["SoLuongTonKho"].Value.ToString();
-            txt_kichthuoc.Text = rowdata.Cells["KichThuoc"].Value.ToString();
-            txt_mausac.Text = rowdata.Cells["MauSac"].Value.ToString();
-            txt_trangthai.Text = rowdata.Cells["TrangThai"].Value.ToString();
+
+            try
+            {
+
+
+                if (dgv_sanpham.CurrentCell.ColumnIndex > 0)
+                {
+                    int row = dgv_sanpham.CurrentRow.Index;
+
+                    txt_IDsanpham.Text = dgv_sanpham.Rows[row].Cells[0].Value.ToString();
+                    txt_tensanpham.Text = dgv_sanpham.Rows[row].Cells[1].Value.ToString();
+                    txt_tenthuonghieu.Text = dgv_sanpham.Rows[row].Cells[2].Value.ToString();
+                    rtb_mota.Text = dgv_sanpham.Rows[row].Cells[3].Value.ToString();
+                    txt_gia.Text = dgv_sanpham.Rows[row].Cells[4].Value.ToString();
+
+                    txt_soluong.Text = dgv_sanpham.Rows[row].Cells[5].Value.ToString();
+                    txt_kichthuoc.Text = dgv_sanpham.Rows[row].Cells[6].Value.ToString();
+                    txt_mausac.Text = dgv_sanpham.Rows[row].Cells[7].Value.ToString();
+                    string s = dgv_sanpham.Rows[row].Cells[8].Value.ToString();
+                    if (s == "False")
+                    {
+                        rdo_hethang.Checked = true;
+
+                    }
+
+                    else
+                    {
+                        rdo_conhang.Checked = false;
+                    }
+                    if (s == "True")
+                    {
+                        rdo_conhang.Checked = true;
+                    }
+                    else
+                    {
+                        rdo_conhang.Checked = false;
+                    }
+                    object cellValue = dgv_sanpham.Rows[row].Cells[9].Value;
+
+                    if (cellValue != null && !string.IsNullOrWhiteSpace(cellValue.ToString()))
+                    {
+                        DateTime dtNgaySX;
+                        bool isParsed = DateTime.TryParse(cellValue.ToString(), out dtNgaySX);
+
+                        if (isParsed)
+                        {
+                            dt_ngaysx.Value = dtNgaySX;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Giá trị của ô ngày sản xuất không hợp lệ. Không thể chuyển đổi sang DateTime.");
+                            // Đặt giá trị mặc định cho dt_ngaysx nếu cần
+                            dt_ngaysx.Value = DateTime.Now;
+                        }
+                    }
+                    else
+                    {
+                        // Đặt giá trị mặc định cho dt_ngaysx khi giá trị null hoặc rỗng
+                        dt_ngaysx.Value = DateTime.Now;
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btn_sua_Click(object sender, EventArgs e)
@@ -178,7 +268,8 @@ namespace PRL
             string soluongtonkho = txt_soluong.Text;
             string kichthuoc = txt_kichthuoc.Text;
             string mausac = txt_mausac.Text;
-            string trangthai = txt_trangthai.Text;
+            bool trangthai = rdo_conhang.Checked;
+            DateOnly ngaysx = DateOnly.FromDateTime(dt_ngaysx.Value);
             int idInt = int.Parse(id);
             decimal giaInt = decimal.Parse(gia);
             decimal giadecimal = decimal.Parse(gia);
@@ -187,7 +278,7 @@ namespace PRL
             DialogResult result = MessageBox.Show("bạn có muốn sửa không?", "sửa", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string kq = _sanPhamService.CNSua(idInt, ten, tenthuonghieu, mota, giadecimal, soluongInt, kichthuoc, mausac, trangthai);
+                string kq = _sanPhamService.CNSua(idInt, ten, tenthuonghieu, mota, giadecimal, soluongInt, kichthuoc, mausac, trangthai, ngaysx);
                 MessageBox.Show(kq);
                 loadsanpham();
 
@@ -197,20 +288,24 @@ namespace PRL
 
         private void btn_Del_Click(object sender, EventArgs e)
         {
-            txt_IDsanpham.Text = "";
-            txt_tensanpham.Text = "";
-            txt_tenthuonghieu.Text = "";
-            txt_soluong.Text = "";
-            txt_mausac.Text = "";
-            txt_gia.Text = "";
-            txt_kichthuoc.Text = "";
-            txt_trangthai.Text = "";
-            rtb_mota.Text = "";
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn không?", "Xác nhận", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                txt_IDsanpham.Text = "";
+                txt_tensanpham.Text = "";
+                txt_tenthuonghieu.Text = "";
+                txt_soluong.Text = "";
+                txt_mausac.Text = "";
+                txt_gia.Text = "";
+                txt_kichthuoc.Text = "";
+                rdo_conhang.Checked = false;
+                rtb_mota.Text = "";
 
-            txt_phantramgiam.Text = "";
-            txt_giagiam.Text = "";
-            dt_ngaybd.Text = "";
-            dt_ngaykt.Text = "";
+                txt_phantramgiam.Text = "";
+                txt_giagiam.Text = "";
+                dt_ngaybd.Text = "";
+                dt_ngaykt.Text = "";
+            }
 
 
 
@@ -225,7 +320,16 @@ namespace PRL
         {
 
         }
-
+        private void RemoveExpiredProducts()
+        {
+            _spggrep.RemoveExpiredProducts();
+        }
+        private void loadsanphamgiamgia()
+        {
+            // Cập nhật DataGridView với danh sách sản phẩm còn hạn
+            List<SanPhamGiamGium> sanPhamGiamGia = _spggrep.GetAll();
+            dtg_SPGG.DataSource = sanPhamGiamGia;
+        }
         private void grp_giamgia_Enter(object sender, EventArgs e)
         {
 
@@ -260,40 +364,7 @@ namespace PRL
         }
         private void LoadDataGridView()
         {
-            if (cbb_IDsp.SelectedValue != null && int.TryParse(cbb_IDsp.SelectedValue.ToString(), out int sanphamID))
-            {
-                // Kiểm tra giá trị SelectedValue
 
-
-                var sanphams = _sanPhamRep.GetAll();
-
-                // Kiểm tra danh sách sản phẩm trả về từ repository
-                if (sanphams == null || !sanphams.Any())
-                {
-                    dgv_sanpham.DataSource = null;
-                    return;
-                }
-
-                var sanpham = sanphams.FirstOrDefault(k => k.SanPhamId == sanphamID);
-
-                if (sanpham != null)
-                {
-                    dgv_sanpham.DataSource = new List<SanPham> { sanpham };
-
-                    dgv_sanpham.Refresh();
-                }
-                else
-                {
-
-                    dgv_sanpham.DataSource = null;
-                }
-                RemoveUnwantedColumns();
-            }
-            else
-            {
-
-                dgv_sanpham.DataSource = null;
-            }
         }
         private void RemoveUnwantedColumns()
         {
@@ -327,27 +398,82 @@ namespace PRL
 
         private void dtg_SPGG_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            int row = e.RowIndex;
-            var rowdata = dtg_SPGG.Rows[row];
-            txt_IDsanpham.Text = rowdata.Cells[1].Value.ToString();
-            txt_tensanpham.Text = rowdata.Cells[2].Value.ToString();
-            txt_gia.Text = rowdata.Cells[3].Value.ToString();
-            txt_giagiam.Text = rowdata.Cells[5].Value.ToString();
-            rtb_mota.Text = rowdata.Cells[8].Value.ToString();
+            try
+            {
+                if (dtg_SPGG.CurrentCell.ColumnIndex > 0)
+                {
+                    int row = dtg_SPGG.CurrentRow.Index;
 
-            txt_phantramgiam.Text = rowdata.Cells[4].Value.ToString();
-            dt_ngaybd.Text = rowdata.Cells[6].Value.ToString();
-            dt_ngaykt.Text = rowdata.Cells[7].Value.ToString();
-            string today = DateTime.Now.ToString();
+                    txt_IDsanpham.Text = dtg_SPGG.Rows[row].Cells[0].Value.ToString();
+                    txt_tensanpham.Text = dtg_SPGG.Rows[row].Cells[1].Value.ToString();
+                    txt_gia.Text = dtg_SPGG.Rows[row].Cells[2].Value.ToString();
+                    txt_phantramgiam.Text = dtg_SPGG.Rows[row].Cells[3].Value.ToString();
+                    txt_giagiam.Text = dtg_SPGG.Rows[row].Cells[4].Value.ToString();
 
-            // Gán giá trị ngày vào TextBox
-            dt_ngaybd.Text = today;
-            dt_ngaykt.Text = today;
+                    object cellValue = dtg_SPGG.Rows[row].Cells[5].Value;
+
+                    if (cellValue != null && !string.IsNullOrWhiteSpace(cellValue.ToString()))
+                    {
+                        DateTime dtNgayBD;
+                        bool isParsed = DateTime.TryParse(cellValue.ToString(), out dtNgayBD);
+
+                        if (isParsed)
+                        {
+                            dt_ngaybd.Value = dtNgayBD;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Giá trị của ô ngày sản xuất không hợp lệ. Không thể chuyển đổi sang DateTime.");
+                            // Đặt giá trị mặc định cho dt_ngaysx nếu cần
+                            dt_ngaybd.Value = DateTime.Now;
+                        }
+                    }
+                    else
+                    {
+                        // Đặt giá trị mặc định cho dt_ngaysx khi giá trị null hoặc rỗng
+                        dt_ngaybd.Value = DateTime.Now;
+                    }
+                    object cellValue2 = dtg_SPGG.Rows[row].Cells[6].Value;
+
+                    if (cellValue != null && !string.IsNullOrWhiteSpace(cellValue2.ToString()))
+                    {
+                        DateTime dtNgayKT;
+                        bool isParsed = DateTime.TryParse(cellValue.ToString(), out dtNgayKT);
+
+                        if (isParsed)
+                        {
+                            dt_ngaykt.Value = dtNgayKT;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Giá trị của ô ngày sản xuất không hợp lệ. Không thể chuyển đổi sang DateTime.");
+                            // Đặt giá trị mặc định cho dt_ngaysx nếu cần
+                            dt_ngaykt.Value = DateTime.Now;
+                        }
+                    }
+                    else
+                    {
+                        // Đặt giá trị mặc định cho dt_ngaysx khi giá trị null hoặc rỗng
+                        dt_ngaykt.Value = DateTime.Now;
+                    }
+
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btn_taoqr_Click(object sender, EventArgs e)
         {
-
+            QRCoder.QRCodeGenerator qr = new QRCoder.QRCodeGenerator();
+            var qr1 = qr.CreateQrCode(txt_IDsanpham.Text, QRCodeGenerator.ECCLevel.H);
+            var code = new QRCode(qr1);
+            pictureBox1.Image = code.GetGraphic(7);
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -363,7 +489,22 @@ namespace PRL
             string gia = txt_gia.Text;
             string giagiam = txt_giagiam.Text;
             string motaspgg = rtb_mota.Text;
+            DateOnly ngaybd = DateOnly.FromDateTime(dt_ngaybd.Value);
+            DateOnly ngaykt = DateOnly.FromDateTime(dt_ngaykt.Value);
+            DateTime startDate = dt_ngaybd.Value;
+            DateTime endDate = dt_ngaykt.Value;
 
+            if (startDate > endDate)
+            {
+                MessageBox.Show("Ngày bắt đầu không được lớn hơn ngày kết thúc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // Bạn có thể thêm các hành động khác nếu muốn, ví dụ như reset ngày bắt đầu về ngày kết thúc
+                dt_ngaybd.Value = endDate;
+            }
+            else
+            {
+                MessageBox.Show("Ngày hợp lệ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Thực hiện các hành động khác nếu cần
+            }
             int maInt = int.Parse(maspgg);
             decimal giadecimal = decimal.Parse(gia);
             decimal phantramgiamdcl = decimal.Parse(phantramgiam);
@@ -374,10 +515,9 @@ namespace PRL
             DialogResult result = MessageBox.Show("bạn có muốn thêm không?", "thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string kq = _spgiamgia.CNthem(maInt, tenspgg, giadecimal, phantramgiamdcl, giagiamdcl, motaspgg);
+                string kq = _spgiamgia.CNthem(maInt, tenspgg, giadecimal, phantramgiamdcl, giagiamdcl, ngaybd, ngaykt, motaspgg);
                 MessageBox.Show(kq);
-                List<SanPhamGiamGium> sanPhamGiamGia = _spgiamgia.CNShow();
-                Loaddata(sanPhamGiamGia);
+                loadgg();
                 ; return;
             }
         }
@@ -390,7 +530,8 @@ namespace PRL
             string gia = txt_gia.Text;
             string giagiam = txt_giagiam.Text;
             string motaspgg = rtb_mota.Text;
-
+            DateOnly ngaybd = DateOnly.FromDateTime(dt_ngaybd.Value);
+            DateOnly ngaykt = DateOnly.FromDateTime(dt_ngaykt.Value);
             int maInt = int.Parse(maspgg);
             decimal giadecimal = decimal.Parse(gia);
             decimal phantramgiamdcl = decimal.Parse(phantramgiam);
@@ -401,15 +542,43 @@ namespace PRL
             DialogResult result = MessageBox.Show("bạn có muốn Sửa không?", "thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string kq = _spgiamgia.CNSua(maInt, tenspgg, giadecimal, phantramgiamdcl, giagiamdcl, motaspgg);
+                string kq = _spgiamgia.CNSua(maInt, tenspgg, giadecimal, phantramgiamdcl, giagiamdcl, ngaybd, ngaykt, motaspgg);
                 MessageBox.Show(kq);
-                List<SanPhamGiamGium> sanPhamGiamGia = _spgiamgia.CNShow();
-                Loaddata(sanPhamGiamGia);
+                loadgg();
                 ; return;
             }
         }
 
         private void groupBox4_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_xoasp_Click(object sender, EventArgs e)
+        {
+            RemoveExpiredProducts();
+            // Tải lại dữ liệu
+            loadsanphamgiamgia();
+        }
+
+        private void txt_timkiem_TextChanged(object sender, EventArgs e)
+        {
+            List<SanPham> sanPhams = _sanPhamService.CNtim(txt_timkiem.Text);
+
+            dgv_sanpham.DataSource = sanPhams;
+        }
+
+        private void rdo_hethang_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rdo_conhang_CheckedChanged(object sender, EventArgs e)
         {
 
         }
