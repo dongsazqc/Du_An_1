@@ -30,7 +30,7 @@ namespace BUS.Service
             return _repo.GetKH(id);
         }
 
-        public string CNThemOrUpdateKhachHang(string tenKH, string email, string sdt, string diaChi, int diemTichLuy, string capDoThanhVien)
+        public string CNThemOrUpdateKhachHang(string tenKH, string sdt, string email, string diaChi, int diemTichLuy, string capDoThanhVien)
         {
             // Tìm khách hàng dựa trên số điện thoại
             var existingCustomer = _repo.GetKhachHangBySoDienThoai(sdt);
@@ -60,8 +60,8 @@ namespace BUS.Service
                 KhachHang kh = new KhachHang
                 {
                     TenKhachHang = tenKH,
-                    Email = email,
                     SoDienThoai = sdt,
+                    Email = email,
                     DiaChi = diaChi,
                     DiemTichLuy = diemTichLuy,
                     CapDoThanhVien = capDoThanhVien
@@ -77,7 +77,6 @@ namespace BUS.Service
                 }
             }
         }
-
         private string DetermineMembershipLevel(int points)
         {
             if (points >= 50) return "Vàng";
@@ -88,14 +87,14 @@ namespace BUS.Service
 
         }
 
-        public string CNSua(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi)
+        public string CNSua(int Khanhhangid, string tenkhachhang, string sdt, string email, string diachi)
         {
             KhachHang kh = new KhachHang()
             {
                 KhachHangId = Khanhhangid,
                 TenKhachHang = tenkhachhang,
-                Email = email,
                 SoDienThoai = sdt,
+                Email = email,
                 DiaChi = diachi
             };
             if (_repo.Update(kh))

@@ -56,8 +56,8 @@ namespace DAL.Repsitory
                 var updateItem = _context.KhachHangs.Find(kh.KhachHangId);
                 // sau khi đã tìm ra ta đi gán giá trị mới cho các thuộc tính
                 updateItem.TenKhachHang = kh.TenKhachHang;
-                updateItem.Email = kh.Email;
                 updateItem.SoDienThoai = kh.SoDienThoai;
+                updateItem.Email = kh.Email;
                 updateItem.DiaChi = kh.DiaChi;
                 updateItem.DiemTichLuy = kh.DiemTichLuy;
                 updateItem.CapDoThanhVien = kh.CapDoThanhVien;

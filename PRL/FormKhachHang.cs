@@ -40,8 +40,8 @@ namespace PRL
             dgv_data.Columns[0].HeaderText = "STT";
             dgv_data.Columns[1].HeaderText = "ID khách hàng";
             dgv_data.Columns[2].HeaderText = "Tên khách hàng";
-            dgv_data.Columns[3].HeaderText = "Gmail";
-            dgv_data.Columns[4].HeaderText = "SDT";
+            dgv_data.Columns[3].HeaderText = "SDT";
+            dgv_data.Columns[4].HeaderText = "Email";
             dgv_data.Columns[5].HeaderText = "Địa chỉ";
 
         }
@@ -83,8 +83,8 @@ namespace PRL
         private void btnThem_Click(object sender, EventArgs e)
         {
             string ten = txtTenKhachHang.Text;
-            string email = txtEmail.Text;
             string sdt = txtSDT.Text;
+            string email = txtEmail.Text;
             string diachi = txtDiaChi.Text;
 
             if (!_services.CheckSDT(sdt))
@@ -96,7 +96,7 @@ namespace PRL
             {
                 int diemTichLuy = 0;
                 string capDoThanhVien = "Đồng";
-                string kq = _services.CNThemOrUpdateKhachHang( ten, email, sdt, diachi, diemTichLuy, capDoThanhVien);
+                string kq = _services.CNThemOrUpdateKhachHang( ten, sdt, email, diachi, diemTichLuy, capDoThanhVien);
                 MessageBox.Show(kq);
                 List<KhachHang> khachhangs = _services.CNShow();
                 showdata(khachhangs);
@@ -116,8 +116,8 @@ namespace PRL
             dgv_KhachHang.Columns[1].HeaderText = "ID Khách hàng";
             dgv_KhachHang.Columns[2].HeaderText = "Tên khách hàng";
             dgv_KhachHang.Columns[3].HeaderText = "SDT";
-            dgv_KhachHang.Columns[4].HeaderText = "Địa chỉ";
-            dgv_KhachHang.Columns[5].HeaderText = "Gmail";
+            dgv_KhachHang.Columns[4].HeaderText = "Gmail";
+            dgv_KhachHang.Columns[5].HeaderText = "Địa chỉ";
             dgv_KhachHang.Columns[6].HeaderText = "Điểm tích lũy";
             dgv_KhachHang.Columns[7].HeaderText = "Cấp bậc";
         }
@@ -126,8 +126,8 @@ namespace PRL
         {
             string ma = txtMa.Text;
             string ten = txtTenKhachHang.Text;
-            string email = txtEmail.Text;
             string sdt = txtSDT.Text;
+            string email = txtEmail.Text;
             string diachi = txtDiaChi.Text;
 
             int maInt = int.Parse(ma);
@@ -138,7 +138,7 @@ namespace PRL
             DialogResult result = MessageBox.Show("Bạn có muốn sửa không", "Đã sửa", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string kq = _services.CNSua(maInt, ten, email, sdt, diachi);
+                string kq = _services.CNSua(maInt, ten, sdt, email, diachi);
                 MessageBox.Show(kq);
                 List<KhachHang> khachhangs = _services.CNShow();
                 showdata(khachhangs);
@@ -153,8 +153,8 @@ namespace PRL
             {
                 txtMa.Text = "";
                 txtTenKhachHang.Text = "";
-                txtEmail.Text = "";
                 txtSDT.Text = "";
+                txtEmail.Text = "";
                 txtDiaChi.Text = "";
             }
         }
@@ -165,8 +165,8 @@ namespace PRL
                 var rowdata = dgv_data.Rows[e.RowIndex];
                 txtMa.Text = rowdata.Cells[1].Value.ToString();
                 txtTenKhachHang.Text = rowdata.Cells[2].Value.ToString();
-                txtEmail.Text = rowdata.Cells[3].Value.ToString();
-                txtSDT.Text = rowdata.Cells[4].Value.ToString();
+                txtSDT.Text = rowdata.Cells[3].Value.ToString();
+                txtEmail.Text = rowdata.Cells[4].Value.ToString();
                 txtDiaChi.Text = rowdata.Cells[5].Value.ToString();
                 
             }
