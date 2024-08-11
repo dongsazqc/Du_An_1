@@ -340,18 +340,12 @@ namespace PRL
 
         private string DetermineMembershipLevel(int points)
         {
-            if (points >= 1000)
-            {
-                return "Vàng";
-            }
-            else if (points >= 500)
-            {
-                return "Bạc";
-            }
-            else
-            {
-                return "Đồng";
-            }
+            if (points >= 1000) return "Vàng";
+            
+            if (points >= 250) return "Bạc";
+
+            return "Đồng";
+
         }
 
 

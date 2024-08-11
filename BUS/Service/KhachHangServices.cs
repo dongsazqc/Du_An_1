@@ -37,9 +37,13 @@ namespace BUS.Service
 
             if (existingCustomer != null)
             {
-                // Khách hàng đã tồn tại, cập nhật điểm tích lũy và cấp độ thành viên
+                // Khách hàng đã tồn tại, cập nhật điểm tích lũy
+                int diemTichLuyHienTai = existingCustomer.DiemTichLuy ?? 0; // Chuyển đổi từ int? sang int
+                diemTichLuyHienTai += diemTichLuy; // Cộng dồn điểm tích lũy
                 existingCustomer.DiemTichLuy += diemTichLuy; // Cộng dồn điểm tích lũy
-                existingCustomer.CapDoThanhVien = capDoThanhVien; // Cập nhật cấp độ thành viên
+                // Tính lại cấp độ thành viên dựa trên điểm tích lũy mới
+                existingCustomer.CapDoThanhVien = DetermineMembershipLevel(diemTichLuyHienTai);
+
 
                 if (_repo.Update(existingCustomer))
                 {
@@ -72,6 +76,16 @@ namespace BUS.Service
                     return "Thêm khách hàng thất bại";
                 }
             }
+        }
+
+        private string DetermineMembershipLevel(int points)
+        {
+            if (points >= 1000) return "Vàng";
+
+            if (points >= 500) return "Bạc";
+
+            return "Đồng";
+
         }
 
         public string CNSua(int Khanhhangid, string tenkhachhang, string email, string sdt, string diachi)
