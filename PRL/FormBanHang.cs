@@ -12,12 +12,15 @@ using System.Windows.Forms;
 using DAL.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using Microsoft.Data.SqlClient;
+using AForge;
 using AForge.Video;
 using AForge.Video.DirectShow;
-
-
-
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using Emgu.CV;
+using Emgu.CV.Structure;
+using Emgu.CV.CvEnum;
+using OfficeOpenXml;
+using System.IO;
+using ClosedXML.Excel;
 
 
 namespace PRL
@@ -34,8 +37,8 @@ namespace PRL
         SanPhamMuaSer _SpMuaSer = new SanPhamMuaSer();
         SanPhamMuaRep _spMuaRep = new SanPhamMuaRep();
         HDTTService _hdttService = new HDTTService();
-        private FilterInfoCollection cameras;
-        private VideoCaptureDevice cam;
+
+
 
         private readonly string connectionString = "Data Source=PHAM_VAN_DONG;Initial Catalog=Du_An_Nhom4;Integrated Security=True;Trust Server Certificate=True";
 
@@ -50,14 +53,95 @@ namespace PRL
             List<HoaDonDaThanhToan> hoaDonDaThanhToans = _hdttService.CNShowHoaDonThanhToan();
             showdata(hoaDonDaThanhToans);
             pn_ChiTiet.Visible = false;
-
-
+            cameras = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            foreach (FilterInfo info in cameras)
+            {
+                comboBox1.Items.Add(info.Name);
+            }
+            comboBox1.SelectedIndex = 0;
 
 
         }
+        private BarcodeDetector qrCodeDetector;
+        private FilterInfoCollection cameras;
+        private VideoCaptureDevice cam;
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+            if (cam != null && cam.IsRunning)
+            {
+                cam.Stop();
+            }
+            cam = new VideoCaptureDevice(cameras[comboBox1.SelectedIndex].MonikerString);
+            cam.NewFrame += Cam_NewFrame;
+            cam.Start();
+        }
+
+        private void Cam_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            try
+            {
+                Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
+                pictureBox1.Image = bitmap;
+
+                // Chuyển đổi Bitmap sang Image<Bgr, Byte>
+
+                // Quét mã QR
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
 
 
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cam != null)
+                {
+                    if (cam.IsRunning)
+                    {
+                        cam.SignalToStop();
+                        cam.WaitForStop(); // Chờ cho đến khi camera dừng hoàn toàn
+                    }
 
+                    cam = null; // Giải phóng đối tượng camera
+                }
+
+                // Xóa ảnh trong PictureBox
+                pictureBox1.Image = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi dừng camera: " + ex.Message);
+            }
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+
+            if (cam != null)
+            {
+                if (cam.IsRunning)
+                {
+                    cam.SignalToStop(); // Gửi tín hiệu để dừng camera
+                    cam.WaitForStop(); // Chờ cho đến khi camera dừng hoàn toàn
+                }
+
+                cam = null; // Giải phóng đối tượng camera
+            }
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.InitialDirectory = "D:\\3.2-Du An 1";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image.Save(saveFileDialog1.FileName);
+            }
+        }
 
         private void showdata(List<HoaDonDaThanhToan> hoaDonDaThanhToans)
         {
@@ -69,7 +153,7 @@ namespace PRL
             dtg_HoaDon.Columns[2].HeaderText = "Tên khách hàng";
             dtg_HoaDon.Columns[3].HeaderText = "Gmail";
             dtg_HoaDon.Columns[4].HeaderText = "SDT";
-            dtg_HoaDon.Columns[5].HeaderText = "Địa chỉi";
+            dtg_HoaDon.Columns[5].HeaderText = "Địa chỉ";
             foreach (var i in hoaDonDaThanhToans)
             {
                 dtg_HoaDon.Rows.Add(stt++, i.HoaDonId, i.TenKhachHang, i.DiaChi, i.Gmail, i.SoDienThoai);
@@ -178,9 +262,8 @@ namespace PRL
             dtg_ChiTiet.Columns[5].HeaderText = "Tổng giá";
 
 
+
         }
-
-
 
         private void label8_Click(object sender, EventArgs e)
         {
@@ -275,41 +358,33 @@ namespace PRL
                 if (result == DialogResult.OK)
                 {
 
-                    // Đặt điểm dừng tại đây
                     string hoaDonId = selectedHoaDonId;
                     string tenKH = txt_tenkhachhang.Text;
                     string soDT = txt_sđt.Text;
                     string DiaC = txt_DiaChi.Text;
                     string Gmail = txt_Gmail.Text;
 
-                    // Giả sử bạn có tổng số tiền mua hàng trong một biến có tên `tongTien`
                     decimal tongTien = decimal.Parse(txt_tongtien.Text);  // Nhận tổng số tiền từ biểu mẫu của bạn
 
-                    // Tính điểm trung thành dựa trên tổng số tiền
                     int diemTichLuy = CalculateLoyaltyPoints(tongTien);
 
-                    // Tính capDoThanhVien dựa trên diemTichLuy
                     string capDoThanhVien = DetermineMembershipLevel(diemTichLuy);
 
-                    // Gọi phương thức thêm hóa đơn
                     string kqThemHoaDon = _hdttService.CNThemHoaDonThanhToan(hoaDonId, tenKH, soDT, DiaC, Gmail);
                     MessageBox.Show(kqThemHoaDon); // Hiển thị kết quả thêm
-                    string kqThemKhachHang = _KhachHangServices.CNThemOrUpdateKhachHang( tenKH, soDT, Gmail, DiaC, diemTichLuy, capDoThanhVien);
+                    string kqThemKhachHang = _KhachHangServices.CNThemOrUpdateKhachHang(tenKH, soDT, Gmail, DiaC, diemTichLuy, capDoThanhVien);
                     MessageBox.Show(kqThemKhachHang, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Cập nhật danh sách hóa đơn từ cơ sở dữ liệu
                     List<HoaDonDaThanhToan> hoaDonDaThanhToan1s = _hdttService.CNShowHoaDonThanhToan();
                     showdata(hoaDonDaThanhToan1s);
 
-                    // Cập nhật lại ComboBox
                     cbx_HoaDonId.Items.Remove(selectedHoaDonId);
 
-                    // Lưu lại các sản phẩm trong hóa đơn đã thanh toán
 
                     var selectedHoaDon = hoaDonDaThanhs.FirstOrDefault(hd => hd.HoaDonId == selectedHoaDonId);
                     if (selectedHoaDon != null)
                     {
-                        // Lưu các sản phẩm từ dtf_GioHang vào hóa đơn
                         selectedHoaDon.sanPhamMuas.Clear();
                         foreach (DataGridViewRow row in dtf_GioHang.Rows)
                         {
@@ -328,7 +403,6 @@ namespace PRL
                     }
                     cbx_HoaDonId.Items.Remove(selectedHoaDon);
 
-                    // Hiển thị thông báo thành công
                     MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     cbx_HoaDonId.Text = "";
                     // Reset form
@@ -338,7 +412,6 @@ namespace PRL
                     txt_DiaChi.Clear();
                     txt_Tienthua.Clear();
                     txt_tongtien.Clear();
-                    txt_TimKiemGioHang.Clear();
                     txt_khachdua.Clear();
                     dtf_GioHang.Rows.Clear();
                 }
@@ -358,7 +431,7 @@ namespace PRL
         private string DetermineMembershipLevel(int points)
         {
             if (points >= 50) return "Vàng";
-            
+
             if (points >= 20) return "Bạc";
 
             return "Đồng";
@@ -472,7 +545,6 @@ namespace PRL
             txt_DiaChi.Clear();
             txt_Tienthua.Clear();
             txt_tongtien.Clear();
-            txt_TimKiemGioHang.Clear();
             txt_khachdua.Clear();
             dtf_GioHang.Rows.Clear();
         }
@@ -551,7 +623,6 @@ namespace PRL
             txt_DiaChi.Clear();
             txt_Tienthua.Clear();
             txt_tongtien.Clear();
-            txt_TimKiemGioHang.Clear();
             txt_khachdua.Clear();
 
             // Nạp lại dữ liệu từ dịch vụ nếu cần
@@ -764,8 +835,11 @@ namespace PRL
 
         private void txt_timkiemsanpham_TextChanged(object sender, EventArgs e)
         {
-            List<SanPham> sp = _SanPhamService.CntimSPTheoTen(txt_timkiemsanpham.Text);
+
+            List<SanPham> sp = _SanPhamService.CntimSPTheoTen(txt_timkiemsanpham.Text.Trim());
             Loadata(sp);
+
+
         }
 
         private void txt_TimKiemGioHang_TextChanged(object sender, EventArgs e)
@@ -785,21 +859,74 @@ namespace PRL
 
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+
+        private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (cam != null && cam.IsRunning)
-            {
-                cam.Stop();
-            }
-            cam = new VideoCaptureDevice(cameras[comboBox1.SelectedIndex].MonikerString);
-            cam.NewFrame += Cam_NewFrame;
-            cam.Start();
+
         }
 
-        private void Cam_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        private void button1_Click_1(object sender, EventArgs e)
         {
-            Bitmap bitmap = (Bitmap)eventArgs.Frame.Clone();
-            pictureBox1.Image = bitmap;
+        }
+
+        private void FormBanHang_FormClosing(object sender, FormClosingEventArgs e)
+        {
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+        }
+
+        private void FormBanHang_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void pn_ChiTiet_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            List<HoaDonDaThanhToan> hd = _hdttService.CntimhdTheosdt(textBox1.Text.Trim());
+            showdata(hd);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            // Đường dẫn để lưu file Excel
+            string filePath = @"D:\3.2-Du An 1\newfile.xlsx";
+
+            // Tạo một DataTable từ DataGridView
+            DataTable dt = new DataTable();
+            foreach (DataGridViewColumn column in dtg_ChiTiet.Columns)
+            {
+                dt.Columns.Add(column.HeaderText);
+            }
+            foreach (DataGridViewRow row in dtg_ChiTiet.Rows)
+            {
+                if (row.IsNewRow) continue;
+                DataRow dataRow = dt.NewRow();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dataRow[cell.ColumnIndex] = cell.Value;
+                }
+                dt.Rows.Add(dataRow);
+            }
+
+            // Tạo file Excel
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add("Sheet1");
+                worksheet.Cell(1, 1).InsertTable(dt);
+                workbook.SaveAs(filePath);
+            }
+
+            MessageBox.Show("File Excel đã được tạo thành công!");
         }
     }
 }
+    
+
+    

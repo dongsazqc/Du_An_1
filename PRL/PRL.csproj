@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.102.3" />
+    <PackageReference Include="Emgu.CV" Version="4.9.0.5494" />
+    <PackageReference Include="Emgu.CV.runtime.windows" Version="4.9.0.5494" />
+    <PackageReference Include="EPPlus" Version="7.2.2" />
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6" />
@@ -16,6 +20,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="ZXing.Net" Version="0.16.9" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>D:\3.2-Du An 1\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.dll</HintPath>
+    </Reference>
     <Reference Include="AForge.Video">
       <HintPath>D:\3.2-Du An 1\AForge.NET Framework-2.2.5-(libs only)\Release\AForge.Video.dll</HintPath>
     </Reference>

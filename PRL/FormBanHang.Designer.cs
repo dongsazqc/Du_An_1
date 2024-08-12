@@ -56,6 +56,7 @@
             icbtn_LamMOI = new FontAwesome.Sharp.IconButton();
             groupBox6 = new GroupBox();
             textBox1 = new TextBox();
+            label17 = new Label();
             label8 = new Label();
             dtg_HoaDon = new DataGridView();
             pn_ChiTiet = new Panel();
@@ -66,16 +67,20 @@
             txt_timkiemsanpham = new TextBox();
             label6 = new Label();
             groupBox1 = new GroupBox();
+            label15 = new Label();
             label13 = new Label();
             dtf_GioHang = new DataGridView();
             btn_xoaALLL = new Button();
             btn_XoaSp = new Button();
             groupBox2 = new GroupBox();
             label14 = new Label();
-            txt_TimKiemGioHang = new TextBox();
             pictureBox1 = new PictureBox();
-            comboBox1 = new ComboBox();
             button1 = new Button();
+            button2 = new Button();
+            comboBox1 = new ComboBox();
+            saveFileDialog1 = new SaveFileDialog();
+            button3 = new Button();
+            button4 = new Button();
             groupBox5.SuspendLayout();
             groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
@@ -408,33 +413,45 @@
             // groupBox6
             // 
             groupBox6.Controls.Add(textBox1);
+            groupBox6.Controls.Add(label17);
             groupBox6.Controls.Add(label8);
             groupBox6.Controls.Add(dtg_HoaDon);
-            groupBox6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            groupBox6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             groupBox6.ForeColor = Color.Red;
             groupBox6.Location = new Point(29, 617);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(1173, 246);
+            groupBox6.Size = new Size(957, 246);
             groupBox6.TabIndex = 40;
             groupBox6.TabStop = false;
             groupBox6.Text = "DS hóa đơn đã thanh toán";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(169, 26);
+            textBox1.Location = new Point(244, 29);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(424, 27);
+            textBox1.Size = new Size(424, 30);
             textBox1.TabIndex = 41;
+            textBox1.TextChanged += textBox1_TextChanged;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.ForeColor = Color.FromArgb(255, 192, 128);
+            label17.Location = new Point(77, 30);
+            label17.Name = "label17";
+            label17.Size = new Size(161, 23);
+            label17.TabIndex = 42;
+            label17.Text = "Nhập số điện thoại";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            label8.Font = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 163);
             label8.ForeColor = Color.FromArgb(255, 128, 0);
-            label8.Location = new Point(77, 212);
+            label8.Location = new Point(6, 217);
             label8.Name = "label8";
             label8.RightToLeft = RightToLeft.Yes;
-            label8.Size = new Size(276, 20);
+            label8.Size = new Size(337, 25);
             label8.TabIndex = 40;
             label8.Text = "CICK ĐÚP ĐỂ XEM CHI TIẾT HÓA ĐƠN";
             // 
@@ -444,7 +461,7 @@
             dtg_HoaDon.Location = new Point(6, 67);
             dtg_HoaDon.Name = "dtg_HoaDon";
             dtg_HoaDon.RowHeadersWidth = 51;
-            dtg_HoaDon.Size = new Size(1145, 142);
+            dtg_HoaDon.Size = new Size(939, 142);
             dtg_HoaDon.TabIndex = 39;
             dtg_HoaDon.CellContentClick += dtg_HoaDon_CellContentClick;
             dtg_HoaDon.CellContentDoubleClick += dtg_HoaDon_CellContentDoubleClick;
@@ -452,13 +469,15 @@
             // pn_ChiTiet
             // 
             pn_ChiTiet.BackColor = Color.FromArgb(255, 192, 128);
+            pn_ChiTiet.Controls.Add(button4);
             pn_ChiTiet.Controls.Add(label9);
             pn_ChiTiet.Controls.Add(btn_Close);
             pn_ChiTiet.Controls.Add(dtg_ChiTiet);
-            pn_ChiTiet.Location = new Point(612, 419);
+            pn_ChiTiet.Location = new Point(346, 374);
             pn_ChiTiet.Name = "pn_ChiTiet";
-            pn_ChiTiet.Size = new Size(794, 345);
+            pn_ChiTiet.Size = new Size(793, 390);
             pn_ChiTiet.TabIndex = 41;
+            pn_ChiTiet.Paint += pn_ChiTiet_Paint;
             // 
             // label9
             // 
@@ -486,10 +505,10 @@
             // dtg_ChiTiet
             // 
             dtg_ChiTiet.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtg_ChiTiet.Location = new Point(32, 94);
+            dtg_ChiTiet.Location = new Point(22, 121);
             dtg_ChiTiet.Name = "dtg_ChiTiet";
             dtg_ChiTiet.RowHeadersWidth = 51;
-            dtg_ChiTiet.Size = new Size(638, 188);
+            dtg_ChiTiet.Size = new Size(750, 188);
             dtg_ChiTiet.TabIndex = 0;
             // 
             // data_SPBH
@@ -501,16 +520,16 @@
             data_SPBH.Name = "data_SPBH";
             data_SPBH.RightToLeft = RightToLeft.No;
             data_SPBH.RowHeadersWidth = 51;
-            data_SPBH.Size = new Size(840, 454);
+            data_SPBH.Size = new Size(840, 475);
             data_SPBH.TabIndex = 0;
             data_SPBH.CellContentClick += data_SPBH_CellContentClick;
             data_SPBH.CellDoubleClick += data_SPBH_CellDoubleClick;
             // 
             // txt_timkiemsanpham
             // 
-            txt_timkiemsanpham.Location = new Point(169, 52);
+            txt_timkiemsanpham.Location = new Point(243, 47);
             txt_timkiemsanpham.Name = "txt_timkiemsanpham";
-            txt_timkiemsanpham.Size = new Size(433, 27);
+            txt_timkiemsanpham.Size = new Size(433, 30);
             txt_timkiemsanpham.TabIndex = 20;
             txt_timkiemsanpham.TextChanged += txt_timkiemsanpham_TextChanged;
             // 
@@ -518,19 +537,20 @@
             // 
             label6.AutoSize = true;
             label6.ForeColor = Color.FromArgb(255, 128, 0);
-            label6.Location = new Point(6, 538);
+            label6.Location = new Point(0, 559);
             label6.Name = "label6";
-            label6.Size = new Size(353, 20);
+            label6.Size = new Size(403, 23);
             label6.TabIndex = 21;
             label6.Text = "CLICK ĐÚP ĐỂ THÊM SẢN PHẨM VÀO GIỎ HÀNG";
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label15);
             groupBox1.Controls.Add(label13);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(txt_timkiemsanpham);
             groupBox1.Controls.Add(data_SPBH);
-            groupBox1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            groupBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             groupBox1.ForeColor = Color.Red;
             groupBox1.Location = new Point(29, 13);
             groupBox1.Margin = new Padding(4);
@@ -540,6 +560,17 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Danh sách sản phẩm";
             groupBox1.Enter += groupBox1_Enter;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
+            label15.ForeColor = Color.FromArgb(255, 192, 128);
+            label15.Location = new Point(70, 50);
+            label15.Name = "label15";
+            label15.Size = new Size(168, 23);
+            label15.TabIndex = 25;
+            label15.Text = "Tìm kiếm sản phẩm";
             // 
             // label13
             // 
@@ -554,16 +585,16 @@
             // dtf_GioHang
             // 
             dtf_GioHang.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dtf_GioHang.Location = new Point(17, 94);
+            dtf_GioHang.Location = new Point(17, 81);
             dtf_GioHang.Name = "dtf_GioHang";
             dtf_GioHang.RowHeadersWidth = 51;
-            dtf_GioHang.Size = new Size(524, 429);
+            dtf_GioHang.Size = new Size(524, 501);
             dtf_GioHang.TabIndex = 0;
             dtf_GioHang.CellContentClick += dtf_GioHang_CellContentClick;
             // 
             // btn_xoaALLL
             // 
-            btn_xoaALLL.Location = new Point(349, 541);
+            btn_xoaALLL.Location = new Point(318, 34);
             btn_xoaALLL.Name = "btn_xoaALLL";
             btn_xoaALLL.Size = new Size(94, 41);
             btn_xoaALLL.TabIndex = 3;
@@ -573,7 +604,7 @@
             // 
             // btn_XoaSp
             // 
-            btn_XoaSp.Location = new Point(86, 541);
+            btn_XoaSp.Location = new Point(112, 32);
             btn_XoaSp.Name = "btn_XoaSp";
             btn_XoaSp.Size = new Size(139, 41);
             btn_XoaSp.TabIndex = 5;
@@ -586,7 +617,6 @@
             groupBox2.Controls.Add(label14);
             groupBox2.Controls.Add(btn_XoaSp);
             groupBox2.Controls.Add(btn_xoaALLL);
-            groupBox2.Controls.Add(txt_TimKiemGioHang);
             groupBox2.Controls.Add(dtf_GioHang);
             groupBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 163);
             groupBox2.ForeColor = Color.Red;
@@ -607,40 +637,62 @@
             label14.Size = new Size(0, 23);
             label14.TabIndex = 23;
             // 
-            // txt_TimKiemGioHang
-            // 
-            txt_TimKiemGioHang.Location = new Point(157, 61);
-            txt_TimKiemGioHang.Name = "txt_TimKiemGioHang";
-            txt_TimKiemGioHang.Size = new Size(384, 30);
-            txt_TimKiemGioHang.TabIndex = 2;
-            txt_TimKiemGioHang.TextChanged += txt_TimKiemGioHang_TextChanged;
-            // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(1226, 629);
+            pictureBox1.Location = new Point(1042, 627);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(390, 186);
+            pictureBox1.Size = new Size(416, 222);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 42;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(1544, 667);
+            button1.Name = "button1";
+            button1.Size = new Size(94, 29);
+            button1.TabIndex = 43;
+            button1.Text = "Bắt đầu quét";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click_2;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(1544, 712);
+            button2.Name = "button2";
+            button2.Size = new Size(94, 29);
+            button2.TabIndex = 44;
+            button2.Text = "Lưu";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(1226, 821);
+            comboBox1.Location = new Point(1487, 794);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
-            comboBox1.TabIndex = 43;
+            comboBox1.TabIndex = 45;
             // 
-            // button1
+            // button3
             // 
-            button1.Location = new Point(1438, 835);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 44;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click_1;
+            button3.Location = new Point(1544, 759);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 47;
+            button3.Text = "Dừng ";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(141, 320);
+            button4.Name = "button4";
+            button4.Size = new Size(121, 47);
+            button4.TabIndex = 3;
+            button4.Text = "In hóa đơn";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // FormBanHang
             // 
@@ -648,9 +700,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Navy;
             ClientSize = new Size(1907, 875);
-            Controls.Add(button1);
+            Controls.Add(button3);
             Controls.Add(comboBox1);
-            Controls.Add(pictureBox1);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(pn_ChiTiet);
             Controls.Add(groupBox2);
             Controls.Add(groupBox5);
@@ -658,9 +711,12 @@
             Controls.Add(groupBox6);
             Controls.Add(groupBox3);
             Controls.Add(groupBox4);
+            Controls.Add(pictureBox1);
             ForeColor = Color.Brown;
             Name = "FormBanHang";
             Text = "FormBanHang";
+            FormClosing += FormBanHang_FormClosing;
+            FormClosed += FormBanHang_FormClosed;
             Load += FormBanHang_Load;
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
@@ -727,11 +783,16 @@
         private Button btn_XoaSp;
         private GroupBox groupBox2;
         private Label label14;
-        private TextBox txt_TimKiemGioHang;
         private TextBox textBox1;
-        private PictureBox pictureBox1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
-        private ComboBox comboBox1;
+        private PictureBox pictureBox1;
         private Button button1;
+        private Button button2;
+        private ComboBox comboBox1;
+        private Label label15;
+        private SaveFileDialog saveFileDialog1;
+        private Button button3;
+        private Label label17;
+        private Button button4;
     }
 }

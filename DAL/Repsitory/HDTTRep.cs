@@ -54,5 +54,11 @@ namespace DAL.Repsitory
                 return context.HoaDonDaThanhToans.Any(hd => hd.HoaDonId == hoaDonId);
             }
         }
+        //tìm theo số điện thoại
+        public List<HoaDonDaThanhToan> GetHdTheoSDT(string sdt)
+        {
+            return _context.HoaDonDaThanhToans.Where(p => p.Gmail.Contains(sdt)).ToList();
+        }
+
     }
 }

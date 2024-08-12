@@ -50,5 +50,10 @@ namespace BUS.Service
             // Giả sử bạn có một phương thức trong dịch vụ để xóa hóa đơn khỏi cơ sở dữ liệu
             return _repos.XoaHoaDon(hoaDonId);
         }
+        public List<HoaDonDaThanhToan> CntimhdTheosdt(string sdt)
+        {
+            return _repos.GetHdTheoSDT(sdt);
+        }
+
     }
 }

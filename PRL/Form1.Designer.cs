@@ -30,8 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel1 = new Panel();
-            iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
-            btn_KM = new Button();
             pictureBox2 = new PictureBox();
             iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
@@ -46,14 +44,16 @@
             TieuDe = new Label();
             panel2 = new Panel();
             icbtn_HienAn = new FontAwesome.Sharp.IconButton();
+            iconPictureBox6 = new FontAwesome.Sharp.IconPictureBox();
+            btn_KM = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox6).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -76,34 +76,6 @@
             panel1.Size = new Size(249, 1032);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
-            // 
-            // iconPictureBox6
-            // 
-            iconPictureBox6.BackColor = Color.FromArgb(0, 0, 192);
-            iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.PiggyBank;
-            iconPictureBox6.IconColor = Color.White;
-            iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox6.IconSize = 40;
-            iconPictureBox6.Location = new Point(23, 827);
-            iconPictureBox6.Name = "iconPictureBox6";
-            iconPictureBox6.Size = new Size(40, 40);
-            iconPictureBox6.TabIndex = 13;
-            iconPictureBox6.TabStop = false;
-            // 
-            // btn_KM
-            // 
-            btn_KM.BackColor = Color.FromArgb(0, 0, 192);
-            btn_KM.FlatAppearance.BorderSize = 0;
-            btn_KM.FlatStyle = FlatStyle.Flat;
-            btn_KM.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
-            btn_KM.ForeColor = Color.White;
-            btn_KM.Location = new Point(3, 798);
-            btn_KM.Name = "btn_KM";
-            btn_KM.Size = new Size(249, 112);
-            btn_KM.TabIndex = 6;
-            btn_KM.Text = "Khuyễn mãi";
-            btn_KM.UseVisualStyleBackColor = false;
-            btn_KM.Click += button1_Click_1;
             // 
             // pictureBox2
             // 
@@ -282,6 +254,34 @@
             icbtn_HienAn.UseVisualStyleBackColor = false;
             icbtn_HienAn.Click += iconButton1_Click;
             // 
+            // iconPictureBox6
+            // 
+            iconPictureBox6.BackColor = Color.FromArgb(0, 0, 192);
+            iconPictureBox6.IconChar = FontAwesome.Sharp.IconChar.PiggyBank;
+            iconPictureBox6.IconColor = Color.White;
+            iconPictureBox6.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconPictureBox6.IconSize = 40;
+            iconPictureBox6.Location = new Point(23, 827);
+            iconPictureBox6.Name = "iconPictureBox6";
+            iconPictureBox6.Size = new Size(40, 40);
+            iconPictureBox6.TabIndex = 13;
+            iconPictureBox6.TabStop = false;
+            // 
+            // btn_KM
+            // 
+            btn_KM.BackColor = Color.FromArgb(0, 0, 192);
+            btn_KM.FlatAppearance.BorderSize = 0;
+            btn_KM.FlatStyle = FlatStyle.Flat;
+            btn_KM.Font = new Font("Franklin Gothic Demi Cond", 13F, FontStyle.Bold);
+            btn_KM.ForeColor = Color.White;
+            btn_KM.Location = new Point(3, 798);
+            btn_KM.Name = "btn_KM";
+            btn_KM.Size = new Size(249, 112);
+            btn_KM.TabIndex = 6;
+            btn_KM.Text = "Khuyễn mãi";
+            btn_KM.UseVisualStyleBackColor = false;
+            btn_KM.Click += button1_Click_1;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -296,7 +296,6 @@
             Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox3).EndInit();
@@ -304,6 +303,7 @@
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox6).EndInit();
             ResumeLayout(false);
         }
 

@@ -12,7 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DAL.Models;
 using System.Windows.Controls;
 
 namespace PRL
