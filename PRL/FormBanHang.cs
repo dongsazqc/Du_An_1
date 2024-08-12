@@ -40,7 +40,7 @@ namespace PRL
 
 
 
-        private readonly string connectionString = "Data Source=PHAM_VAN_DONG;Initial Catalog=Du_An_Nhom4;Integrated Security=True;Trust Server Certificate=True";
+        private readonly string connectionString = "Data Source=DUONG;Initial Catalog=Du_An_Nhom4;User ID=sa;Password=123456;TrustServerCertificate=True";
 
 
         KhachHangServices _KhachHangServices = new KhachHangServices();
@@ -372,7 +372,11 @@ namespace PRL
 
                     string kqThemHoaDon = _hdttService.CNThemHoaDonThanhToan(hoaDonId, tenKH, soDT, DiaC, Gmail);
                     MessageBox.Show(kqThemHoaDon); // Hiển thị kết quả thêm
+<<<<<<< HEAD
                     string kqThemKhachHang = _KhachHangServices.CNThemOrUpdateKhachHang(tenKH, soDT, Gmail, DiaC, diemTichLuy, capDoThanhVien);
+=======
+                    string kqThemKhachHang = _KhachHangServices.CNThemOrUpdateKhachHang(tenKH, Gmail, soDT, DiaC, diemTichLuy, capDoThanhVien);
+>>>>>>> dfe983a99e02d7377f6d913d10ec6eb98299fffe
                     MessageBox.Show(kqThemKhachHang, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Cập nhật danh sách hóa đơn từ cơ sở dữ liệu
@@ -925,8 +929,38 @@ namespace PRL
 
             MessageBox.Show("File Excel đã được tạo thành công!");
         }
+
+        private void txt_sđt_TextChanged(object sender, EventArgs e)
+        {
+            string phoneNumber = txt_sđt.Text.Trim();
+
+            if (!string.IsNullOrEmpty(phoneNumber))
+            {
+                // Gọi tới dịch vụ để nhận khách hàng qua số điện thoại
+                var customer = _KhachHangRep.GetKhachHangBySoDienThoai(phoneNumber);
+
+                if (customer != null)
+                {
+                    // Khách hàng đã tìm thấy, điền vào hộp văn bản
+                    txt_tenkhachhang.Text = customer.TenKhachHang;
+                    txt_Gmail.Text = customer.Email;
+                    txt_DiaChi.Text = customer.DiaChi;
+                }
+                else
+                {
+                    // Xóa hộp văn bản nếu không tìm thấy khách hàng
+                    txt_tenkhachhang.Text = string.Empty;
+                    txt_Gmail.Text = string.Empty;
+                    txt_DiaChi.Text = string.Empty;
+                }
+            }
+        }
     }
+<<<<<<< HEAD
 }
     
 
     
+=======
+}
+>>>>>>> dfe983a99e02d7377f6d913d10ec6eb98299fffe

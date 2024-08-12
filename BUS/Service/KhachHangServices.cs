@@ -30,7 +30,7 @@ namespace BUS.Service
             return _repo.GetKH(id);
         }
 
-        public string CNThemOrUpdateKhachHang(string tenKH, string sdt, string email, string diaChi, int diemTichLuy, string capDoThanhVien)
+        public string CNThemOrUpdateKhachHang(string tenKH, string email, string sdt, string diaChi, int diemTichLuy, string capDoThanhVien)
         {
             // Tìm khách hàng dựa trên số điện thoại
             var existingCustomer = _repo.GetKhachHangBySoDienThoai(sdt);
@@ -56,14 +56,11 @@ namespace BUS.Service
             }
             else
             {
-                // Khách hàng mới, tạo mới
-                int stt = _repo.GetMaxKhachHangId()+1;
                 KhachHang kh = new KhachHang
                 {
-                    KhachHangId = stt,
                     TenKhachHang = tenKH,
-                    SoDienThoai = sdt,
                     Email = email,
+                    SoDienThoai = sdt,
                     DiaChi = diaChi,
                     DiemTichLuy = diemTichLuy,
                     CapDoThanhVien = capDoThanhVien
@@ -95,14 +92,13 @@ namespace BUS.Service
 
         }
 
-        public string CNSua(int Khanhhangid, string tenkhachhang, string sdt, string email, string diachi)
+        public string CNSua( string tenkhachhang, string email, string sdt,  string diachi)
         {
             KhachHang kh = new KhachHang()
             {
-                KhachHangId = Khanhhangid,
                 TenKhachHang = tenkhachhang,
-                SoDienThoai = sdt,
                 Email = email,
+                SoDienThoai = sdt,
                 DiaChi = diachi
             };
             if (_repo.Update(kh))
@@ -130,8 +126,14 @@ namespace BUS.Service
 
         public bool CheckSDT(string sdt)
         {
-            if (sdt.Length > 10 || sdt.Trim().Length == 0) return false;
+            if (sdt.Length != 10 || sdt.Trim().Length == 0) return false;
             else return true;
         }
+
+        public KhachHang GetKhachHangBySoDienThoai(string sdt)
+        {
+            return _repo.GetKhachHangBySoDienThoai(sdt);
+        }
+
     }
 }

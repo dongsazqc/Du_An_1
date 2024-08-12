@@ -109,7 +109,7 @@ namespace PRL
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(52, 141);
+            label3.Location = new Point(52, 140);
             label3.Name = "label3";
             label3.Size = new Size(54, 23);
             label3.TabIndex = 4;
@@ -119,7 +119,7 @@ namespace PRL
             // 
             label4.AutoSize = true;
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(52, 193);
+            label4.Location = new Point(52, 192);
             label4.Name = "label4";
             label4.Size = new Size(116, 23);
             label4.TabIndex = 5;
@@ -152,14 +152,14 @@ namespace PRL
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(254, 193);
+            txtEmail.Location = new Point(254, 137);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(311, 30);
             txtEmail.TabIndex = 9;
             // 
             // txtSDT
             // 
-            txtSDT.Location = new Point(254, 141);
+            txtSDT.Location = new Point(254, 192);
             txtSDT.Name = "txtSDT";
             txtSDT.Size = new Size(311, 30);
             txtSDT.TabIndex = 10;
@@ -238,9 +238,9 @@ namespace PRL
             groupBox3.Controls.Add(txtSDT);
             groupBox3.Controls.Add(label5);
             groupBox3.Controls.Add(txtDiaChi);
-            groupBox3.Controls.Add(label4);
             groupBox3.Controls.Add(label3);
             groupBox3.Controls.Add(label1);
+            groupBox3.Controls.Add(label4);
             groupBox3.Controls.Add(label2);
             groupBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox3.ForeColor = Color.IndianRed;

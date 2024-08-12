@@ -11,7 +11,7 @@ namespace DAL.Repsitory
 {
     public class KhachHangRep
     {
-        private readonly string connectionString = "Data Source=PHAM_VAN_DONG;Initial Catalog=Du_An_Nhom4;Integrated Security=True;Trust Server Certificate=True";
+        private readonly string connectionString = "Data Source=DUONG;Initial Catalog=Du_An_Nhom4;User ID=sa;Password=123456;TrustServerCertificate=True";
 
         DuAnNhom4Context _context = new DuAnNhom4Context();
         public KhachHangRep()
