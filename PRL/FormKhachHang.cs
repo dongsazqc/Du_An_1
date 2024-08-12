@@ -41,7 +41,7 @@ namespace PRL
             int stt = 1;
             foreach (var item in khachHangCapdo)
             {
-                dgv_KhachHang.Rows.Add(stt++,item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi, item.DiemTichLuy, item.CapDoThanhVien);
+                dgv_KhachHang.Rows.Add(stt++, item.KhachHangId, item.TenKhachHang, item.Email, item.SoDienThoai, item.DiaChi, item.DiemTichLuy, item.CapDoThanhVien);
             }
         }
 
@@ -57,7 +57,7 @@ namespace PRL
             int stt = 1;
             foreach (KhachHang k in kh)
             {
-                dgv_data.Rows.Add(stt++, k.KhachHangId, k.TenKhachHang, k.SoDienThoai, k.Email, k.DiaChi);
+                dgv_data.Rows.Add(stt++, k.KhachHangId, k.TenKhachHang, k.Email, k.SoDienThoai, k.DiaChi);
             }
         }
         private void LoadCapBac()
@@ -74,8 +74,8 @@ namespace PRL
             dgv_data.Columns[0].HeaderText = "STT";
             dgv_data.Columns[1].HeaderText = "ID khách hàng";
             dgv_data.Columns[2].HeaderText = "Tên khách hàng";
-            dgv_data.Columns[3].HeaderText = "SDT";
-            dgv_data.Columns[4].HeaderText = "Email";
+            dgv_data.Columns[3].HeaderText = "Email";
+            dgv_data.Columns[4].HeaderText = "SDT";
             dgv_data.Columns[5].HeaderText = "Địa chỉ";
 
             // Initialize dgv_KhachHang
@@ -115,6 +115,14 @@ namespace PRL
                 return;
             }
 
+            // Kiểm tra số điện thoại đã tồn tại chưa
+            var sdtkh = _services.GetKhachHangBySoDienThoai(sdt);
+            if (sdtkh != null)
+            {
+                MessageBox.Show("Số điện thoại này đã tồn tại. Vui lòng nhập số điện thoại khác.");
+                return;
+            }
+
             DialogResult result = MessageBox.Show("Bạn có chắc chắn thêm không?", "Thêm mới", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
@@ -135,13 +143,12 @@ namespace PRL
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            string ma = txtMa.Text.Trim();
             string ten = txtTenKhachHang.Text.Trim();
             string sdt = txtSDT.Text.Trim();
             string email = txtEmail.Text.Trim();
             string diachi = txtDiaChi.Text.Trim();
 
-            if (string.IsNullOrEmpty(ma) || string.IsNullOrEmpty(ten) || string.IsNullOrEmpty(sdt) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(diachi))
+            if (/*string.IsNullOrEmpty(ma) || */string.IsNullOrEmpty(ten) || string.IsNullOrEmpty(sdt) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(diachi))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin.");
                 return;
@@ -153,16 +160,16 @@ namespace PRL
                 return;
             }
 
-            if (!int.TryParse(ma, out int maInt))
-            {
-                MessageBox.Show("Mã khách hàng không hợp lệ.");
-                return;
-            }
+            //if (!int.TryParse(ma, out int maInt))
+            //{
+            //    MessageBox.Show("Mã khách hàng không hợp lệ.");
+            //    return;
+            //}
 
             DialogResult result = MessageBox.Show("Bạn có chắc chắn sửa không?", "Sửa thông tin", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                string kq = _services.CNSua(maInt, ten, sdt, email, diachi);
+                string kq = _services.CNSua(ten, sdt, email, diachi);
                 MessageBox.Show(kq);
                 LoadKhachHangData();
             }
