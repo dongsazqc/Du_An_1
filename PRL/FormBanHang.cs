@@ -294,7 +294,7 @@ namespace PRL
                     // Gọi phương thức thêm hóa đơn
                     string kqThemHoaDon = _hdttService.CNThemHoaDonThanhToan(hoaDonId, tenKH, soDT, DiaC, Gmail);
                     MessageBox.Show(kqThemHoaDon); // Hiển thị kết quả thêm
-                    string kqThemKhachHang = _KhachHangServices.CNThemOrUpdateKhachHang(tenKH, soDT, Gmail, DiaC, diemTichLuy, capDoThanhVien);
+                    string kqThemKhachHang = _KhachHangServices.CNThemOrUpdateKhachHang(tenKH, Gmail, soDT, DiaC, diemTichLuy, capDoThanhVien);
                     MessageBox.Show(kqThemKhachHang, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Cập nhật danh sách hóa đơn từ cơ sở dữ liệu
